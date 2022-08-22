@@ -130,9 +130,9 @@ $$E_n = -\frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2})$$
 
 가설에 따르면 전자는 그저 존재할 뿐이며 빛-에테르는 전자와 원자핵 사이의 공간에 들어오는 것이다. 오비탈에서 검은 부분을 마디(node)라 하는데, 이 부분이 빛의 에테르일 것이다. 주 양자수 n에 따라 원형 에테르의 개수가 증가하고 부양자수 $l$에 따라 원형의 에테르 하나가 선형으로 변화하는 것으로 생각해볼 수 있다. 빛 에테르 분포가 전자 오비탈의 마디와 일치한다면 오비탈의 마디는 사실 빛 에테르라는 것을 검증할 수 있을 것이다. 마디의 위치는 슈뢰딩거 방정식의 지름 파동함수 R(r) 방정식으로 알아볼 수 있다.
 
-$$\frac{1}{R(r)} \frac{d}{dr} (r^2 \frac{d}{dr}) R(r) - \frac{2 \mu r^2}{ℏ^2}(V-E) - l(l+1) = 0$$
+$$\frac{1}{R(r)} \frac{d}{dr} (r^2 \frac{d}{dr}) R(r) - \frac{2 \mu r^2}{ℏ^2}(V(r)-E) - l(l+1) = 0$$
 
-$$\to \frac{d}{dr} (r^2 \frac{d}{dr}) R(r) + [\frac{2 \mu r^2}{ℏ^2}E - \frac{2 \mu r^2}{ℏ^2}V - l(l+1)]R(r) = 0$$
+$$\to \frac{d}{dr} (r^2 \frac{d}{dr}) R(r) + [\frac{2 \mu r^2}{ℏ^2}E - \frac{2 \mu r^2}{ℏ^2}V(r) - l(l+1)]R(r) = 0$$
 
 <p align="center">식2-4. 지름 파동함수 R(r)</p>
 
@@ -148,23 +148,23 @@ $${y_j^k}''(x) + (-\frac{1}{4} + \frac{2j+k+1}{2x} - \frac{k^2-1}{4x^2})y_j^k(x)
 
 식2-4에서 $rR(r)=y(r)$로 치환하면 아래와 같다.
 
-$$r\frac{d^2y(r)}{dr^2} + [\frac{2 \mu r^2}{ℏ^2}E - \frac{2 \mu r^2}{ℏ^2}V - l(l+1)]\frac{y(r)}{r} = 0$$
+$$r\frac{d^2y(r)}{dr^2} + [\frac{2 \mu r^2}{ℏ^2}E - \frac{2 \mu r^2}{ℏ^2}V(r) - l(l+1)]\frac{y(r)}{r} = 0$$
 
-$$\to \frac{d^2y(r)}{dr^2} + [\frac{2 \mu}{ℏ^2}E - \frac{2 \mu}{ℏ^2}V - \frac{l(l+1)}{r^2}]y(r) = 0$$
+$$\to \frac{d^2y(r)}{dr^2} + [\frac{2 \mu}{ℏ^2}E - \frac{2 \mu}{ℏ^2}V(r) - \frac{l(l+1)}{r^2}]y(r) = 0$$
 
 <p align="center">식2-6. 지름 파동함수 R(r)</p>
 
-$(\frac{\epsilon}{2})^2 = -\frac{2\mu}{ℏ^2}E$로, 그리고 $x=r\epsilon$로 치환하면 식2-6은 아래와 같아진다.
+우리는 이미 E를 알고 있기 때문에 V를 구하기 위해서는 $(\frac{\epsilon}{2})^2 = \frac{2\mu}{ℏ^2}V(r)$로, 그리고 $x=r\epsilon$로 치환하면 식2-6은 아래와 같아진다.
 
-$$\epsilon^2\frac{d^2y(x)}{dx^2} + [-\frac{\epsilon^2}{4} - \frac{2 \mu}{ℏ^2}V - \epsilon^2\frac{l(l+1)}{x^2}]y(x) = 0$$
+$$\epsilon^2\frac{d^2y(x)}{dx^2} + [-\frac{\epsilon^2}{4} + \frac{2 \mu}{ℏ^2}E - \epsilon^2\frac{l(l+1)}{x^2}]y(x) = 0$$
 
-$$\to \frac{d^2y(x)}{dx^2} + [-\frac{1}{4} - \frac{2 \mu}{ℏ^2\epsilon^2}V - \frac{l(l+1)}{x^2}]y(x) = 0$$
+$$\to \frac{d^2y(x)}{dx^2} + [-\frac{1}{4} + \frac{2 \mu}{ℏ^2\epsilon^2}E - \frac{l(l+1)}{x^2}]y(x) = 0$$
 
 <p align="center">식2-7. 지름 파동함수 R(r)</p>
 
-이 형태는 식2-5와 일치한다. 먼저 괄호항의 세번째 항$\frac{l(l+1)}{x^2}$이 식2-5의 $\frac{k^2-1}{4x^2}$과 일치하는 것으로$l(l+1) = k^2-1$, l과 k의 관계를 구할 수 있다. $k=2l+1$. 또한 괄호항의 두번째 항, $\frac{2 \mu}{ℏ^2\epsilon^2}V$이 $\frac{2j+k+1}{2x}$와 일치하는 것을 가정해 E와 V의 관계를 얻을 수 있다. 여기서 $2j+k+1$는 $2j+2l+2$로 치환되며, 이를 2로 나눈 값 $j+l+1$는 주양자수 n으로 변환된다. 그러나, 빛-에테르는 n=2부터 시작하기 때문에 이를 n-1로 변환하기로 하겠다.
+이 형태는 식2-5와 일치한다. 먼저 괄호항의 세번째 항, $\frac{l(l+1)}{x^2}$이 식2-5의 $\frac{k^2-1}{4x^2}$과 일치하는 것으로 $l(l+1) = k^2-1$, l과 k의 관계를 구할 수 있다. $k=2l+1$. 또한 괄호항의 두번째 항, $\frac{2 \mu}{ℏ^2\epsilon^2}E$가 $\frac{2j+k+1}{2x}$와 일치하는 것을 가정해 E와 V의 관계를 얻을 수 있다. 여기서 $2j+k+1$는 $2j+2l+2$로 치환되며, 이를 2로 나눈 값 $j+l+1$는 주양자수 n으로 변환된다. 그러나, 빛-에테르는 n=2부터 시작하기 때문에 이를 n-1로 변환하기로 하겠다.
 
-$$\frac{2 \mu}{ℏ^2\epsilon^2}V = \frac{2j+k+1}{2x}$$
+$$\frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{2j+k+1}{2x}$$
 
 $$\to \frac{2 \mu}{ℏ^2\epsilon^2}V = \frac{n-1}{x}$$
 
