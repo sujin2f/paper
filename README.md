@@ -170,9 +170,11 @@ $$\to \frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{n-1}{x}$$
 
 $$\to \frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{n-1}{r\epsilon}$$
 
-여기서 n-1을 왼쪽 항으로 옮겨 E, n과 V(r)에 대한 값으로 만들도록 하겠다.
+수소 원자의 슈뢰딩거 방정식에서 주양자수는 E에 속하기 때문에, n-1을 왼쪽 항으로 옮겨 E, n과 V(r)에 대한 값으로 만들도록 하겠다.
 
 $$\to E \frac{1}{n-1} = \frac{ℏ^2\epsilon}{2 \mu r}$$
+
+$$\to (E \frac{1}{n-1})^2 = \frac{ℏ^4 \frac{8\mu}{ℏ^2}V(r)}{4 \mu^2 r^2}$$
 
 $$\to \epsilon = -\frac{2 \mu r}{ℏ^2(n-1)}V(r)$$
 
