@@ -140,7 +140,7 @@ $$\to \frac{d}{dr} (r^2 \frac{d}{dr}) R(r) + [\frac{2 \mu r^2}{ℏ^2}E - \frac{2
 
 $$y_j^k(x) = e^{-x/2} x^{(k+1)/2} L_j^k(x)$$
 
-$$y_j^k''(x) + (-\frac{1}{4} + \frac{2j+k+1}{2x} - \frac{k^2-1}{4x^2})y_j^k(x) = 0$$
+$$y_j^k ''(x) + (-\frac{1}{4} + \frac{2j+k+1}{2x} - \frac{k^2-1}{4x^2})y_j^k(x) = 0$$
 
 <p align="center">식2-5. 변형된 버금 라게르 함수</p>
 
