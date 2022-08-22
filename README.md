@@ -174,9 +174,9 @@ $$\to \epsilon = \frac{2 \mu r}{ℏ^2(n-1)}V$$
 
 $$\to \epsilon^2 = \frac{4 \mu^2 r^2}{ℏ^4(n-1)^2}V^2$$
 
-$$\to \frac{8\mu}{ℏ^2}E = \frac{2 \mu x}{ℏ^2(n-1)}V$$
+$$\to \frac{8\mu}{ℏ^2}E = \frac{4 \mu^2 r^2}{ℏ^4(n-1)^2}V^2$$
 
-$$\to E = \frac{x}{4(n-1)}V$$
+$$\to E = \frac{\mu r^2}{2 ℏ^2(n-1)^2}V^2$$
 
 <p align="center">식2-8. E와 v의 관계</p>
 
