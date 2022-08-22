@@ -220,7 +220,7 @@ $$\to x = \frac{2r}{a_0} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}
 
 $$R_n(r) = Ae^{-\frac{r}{a_0} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}}$$
 
-$$A = \sqrt{\frac{1}{2a_0^3} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}^3}
+$$A = \sqrt{\frac{1}{2a_0^3} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}^3}$$
 
 <p align="center">식2-11. 지름 파동함수 R(r)</p>
 
