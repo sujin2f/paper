@@ -170,9 +170,21 @@ $$\to \frac{d^2y(x)}{dx^2} + [-\frac{1}{4} + \frac{2 \mu}{ℏ^2\epsilon^2}V(r) -
 
 $$\frac{l(l+1)}{x^2}, \frac{k^2-1}{4x^2}, l(l+1) = \frac{k^2-1}{4}, k=2l+1$$
 
-$$\frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{2j+k+1}{2x}$$
+$$\frac{2 \mu}{ℏ^2\epsilon^2}V(r) = \frac{2j+k+1}{2x}$$
 
-$$\to \frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{n-1}{x}$$
+$$\to \frac{2 \mu}{ℏ^2\epsilon^2}V(r) = \frac{n-1}{x}$$
+
+$\epsilon^2$을 변환하면,
+
+$$\to -\frac{2 \mu ℏ^2}{4ℏ^2\muE}V(r) = \frac{n-1}{x}$$
+
+E와 n의 관계로 변환하면,
+
+$$\to E = -\frac{1}{n-1} \frac{x}{2}V(r)$$
+
+
+
+
 
 $$\to \frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{n-1}{r\epsilon}$$
 
