@@ -220,9 +220,9 @@ $$R_n(r) = Ae^{-x/2}$$
 
 $$R_n(r) = Ae^{-\frac{r}{a_0} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}}$$
 
-$$A = (\frac{1}{2a_0} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}})^{\frac{3}{2}}$$
+<p align="center">식2-10. 지름 파동함수 R(r), n > 1, l = 0</p>
 
-<p align="center">식2-11. 지름 파동함수 R(r), n > 1, l = 0</p>
+$$A = (\frac{1}{2a_0} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}})^{\frac{3}{2}}$$
 
 여기서 기대하는 결과는 기존의 오비탈의 마디와 빛 에테르의 고점이 일치하는 것이다. 그렇다면 가설로 세운 전자와 원자핵 사이에 빛 에테르가 들어가는 것이 성립하게 된다. 그 결과는 [이곳](https://www.desmos.com/calculator/cc4twb23eb)에서 확인할 수 있다.
 
