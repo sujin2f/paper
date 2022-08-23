@@ -178,6 +178,7 @@ $$\to \frac{1}{4} \frac{E}{V(r)} \frac{1}{n-1} = \frac{1}{x}$$
 
 $$\to -\frac{1}{4} \frac{rE}{V} \frac{1}{n-1} = \frac{1}{x}$$
 
+$$\to -\frac{x^2}{\epsilon} \frac{1}{4} \frac{rE}{V} \frac{1}{n-1} = 1$$
 
 
 
