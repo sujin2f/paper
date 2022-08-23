@@ -248,6 +248,8 @@ $$V(r) = -\frac{ℏ^2}{\mu a_0 ^ 2 x} (\frac{1}{(n-1)^2} - \frac{1}{n^2})$$
 
 $$V(r) = -\frac{ℏ^2}{\mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{a_0}{2r} \frac{1}{\sqrt{ (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}}$$
 
+$$V(r) = -\frac{2 ℏ^2 r}{\mu a_0} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2})n-1}$$
+
 
 
 
