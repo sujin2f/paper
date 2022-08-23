@@ -158,13 +158,15 @@ $$\to \frac{d^2y(r)}{dr^2} + [\frac{2 \mu}{ℏ^2}E - \frac{2 \mu}{ℏ^2}V(r) - \
 
 이제 $(\frac{\epsilon}{2})^2 = -\frac{2\mu}{ℏ^2}E$로, 그리고 $x=r\epsilon$로 치환하여 식2-6을 아래와 같이 만든다.
 
-$$(\frac{\epsilon}{2})^2 = -\frac{2\mu}{ℏ^2}E, x=r\epsilon$$
+$$(\frac{\epsilon}{2})^2 = -\frac{2\mu}{ℏ^2}E$$
+
+식2-7. 치환
 
 $$\epsilon^2\frac{d^2y(x)}{dx^2} + [-\frac{\epsilon^2}{4} + \frac{2 \mu}{ℏ^2}V(r) - \epsilon^2\frac{l(l+1)}{x^2}]y(x) = 0$$
 
 $$\to \frac{d^2y(x)}{dx^2} + [-\frac{1}{4} + \frac{2 \mu}{ℏ^2\epsilon^2}V(r) - \frac{l(l+1)}{x^2}]y(x) = 0$$
 
-<p align="center">식2-7. 지름 파동함수 R(r)</p>
+<p align="center">식2-8. 지름 파동함수 R(r)</p>
 
 이 형태는 식2-5와 일치한다. 먼저 괄호항의 세번째 항, $\frac{l(l+1)}{x^2}$이 식2-5의 $\frac{k^2-1}{4x^2}$과 일치하는 것으로 $l(l+1) = \frac{k^2-1}{4}$, l과 k의 관계를 구할 수 있다. $k=2l+1$. 또한 괄호항의 두번째 항, $\frac{2 \mu}{ℏ^2\epsilon^2}V(r)$이 $\frac{2j+k+1}{2x}$과 일치하는 것을 가정해 E를 다시 구하고자 한다. 식2-3은 가설이기 때문이다. 여기서 $2j+k+1$는 $2j+2l+2$로 치환되며, 이를 2로 나눈 값 $j+l+1$는 주양자수 n으로 변환된다. 그러나, 빛-에테르는 n=2부터 시작하기 때문에 이를 n-1로 변환하기로 하겠다.
 
@@ -176,15 +178,33 @@ $$\to \frac{2 \mu}{ℏ^2\epsilon^2}V(r) = \frac{n-1}{x}$$
 
 $\epsilon^2$을 변환하면,
 
-$$\to -\frac{2 \mu ℏ^2}{4ℏ^2\muE}V(r) = \frac{n-1}{x}$$
+$$\to -\frac{2 \mu ℏ^2}{4ℏ^2\mu E}V(r) = \frac{n-1}{x}$$
 
 E와 n의 관계로 변환하면,
 
 $$\to E = -\frac{1}{n-1} \frac{x}{2}V(r)$$
 
+$$\to E = -\frac{1}{n-1} \alpha$$
 
+여기서 $\alpha$가 식2-3이라고 가정해 보자. 그렇다면 최종적으로 얻는 에너지는 아래와 같다.
 
+$$\to E = -\frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
 
+이것을 식2-7에 넣어 x 값을 얻어낸다.
+
+$$(\frac{\epsilon}{2})^2 = \frac{2\mu}{ℏ^2} \frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+
+$$\to (\frac{\epsilon}{2})^2 = \frac{1}{a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+
+$$\to \epsilon^2 = \frac{4}{a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+
+$$\to \frac{x^2}{r^2} = \frac{4}{a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+
+$$\to x^2 = \frac{4r^2}{a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+
+$$\to x = \frac{2r}{a_0} \sqrt{ (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}$$
+
+--
 
 $$\to \frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{n-1}{r\epsilon}$$
 
