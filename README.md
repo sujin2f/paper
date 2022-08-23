@@ -174,11 +174,11 @@ $$\frac{2 \mu}{ℏ^2\epsilon^2}V(r) = \frac{2j+k+1}{2x}$$
 
 $$\to \frac{2 \mu}{ℏ^2\epsilon^2}V(r) = \frac{n-1}{x}$$
 
-$\epsilon^2$을 변환하면,
+$\epsilon^2$을 식2-7에 의해 변환하면,
 
-$$-\frac{2 \mu ℏ^2}{4ℏ^2\mu E}V(r) = \frac{n-1}{x}$$
+$$-\frac{2 \mu}{ℏ^2\epsilon^2} \frac{ℏ^2}{4\mu} \frac{V(r)}{E} = \frac{n-1}{x}$$
 
-E와 n의 관계로 변환하면,
+이를 E와 n의 관계로 변환해 보자.
 
 $$E = -\frac{1}{n-1} \frac{x}{2}V(r)$$
 
