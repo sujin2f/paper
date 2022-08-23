@@ -232,7 +232,7 @@ $$\to R_{n,l}(r) = Ae^{-x/2} x^l L_{n-l-1}^{2l+1}(x)$$
 
 $$R_{th}(r) = Ae^{-x/2}$$
 
-$$A = (\frac{1}{2a_0} \sqrt{N_n \frac{1}{n-1}})^{\frac{3}{2}}$$
+$$A = \frac{1}{\sqrt{2}} (\frac{1}{a_0} \sqrt{N_n \frac{1}{n-1}})^{\frac{3}{2}}$$
 
 $$R_{th}(r) = Ae^{-\frac{r}{a_0} \sqrt{N_n \frac{1}{n-1}}} \hspace{10pt} \\\{ n \geqq 2, l = 0 \\\}$$
 
