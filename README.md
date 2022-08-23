@@ -188,7 +188,7 @@ $$\to E = -\frac{1}{n-1} \alpha$$
 
 여기서 $\alpha$가 식2-3이라고 가정해 보자. 그렇다면 최종적으로 얻는 에너지는 아래와 같다.
 
-$$\to E = -\frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+$$E = -\frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
 
 이것을 식2-7에 넣어 x 값을 얻어낸다.
 
@@ -203,71 +203,6 @@ $$\to \frac{x^2}{r^2} = \frac{4}{a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \f
 $$\to x^2 = \frac{4r^2}{a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
 
 $$\to x = \frac{2r}{a_0} \sqrt{ (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}$$
-
---
-
-$$\to \frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{n-1}{r\epsilon}$$
-
-$$\to \frac{2 \mu}{ℏ^2\epsilon}E = \frac{n-1}{r}$$
-
-$$\to \epsilon = \frac{2 \mu r}{ℏ^2} E \frac{1}{n-1}$$
-
-
-
-
-여기서 $\epsilon^2$을 $(\frac{\epsilon}{2})^2 = \frac{2\mu}{ℏ^2}V(r)$를 이용해서 다시 풀어주면,
-
-$$\to \frac{2 \mu ℏ^2}{8 \mu ℏ^2} \frac{E}{V(r)} = \frac{n-1}{x}$$
-
-$$\to \frac{1}{4} \frac{E}{V(r)} \frac{1}{n-1} = \frac{1}{x}$$
-
-여기서, 수소 원자에서 처럼 V(r)이 $-\frac{1}{r}$을 포함하고 있다고 가정하고 $-\frac{1}{r}V=V(r)$이라 하자.
-
-$$\to -\frac{1}{4} \frac{rE}{V} \frac{1}{n-1} = \frac{1}{x}$$
-
-$$\to -\frac{x^2}{\epsilon} \frac{1}{4} \frac{rE}{V} \frac{1}{n-1} = 1$$
-
-
-
-
-
-그리고 E를 식2-3으로 교체해 준다.
-
-$$\to \frac{1}{4} \frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{V(r)} \frac{1}{n-1} = \frac{1}{x}$$
-
-이것을 v에 대한 식으로 다시 쓰면,
-
-$$\to V(r) = \frac{x}{4} \frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1} $$
-
-
-
-$$\to \frac{2 \mu r}{ℏ^2\epsilon}E = n-1$$
-
-$$\to \epsilon = \frac{2 \mu r}{ℏ^2}E \frac{1}{n-1}$$
-
-수소 원자의 슈뢰딩거 방정식에서 주양자수는 E에 속하기 때문에, n-1을 왼쪽 항으로 옮겨 E, n과 V(r)에 대한 값으로 만들도록 하겠다.
-
-$$\to E \frac{1}{n-1} = \frac{ℏ^2\epsilon}{2 \mu r}$$
-
-$$\to (E \frac{1}{n-1})^2 = \frac{ℏ^4 \frac{8\mu}{ℏ^2}V(r)}{4 \mu^2 r^2}$$
-
-$$\to E \frac{1}{n-1} = \sqrt{\frac{2ℏ^2}{\mu r^2}V(r)}$$
-
-<p align="center">식2-8. E와 v의 관계</p>
-
-이 $E\frac{1}{n-1}$를 새로운 E 항으로, 그리고 $(\frac{\epsilon}{2})^2 = -\frac{2\mu}{ℏ^2}E$로 대입하는 원래의 슈뢰딩거 방정식 풀이로 x를 구해보자.
-
-$$(\frac{\epsilon}{2})^2 = -\frac{2\mu}{ℏ^2}E$$
-
-$$\to \epsilon^2 = -\frac{8\mu}{ℏ^2}E$$
-
-$$\to \frac{x^2}{r^2} = -\frac{8\mu}{ℏ^2}E$$
-
-$$\to x^2 = -\frac{8\mu r^2}{ℏ^2}E$$
-
-$$\to x = \sqrt{-\frac{8\mu r^2}{ℏ^2}E}$$
-
-<p align="center">식2-9. x값</p>
 
 이 x값을 식2-5에 대입하는 것으로 지름 파동함수의 해를 구할 수 있다.
 
@@ -285,17 +220,9 @@ $$\to R_{n,l}(r) = Ae^{-x/2} x^l L_{n-l-1}^{2l+1}(x)$$
 
 $$R_n(r) = Ae^{-x/2}$$
 
-$$x = \sqrt{-\frac{8\mu r^2}{ℏ^2}E}$$
-
-$$\to x = \sqrt{\frac{8\mu r^2}{ℏ^2} \frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}$$
-
-$$\to x = \sqrt{\frac{4r^2}{a_0^2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}$$
-
-$$\to x = \frac{2r}{a_0} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}$$
-
 $$R_n(r) = Ae^{-\frac{r}{a_0} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}}$$
 
-$$A = \sqrt{\frac{1}{2a_0^3} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}^3}$$
+$$A = (\frac{1}{2a_0} \sqrt{(\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}})^{\frac{3}{2}}$$
 
 <p align="center">식2-11. 지름 파동함수 R(r)</p>
 
