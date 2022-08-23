@@ -114,8 +114,6 @@ $$E_n = -\frac{ℏ^2}{2 \mu a_0 ^ 2} \frac{1}{n^2}$$
 
 여기서 $\frac{1}{n^2}$을 $\frac{1}{(n-1)^2} - \frac{1}{n^2}$으로 치환하고, J를 eV로 바꾸면 표2-6과 거의 일치하는 것을 알 수 있다. 여기서 에너지는 양수로 표기하기로 한다.
 
-$$\frac{1}{n^2}$을 $\frac{1}{(n-1)^2} - \frac{1}{n^2}$$
-
 $$E_n = \frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2})$$
 <p align="center">식2-3. 준위차에 따른 전자의 에너지 가설 $n \geqq 2$</p>
 
@@ -158,17 +156,19 @@ $$\to \frac{d^2y(r)}{dr^2} + [\frac{2 \mu}{ℏ^2}E - \frac{2 \mu}{ℏ^2}V(r) - \
 
 <p align="center">식2-6. 지름 파동함수 R(r)</p>
 
-이제 $(\frac{\epsilon}{2})^2 = \frac{2\mu}{ℏ^2}E$로, 그리고 $x=r\epsilon$로 치환하여 식2-6을 아래와 같이 만든다.
+이제 $(\frac{\epsilon}{2})^2 = -\frac{2\mu}{ℏ^2}E$로, 그리고 $x=r\epsilon$로 치환하여 식2-6을 아래와 같이 만든다.
 
-$$(\frac{\epsilon}{2})^2 = \frac{2\mu}{ℏ^2}E, x=r\epsilon$$
+$$(\frac{\epsilon}{2})^2 = -\frac{2\mu}{ℏ^2}E, x=r\epsilon$$
 
-$$\epsilon^2\frac{d^2y(x)}{dx^2} + [-\frac{\epsilon^2}{4} + \frac{2 \mu}{ℏ^2}E - \epsilon^2\frac{l(l+1)}{x^2}]y(x) = 0$$
+$$\epsilon^2\frac{d^2y(x)}{dx^2} + [-\frac{\epsilon^2}{4} + \frac{2 \mu}{ℏ^2}V(r) - \epsilon^2\frac{l(l+1)}{x^2}]y(x) = 0$$
 
-$$\to \frac{d^2y(x)}{dx^2} + [-\frac{1}{4} + \frac{2 \mu}{ℏ^2\epsilon^2}E - \frac{l(l+1)}{x^2}]y(x) = 0$$
+$$\to \frac{d^2y(x)}{dx^2} + [-\frac{1}{4} + \frac{2 \mu}{ℏ^2\epsilon^2}V(r) - \frac{l(l+1)}{x^2}]y(x) = 0$$
 
 <p align="center">식2-7. 지름 파동함수 R(r)</p>
 
-이 형태는 식2-5와 일치한다. 먼저 괄호항의 세번째 항, $\frac{l(l+1)}{x^2}$이 식2-5의 $\frac{k^2-1}{4x^2}$과 일치하는 것으로 $l(l+1) = \frac{k^2-1}{4}$, l과 k의 관계를 구할 수 있다. $k=2l+1$. 또한 괄호항의 두번째 항, $\frac{2 \mu}{ℏ^2\epsilon^2}E)$가 $\frac{2j+k+1}{2x}$와 일치하는 것을 가정해 x를 구하도록 한다. 여기서 $2j+k+1$는 $2j+2l+2$로 치환되며, 이를 2로 나눈 값 $j+l+1$는 주양자수 n으로 변환된다. 그러나, 빛-에테르는 n=2부터 시작하기 때문에 이를 n-1로 변환하기로 하겠다.
+이 형태는 식2-5와 일치한다. 먼저 괄호항의 세번째 항, $\frac{l(l+1)}{x^2}$이 식2-5의 $\frac{k^2-1}{4x^2}$과 일치하는 것으로 $l(l+1) = \frac{k^2-1}{4}$, l과 k의 관계를 구할 수 있다. $k=2l+1$. 또한 괄호항의 두번째 항, $\frac{2 \mu}{ℏ^2\epsilon^2}V(r)$이 $\frac{2j+k+1}{2x}$과 일치하는 것을 가정해 E를 다시 구하고자 한다. 식2-3은 가설이기 때문이다. 여기서 $2j+k+1$는 $2j+2l+2$로 치환되며, 이를 2로 나눈 값 $j+l+1$는 주양자수 n으로 변환된다. 그러나, 빛-에테르는 n=2부터 시작하기 때문에 이를 n-1로 변환하기로 하겠다.
+
+$$\frac{l(l+1)}{x^2}, \frac{k^2-1}{4x^2}, l(l+1) = \frac{k^2-1}{4}, k=2l+1$$
 
 $$\frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{2j+k+1}{2x}$$
 
