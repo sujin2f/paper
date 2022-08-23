@@ -168,6 +168,15 @@ $$\frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{2j+k+1}{2x}$$
 
 $$\to \frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{n-1}{x}$$
 
+$$\to \frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{n-1}{r\epsilon}$$
+
+$$\to \frac{2 \mu}{ℏ^2\epsilon}E = \frac{n-1}{r}$$
+
+$$\to \epsilon = \frac{2 \mu r}{ℏ^2} E \frac{1}{n-1}$$
+
+
+
+
 여기서 $\epsilon^2$을 $(\frac{\epsilon}{2})^2 = \frac{2\mu}{ℏ^2}V(r)$를 이용해서 다시 풀어주면,
 
 $$\to \frac{2 \mu ℏ^2}{8 \mu ℏ^2} \frac{E}{V(r)} = \frac{n-1}{x}$$
