@@ -172,12 +172,15 @@ $$\to \frac{2 \mu}{ℏ^2\epsilon^2}E = \frac{n-1}{x}$$
 
 $$\to \frac{2 \mu ℏ^2}{8 \mu ℏ^2} \frac{E}{V(r)} = \frac{n-1}{x}$$
 
-$$\to \frac{1}{4} \frac{E}{V(r)} \frac{1}{x-1} = \frac{1}{x}$$
+$$\to \frac{1}{4} \frac{E}{V(r)} \frac{1}{n-1} = \frac{1}{x}$$
 
 그리고 E를 식2-3으로 교체해 준다.
 
-$$\to \frac{1}{4} \frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{V(r)} \frac{1}{x-1} = \frac{1}{x}$$
+$$\to \frac{1}{4} \frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{V(r)} \frac{1}{n-1} = \frac{1}{x}$$
 
+이것을 v에 대한 식으로 다시 쓰면,
+
+$$\to V(r) = \frac{x}{4} \frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1} $$
 
 
 
