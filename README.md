@@ -174,6 +174,15 @@ $$\to \frac{2 \mu ℏ^2}{8 \mu ℏ^2} \frac{E}{V(r)} = \frac{n-1}{x}$$
 
 $$\to \frac{1}{4} \frac{E}{V(r)} \frac{1}{n-1} = \frac{1}{x}$$
 
+여기서, 수소 원자에서 처럼 V(r)이 $-\frac{1}{r}$을 포함하고 있다고 가정하고 $-\frac{1}{r}V=V(r)$이라 하자.
+
+$$\to -\frac{1}{4} \frac{rE}{V} \frac{1}{n-1} = \frac{1}{x}$$
+
+
+
+
+
+
 그리고 E를 식2-3으로 교체해 준다.
 
 $$\to \frac{1}{4} \frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{V(r)} \frac{1}{n-1} = \frac{1}{x}$$
