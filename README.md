@@ -264,7 +264,7 @@ $$ar-2 = 0$$
 
 $$\to r = \frac{2}{a}$$
 
-$$\to r = \frac{2}{ \frac{1}{a_0 N_n \frac{1}{n-1}}}$$
+$$\to r = \frac{2}{ \frac{1}{a_0} N_n \frac{1}{n-1}}$$
 
 
 
