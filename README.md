@@ -258,17 +258,17 @@ $$R_{th}(r) = Ae^{-\frac{r}{a_0} \sqrt{N_n \frac{1}{n-1}}} \hspace{10pt} \\\{ n 
 
 $$\frac{d}{dr}[e^{-ar} r^2] = -r(ar-2) e^{-ar}$$
 
-`ar-2`가 `0`이 되는 `r`을 찾는다.
+`ar-2`가 `0`이 되는 `r`을 찾는다. 이를 `p_max`라 부르겠다.
 
-$$ar-2 = 0$$
+$$ap_{max}-2 = 0$$
 
-$$\to r = \frac{2}{a}$$
+$$\to p_{max} = \frac{2}{a}$$
 
-$$\to r = \frac{2}{ \frac{1}{a_0} \sqrt{ N_n \frac{1}{n-1}}}$$
+$$\to p_{max} = \frac{2}{ \frac{1}{a_0} \sqrt{ N_n \frac{1}{n-1}}}$$
 
-$$\to r = 2 a_0 \sqrt{ \frac{n-1}{N_n} }$$
+$$\to p_{max} = 2 a_0 \sqrt{ \frac{n-1}{N_n} }$$
 
-
+이곳에는 `Nn`과 `n-1`이 모두 들어가 있으며, 관계 또한 동일하다. 이는 우리가 찾는 적절한 값이 되지 못한다.
 
 
 
