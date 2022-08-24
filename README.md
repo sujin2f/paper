@@ -198,25 +198,25 @@ $$\to E = -\frac{1}{n-1} \alpha$$
 
 <p align="center">식3-4. E와 n의 관계식</p>
 
-여기서 `ɑ`가 식2-3이라고 가정해 보자. 그렇다면 최종적으로 얻는 에너지는 아래와 같으며 이를 `Es`라 하겠다.
+여기서 `ɑ`가 `Eth`라 가정해 보자. 그렇다면 최종적으로 얻는 에너지는 아래와 같으며 이를 `Es`라 하겠다.
 
 $$\to E_s = -\frac{1}{n-1} E_{th}$$
 
-$$E_n = -\frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+$$\to E_s = -\frac{ℏ^2}{2 \mu a_0 ^ 2} (N_n) \frac{1}{n-1}$$
 
 이것을 식3-3에 넣어 `x` 값을 얻어낸다.
 
-$$(\frac{\epsilon}{2})^2 = \frac{2\mu}{ℏ^2} \frac{ℏ^2}{2 \mu a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+$$(\frac{\epsilon}{2})^2 = \frac{2\mu}{ℏ^2} \frac{ℏ^2}{2 \mu a_0 ^ 2} N_n \frac{1}{n-1}$$
 
-$$\to (\frac{\epsilon}{2})^2 = \frac{1}{a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+$$\to (\frac{\epsilon}{2})^2 = \frac{1}{a_0 ^ 2} N_n \frac{1}{n-1}$$
 
-$$\to \epsilon^2 = \frac{4}{a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+$$\to \epsilon^2 = \frac{4}{a_0 ^ 2} N_n \frac{1}{n-1}$$
 
-$$\to \frac{x^2}{r^2} = \frac{4}{a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+$$\to \frac{x^2}{r^2} = \frac{4}{a_0 ^ 2} N_n \frac{1}{n-1}$$
 
-$$\to x^2 = \frac{4r^2}{a_0 ^ 2} (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}$$
+$$\to x^2 = \frac{4r^2}{a_0 ^ 2} N_n \frac{1}{n-1}$$
 
-$$\to x = \frac{2r}{a_0} \sqrt{ (\frac{1}{(n-1)^2} - \frac{1}{n^2}) \frac{1}{n-1}}$$
+$$\to x = \frac{2r}{a_0} \sqrt{ N_n \frac{1}{n-1}}$$
 
 이 `x`값을 식3-2에 대입하는 것으로 지름 파동함수의 해를 구할 수 있다. 먼저 `y(x)`를 다시 `rR(r)`로 되돌린다. 아래에서 `A`는 정규화 상수이다. 0에서 무한대의 적분값을 1로 놓아 얻을 수 있다.
 
