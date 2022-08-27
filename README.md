@@ -304,15 +304,15 @@ $$\to l = \sqrt{\frac{N_n}{n-1}} - \frac{1}{(n-1)^2}$$
 
 $$\to l = \sqrt{\frac{N_{th}}{n_{th}}} - \frac{1}{(n_{th})^2}$$
 
-이것을 `Rth`에 대입하기로 한다.
+이것을 `Rth`에 대입하기로 한다. `n`이 `nth`가 된 것과 같이, 여기서 `l`의 의미가 살짝 변했기 때문에 마찬가지로 `lth`로 표기하겠다.
 
-$$x = \frac{2r}{a_0} \sqrt{\frac{N_{th}(n_{th})}{n_{th} - 1}}$$
+$$x = \frac{2r}{a_0} \sqrt{\frac{N_{th}(n_{th})}{n_{th} - l_{th}}}$$
 
-$$R_{th}(r, n_{th}) = Ae^{-\frac{x}{2}} x^{\sqrt{\frac{N_{th}}{n_{th}}} - \frac{1}{(n_{th})^2}} L_{1}^{1}(x)$$
+$$R_{th}(r, n_{th}, l_{th}) = Ae^{-\frac{x}{2}} x^{\sqrt{\frac{N_{th}}{n_{th}}} - \frac{1}{(n_{th})^2}} L_{1}^{1}(x)$$
 
-$$R_{th}(r, n_{th}) = Ae^{-\frac{x}{2}} x^{\sqrt{\frac{N_{th}}{n_{th}}} - \frac{1}{(n_{th})^2}}$$
+$$R_{th}(r, n_{th}, l_{th}) = Ae^{-\frac{x}{2}} x^{\sqrt{\frac{N_{th}}{n_{th}}} - \frac{1}{(n_{th})^2}}$$
 
-
+그래프를 다시 그려보면, 위치는 조금씩 보정이 일어났고, `l`에 대한 보정도 일어난 것을 볼 수 있다. 나는 여기서 이것이 정확한 방정식이라고 주장하는 것이 아니라 수소원자의 슈뢰딩거 방정식과 비교하여 빛-에테르 방정식의 `l`은 다른 의미를 가진다는 것을 주장하는 것이다.
 
 
 
