@@ -310,7 +310,7 @@ $$x = \frac{2r}{a_0} \sqrt{\frac{N_{th}(n_{th})}{n_{th} - 1}}$$
 
 $$R_{th}(r, n_{th}) = Ae^{-\frac{x}{2}} x^{\sqrt{\frac{N_{th}}{n_{th}}} - \frac{1}{(n_{th})^2}} L_{1}^{1}(x)$$
 
-$$R_{th}(r, n_{th}) = Ae^{-\frac{x}{2}} x^{\frac{N_{th}}{n_{th}}} - \frac{1}{(n_{th})^2}}$$
+$$R_{th}(r, n_{th}) = Ae^{-\frac{x}{2}} x^{\sqrt{\frac{N_{th}}{n_{th}}} - \frac{1}{(n_{th})^2}}$$
 
 
 
