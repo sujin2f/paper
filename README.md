@@ -519,8 +519,8 @@ https://physics.nist.gov/PhysRefData/Handbook/Tables/berylliumtable3.htm
 
 | 기호 | Z | 발산 | 전환 | 점프 |
 |--|--|--|--|--|
-| He | 2 | 8.2 | 9.5 | 1.3?? |
-| Li | 3 | 5.0 | ?.? | 1.12? |
+| He | 2 | 8.2 | 9.5 | 1.3 |
+| Li | 3 | 5.0 | ?.? | 1.12 |
 | Be | 4 | ?.? | 4.0 | 1.104 |
 
 
