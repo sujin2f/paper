@@ -543,7 +543,7 @@ https://physics.nist.gov/PhysRefData/Handbook/Tables/berylliumtable3.htm
 | 3s | 2p | 1656.267 | [OO] | [-] | 도약 | 0.55019332665 |
 | 3s | 2p | 1930.906 | [OO] | [-] | 도약 | 0.47193755188 |
 
-
+https://my.visme.co/editor/aG42SlMxQ01nYTRlWlVydkJMUE5OUT09OjrkjHr8Z8jlOpI7QHS0MQtS/RWxERHBRY2lEd3c1QnI4UmtseTRIdz09OjpeSCicX-pEnIUyzsFG9BAk
 
 
 
