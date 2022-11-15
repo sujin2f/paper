@@ -54,13 +54,6 @@ $$N_{th}(n) = \dfrac{1}{(n-1)^2} - \dfrac{1}{n^2}$$
 
 <p align="center">N<sub>th</sub>(n)</p>
 
-
-<p align="center">
- <img src="./images/pic5.png">
-</p>
-
-<p align="center">빛-에테르가 가진 EC</p>
-
 $$E = Rhc(N_{th}(n))\cdot6.242\cdot10^{32}$$
 
 | n | 1-2 | 2-3 | 3-4 | 4-5 | 5-6 | 6-7 | 8-8 |
@@ -85,6 +78,12 @@ $$E_{th}(n) = \frac{ℏ^2}{2 \mu a_0 ^ 2}N_{th}(n) \hspace{10pt} \\\{ n \geqq 2 
 | E<sub>th</sub>(n) `eV` | 10.2009 | 1.8890 | 0.6611 | 0.3060 | 0.1662 | 0.1002 | 0.0650 |
 
 <p align="center">준위차에 따른 빛-에테르 에너지 값</p>
+
+<p align="center">
+ <img src="./images/pic5.png">
+</p>
+
+<p align="center">빛-에테르가 가진 EC</p>
 
 뤼드베리 방정식에 의해 도출된 방출 파장으로 계산한 에너지와 보어 원자 모형/ 슈뢰딩거 방정식에서의 에너지값을 변환한 값이 일치하는 것은 어찌 보면 당연하지만, 빛-에테르의 에너지 값을 더 명확하게 드러내는 근거로 제시한다. 여기까지의 계산은 모두 이곳에 정리되어 있다. https://www.desmos.com/calculator/wagbooyuoc
 
