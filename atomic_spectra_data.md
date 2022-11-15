@@ -182,7 +182,7 @@ s와 p 오비탈 그리고 선형 에테르에서 2번 위치는 100%p 정도로
 
 <p align="center"><strong>헬륨의 에테르 [OO--]</strong><br>각 자리수에 있는 값은 예측 가능해 보이고 그것들을 더하거나 빼는 것으로 총 EC를 계산할 수 있다.</p>
 
-데이터가 약간 부족하기는 하나, 이는 리튬, 베릴륨, 붕소, 네온 등과 같은 다른 원소에서도 관찰할 수 있다. [이곳](https://docs.google.com/spreadsheets/d/1h2QDhSlGnuXcMU1NcTvEcK2VkTSHqCUGpOti0S6YP5c/edit?usp=sharing)에서 확인 가능하다. 이는 원형과 선형의 에테르가 쌓이는 방식이 존재하며 그에 맞추어 EC가 증가하는 것으로 해석할 수 있다. 노력을 더 기울이면 완벽한 예측이 가능한, 아름다운 수식으로 정리할 수 있을 것도 같지만 이는 다음 과제로 삼기로 하자.
+데이터가 약간 부족하기는 하나, 이는 리튬, 베릴륨, 붕소, 네온 등과 같은 다른 원소에서도 관찰할 수 있다. 역시 [이곳](https://docs.google.com/spreadsheets/d/1h2QDhSlGnuXcMU1NcTvEcK2VkTSHqCUGpOti0S6YP5c/edit?usp=sharing)에서 확인 가능하다. 이는 원형과 선형의 에테르가 쌓이는 방식이 존재하며 그에 맞추어 EC가 증가하는 것으로 해석할 수 있다. 노력을 더 기울이면 완벽한 예측이 가능한, 아름다운 수식으로 정리할 수 있을 것도 같지만 이는 다음 과제로 삼기로 하자.
 
 ---
 
