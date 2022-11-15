@@ -98,7 +98,7 @@ $$A = \frac{1}{\sqrt{2}} (\frac{1}{a_0} \sqrt{N_{th}(n) \frac{1}{n-1}})^{\frac{3
 
 $$R_{th}(r) = Ae^{-\frac{r}{a_0} \sqrt{N_{th}(n) \frac{1}{n-1}}} \hspace{10pt} \\\{ n \geqq 2, l = 0 \\\}$$
 
-<p align="center">식3-5. 광자-에테르의 지름 파동함수 R<sub>th</sub>(r)</p>
+<p align="center">광자-에테르의 지름 파동함수 R<sub>th</sub>(r)</p>
 
 여기서 기대하는 결과는 기존의 오비탈의 마디와 광자-에테르의 고점이 일치하는 것이다. 그렇다면 가설로 세운 전자와 원자핵 사이에 광자-에테르가 들어가는 것이 성립하게 된다. 그 결과는 [이곳](https://www.desmos.com/calculator/ap6thpgo3q)에서 확인할 수 있다.
 
