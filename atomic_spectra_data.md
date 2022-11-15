@@ -2,12 +2,16 @@
 
 지금까지는 보어의 원자모형을 기준으로 가설을 검증했었다. 그러나 보어 원자모형은 더 이상 유효하지 않다. 양자물리학이 밝혀낸 것은 원자에 속한 전자가 에너지를 흡수해서 오비탈이라는 형상으로 나타난다는 것이다.
 
-<p align="center">[전자 오비탈](https://en.wikipedia.org/wiki/Atomic_orbital)</p>
+<p align="center">
+ <img src="./images/pic9.png">
+</p>
+
+<p align="center">전자 오비탈 [출처](https://en.wikipedia.org/wiki/Atomic_orbital)</p>
 
 오비탈의 모양은 앞서 보어 원자모형에서도 등장한 주양자수 n과 부양자수 l, 그리고 자기양자수인 m에 의해 결정된다. n의 증가는 보어 원자모형과 같이 원형의 자릿수를 증가시킨다. l의 증가는 원형 하나가 없어지면서 선형의 마디가 생겨난다. 자기양자수는 각도를 결정한다.
 
 <p align="center">
- <img src="./images/pic5.png">
+ <img src="./images/pic10.png">
 </p>
 
 <p align="center">에테르의 관점으로 본 오비탈</p>
