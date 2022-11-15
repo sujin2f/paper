@@ -6,7 +6,7 @@
  <img src="./images/pic3.png">
 </p>
 
-<p align="center">**가설**<br>확률공간을 입자의 일부로 보는 시각</p>
+<p align="center"><strong>가설</strong><br>확률공간을 입자의 일부로 보는 시각</p>
 
 ### 이중슬릿 실험의 이해
 
