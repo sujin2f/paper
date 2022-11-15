@@ -98,9 +98,9 @@ $$R_{th}(r) = Ae^{-\frac{r}{a_0} \sqrt{N_{th}(n) \frac{1}{n-1}}} \hspace{10pt} \
 
 <p align="center">식3-5. 빛-에테르의 지름 파동함수 R<sub>th</sub>(r)</p>
 
-여기서 기대하는 결과는 기존의 오비탈의 마디와 빛-에테르의 고점이 일치하는 것이다. 그렇다면 가설로 세운 전자와 원자핵 사이에 빛-에테르가 들어가는 것이 성립하게 된다. 그 결과는 [이곳](https://www.desmos.com/calculator/cc4twb23eb)에서 확인할 수 있다.
+여기서 기대하는 결과는 기존의 오비탈의 마디와 빛-에테르의 고점이 일치하는 것이다. 그렇다면 가설로 세운 전자와 원자핵 사이에 빛-에테르가 들어가는 것이 성립하게 된다. 그 결과는 [이곳](https://www.desmos.com/calculator/ap6thpgo3q)에서 확인할 수 있다.
 
-붉은색 파선인 마디와 초록색 파선인 빛-에테르의 고점의 위치가 근사하는 것을 확인할 수 있다.
+붉은색 파선은 수소 원자의 지름 방정식이며, 초록색 파선은 빛-에테르의 고점의 위치이다. 둘이 근사하는 것을 볼 수 있다.
 
 <p align="center">
  <img src="./images/pic6.png">
@@ -162,8 +162,12 @@ $$R_{th}(r, n, l) = Ae^{-\frac{x}{2}} x^{\sqrt{\frac{N_{th}(n)}{n-1}} - \frac{1}
 
 이 경우 정규화 상수는 내 능력 밖이다... ;ㅁ;
 
+그 결과는 [이곳](https://www.desmos.com/calculator/siznuyffxq)에서 확인할 수 있다.
+
+붉은색 파선은 수소 원자의 지름 방정식이며, 보라색 파선은 보정된 빛-에테르의 고점의 위치이다. 둘이 더욱 근사하는 것을 볼 수 있다.
+
 <p align="center">
- <img src="./images/pic6.png">
+ <img src="./images/pic12.png">
 </p>
 
 <p align="center">보정된 빛-에테르 그래프</p>
