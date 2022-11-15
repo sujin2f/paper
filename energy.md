@@ -107,4 +107,4 @@ $$E_{th}(n) = \frac{ℏ^2}{2 \mu a_0 ^ 2}N_{th}(n) \hspace{10pt} \\\{ n \geqq 2 
 
 - 목차: [목차](./README.md)
 - 이전 문서: [가설 제시](./hypothesis.md)
-- 다음 문서: [가설의 검증(2): 관측 데이터를 기준으로](./atomic_spectra_data.md)
+- 다음 문서: [가설의 검증(2): 다 전자 원자](./atomic_spectra_data.md)
