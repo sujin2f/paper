@@ -47,5 +47,5 @@
 
 ---
 
-- 목차: [목차](./README.md)
+- 목차: [목차](./intro.md)
 - 이전 문서: [가설의 검증(3): 슈뢰딩거 방정식](./schrodinger_equation.md)

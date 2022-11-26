@@ -46,67 +46,59 @@ They match together. This supports the certain amount of energy stores in betwee
 
 ### Energy of Photon-Ether
 
-If the wavelength between the orbit is always same, we can calculate its energy. `E = hc / λ` is a energy formula
-
-광자-에테르가 일정한 파장을 가지고 있다면 그 에너지를 구할 수 있을 것이다. 빛의 에너지는 E = hc / λ의 식으로 구할 수 있다. 여기서 λ는 앞서 구한 파수를 의미한다. 우리는 파수를 구하는 식을 이미 알고 있으며, 이렇게 구한 값은 J의 단위를 가진다. 이를 eV를 단위로 갖는 에너지 값은 아래의 수식과 같으며, 이를 정리하면 아래의 표와 같다. 여기서 1 / (n - 1)<sup>2</sup> - 1 / n<sup>2</sup>를 함수 N<sub>th</sub>(n)이라 하자. 이 함수는 앞으로도 계속 쓰일 것이다.
+If the wavelength between the orbit is always same, we can calculate its energy. `E = hc / λ` is a energy formula, and λ is a wavelength. The result unit is J, and converting to eV is the table below. I declare a function 1 / (n - 1)<sup>2</sup> - 1 / n<sup>2</sup> as N<sub>th</sub>(n), and this function will be used in this document.
 
 $$N_{th}(n) = \dfrac{1}{(n-1)^2} - \dfrac{1}{n^2}$$
 
-<p align="center"><strong>N<sub>th</sub>(n)</strong>: 이 함수 계속 나온다</p>
+<p align="center"><strong>N<sub>th</sub>(n)</strong>: remember this function</p>
 
 $$E = Rhc(N_{th}(n))\cdot6.242\cdot10^{32}$$
 
-<p align="center"><strong>파장을 이용해 에너지를 구하는 공식</strong></p>
+<p align="center"><strong>Energy Formula from Wavelength</strong></p>
 
 | n | 1-2 | 2-3 | 3-4 | 4-5 | 5-6 | 6-7 | 8-8 |
 |--|--|--|--|--|--|--|--|
 | E `eV` | 10.2050 | 1.8898 | 0.6614 | 0.3061 | 0.1663 | 0.1002 | 0.0650 |
 
-<p align="center"><strong>그렇게 구한 에너지</strong></p>
+<p align="center"><strong>Result from the formula</strong></p>
 
-보어 원자 모형과 수소 원자의 슈뢰딩거 방정식에서 n 껍질의 에너지는 다음의 수식을 만족한다.
+From Bohr model and Schrödinger equation, the energy of n shell is:
 
 $$E_n = -\frac{ℏ^2}{2 \mu a_0 ^ 2} \frac{1}{n^2}$$
 
-<p align="center"><strong>수소 원자의 슈뢰딩거 방정식에서의 에너지 공식</strong></p>
-
-여기서 1 / n<sup>2</sup>을 N<sub>th</sub>(n)로 치환하고, J를 eV로 변환하면 위에서 구한 방식과 거의 일치하는 것을 알 수 있다. 여기서 에너지는 양수로 표기하기로 하고 이를 E<sub>th</sub>(n)이라 명한다.
+I swap 1 / n<sup>2</sup> to N<sub>th</sub>(n), and convert J to eV. The values are similar with a table above.
 
 $$E_{th}(n) = \frac{ℏ^2}{2 \mu a_0 ^ 2}N_{th}(n) \hspace{10pt} \\\{ n \geqq 2 \\\}$$
 
-<p align="center"><strong>그 공식으로 각 구간의 에너지를 구하는 방법</strong></p>
-
 | n | 1-2 | 2-3 | 3-4 | 4-5 | 5-6 | 6-7 | 8-8 |
 |--|--|--|--|--|--|--|--|
-| 방출 파장에서 `eV` | 10.2050 | 1.8898 | 0.6614 | 0.3061 | 0.1663 | 0.1002 | 0.0650 |
-| E<sub>th</sub>(n) `eV` | 10.2009 | 1.8890 | 0.6611 | 0.3060 | 0.1662 | 0.1002 | 0.0650 |
-
-<p align="center"><strong>두 방법으로 구한 에너지를 비교한 표</strong></p>
+| 1st values `eV` | 10.2050 | 1.8898 | 0.6614 | 0.3061 | 0.1663 | 0.1002 | 0.0650 |
+| 2nd values `eV` | 10.2009 | 1.8890 | 0.6611 | 0.3060 | 0.1662 | 0.1002 | 0.0650 |
 
 <p align="center">
  <img src="./images/pic5.png">
 </p>
 
-<p align="center"><strong>광자-에테르가 가진 EC</strong><br>덧셈으로 계산 가능</p>
+<p align="center"><strong>EC of Photon-Ether</strong><br>simple plus calculation</p>
 
-그림에서 볼 수 있듯, 이제 에테르가 가진 에너지는 덧셈으로 쉽게 구할 수 있게 되었다. 에너지, 파장, 심지어는 질량 마저도 구할 수 있게 되었다.
+As you can see, we can get the energy of ether by the plus calculation. Also wavelength and mass would be able to calculate.
 
-두 방법 모두 상수값들을 제외하면 N<sub>th</sub>(n)만이 변화되는 양임을 알 수 있다. 즉, 이 부분에 어떤 값이 들어가는지에 따라 에너지의 값이 변하게 된다. 이 부분을 <strong>에너지 계수(EC)</strong>라고 부르기로 하자.
+Two formulas has N<sub>th</sub>(n) as only variable. Therefore the value is changed by the part of N<sub>th</sub>(n). I declare it as <strong>Energy Coefficient (EC)</strong>.
 
-### 정리
+### Recap
 
-여기서 한 이야기는 모두 너무 당연한 이야기이다. 고전물리 교과서 잠깐만 보면 모두 알 수 있는 내용이다. 이건 한 세기도 전인 닐스 보어 시대에도 수소 원자에서 당연하게 딱딱 맞는 내용이다. 그러나 다전자 원자에서는 하나도 맞지 않는다. 여러분은 낚였다.
+So far, it is obvious. It is all from a classic physics text book. It is right in hydrogen-like atom in Bohr era, before a century ago. However, it does not match to multi-electron atoms. I made y'all fool.
 
-여기서 내가 원하는 것은 에테르-스파클 가설이 설득력을 가질 수 있는 조건을 제시하는 것이다.
+I want to suggest conditions that makes ether-sparkle hypothesis would be right.
 
-- 첫째, 에테르가 가진 에너지는 **예상 가능**해야 한다.
-- 둘째, 에테르가 가진 에너지는 **덧셈**에 의해 구할 수 있어야 한다.
-- 셋째, 위 조건은 **다전자 원자**에서도 성립 해야한다.
+- First, the ether energy should be **possible to guess**
+- Second, the ether energy should be **summed**
+- Third, the two conditions above should be established in **multi-electron atoms**
 
-위 조건을 만족한다면, 에너지가 에테르의 형태로 저장된다는 것을 증명할 수 있을 것이다. 다음 장에서는 다전자 원자에 대해 다루고자 한다.
+If I pass the conditions, I may prove the electron energy is stored as a form of ether. Next chapter is about the multi-electron atoms.
 
 ---
 
-- 목차: [목차](./README.md)
-- 이전 문서: [가설 제시](./hypothesis.md)
-- 다음 문서: [가설의 검증(2): 다 전자 원자](./atomic_spectra_data.md)
+- First Page: [Introduction](./README.md)
+- Prev Chapter: [Hypothesis](./hypothesis_en.md)
+- Next Chapter: [Proof(2): Multi-Electron Atoms](./atomic_spectra_data_en.md)

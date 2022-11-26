@@ -66,5 +66,5 @@ To the next chapter, I explore the nature of photon-ether to prove my hypothesis
 
 ---
 
-- Prev Chapter: [Introduction](./intro_en.md)
-- Next Chapter: [Proof(2): Multi-Electron Atoms](./atomic_spectra_data_en.md)
+- Prev Chapter: [Introduction](./README.md)
+- Next Chapter: [Proof(1): Classic Physics](./energy_en.md)

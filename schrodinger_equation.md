@@ -178,6 +178,6 @@ $$R_{th}(r, n, l) = Ae^{-\frac{x}{2}} x^{\sqrt{\frac{N_{th}(n)}{n-1}} - \frac{1}
 
 ---
 
-- 목차: [목차](./README.md)
+- 목차: [목차](./intro.md)
 - 이전 문서: [가설의 검증(2): 다 전자 원자](./atomic_spectra_data.md)
 - 다음 문서: [결론](./conclusion.md)
