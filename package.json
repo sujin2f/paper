@@ -6,15 +6,14 @@
     "scripts": {
         "dev": "yarn dev:clean && yarn dev:node",
         "dev:clean": "rimraf .build/development/*",
-        "dev:node": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --respawn ./src/index.ts"
+        "dev:node": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --respawn ./src/server/index.ts"
     },
     "dependencies": {},
     "devDependencies": {
         "@types/express": "^4.17.13",
         "@types/node": "^18.7.3",
-        "csv-parser": "^3.0.0",
+        "csv-parse": "^5.3.2",
         "express": "^4.18.1",
-        "fs": "^0.0.1-security",
         "mongoose": "^6.7.3",
         "path": "^0.12.7",
         "rimraf": "^3.0.2",

@@ -24,7 +24,6 @@ export const etherModel = mongoose.model('ether', etherSchema)
 
 const getEther = async (ether: Partial<Ether>): Promise<Ether> => {
     const result = await etherModel.findOne<Ether>({ ...ether }).exec()
-    console.log(result)
     if (result) {
         return result
     }
