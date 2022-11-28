@@ -3,10 +3,8 @@ import { SET_PAGE_INFO } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
 export const initialState: State = {
-    background: undefined,
     backgroundColor: '',
     excerpt: '',
-    icon: undefined,
     isLoading: false,
     prefix: '',
     title: '',

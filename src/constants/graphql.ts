@@ -1,13 +1,4 @@
 import { gql } from '@apollo/client'
-import {
-    Image,
-    MenuItem,
-    Post,
-    TagCloud,
-    Term,
-    TermTypes,
-} from 'src/types/wordpress'
-import { FlickrImage } from 'src/types/flickr'
 
 export enum Fields {
     BACKGROUNDS = 'backgrounds',
@@ -229,134 +220,9 @@ export const GraphQuery = {
     `,
 }
 
-export type BackgroundsReturnType = {
-    [Fields.BACKGROUNDS]: Image[]
-}
-
-export type PostReturnType = {
-    [Fields.POST]: Post
-}
-
-export type MenuReturnType = {
-    [Fields.MENU]: MenuItem[]
-}
-
-export type ArchiveReturnType = {
-    [Fields.ARCHIVE]: Term
-}
-
-export type FlickrReturnType = {
-    [Fields.FLICKR]: FlickrImage[]
-}
-
-export type TagCloudReturnType = {
-    [Fields.TAG_CLOUD]: TagCloud[]
-}
-
-export type RecentReturnType = {
-    [Fields.RECENT]: Post[]
-}
-
-export type ArchiveVariables = {
-    type: TermTypes
-    slug: string
-    page: number
-}
-
-export type MenuVariables = {
-    slug: string
-}
-
-export type PostVariables = {
-    slug: string
-}
-
 export const graphqlSchema = `
     scalar Date
     type Query {
-        ${Fields.BACKGROUNDS}: [Image]
-        ${Fields.POST}(slug: String!): Post
-        ${Fields.MENU}(slug: String!): [MenuItem]
-        ${Fields.ARCHIVE}(type: String!, slug: String!, page: Int!): Term
-        ${Fields.FLICKR}: [FlickrImage]
-        ${Fields.TAG_CLOUD}: [TagCloud]
-        ${Fields.RECENT}: [Post]
+        hello: String
     },
-    type MenuItem {
-        id: Int
-        title: String
-        target: String
-        link: String
-        htmlClass: [String]
-        children: [MenuItem]
-    },
-    type Post {
-        id: Int
-        slug: String
-        title: String
-        excerpt: String
-        content: String
-        date: Date
-        link: String
-        parent: Int
-        type: String
-        menuOrder: Int
-        tags: [Term]
-        categories: [Term]
-        series: [Term]
-        images: Images
-        meta: PostMeta
-        prevNext: PrevNext
-        related: [Post]
-    },
-    type Images {
-        id: Int
-        list: Image
-        icon: Image
-        title: Image
-        background: Image
-        thumbnail: Image
-    }
-    type PostMeta {
-        useBackgroundColor: Boolean
-        backgroundColor: String
-    }
-    type Term {
-        id: Int
-        title: String
-        slug: String
-        type: String
-        total: Int
-        limit: Int
-        pages: Int
-        excerpt: String
-        image: Image
-        posts: [Post]
-        page: Int
-    },
-    type Image {
-        url: String
-        mimeType: String
-        sizes: [ImageSize]
-    }
-    type ImageSize {
-        key: String
-        file: String
-    }
-    type FlickrImage {
-        title: String
-        link: String
-        media: String
-    }
-    type TagCloud {
-        id: Int
-        title: String
-        slug: String
-        count: Int
-        hit: Int
-    }
-    type PrevNext {
-        prev: Post
-        next: Post
-    }
 `

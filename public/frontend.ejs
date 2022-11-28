@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title><%= title %></title>
-        <meta name="description" content="<%= excerpt %>" />
+        <title>Ether</title>
+        <meta name="description" content="Ether" />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
@@ -12,14 +12,12 @@
         <% css.forEach(function(bundle) { %>
         <link rel="stylesheet" type="text/css" href="/<%= bundle %>" />
         <% }); %>
-        <meta property="og:title" content="<%= title %>" />
-        <meta property="og:description" content="<%= excerpt %>" />
+        <meta property="og:title" content="Ether" />
+        <meta property="og:description" content="Ether" />
         <meta property="og:url" content="<%= url %>" />
-        <meta property="og:image" content="<%= image %>" />
         <meta property="twitter:card" content="summary" />
-        <meta property="twitter:title" content="<%= title %>" />
-        <meta property="twitter:description" content="<%= excerpt %>" />
-        <meta property="twitter:image" content="<%= image %>" />
+        <meta property="twitter:title" content="Ether" />
+        <meta property="twitter:description" content="Ether" />
 
         <% if (isProd) { %>
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,8 +44,6 @@
         <script>
             var globalVariable = {
                 siteName: '<%= siteName %>',
-                title: '<%= title %>',
-                excerpt: '<%= excerpt %>',
                 frontend: '<%= frontend %>',
                 adClient: '<%= adClient %>',
                 adSlot: '<%= adSlot %>',
