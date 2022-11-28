@@ -1,6 +1,6 @@
 # The space and time of the matter
 
-[한글 버전](./intro.md)
+[한글 버전](./doc/intro.md)
 
 A matter as a mixture of mass and electromagnetic, a photon as an mass independent electromagnetic, and a mass as an electromagnetic independent matter
 
@@ -16,12 +16,12 @@ To prove it, I will try to reveal the independent ether, which is a mass space. 
 
 **Table of Content**
 
-1. [Hypothesis](./hypothesis_en.md)
-1. [Proof(1): Classic Physics](./energy_en.md)
-1. [Proof(2): Multi-Electron Atoms](./atomic_spectra_data_en.md)
-1. [Proof(3): Schrodinger Equation](./schrodinger_equation_en.md)
-1. [Conclusion](./conclusion_en.md)
+1. [Hypothesis](./doc/hypothesis_en.md)
+1. [Proof(1): Classic Physics](./doc/energy_en.md)
+1. [Proof(2): Multi-Electron Atoms](./doc/atomic_spectra_data_en.md)
+1. [Proof(3): Schrodinger Equation](./doc/schrodinger_equation_en.md)
+1. [Conclusion](./doc/conclusion_en.md)
 
 ---
 
-- Next Chapter: [Hypothesis](./hypothesis_en.md)
+- Next Chapter: [Hypothesis](./doc/hypothesis_en.md)

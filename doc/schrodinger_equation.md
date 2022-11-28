@@ -105,7 +105,7 @@ $$R_{th}(r) = Ae^{-\frac{r}{a_0} \sqrt{N_{th}(n) \frac{1}{n-1}}} \hspace{10pt} \
 붉은색 파선은 수소 원자의 지름 방정식이며, 초록색 파선은 광자-에테르의 고점의 위치이다. 둘이 근사하는 것을 볼 수 있다.
 
 <p align="center">
- <img src="./images/pic6.png">
+ <img src="../images/pic6.png">
 </p>
 
 <p align="center">전자 오비탈 마디의 위치와 광자-에테르 그래프</p>
@@ -169,7 +169,7 @@ $$R_{th}(r, n, l) = Ae^{-\frac{x}{2}} x^{\sqrt{\frac{N_{th}(n)}{n-1}} - \frac{1}
 붉은색 파선은 수소 원자의 지름 방정식이며, 보라색 파선은 보정된 광자-에테르의 고점의 위치이다. 둘이 더욱 근사하는 것을 볼 수 있다.
 
 <p align="center">
- <img src="./images/pic12.png">
+ <img src="../images/pic12.png">
 </p>
 
 <p align="center">보정된 광자-에테르 그래프</p>

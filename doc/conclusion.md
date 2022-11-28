@@ -8,7 +8,7 @@
 ### 실험 제안
 
 <p align="center">
- <img src="./images/pic13.png">
+ <img src="../images/pic13.png">
 </p>
 
 <p align="center"><strong>이중 터널 실험</strong>: 둘로 쪼개면 어디에 있을까?</p>
@@ -22,7 +22,7 @@
 스파클이란 무엇일까? 에테르는 빛의 속도를 넘을 수 없다. 질량이 증가하기 때문이다. 빛의 속도에 가까워질수록 에테르 질량은 최대치가 되며 그 속의 스파클은 결국 멈추게 될 것이다. 따라서 빛이라는 스파클이 광속으로 움직일 수 있는 것이다. 에테르가 없기 때문이다. 바꾸어 말하면 스파클은 시간이라는 속성을 가지고 있다고 생각할 수 있다. 따라서 시간은 우주의 속성이 아닌, 물질의 '속성'이 된다. 잘 생각해 보면 우주가 시간을 가져야할 당위는 없다.
 
 <p align="center">
- <img src="./images/pic14.png">
+ <img src="../images/pic14.png">
 </p>
 
 <p align="center"><strong>에테르-스파클 관점으로 본 시간지연</strong><br>시간은 물질이 가진 속성으로 속력이 변할 수 있다</p>
@@ -32,7 +32,7 @@
 ### 가설의 가설 (2): 양자 얽힘은 분리된 에테르?
 
 <p align="center">
- <img src="./images/pic15.png">
+ <img src="../images/pic15.png">
 </p>
 
 <p align="center"><strong>에테르-스파클 관점으로 본 양자 얽힘</strong><br>스파클은 두 에테르가 하나인 것 처럼 행동한다</p>

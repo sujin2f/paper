@@ -76,7 +76,7 @@ $$E_{th}(n) = \frac{ℏ^2}{2 \mu a_0 ^ 2}N_{th}(n) \hspace{10pt} \\\{ n \geqq 2 
 | 2nd values `eV` | 10.2009 | 1.8890 | 0.6611 | 0.3060 | 0.1662 | 0.1002 | 0.0650 |
 
 <p align="center">
- <img src="./images/pic5.png">
+ <img src="../images/pic5.png">
 </p>
 
 <p align="center"><strong>EC of Photon-Ether</strong><br>simple plus calculation</p>
@@ -99,6 +99,6 @@ If I pass the conditions, I may prove the electron energy is stored as a form of
 
 ---
 
-- First Page: [Introduction](./README.md)
+- First Page: [Introduction](../README.md)
 - Prev Chapter: [Hypothesis](./hypothesis_en.md)
 - Next Chapter: [Proof(2): Multi-Electron Atoms](./atomic_spectra_data_en.md)

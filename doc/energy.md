@@ -82,7 +82,7 @@ $$E_{th}(n) = \frac{ℏ^2}{2 \mu a_0 ^ 2}N_{th}(n) \hspace{10pt} \\\{ n \geqq 2 
 <p align="center"><strong>두 방법으로 구한 에너지를 비교한 표</strong></p>
 
 <p align="center">
- <img src="./images/pic5.png">
+ <img src="../images/pic5.png">
 </p>
 
 <p align="center"><strong>광자-에테르가 가진 EC</strong><br>덧셈으로 계산 가능</p>

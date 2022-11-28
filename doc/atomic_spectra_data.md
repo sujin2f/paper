@@ -3,7 +3,7 @@
 지금까지는 보어의 원자모형을 기준으로 가설을 검증했었다. 그러나 보어 원자모형은 더 이상 유효하지 않다. 양자물리학이 밝혀낸 것은 원자에 속한 전자가 에너지를 흡수해서 오비탈이라는 형상으로 나타난다는 것이다. 이제 더 이상 에테르는 원형이 아니다.
 
 <p align="center">
- <img src="./images/pic9.png">
+ <img src="../images/pic9.png">
 </p>
 
 <p align="center"><strong>전자 오비탈</strong> <a href="https://en.wikipedia.org/wiki/Atomic_orbital">출처: 위키피디아</a></p>
@@ -13,7 +13,7 @@
 원형의 마디를 가진 오비탈을 s 오비탈이라고 부른다. 마디가 없으면 s1, 원형 마디가 하나일 때 s2이다. 선형의 마디를 하나 가진 오비탈을 p라고 한다. 선형 하나면 p2, 선형 하나에 원형 하나면 p3이다. 이런 식으로 선형의 마디 개수를 기준으로 d, f, g와 같은 이름을 가진다.
 
 <p align="center">
- <img src="./images/pic10.png">
+ <img src="../images/pic10.png">
 </p>
 
 <p align="center"><strong>에테르의 관점으로 본 오비탈</strong><br>원형과 선형 에테르가 혼합되어 있는 형태</p>
@@ -190,7 +190,7 @@ s와 p 오비탈 그리고 선형 에테르에서 2번 위치는 100%p 정도로
 | 일곱번째 선형 | | | | | | | 0.005 | 0.003 | |
 
 <p align="center">
- <img src="./images/pic11.png">
+ <img src="../images/pic11.png">
 </p>
 
 <p align="center"><strong>헬륨의 에테르 [OO--]</strong><br>각 자리수에 있는 값은 예측 가능해 보이고 그것들을 더하거나 빼는 것으로 총 EC를 계산할 수 있다.<br>실제로 쓰여진 값은 원형 1번을 시작으로 →→↘︎↘︎로 내려가면 된다.</p>

@@ -3,7 +3,7 @@
 Every hypothesis starts with a question. A particle exists in probability. However, nobody applies more meaning on it. What if the space is a part of the particle?
 
 <p align="center">
- <img src="./images/pic3.png">
+ <img src="../images/pic3.png">
 </p>
 
 <p align="center"><strong>Hypothesis</strong><br>Probability cloud would be a part of the particle</p>
@@ -13,7 +13,7 @@ Every hypothesis starts with a question. A particle exists in probability. Howev
 Let me reconstruct the [double-slit experiment](https://en.wikipedia.org/wiki/Double-slit_experiment) of an electron along with the hypothesis. This famous experiment shows the wave–particle duality well. The electron passes two slits at the same time, but it appears at one slit by the observation. After all, it produces a wave pattern.
 
 <p align="center">
- <img src="./images/pic4.png">
+ <img src="../images/pic4.png">
 </p>
 
 <p align="center"><strong>Applying the hypothesis to the double-slit experiment</strong><br>The space can be divided</p>
@@ -23,7 +23,7 @@ Applying the hypothesis, the probability cloud is a part of an electron, we can 
 if so, the space of an electron is not same with the space we know. It's a new space that can be divided but connected together. I name this space as `ether`, and what we thought as a particle is a `sparkle`. The hypothesis, which recognizes the probability cloud is a part of a particle, becomes the hypothesis that the matter is a compound of the ether and sparkle.
 
 <p align="center">
- <img src="./images/pic7.png">
+ <img src="../images/pic7.png">
 </p>
 
 <p align="center"><strong>Name it!</strong>: ether and sparkle</p>
@@ -33,7 +33,7 @@ So, what is the nature of ether and a sparkle? Let me analogize with a photon an
 The hypothesis explains that the electron has a space, and the sparkle is bond to the space. Therefore, I guess the photon is a standalone sparkle which doesn't have any ether. Following this idea, I can assume the ether has a mass, and the sparkle is a photon or similar material. The photon-sparkle's space is a universe, and the speed of it is unchangeable. Yet, the universe of the electron-sparkle is electron-ether, so the sparkle is bond to the mass. Thus, it has a lower speed. The nature of the photon and electron is from the space of each sparkles.
 
 <p align="center">
- <img src="./images/pic8.png">
+ <img src="../images/pic8.png">
 </p>
 
 <p align="center"><strong>The differences between the sparkle and electron</strong></p>
@@ -47,7 +47,7 @@ I have assumed the matter is the ether-sparkle compound and the photon is a stan
 Let me reanalyze the Bohr model to guess what it is.
 
 <p align="center">
- <img src="./images/pic1.png">
+ <img src="../images/pic1.png">
 </p>
 
 <p align="center"><strong>Classic Physics</strong>: Bohr model</p>
@@ -55,7 +55,7 @@ Let me reanalyze the Bohr model to guess what it is.
 According to the Bohr model, an atom absorbs a certain amount of energy with increment its orbit by integer n, and releasing energy acts the opposite way. What if I changed this model to a mass goes in between the orbits? Let me reconstruct this model to the standalone sparkle turns into the standalone ether and goes between the orbit.
 
 <p align="center">
- <img src="./images/pic2.png">
+ <img src="../images/pic2.png">
 </p>
 
 <p align="center"><strong>Reconstruction Bohr Model by Ether-Sparkle Hypothesis</strong></p>
@@ -66,5 +66,5 @@ To the next chapter, I explore the nature of photon-ether to prove my hypothesis
 
 ---
 
-- Prev Chapter: [Introduction](./README.md)
+- Prev Chapter: [Introduction](../README.md)
 - Next Chapter: [Proof(1): Classic Physics](./energy_en.md)

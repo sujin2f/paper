@@ -3,7 +3,7 @@
 So far, I tried to prove the hypothesis from Bohr model. However, the Bohr model is not accurate any more. In a quantum physics, an electron creates orbital shape in a result of absorbing energy. The ether is not a radial shape any more.
 
 <p align="center">
- <img src="./images/pic9.png">
+ <img src="../images/pic9.png">
 </p>
 
 <p align="center"><strong>Atomic Orbital</strong> <a href="https://en.wikipedia.org/wiki/Atomic_orbital">From : Wikipedia</a></p>
@@ -13,7 +13,7 @@ The shape of orbital is determined by quantum numbers n, l, and m<sub>l</sub>. T
 The s orbital is orbitals which only have a radial nodes. When there's no node, it is s1, and s2 has one radial node. The p orbital has one linear node. One linear node is p2, and one linear and one radial nodes is p3. Under this rule, scientists named d, f, and g orbital based on how many linear node the orbital has.
 
 <p align="center">
- <img src="./images/pic10.png">
+ <img src="../images/pic10.png">
 </p>
 
 <p align="center"><strong>The Orbital with the Hypothesis</strong><br>The combination of radial and linear ethers</p>
@@ -191,7 +191,7 @@ The table above is percent point. The EC of the position is the table below. Now
 | 7th linear | | | | | | | 0.005 | 0.003 | |
 
 <p align="center">
- <img src="./images/pic11.png">
+ <img src="../images/pic11.png">
 </p>
 
 <p align="center"><strong>The Ether [OO--] of Helium</strong><br>The value seems to be calculated, and we can get the EC by summing the value.<br>The values are from radial 1 to →→↘︎↘︎ order.</p>
@@ -200,6 +200,6 @@ This tendency can be observed in other atoms like lithium, beryllium, boron, and
 
 ---
 
-- First Page: [Introduction](./README.md)
+- First Page: [Introduction](../README.md)
 - Prev Chapter: [Proof(1): Classic Physics](./energy_en.md)
 - Next Chapter: [Proof(3): Schrodinger Equation](./schrodinger_equation_en.md)
