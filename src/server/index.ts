@@ -1,10 +1,9 @@
 import express from 'express'
-import path from 'path'
 
 import { crawl } from './util/crawler/crawler'
-import { csvParser } from './util/crawler/csv-parser'
 import { mongoConnect } from './util/mongo/connect'
 import { periodicTable } from '../constant/periodic-table'
+import { getEthers } from './util/mongo/ether'
 
 const app = express()
 const port = 8080
@@ -49,6 +48,12 @@ app.get('/crawler/:no?/:atom?/:ion?', async (req, res) => {
         }
     }
     res.send('ouch!')
+})
+
+app.get('/rd-table/:atom/:ion', async (req, res) => {
+    const ethers = await getEthers(req.params.atom, req.params.ion)
+    console.log(ethers)
+    res.send('Hello World!')
 })
 
 app.listen(port, () => {

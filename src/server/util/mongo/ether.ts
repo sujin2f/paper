@@ -39,3 +39,14 @@ export const addEther = async (ether: Ether): Promise<boolean> => {
             return true
         })
 }
+export const getEthers = async (
+    atom: string,
+    ion: string,
+): Promise<Ether[]> => {
+    return await etherModel
+        .find<Ether>({
+            atom,
+            ion,
+        })
+        .exec()
+}
