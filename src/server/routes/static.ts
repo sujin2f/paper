@@ -6,16 +6,10 @@ import ejs from 'ejs'
 import { GlobalVariable } from 'src/types/common'
 import { bundles, publicDir, baseDir, rootDir } from 'src/utils/environment'
 import { periodicTable } from 'src/constants/periodic-table'
-import { crawl } from '../util/crawler/crawler'
-import { getRawData } from 'src/utils/mongo/raw-data'
+import { crawl } from 'src/utils/crawler/crawler'
+import { getOrbital } from 'src/utils/mongo/orbital'
 
 const staticRouter = express.Router()
-
-staticRouter.get('/rd-table/:atom/:ion', async (req, res) => {
-    const ethers = await getRawData(req.params.atom, req.params.ion)
-    console.log(ethers)
-    res.send('Hello World!')
-})
 
 staticRouter.get('/crawler/:no?/:atom?/:ion?', async (req, res) => {
     if (!req.params.no) {

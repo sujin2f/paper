@@ -1,8 +1,8 @@
-import { rawDataTypeGraphQL } from 'src/types/raw-data'
+import { orbitalTypeGraphQL } from 'src/types/orbital'
 
 export const graphqlSchema = `
     type Query {
-        rawData(atom: String!, ion: String!): [RawData]
+        orbital(atom: String!, ion: String!): [Orbital]
     },
-    ${rawDataTypeGraphQL}
+    ${orbitalTypeGraphQL}
 `

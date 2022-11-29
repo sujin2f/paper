@@ -1,6 +1,7 @@
 import { parse } from 'csv-parse'
-import { RawData } from 'src/types/raw-data'
-import { addRawData } from 'src/utils/mongo/raw-data'
+import { Orbital } from 'src/types/orbital'
+import { getConfObject } from 'src/utils/orbital'
+import { addOrbital } from 'src/utils/mongo/orbital'
 
 const getValueInside = (value: string): string => {
     const regex = new RegExp(/[0-9a-zA-Z\.\/*,\(\) ]+/)
@@ -13,7 +14,7 @@ const getValueInside = (value: string): string => {
     return exec[0]
 }
 
-const getRawData = (
+const getOrbital = (
     no: number,
     atom: string,
     ion: string,
@@ -21,7 +22,7 @@ const getRawData = (
     conf: string,
     term: string,
     j: string,
-): Partial<RawData> | undefined => {
+): Orbital | undefined => {
     const ryValue = parseFloat(getValueInside(ry))
     const confValue = getValueInside(conf)
     const termValue = getValueInside(term)
@@ -36,7 +37,7 @@ const getRawData = (
         atom,
         ion,
         ry: ryValue,
-        conf: confValue,
+        conf: getConfObject(confValue),
         term: termValue,
         j: jValue,
     }
@@ -67,7 +68,7 @@ export const csvParser = async (
                 columns[key] = record.record.indexOf(key)
             })
         } else {
-            let ether = getRawData(
+            let orbital = getOrbital(
                 no,
                 atom,
                 ion,
@@ -76,10 +77,10 @@ export const csvParser = async (
                 record.record[columns['term_i']],
                 record.record[columns['J_i']],
             )
-            if (ether) {
-                await addRawData(ether)
+            if (orbital) {
+                await addOrbital(orbital)
             }
-            ether = getRawData(
+            orbital = getOrbital(
                 no,
                 atom,
                 ion,
@@ -88,8 +89,8 @@ export const csvParser = async (
                 record.record[columns['term_k']],
                 record.record[columns['J_k']],
             )
-            if (ether) {
-                await addRawData(ether)
+            if (orbital) {
+                await addOrbital(orbital)
             }
         }
         index++

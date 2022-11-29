@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/public'
-import { RawData } from 'src/frontend/scenes/public/RawData'
+import { Orbital } from 'src/frontend/scenes/public/Orbital'
 
 export const Router = (): JSX.Element => {
     return (
@@ -17,10 +17,10 @@ export const Router = (): JSX.Element => {
             />
 
             <Route
-                path="/raw-data/:atomNo"
+                path="/orbital/:atomNo"
                 element={
                     <Public>
-                        <RawData />
+                        <Orbital />
                     </Public>
                 }
             />

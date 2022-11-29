@@ -1,19 +1,19 @@
 import React, { Fragment } from 'react'
 import { useParams } from 'react-router-dom'
-import { orbital } from 'src/constants/ether'
+import { orbitalKeys } from 'src/constants/orbital'
 
-import { useRawData } from 'src/frontend/hooks/useRawData'
+import { useOrbital } from 'src/frontend/hooks/useOrbital'
 import {
-    createTableData,
+    getOrbitalTable,
     getAtom,
     getDiffWithNth,
     getMaxCol,
-} from 'src/utils/ether'
+} from 'src/utils/orbital'
 
-export const RawData = (): JSX.Element => {
+export const Orbital = (): JSX.Element => {
     const { atomNo } = useParams()
     const atom = getAtom(parseInt(atomNo || ''))
-    const { ethers, loading, error } = useRawData({
+    const { orbitals, loading, error } = useOrbital({
         atom: atom?.symbol || '',
         ion: 'I',
     })
@@ -26,11 +26,11 @@ export const RawData = (): JSX.Element => {
         return <Fragment>Loading</Fragment>
     }
 
-    if (!ethers.length) {
+    if (!orbitals.length) {
         return <Fragment>404</Fragment>
     }
 
-    const tableData = createTableData(ethers)
+    const tableData = getOrbitalTable(orbitals)
     const maxCol = getMaxCol(tableData)
     const cols = Array(maxCol - 1).fill('')
 
@@ -47,7 +47,7 @@ export const RawData = (): JSX.Element => {
                     </tr>
                 </thead>
                 <tbody>
-                    {orbital
+                    {orbitalKeys
                         .filter((orbit) => tableData[orbit])
                         .map((orbit) => (
                             <Fragment key={`${orbit}-orbital`}>
@@ -55,7 +55,9 @@ export const RawData = (): JSX.Element => {
                                     <th>Orbital</th>
                                     {cols.map((_, i) => {
                                         const data = tableData[orbit][i + 1]
-                                        const conf = data ? data.conf : ''
+                                        const conf = data
+                                            ? data.conf.origin
+                                            : ''
                                         return (
                                             <td key={`${orbit}-orbital-${i}`}>
                                                 {conf}

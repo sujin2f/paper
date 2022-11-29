@@ -1,10 +1,10 @@
-import { orbital } from 'src/constants/ether'
+import { orbitalKeys } from 'src/constants/orbital'
 import { periodicTable } from 'src/constants/periodic-table'
 import { Nullable } from 'src/types/common'
-import { RawData, ConfObj } from 'src/types/raw-data'
+import { Orbital, Configure } from 'src/types/orbital'
 
-type EtherTable = {
-    [key: string]: RawData[]
+type OrbitalTable = {
+    [key: string]: Orbital[]
 }
 
 const getConfArray = (conf: string): string[] => {
@@ -23,17 +23,17 @@ const getConfArray = (conf: string): string[] => {
     return result
 }
 
-const getSeries = (base: RawData, rawData: RawData[]): RawData[] => {
-    const result: RawData[] = []
+const getSeries = (base: Orbital, orbitals: Orbital[]): Orbital[] => {
+    const result: Orbital[] = []
 
-    rawData.forEach((data) => {
+    orbitals.forEach((orbital) => {
         if (
-            base.confObj.prefix === data.confObj.prefix &&
-            base.confObj.orbital === data.confObj.orbital &&
-            base.j === data.j &&
-            base.term === data.term
+            base.conf.prefix === orbital.conf.prefix &&
+            base.conf.orbital === orbital.conf.orbital &&
+            base.j === orbital.j &&
+            base.term === orbital.term
         ) {
-            result[data.confObj.position] = data
+            result[orbital.conf.position] = orbital
             return
         }
     })
@@ -42,32 +42,31 @@ const getSeries = (base: RawData, rawData: RawData[]): RawData[] => {
 
 const getBaseOrbital = (
     orbital: string,
-    rawData: RawData[],
-    prevOrbital?: RawData,
-): Nullable<RawData> => {
+    orbitals: Orbital[],
+    prevOrbital?: Orbital,
+): Nullable<Orbital> => {
     const { term, j, prefix: prevPrefix } = getNextConf(prevOrbital)
 
-    for (const data of rawData) {
-        const conf = data.confObj
-        if (term && !data.term.startsWith(term)) {
+    for (const item of orbitals) {
+        if (term && !item.term.startsWith(term)) {
             continue
         }
-        if (j && !data.j.startsWith(j)) {
+        if (j && !item.j.startsWith(j)) {
             continue
         }
-        if (prevPrefix && conf.prefix !== prevPrefix) {
+        if (prevPrefix && item.conf.prefix !== prevPrefix) {
             continue
         }
-        if (conf.orbital !== orbital) {
+        if (item.conf.orbital !== orbital) {
             continue
         }
-        return data
+        return item
     }
     return
 }
 
 const getNextConf = (
-    orbital?: RawData,
+    orbital?: Orbital,
 ): { term: string; j: string; prefix: string } => {
     if (!orbital) {
         return { term: '', j: '', prefix: '' }
@@ -78,7 +77,7 @@ const getNextConf = (
         return { term: '', j: '', prefix: '' }
     }
     const term = parseInt(termReg[1]).toString()
-    const prefix = orbital.confObj.prefix
+    const prefix = orbital.conf.prefix
 
     let j = ''
     if (jReg[4]) {
@@ -89,13 +88,14 @@ const getNextConf = (
     return { term, j, prefix }
 }
 
-const getConfObject = (conf: string): ConfObj => {
-    const arr = getConfArray(conf)
+export const getConfObject = (origin: string): Configure => {
+    const arr = getConfArray(origin)
     const lastElement = [...arr].pop() || ''
     const restElements = JSON.stringify(arr.slice(0, arr.length - 1))
     const confReg = /([0-9]+)([a-z]+)/.exec(lastElement)
     if (!confReg) {
         return {
+            origin,
             position: 0,
             orbital: '',
             prefix: restElements,
@@ -103,6 +103,7 @@ const getConfObject = (conf: string): ConfObj => {
         }
     }
     return {
+        origin,
         position: parseInt(confReg[1]),
         orbital: confReg[2],
         prefix: restElements,
@@ -118,19 +119,15 @@ export const getAtom = (atomNo: number) => {
     }
 }
 
-export const createTableData = (rawData: RawData[]): EtherTable => {
-    const result: EtherTable = {}
-    const data = rawData.map((orbital) => ({
-        ...orbital,
-        confObj: getConfObject(orbital.conf),
-    }))
+export const getOrbitalTable = (orbitals: Orbital[]): OrbitalTable => {
+    const result: OrbitalTable = {}
 
-    let preBase: RawData | undefined = undefined
+    let preBase: Orbital | undefined = undefined
 
-    orbital.forEach((orbit) => {
-        const base = getBaseOrbital(orbit, data, preBase)
+    orbitalKeys.forEach((orbital) => {
+        const base = getBaseOrbital(orbital, orbitals, preBase)
         if (base) {
-            result[orbit] = getSeries(base, data)
+            result[orbital] = getSeries(base, orbitals)
             preBase = base
         }
     })
@@ -138,11 +135,11 @@ export const createTableData = (rawData: RawData[]): EtherTable => {
     return result
 }
 
-export const getMaxCol = (tableData: EtherTable): number => {
+export const getMaxCol = (tableData: OrbitalTable): number => {
     let maxCol = 0
     Object.keys(tableData).forEach((col) => {
-        if (maxCol < tableData[col as keyof EtherTable].length) {
-            maxCol = tableData[col as keyof EtherTable].length
+        if (maxCol < tableData[col as keyof OrbitalTable].length) {
+            maxCol = tableData[col as keyof OrbitalTable].length
         }
     })
     return maxCol
