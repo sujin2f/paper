@@ -1,0 +1,39 @@
+table.unstriped {
+    tbody {
+        tr {
+            border-bottom: 1px solid
+                smart-scale($table-background, $table-color-scale);
+        }
+    }
+
+    th {
+        min-width: 1.5rem;
+        text-align: center;
+        border-right: 1px solid
+            smart-scale($table-background, $table-color-scale);
+    }
+    td {
+        border-right: 1px solid
+            smart-scale($table-background, $table-color-scale);
+    }
+
+    .align__left {
+        text-align: left;
+    }
+
+    .align__right {
+        text-align: right;
+    }
+
+    .align__center {
+        text-align: center;
+    }
+
+    .border__bottom {
+        border-bottom: 3px solid $medium-gray;
+    }
+
+    .border__top {
+        border-top: 3px solid $medium-gray;
+    }
+}
