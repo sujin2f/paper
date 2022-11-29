@@ -1,5 +1,6 @@
 import { parse } from 'csv-parse'
-import { addEther, Ether } from '../mongo/ether'
+import { RawData } from 'src/types/raw-data'
+import { addRawData } from 'src/utils/mongo/raw-data'
 
 const getValueInside = (value: string): string => {
     const regex = new RegExp(/[0-9a-zA-Z\.\/*,\(\) ]+/)
@@ -12,7 +13,7 @@ const getValueInside = (value: string): string => {
     return exec[0]
 }
 
-const getEther = (
+const getRawData = (
     no: number,
     atom: string,
     ion: string,
@@ -20,7 +21,7 @@ const getEther = (
     conf: string,
     term: string,
     j: string,
-): Ether | undefined => {
+): RawData | undefined => {
     const ryValue = parseFloat(getValueInside(ry))
     const confValue = getValueInside(conf)
     const termValue = getValueInside(term)
@@ -66,7 +67,7 @@ export const csvParser = async (
                 columns[key] = record.record.indexOf(key)
             })
         } else {
-            let ether = getEther(
+            let ether = getRawData(
                 no,
                 atom,
                 ion,
@@ -76,9 +77,9 @@ export const csvParser = async (
                 record.record[columns['J_i']],
             )
             if (ether) {
-                await addEther(ether)
+                await addRawData(ether)
             }
-            ether = getEther(
+            ether = getRawData(
                 no,
                 atom,
                 ion,
@@ -88,7 +89,7 @@ export const csvParser = async (
                 record.record[columns['J_k']],
             )
             if (ether) {
-                await addEther(ether)
+                await addRawData(ether)
             }
         }
         index++
