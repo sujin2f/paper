@@ -1,8 +1,10 @@
+import { orbital } from 'src/constants/ether'
 import { periodicTable } from 'src/constants/periodic-table'
-import { RawData } from 'src/types/raw-data'
+import { Nullable } from 'src/types/common'
+import { RawData, ConfObj } from 'src/types/raw-data'
 
 type EtherTable = {
-    s: RawData[]
+    [key: string]: RawData[]
 }
 
 const getConfArray = (conf: string): string[] => {
@@ -21,14 +23,91 @@ const getConfArray = (conf: string): string[] => {
     return result
 }
 
-const getConfComparison = (conf: string[]): [string, number, string] => {
-    const lastElement = [...conf].pop() || ''
-    const restElements = JSON.stringify(conf.slice(0, conf.length - 1))
+const getSeries = (base: RawData, rawData: RawData[]): RawData[] => {
+    const result: RawData[] = []
+
+    rawData.forEach((data) => {
+        if (
+            base.confObj.prefix === data.confObj.prefix &&
+            base.confObj.orbital === data.confObj.orbital &&
+            base.j === data.j &&
+            base.term === data.term
+        ) {
+            result[data.confObj.position] = data
+            return
+        }
+    })
+    return result
+}
+
+const getBaseOrbital = (
+    orbital: string,
+    rawData: RawData[],
+    prevOrbital?: RawData,
+): Nullable<RawData> => {
+    const { term, j, prefix: prevPrefix } = getNextConf(prevOrbital)
+
+    for (const data of rawData) {
+        const conf = data.confObj
+        if (term && !data.term.startsWith(term)) {
+            continue
+        }
+        if (j && !data.j.startsWith(j)) {
+            continue
+        }
+        if (prevPrefix && conf.prefix !== prevPrefix) {
+            continue
+        }
+        if (conf.orbital !== orbital) {
+            continue
+        }
+        return data
+    }
+    return
+}
+
+const getNextConf = (
+    orbital?: RawData,
+): { term: string; j: string; prefix: string } => {
+    if (!orbital) {
+        return { term: '', j: '', prefix: '' }
+    }
+    const termReg = /([0-9]+)/.exec(orbital.term)
+    const jReg = /(([0-9]+)\/([0-9]+))|([0-9]+)/.exec(orbital.j)
+    if (!termReg || !jReg) {
+        return { term: '', j: '', prefix: '' }
+    }
+    const term = parseInt(termReg[1]).toString()
+    const prefix = orbital.confObj.prefix
+
+    let j = ''
+    if (jReg[4]) {
+        j = (parseInt(jReg[4]) + 1).toString()
+    } else {
+        j = (parseInt(jReg[2]) + 2).toString()
+    }
+    return { term, j, prefix }
+}
+
+const getConfObject = (conf: string): ConfObj => {
+    const arr = getConfArray(conf)
+    const lastElement = [...arr].pop() || ''
+    const restElements = JSON.stringify(arr.slice(0, arr.length - 1))
     const confReg = /([0-9]+)([a-z]+)/.exec(lastElement)
     if (!confReg) {
-        return [restElements, 0, '']
+        return {
+            position: 0,
+            orbital: '',
+            prefix: restElements,
+            arr,
+        }
     }
-    return [restElements, parseInt(confReg[1]), confReg[2]]
+    return {
+        position: parseInt(confReg[1]),
+        orbital: confReg[2],
+        prefix: restElements,
+        arr,
+    }
 }
 
 export const getAtom = (atomNo: number) => {
@@ -40,48 +119,19 @@ export const getAtom = (atomNo: number) => {
 }
 
 export const createTableData = (rawData: RawData[]): EtherTable => {
-    const result: EtherTable = {
-        s: [],
-    }
+    const result: EtherTable = {}
+    const data = rawData.map((orbital) => ({
+        ...orbital,
+        confObj: getConfObject(orbital.conf),
+    }))
 
-    const sOrbitals = rawData.filter((orbital) => {
-        const conf = getConfComparison(getConfArray(orbital.conf))
-        return conf[2] === 's'
-    })
-    let baseS = sOrbitals[0]
-    sOrbitals.forEach((orbital) => {
-        if (baseS.ry > orbital.ry) {
-            baseS = orbital
-        }
-    })
+    let preBase: RawData | undefined = undefined
 
-    const baseConf = getConfArray(baseS.conf)
-    const baseComparison = getConfComparison(baseConf)
-    const baseJ = baseS.j
-    const baseTerm = baseS.term
-
-    if (!baseConf.length) {
-        return result
-    }
-
-    rawData.forEach((raw) => {
-        const conf = getConfArray(raw.conf)
-        const comparison = getConfComparison(conf)
-        const j = raw.j
-        const term = raw.term
-
-        if (!conf.length) {
-            return
-        }
-
-        if (
-            baseComparison[0] === comparison[0] &&
-            baseComparison[2] === comparison[2] &&
-            baseJ === j &&
-            baseTerm === term
-        ) {
-            result.s[comparison[1]] = raw
-            return
+    orbital.forEach((orbit) => {
+        const base = getBaseOrbital(orbit, data, preBase)
+        if (base) {
+            result[orbit] = getSeries(base, data)
+            preBase = base
         }
     })
 

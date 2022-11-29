@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { useParams } from 'react-router-dom'
+import { orbital } from 'src/constants/ether'
 
 import { useRawData } from 'src/frontend/hooks/useRawData'
 import {
@@ -46,55 +47,105 @@ export const RawData = (): JSX.Element => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>Orbital</th>
-                        {cols.map((_, i) => {
-                            const data = tableData.s[i + 1]
-                            const orbital = data ? data.conf : ''
-                            return <td key={`s-orbital-${i}`}>{orbital}</td>
-                        })}
-                    </tr>
-                    <tr>
-                        <th>Rydberg</th>
-                        {cols.map((_, i) => {
-                            const data = tableData.s[i + 1]
-                            const ry = data ? data.ry.toFixed(4) : ''
-                            return <td key={`s-rydberg-${i}`}>{ry}</td>
-                        })}
-                    </tr>
-                    <tr>
-                        <th>Diff</th>
-                        {cols.map((_, i) => {
-                            if (i < 1) {
-                                return <td key={`s-diff-${i}`}></td>
-                            }
-                            const prev = tableData.s[i]
-                            const current = tableData.s[i + 1]
-                            if (!prev || !current || prev.ry === current.ry) {
-                                return <td key={`s-diff-${i}`}></td>
-                            }
-                            const diff = (current.ry - prev.ry).toFixed(4)
-                            return <td key={`s-diff-${i}`}>{diff}</td>
-                        })}
-                    </tr>
-                    <tr>
-                        <th>%P</th>
-                        {cols.map((_, i) => {
-                            if (i < 1) {
-                                return <td key={`s-pp-${i}`}></td>
-                            }
-                            const prev = tableData.s[i]
-                            const current = tableData.s[i + 1]
-                            if (!prev || !current || prev.ry === current.ry) {
-                                return <td key={`s-pp-${i}`}></td>
-                            }
-                            const pp = getDiffWithNth(
-                                current.ry - prev.ry,
-                                i,
-                            ).toFixed(4)
-                            return <td key={`s-pp-${i}`}>{pp}</td>
-                        })}
-                    </tr>
+                    {orbital
+                        .filter((orbit) => tableData[orbit])
+                        .map((orbit) => (
+                            <Fragment key={`${orbit}-orbital`}>
+                                <tr>
+                                    <th>Orbital</th>
+                                    {cols.map((_, i) => {
+                                        const data = tableData[orbit][i + 1]
+                                        const conf = data ? data.conf : ''
+                                        return (
+                                            <td key={`${orbit}-orbital-${i}`}>
+                                                {conf}
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                                <tr>
+                                    <th>Rydberg</th>
+                                    {cols.map((_, i) => {
+                                        const data = tableData[orbit][i + 1]
+                                        const ry = data
+                                            ? data.ry.toFixed(4)
+                                            : ''
+                                        return (
+                                            <td key={`${orbit}-rydberg-${i}`}>
+                                                {ry}
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                                <tr>
+                                    <th>Diff</th>
+                                    {cols.map((_, i) => {
+                                        if (i < 1) {
+                                            return (
+                                                <td
+                                                    key={`${orbit}-diff-${i}`}
+                                                ></td>
+                                            )
+                                        }
+                                        const prev = tableData[orbit][i]
+                                        const current = tableData[orbit][i + 1]
+                                        if (
+                                            !prev ||
+                                            !current ||
+                                            prev.ry === current.ry
+                                        ) {
+                                            return (
+                                                <td
+                                                    key={`${orbit}-diff-${i}`}
+                                                ></td>
+                                            )
+                                        }
+                                        const diff = (
+                                            current.ry - prev.ry
+                                        ).toFixed(4)
+                                        return (
+                                            <td key={`${orbit}-diff-${i}`}>
+                                                {diff}
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                                <tr>
+                                    <th>%P</th>
+                                    {cols.map((_, i) => {
+                                        if (i < 1) {
+                                            return (
+                                                <td
+                                                    key={`${orbit}-pp-${i}`}
+                                                ></td>
+                                            )
+                                        }
+                                        const prev = tableData[orbit][i]
+                                        const current = tableData[orbit][i + 1]
+                                        if (
+                                            !prev ||
+                                            !current ||
+                                            prev.ry === current.ry
+                                        ) {
+                                            return (
+                                                <td
+                                                    key={`${orbit}-pp-${i}`}
+                                                ></td>
+                                            )
+                                        }
+                                        const pp = getDiffWithNth(
+                                            current.ry - prev.ry,
+                                            i,
+                                        ).toFixed(4)
+                                        return (
+                                            <td key={`${orbit}-pp-${i}`}>
+                                                {pp}
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                            </Fragment>
+                        ))}
                 </tbody>
             </table>
         </Fragment>

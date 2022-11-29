@@ -21,7 +21,7 @@ const getRawData = (
     conf: string,
     term: string,
     j: string,
-): RawData | undefined => {
+): Partial<RawData> | undefined => {
     const ryValue = parseFloat(getValueInside(ry))
     const confValue = getValueInside(conf)
     const termValue = getValueInside(term)

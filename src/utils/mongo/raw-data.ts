@@ -24,7 +24,9 @@ const getSingleRawData = async (
     throw new Error('Not Found')
 }
 
-export const addRawData = async (rawData: RawData): Promise<boolean> => {
+export const addRawData = async (
+    rawData: Partial<RawData>,
+): Promise<boolean> => {
     return await getSingleRawData(rawData)
         .then(() => false)
         .catch(async () => {

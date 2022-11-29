@@ -1,3 +1,9 @@
+export type ConfObj = {
+    position: number
+    orbital: string
+    prefix: string
+    arr: string[]
+}
 export type RawData = {
     _id?: string
     no: number
@@ -5,6 +11,7 @@ export type RawData = {
     ion: string
     ry: number
     conf: string
+    confObj: ConfObj
     term: string
     j: string
 }
