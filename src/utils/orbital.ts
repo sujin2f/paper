@@ -1,11 +1,7 @@
 import { orbitalKeys } from 'src/constants/orbital'
 import { periodicTable } from 'src/constants/periodic-table'
 import { Nullable } from 'src/types/common'
-import { Orbital, Configure } from 'src/types/orbital'
-
-type OrbitalTable = {
-    [key: string]: Orbital[]
-}
+import { Orbital, Configure, OrbitalTable } from 'src/types/orbital'
 
 const getConfArray = (conf: string): string[] => {
     const result: string[] = []
@@ -150,3 +146,20 @@ export const getNth = (digit: number): number =>
 
 export const getDiffWithNth = (value: number, digit: number): number =>
     (value / getNth(digit)) * 100 - 100
+
+export const confToEther = (conf: Configure): string => {
+    const linear = orbitalKeys.indexOf(conf.orbital)
+    const radial = conf.position - linear
+
+    if (linear > 4 || radial > 4) {
+        if (linear === 0) {
+            return `${radial}O`
+        }
+        if (radial === 0) {
+            return `${linear}-`
+        }
+        return `${radial}O${linear}-`
+    }
+
+    return Array(radial).fill('O').concat(Array(linear).fill('-')).join('')
+}

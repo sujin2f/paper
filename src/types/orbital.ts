@@ -1,3 +1,9 @@
+export type Atom = {
+    number: number
+    name: string
+    symbol: string
+} & Record<string, any>
+
 export type Configure = {
     origin: string
     position: number
@@ -75,4 +81,8 @@ export type OrbitalQueryParam = { atom: string; ion: string }
 
 export type OrbitalReturnType = {
     orbital: Orbital[]
+}
+
+export type OrbitalTable = {
+    [key: string]: Orbital[]
 }

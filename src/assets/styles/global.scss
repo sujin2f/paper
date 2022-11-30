@@ -78,7 +78,14 @@ dd {
     overflow-wrap: break-word;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
+.align__left {
+    text-align: left !important;
+}
+
+.align__right {
+    text-align: right !important;
+}
+
+.align__center {
+    text-align: center !important;
 }

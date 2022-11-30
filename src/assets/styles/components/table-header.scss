@@ -1,0 +1,6 @@
+.table-header__top {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-areas: 'prev current next';
+    align-items: end;
+}

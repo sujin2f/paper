@@ -1,19 +1,43 @@
 import React, { Fragment } from 'react'
-import { useParams } from 'react-router-dom'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { OrbitalTable } from 'src/frontend/components/OrbitalTable'
-
-import { useOrbital } from 'src/frontend/hooks/useOrbital'
+import { Header } from 'src/frontend/components/OrbitalTable/Header'
+import { Table } from 'src/frontend/components/OrbitalTable'
+import { useParams } from 'react-router-dom'
+import { useOrbitalTable } from 'src/frontend/hooks/useOrbitalTable'
 import { getAtom } from 'src/utils/orbital'
 
 export const Orbital = (): JSX.Element => {
     const { atomNo } = useParams()
-    const atom = getAtom(parseInt(atomNo || ''))
-    const { orbitals, loading, error } = useOrbital({
-        atom: atom?.symbol || '',
+    const atom = parseInt(atomNo || '')
+    const current = getAtom(atom)
+
+    const {
+        orbitals,
+        loading,
+        error,
+        digit,
+        setDigit,
+        showOrbital,
+        setShowOrbital,
+        showEther,
+        setShowEther,
+        showRydberg,
+        setShowRydberg,
+        showDiff,
+        setShowDiff,
+        showNth,
+        setShowNth,
+        showPercentPoint,
+        setPercentPoint,
+    } = useOrbitalTable({
+        atom: current?.symbol || '',
         ion: 'I',
     })
+
+    if (!atom) {
+        return <Fragment>404</Fragment>
+    }
 
     if (error) {
         return <Fragment>404</Fragment>
@@ -31,12 +55,37 @@ export const Orbital = (): JSX.Element => {
         <Fragment>
             <Row>
                 <Column>
-                    <h1>{atom?.name}</h1>
+                    <Header
+                        atom={atom}
+                        digit={digit}
+                        setDigit={setDigit}
+                        showOrbital={showOrbital}
+                        setShowOrbital={setShowOrbital}
+                        showEther={showEther}
+                        setShowEther={setShowEther}
+                        showRydberg={showRydberg}
+                        setShowRydberg={setShowRydberg}
+                        showDiff={showDiff}
+                        setShowDiff={setShowDiff}
+                        showNth={showNth}
+                        setShowNth={setShowNth}
+                        showPercentPoint={showPercentPoint}
+                        setPercentPoint={setPercentPoint}
+                    />
                 </Column>
             </Row>
             <Row>
                 <Column>
-                    <OrbitalTable orbitals={orbitals} />
+                    <Table
+                        orbitals={orbitals}
+                        digit={digit}
+                        showOrbital={showOrbital}
+                        showEther={showEther}
+                        showRydberg={showRydberg}
+                        showDiff={showDiff}
+                        showNth={showNth}
+                        showPercentPoint={showPercentPoint}
+                    />
                 </Column>
             </Row>
         </Fragment>

@@ -1,7 +1,9 @@
 // From https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON
 // Thank you so much!
 
-export const periodicTable = {
+import { Atom } from 'src/types/orbital'
+
+export const periodicTable: { elements: Atom[] } = {
     elements: [
         {
             name: 'Hydrogen',
