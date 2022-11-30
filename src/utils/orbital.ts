@@ -149,7 +149,7 @@ export const getDiffWithNth = (value: number, digit: number): number =>
 
 export const confToEther = (conf: Configure): string => {
     const linear = orbitalKeys.indexOf(conf.orbital)
-    const radial = conf.position - linear
+    const radial = conf.position - linear - 1
 
     if (linear > 4 || radial > 4) {
         if (linear === 0) {

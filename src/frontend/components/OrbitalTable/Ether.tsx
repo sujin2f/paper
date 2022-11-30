@@ -6,13 +6,14 @@ type Props = {
     cols: number[]
     tableData: OrbitalTable
     orbit: string
+    title: string
 }
 
 export const Ether = (props: Props): JSX.Element => {
-    const { cols, tableData, orbit } = props
+    const { cols, tableData, orbit, title } = props
     return (
         <tr>
-            <th className="align__right">Ether</th>
+            <th className="align__right">{title}</th>
             {cols.map((_, i) => {
                 const data = tableData[orbit][i + 1]
                 return (

@@ -17,7 +17,7 @@ export const removeEmpty = (
 export const isEmpty = (
     value: Record<string, unknown> | string | number | unknown[] | null,
 ): boolean => {
-    if (value === undefined || value === null || value === NaN) {
+    if (value === undefined || value === null || isNaN(value as number)) {
         return true
     }
     if (typeof value === 'string') {

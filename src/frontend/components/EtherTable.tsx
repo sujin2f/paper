@@ -1,13 +1,13 @@
 import React from 'react'
-import { orbitalKeys } from 'src/constants/orbital'
 import { getOrbitalTable, getMaxCol } from 'src/utils/orbital'
-import { Orbital } from './Orbital'
-import { Ether } from './Ether'
-import { Rydberg } from './Rydberg'
-import { PercentPoint } from './PercentPoint'
-import { Diff } from './Diff'
-import { Nth } from './Nth'
+import { Orbital } from './OrbitalTable/Orbital'
+import { Ether } from './OrbitalTable/Ether'
+import { Rydberg } from './OrbitalTable/Rydberg'
+import { PercentPoint } from './OrbitalTable/PercentPoint'
+import { Diff } from './OrbitalTable/Diff'
+import { Nth } from './OrbitalTable/Nth'
 import { Orbital as OrbitalType } from 'src/types/orbital'
+import { getEtherTable } from 'src/utils/ether'
 
 type Pros = {
     orbitals: OrbitalType[]
@@ -20,7 +20,7 @@ type Pros = {
     showPercentPoint: boolean
 }
 
-export const Table = (props: Pros): JSX.Element => {
+export const EtherTable = (props: Pros): JSX.Element => {
     const {
         orbitals,
         digit,
@@ -31,8 +31,10 @@ export const Table = (props: Pros): JSX.Element => {
         showNth,
         showPercentPoint,
     } = props
-    const tableData = getOrbitalTable(orbitals)
-    const maxCol = getMaxCol(tableData)
+
+    const orbitalTableData = getOrbitalTable(orbitals)
+    const tableData = getEtherTable(orbitalTableData)
+    const maxCol = getMaxCol(orbitalTableData)
     const cols = Array(maxCol - 1).fill('')
 
     return (
@@ -46,8 +48,8 @@ export const Table = (props: Pros): JSX.Element => {
                         ))}
                     </tr>
                 </thead>
-                {orbitalKeys
-                    .filter((orbit) => tableData[orbit])
+                {Object.keys(tableData)
+                    .filter((rawKey) => tableData[rawKey])
                     .map((orbit) => (
                         <tbody
                             key={`${orbit}-orbital`}
@@ -66,7 +68,7 @@ export const Table = (props: Pros): JSX.Element => {
                                     cols={cols}
                                     tableData={tableData}
                                     orbit={orbit}
-                                    title="Ether"
+                                    title={`${orbit} Orbital`}
                                 />
                             )}
                             {showRydberg && (

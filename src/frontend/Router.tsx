@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/public'
 import { Orbital } from 'src/frontend/scenes/public/Orbital'
+import { Ether } from 'src/frontend/scenes/public/Ether'
 
 export const Router = (): JSX.Element => {
     return (
@@ -21,6 +22,15 @@ export const Router = (): JSX.Element => {
                 element={
                     <Public>
                         <Orbital />
+                    </Public>
+                }
+            />
+
+            <Route
+                path="/ether/:atomNo"
+                element={
+                    <Public>
+                        <Ether />
                     </Public>
                 }
             />
