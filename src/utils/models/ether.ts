@@ -1,23 +1,26 @@
 import { orbitalKeys } from 'src/constants/orbital'
-import { OrbitalTable } from 'src/types/orbital'
-import { getMaxCol } from './orbital'
+import { RawData } from 'src/types/raw-data'
+import { getMaxCol } from 'src/utils/models/common'
+import { getTableData as getOrbitalTableData } from 'src/utils/models/orbital'
 
-export const getEtherTable = (orbitalTable: OrbitalTable): OrbitalTable => {
+export const getTableData = (rawData: RawData[]) => {
+    const { tableData: orbitalTable, sortOrder } = getOrbitalTableData(rawData)
     const maxCol = getMaxCol(orbitalTable)
-    const etherTable: OrbitalTable = {
+    const etherTable: Record<string, RawData[]> = {
         '0': Array(maxCol).fill(undefined),
         '1': Array(maxCol).fill(undefined),
     }
 
-    Object.keys(orbitalTable).forEach((orbitalRowKey) => {
+    sortOrder.forEach((orbitalRowKey) => {
+        const firstOrbital = orbitalTable[orbitalRowKey][0]
         orbitalTable[orbitalRowKey].forEach((orbital) => {
             if (!orbital) {
                 return
             }
 
-            const position = orbital.conf.position
+            const position = orbital.configuration.position
 
-            if (orbitalRowKey === 's') {
+            if (firstOrbital.configuration.orbital === 's') {
                 etherTable['0'][position] = orbital
 
                 if (position > 1) {
@@ -30,7 +33,10 @@ export const getEtherTable = (orbitalTable: OrbitalTable): OrbitalTable => {
                 return
             } else {
                 if (position > 1) {
-                    const positionAdd = orbitalKeys.indexOf(orbitalRowKey) - 1
+                    const positionAdd =
+                        orbitalKeys.indexOf(
+                            firstOrbital.configuration.orbital,
+                        ) - 1
                     const rowKey = (position - 1 - positionAdd).toString()
                     if (Object.keys(etherTable).indexOf(rowKey) === -1) {
                         etherTable[rowKey] = Array(maxCol).fill(undefined)

@@ -2,7 +2,7 @@ import express from 'express'
 import { config as dotEnvConfig } from 'dotenv'
 import path from 'path'
 import moduleAlias from 'module-alias'
-import { mongoConnect } from '../utils/mongo/connect'
+import { mongoConnect } from 'src/utils/mongo/connect'
 
 const nodeEnv = process.env.NODE_ENV || ''
 const rootDir =

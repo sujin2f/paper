@@ -3,10 +3,8 @@ import { useParams } from 'react-router-dom'
 import { Context, ContextType } from 'src/frontend/store'
 import { useRawData } from 'src/frontend/hooks/useRawData'
 import { getTableData } from 'src/utils/models/orbital'
-import {
-    getMaxCol,
-    getTableData as getRawDataTableData,
-} from 'src/utils/models/raw-data'
+import { getMaxCol } from 'src/utils/models/common'
+
 import { Ether } from './cells/Ether'
 import { Orbital } from './cells/Orbital'
 import { Rydberg } from './cells/Rydberg'
@@ -36,9 +34,8 @@ export const OrbitalTable = (): JSX.Element => {
         return <Fragment>Something Went Wrong</Fragment>
     }
 
-    const { tableData: tableRawData, sortOrder } = getRawDataTableData(rawData)
-    const tableData = getTableData(tableRawData)
-    const maxCol = getMaxCol(tableRawData)
+    const { tableData, sortOrder } = getTableData(rawData)
+    const maxCol = getMaxCol(tableData)
     const cols = Array(maxCol - 1).fill('')
 
     return (
@@ -46,8 +43,10 @@ export const OrbitalTable = (): JSX.Element => {
             <table className="unstriped">
                 {sortOrder.map((row, rowIndex) => {
                     const rawData = tableData[row]
-                    if (!rawData) {
-                        return <Fragment key={`${row}-thead`} />
+
+                    let showValue = false
+                    if (rowIndex === 0 || rowIndex === 1) {
+                        showValue = true
                     }
 
                     return (
@@ -89,6 +88,7 @@ export const OrbitalTable = (): JSX.Element => {
                                         cols={cols}
                                         rawData={rawData}
                                         rowIndex={rowIndex}
+                                        showValue={showValue}
                                     />
                                 )}
                                 {options.nth && (
@@ -96,6 +96,7 @@ export const OrbitalTable = (): JSX.Element => {
                                         cols={cols}
                                         rawData={rawData}
                                         rowIndex={rowIndex}
+                                        showValue={showValue}
                                     />
                                 )}
                                 {options.percentPoint && (
@@ -103,6 +104,7 @@ export const OrbitalTable = (): JSX.Element => {
                                         cols={cols}
                                         rawData={rawData}
                                         rowIndex={rowIndex}
+                                        showValue={showValue}
                                     />
                                 )}
                             </tbody>

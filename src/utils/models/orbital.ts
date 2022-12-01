@@ -1,6 +1,7 @@
 import { orbitalKeys } from 'src/constants/orbital'
 import { Nullable } from 'src/types/common'
 import { RawData } from 'src/types/raw-data'
+import { getTableData as getRawDataTableData } from 'src/utils/models/raw-data'
 
 const getRow = (
     orbital: string,
@@ -50,17 +51,19 @@ const getRow = (
     return
 }
 
-export const getTableData = (rawData: Record<string, RawData[]>) => {
+export const getTableData = (rawData: RawData[]) => {
+    const { tableData: tableRawData } = getRawDataTableData(rawData)
     const result: Record<string, RawData[]> = {}
+    const sortOrder: string[] = []
     let preData: RawData | undefined = undefined
 
     orbitalKeys.forEach((orbitalKey) => {
-        const rowKey = getRow(orbitalKey, rawData, preData)
+        const rowKey = getRow(orbitalKey, tableRawData, preData)
         if (rowKey) {
-            result[rowKey] = rawData[rowKey]
-            preData = rawData[rowKey][0]
+            sortOrder.push(rowKey)
+            result[rowKey] = tableRawData[rowKey]
+            preData = tableRawData[rowKey][0]
         }
     })
-
-    return result
+    return { tableData: result, sortOrder }
 }

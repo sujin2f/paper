@@ -1,6 +1,6 @@
 import React from 'react'
 import { RawData } from 'src/types/raw-data'
-import { confToEther } from 'src/utils/models/raw-data'
+import { confToEther } from 'src/utils/models/common'
 
 type Props = {
     rawData: RawData[]

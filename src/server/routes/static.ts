@@ -6,7 +6,7 @@ import ejs from 'ejs'
 import { GlobalVariable } from 'src/types/common'
 import { bundles, publicDir, baseDir, rootDir } from 'src/utils/environment'
 import { periodicTable } from 'src/constants/periodic-table'
-import { crawl } from 'src/utils/models/raw-data/crawler'
+import { crawl } from 'src/utils/crawler/crawler'
 
 const staticRouter = express.Router()
 

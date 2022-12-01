@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { Context, ContextType } from 'src/frontend/store'
 import { useRawData } from 'src/frontend/hooks/useRawData'
-import { getTableData } from 'src/utils/models/raw-data'
+import { getTableData } from 'src/utils/models/ether'
 import { getMaxCol } from 'src/utils/models/common'
 
 import { Ether } from './cells/Ether'
@@ -12,7 +12,7 @@ import { Diff } from './cells/Diff'
 import { Nth } from './cells/Nth'
 import { PercentPoint } from './cells/PercentPoint'
 
-export const RawDataTable = (): JSX.Element => {
+export const EtherTable = (): JSX.Element => {
     const param = useParams()
     const number = parseInt(param.number || '1')
     const ion = param.ion || 'I'
@@ -34,27 +34,35 @@ export const RawDataTable = (): JSX.Element => {
         return <Fragment>Something Went Wrong</Fragment>
     }
 
-    const { tableData, sortOrder } = getTableData(rawData)
+    const tableData = getTableData(rawData)
     const maxCol = getMaxCol(tableData)
     const cols = Array(maxCol - 1).fill('')
+    console.log(tableData)
 
     return (
         <div className="table-scroll">
             <table className="unstriped">
-                {sortOrder.map((row, rowIndex) => {
+                {Object.keys(tableData).map((row, rowIndex) => {
                     const rawData = tableData[row]
+
                     let showValue = false
+                    let rowTitle = ''
                     if (rowIndex === 0 || rowIndex === 1) {
                         showValue = true
+                    }
+                    if (rowIndex === 0) {
+                        rowTitle = 'Radial'
+                    } else if (rowIndex === 1) {
+                        rowTitle = 'Linear'
+                    } else {
+                        rowTitle = `${rowIndex - 1}S Base`
                     }
 
                     return (
                         <Fragment key={`${row}-thead`}>
                             <thead>
                                 <tr className="table__header">
-                                    <th className="align__right">
-                                        {rawData[0].term}.{rawData[0].j}
-                                    </th>
+                                    <th className="align__right">{rowTitle}</th>
                                     <td colSpan={cols.length + 1} />
                                 </tr>
                                 {options.orbital && (
