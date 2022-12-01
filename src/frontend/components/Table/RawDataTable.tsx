@@ -1,16 +1,24 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import { Context, ContextType } from 'src/frontend/store'
 import { useRawData } from 'src/frontend/hooks/useRawData'
 import { getMaxCol, getTableData } from 'src/utils/models/raw-data'
+import { Ether } from './cells/Ether'
+import { Orbital } from './cells/Orbital'
+import { Rydberg } from './cells/Rydberg'
+import { Diff } from './cells/Diff'
+import { Nth } from './cells/Nth'
+import { PercentPoint } from './cells/PercentPoint'
 
 export const RawDataTable = (): JSX.Element => {
     const param = useParams()
     const number = parseInt(param.number || '1')
     const ion = param.ion || 'I'
-    const { rawData, loading, error, options } = useRawData({
+    const { rawData, loading, error } = useRawData({
         number,
         ion,
     })
+    const [options] = useContext(Context) as ContextType
 
     if (error) {
         return <Fragment>404</Fragment>
@@ -31,40 +39,68 @@ export const RawDataTable = (): JSX.Element => {
     return (
         <div className="table-scroll">
             <table className="unstriped">
-                <thead>
-                    <tr className="border__bottom border__top">
-                        <th></th>
-                        {cols.map((_, i) => (
-                            <th key={`index-${i}`}>{i}</th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    {sortOrder.map((key) => {
-                        const currentRaw = tableData[key]
-                        return (
-                            <tr key={`${key}-raw-data`}>
-                                <th>
-                                    {currentRaw[0].term} {currentRaw[0].j}
-                                </th>
-                                {cols.map((_, i) => {
-                                    if (i === 0 || !currentRaw[i]) {
-                                        return (
-                                            <td key={`${key}-${i}-raw-data`} />
-                                        )
-                                    }
-                                    return (
-                                        <td key={`${key}-${i}-raw-data`}>
-                                            {currentRaw[i].rydberg.toFixed(
-                                                options.digit,
-                                            )}
-                                        </td>
-                                    )
-                                })}
-                            </tr>
-                        )
-                    })}
-                </tbody>
+                {sortOrder.map((row, rowIndex) => {
+                    const rawData = tableData[row]
+
+                    return (
+                        <Fragment key={`${row}-thead`}>
+                            <thead>
+                                <tr className="table__header">
+                                    <th className="align__right">
+                                        {rawData[0].term}.{rawData[0].j}
+                                    </th>
+                                    <td colSpan={cols.length + 1} />
+                                </tr>
+                                {options.orbital && (
+                                    <Orbital
+                                        cols={cols}
+                                        rawData={rawData}
+                                        title="Orbital"
+                                        rowIndex={rowIndex}
+                                    />
+                                )}
+                                {options.ether && (
+                                    <Ether
+                                        cols={cols}
+                                        rawData={rawData}
+                                        title="Ether"
+                                        rowIndex={rowIndex}
+                                    />
+                                )}
+                            </thead>
+                            <tbody>
+                                {options.rydberg && (
+                                    <Rydberg
+                                        cols={cols}
+                                        rawData={rawData}
+                                        rowIndex={rowIndex}
+                                    />
+                                )}
+                                {options.diff && (
+                                    <Diff
+                                        cols={cols}
+                                        rawData={rawData}
+                                        rowIndex={rowIndex}
+                                    />
+                                )}
+                                {options.nth && (
+                                    <Nth
+                                        cols={cols}
+                                        rawData={rawData}
+                                        rowIndex={rowIndex}
+                                    />
+                                )}
+                                {options.percentPoint && (
+                                    <PercentPoint
+                                        cols={cols}
+                                        rawData={rawData}
+                                        rowIndex={rowIndex}
+                                    />
+                                )}
+                            </tbody>
+                        </Fragment>
+                    )
+                })}
             </table>
         </div>
     )

@@ -1,9 +1,16 @@
 table.unstriped {
-    tbody {
-        tr {
-            border-bottom: 1px solid
-                smart-scale($table-background, $table-color-scale);
+    thead {
+        tr.table__header {
+            background-color: smart-scale(
+                $table-background,
+                $table-color-scale
+            );
+            color: white;
         }
+    }
+    tr.border__bottom {
+        border-bottom: 1px solid
+            smart-scale($table-background, $table-color-scale);
     }
 
     th {

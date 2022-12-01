@@ -48,7 +48,7 @@ export const getTableData = (rawData: RawData[]) => {
             result[key] = []
             result[key][0] = data
         }
-        result[key][data.configuration.position - 1] = data
+        result[key][data.configuration.position] = data
     })
     const sortOrder = Object.keys(result).sort((a, b) => {
         const indexA = orbitalKeys.indexOf(result[b][0].configuration.orbital)
@@ -74,5 +74,22 @@ export const getMaxCol = (tableData: Record<string, RawData[]>): number => {
             maxCol = tableData[col as keyof Record<string, RawData[]>].length
         }
     })
-    return maxCol
+    return maxCol - 1
+}
+
+export const confToEther = (conf: Configuration): string => {
+    const linear = orbitalKeys.indexOf(conf.orbital)
+    const radial = conf.position - linear - 1
+
+    if (linear > 4 || radial > 4) {
+        if (linear === 0) {
+            return `${radial}O`
+        }
+        if (radial === 0) {
+            return `${linear}-`
+        }
+        return `${radial}O${linear}-`
+    }
+
+    return Array(radial).fill('O').concat(Array(linear).fill('-')).join('')
 }

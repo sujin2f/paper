@@ -1,9 +1,9 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Modal } from 'src/common/components/containers/Modal'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { useRawData } from 'src/frontend/hooks/useRawData'
+import { Context, ContextType } from 'src/frontend/store'
 import {
     setDiff,
     setDigit,
@@ -24,12 +24,8 @@ export const Header = (props: Props): JSX.Element => {
     const param = useParams()
     const [showModal, setShowModal] = useState<boolean>(false)
     const number = parseInt(param.number || '1')
-    const ion = param.ion || 'I'
     const current = getAtom(number)
-    const { dispatch, options } = useRawData({
-        number,
-        ion,
-    })
+    const [options, dispatch] = useContext(Context) as ContextType
 
     if (!current) {
         return <Fragment></Fragment>
