@@ -1,92 +1,40 @@
 import React, { Fragment } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { Header } from 'src/frontend/components/OrbitalTable/Header'
-import { Table } from 'src/frontend/components/OrbitalTable'
+import { Header } from 'src/frontend/components/Table/Header'
+import { OrbitalTable } from 'src/frontend/components/Table/OrbitalTable'
 import { useParams } from 'react-router-dom'
-import { useOrbitalTable } from 'src/frontend/hooks/useOrbitalTable'
-import { getAtom } from 'src/utils/atom'
+import { Link } from 'react-router-dom'
 
 export const Orbital = (): JSX.Element => {
     const param = useParams()
-    const atom = parseInt(param.number || '')
-    const ion = param.ion || 'I'
-    const current = getAtom(atom)
-
-    const {
-        orbitals,
-        loading,
-        error,
-        digit,
-        setDigit,
-        showOrbital,
-        setShowOrbital,
-        showEther,
-        setShowEther,
-        showRydberg,
-        setShowRydberg,
-        showDiff,
-        setShowDiff,
-        showNth,
-        setShowNth,
-        showPercentPoint,
-        setPercentPoint,
-    } = useOrbitalTable({
-        atom: current?.symbol || '',
-        ion,
-    })
+    const atom = parseInt(param.number || '1')
 
     if (!atom) {
-        return <Fragment>404</Fragment>
-    }
-
-    if (error) {
-        return <Fragment>404</Fragment>
-    }
-
-    if (loading) {
-        return <Fragment>Loading</Fragment>
-    }
-
-    if (!orbitals.length) {
-        return <Fragment>404</Fragment>
+        return (
+            <Fragment>
+                <p>
+                    The atom you are trying to find does not exist in this
+                    universe
+                </p>
+                <p>
+                    Please visit another universe or go back to our{' '}
+                    <Link to="/">front page</Link>
+                </p>
+            </Fragment>
+        )
     }
 
     return (
         <Fragment>
             <Row>
                 <Column>
-                    <Header
-                        atom={atom}
-                        digit={digit}
-                        setDigit={setDigit}
-                        showOrbital={showOrbital}
-                        setShowOrbital={setShowOrbital}
-                        showEther={showEther}
-                        setShowEther={setShowEther}
-                        showRydberg={showRydberg}
-                        setShowRydberg={setShowRydberg}
-                        showDiff={showDiff}
-                        setShowDiff={setShowDiff}
-                        showNth={showNth}
-                        setShowNth={setShowNth}
-                        showPercentPoint={showPercentPoint}
-                        setPercentPoint={setPercentPoint}
-                    />
+                    <Header linkBase="orbital" />
                 </Column>
             </Row>
             <Row>
                 <Column>
-                    <Table
-                        orbitals={orbitals}
-                        digit={digit}
-                        showOrbital={showOrbital}
-                        showEther={showEther}
-                        showRydberg={showRydberg}
-                        showDiff={showDiff}
-                        showNth={showNth}
-                        showPercentPoint={showPercentPoint}
-                    />
+                    <OrbitalTable />
                 </Column>
             </Row>
         </Fragment>

@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/public'
 import { Orbital } from 'src/frontend/scenes/public/Orbital'
-import { Ether } from 'src/frontend/scenes/public/Ether'
+// import { Ether } from 'src/frontend/scenes/public/Ether'
 import { RawData } from './scenes/public/RawData'
 
 export const Router = (): JSX.Element => {
@@ -46,7 +46,7 @@ export const Router = (): JSX.Element => {
             />
 
             <Route
-                path="/orbital/:number?/:ion?"
+                path="/orbital"
                 element={
                     <Public>
                         <Orbital />
@@ -55,13 +55,31 @@ export const Router = (): JSX.Element => {
             />
 
             <Route
+                path="/orbital/:number"
+                element={
+                    <Public>
+                        <Orbital />
+                    </Public>
+                }
+            />
+
+            <Route
+                path="/orbital/:number/:ion"
+                element={
+                    <Public>
+                        <Orbital />
+                    </Public>
+                }
+            />
+
+            {/* <Route
                 path="/ether/:number?/:ion?"
                 element={
                     <Public>
                         <Ether />
                     </Public>
                 }
-            />
+            /> */}
 
             <Route
                 path="*"
