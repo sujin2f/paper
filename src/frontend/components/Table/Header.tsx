@@ -1,67 +1,50 @@
 import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Modal } from 'src/common/components/containers/Modal'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
+import { useRawData } from 'src/frontend/hooks/useRawData'
+import {
+    setDiff,
+    setDigit,
+    setEther,
+    setNth,
+    setOrbital,
+    setPercentPoint,
+    setRydberg,
+} from 'src/frontend/store/actions'
 import { getAtom } from 'src/utils/atom'
 
 type Props = {
-    atom: number
-    digit: number
-    setDigit: React.Dispatch<React.SetStateAction<number>>
-    showOrbital: boolean
-    setShowOrbital: React.Dispatch<React.SetStateAction<boolean>>
-    showEther: boolean
-    setShowEther: React.Dispatch<React.SetStateAction<boolean>>
-    showRydberg: boolean
-    setShowRydberg: React.Dispatch<React.SetStateAction<boolean>>
-    showDiff: boolean
-    setShowDiff: React.Dispatch<React.SetStateAction<boolean>>
-    showNth: boolean
-    setShowNth: React.Dispatch<React.SetStateAction<boolean>>
-    showPercentPoint: boolean
-    setPercentPoint: React.Dispatch<React.SetStateAction<boolean>>
-    isEtherPage?: boolean
+    linkBase: string
 }
 
 export const Header = (props: Props): JSX.Element => {
-    const {
-        atom,
-        digit,
-        setDigit,
-        showOrbital,
-        setShowOrbital,
-        showEther,
-        setShowEther,
-        showRydberg,
-        setShowRydberg,
-        showDiff,
-        setShowDiff,
-        showNth,
-        setShowNth,
-        showPercentPoint,
-        setPercentPoint,
-        isEtherPage,
-    } = props
+    const { linkBase } = props
+    const param = useParams()
     const [showModal, setShowModal] = useState<boolean>(false)
-    const current = getAtom(atom)
+    const number = parseInt(param.number || '1')
+    const ion = param.ion || 'I'
+    const current = getAtom(number)
+    const { dispatch, options } = useRawData({
+        number,
+        ion,
+    })
 
     if (!current) {
         return <Fragment></Fragment>
     }
 
-    const prev = getAtom(atom - 1)
-    const next = getAtom(atom + 1)
+    const prev = getAtom(number - 1)
+    const next = getAtom(number + 1)
 
-    const doChangeDate = (newDigit: number) => {
+    const doChangeDigit = (newDigit: number) => {
         if (newDigit < 0 || newDigit > 10) {
             return
         }
 
-        setDigit(newDigit)
+        dispatch(setDigit(newDigit))
     }
-
-    const linkBase = isEtherPage ? 'ether' : 'orbital'
 
     return (
         <Fragment>
@@ -109,22 +92,15 @@ export const Header = (props: Props): JSX.Element => {
                             ?
                         </button>
                     </h1>
-                    {!isEtherPage && (
-                        <Link
-                            className="button"
-                            to={`/ether/${current.number}`}
-                        >
-                            Jump to Ether
-                        </Link>
-                    )}
-                    {isEtherPage && (
-                        <Link
-                            className="button"
-                            to={`/orbital/${current.number}`}
-                        >
-                            Jump to Orbital
-                        </Link>
-                    )}
+                    <Link className="button" to={`/raw-data/${current.number}`}>
+                        Jump to Raw Data
+                    </Link>
+                    <Link className="button" to={`/ether/${current.number}`}>
+                        Jump to Ether
+                    </Link>
+                    <Link className="button" to={`/orbital/${current.number}`}>
+                        Jump to Orbital
+                    </Link>
                 </header>
 
                 <nav className="align__right">
@@ -143,7 +119,9 @@ export const Header = (props: Props): JSX.Element => {
                             <Link
                                 to="#"
                                 type="button"
-                                onClick={() => setShowOrbital(!showOrbital)}
+                                onClick={() =>
+                                    dispatch(setOrbital(!options.orbital))
+                                }
                             >
                                 Orbital
                             </Link>
@@ -152,7 +130,9 @@ export const Header = (props: Props): JSX.Element => {
                             <Link
                                 to="#"
                                 type="button"
-                                onClick={() => setShowEther(!showEther)}
+                                onClick={() =>
+                                    dispatch(setEther(!options.ether))
+                                }
                             >
                                 Ether
                             </Link>
@@ -161,7 +141,9 @@ export const Header = (props: Props): JSX.Element => {
                             <Link
                                 to="#"
                                 type="button"
-                                onClick={() => setShowRydberg(!showRydberg)}
+                                onClick={() =>
+                                    dispatch(setRydberg(!options.rydberg))
+                                }
                             >
                                 Rydberg
                             </Link>
@@ -170,7 +152,7 @@ export const Header = (props: Props): JSX.Element => {
                             <Link
                                 to="#"
                                 type="button"
-                                onClick={() => setShowDiff(!showDiff)}
+                                onClick={() => dispatch(setDiff(!options.diff))}
                             >
                                 Diff
                             </Link>
@@ -179,7 +161,7 @@ export const Header = (props: Props): JSX.Element => {
                             <Link
                                 to="#"
                                 type="button"
-                                onClick={() => setShowNth(!showNth)}
+                                onClick={() => dispatch(setNth(!options.nth))}
                             >
                                 N<sub>th</sub>(n)
                             </Link>
@@ -189,7 +171,9 @@ export const Header = (props: Props): JSX.Element => {
                                 to="#"
                                 type="button"
                                 onClick={() =>
-                                    setPercentPoint(!showPercentPoint)
+                                    dispatch(
+                                        setPercentPoint(!options.percentPoint),
+                                    )
                                 }
                             >
                                 %P
@@ -203,7 +187,7 @@ export const Header = (props: Props): JSX.Element => {
                             <button
                                 type="button"
                                 className="button"
-                                onClick={() => doChangeDate(digit - 1)}
+                                onClick={() => doChangeDigit(options.digit - 1)}
                             >
                                 .0
                             </button>
@@ -212,7 +196,7 @@ export const Header = (props: Props): JSX.Element => {
                             <button
                                 type="button"
                                 className="button"
-                                onClick={() => doChangeDate(digit + 1)}
+                                onClick={() => doChangeDigit(options.digit + 1)}
                             >
                                 .00
                             </button>

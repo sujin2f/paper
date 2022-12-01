@@ -1,7 +1,7 @@
 // From https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON
 // Thank you so much!
 
-import { Atom } from 'src/types/orbital'
+import { Atom } from 'src/types/atom'
 
 export const periodicTable: { elements: Atom[] } = {
     elements: [

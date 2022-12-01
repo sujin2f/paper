@@ -1,6 +1,6 @@
 import React from 'react'
 import { OrbitalTable } from 'src/types/orbital'
-import { confToEther } from 'src/utils/orbital'
+import { confToEther } from 'src/utils/models/orbital'
 
 type Props = {
     cols: number[]

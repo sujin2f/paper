@@ -1,5 +1,5 @@
 import React from 'react'
-import { getOrbitalTable, getMaxCol } from 'src/utils/orbital'
+import { getOrbitalTable, getMaxCol } from 'src/utils/models/orbital'
 import { Orbital } from './OrbitalTable/Orbital'
 import { Ether } from './OrbitalTable/Ether'
 import { Rydberg } from './OrbitalTable/Rydberg'
@@ -7,7 +7,7 @@ import { PercentPoint } from './OrbitalTable/PercentPoint'
 import { Diff } from './OrbitalTable/Diff'
 import { Nth } from './OrbitalTable/Nth'
 import { Orbital as OrbitalType } from 'src/types/orbital'
-import { getEtherTable } from 'src/utils/ether'
+import { getEtherTable } from 'src/utils/models/ether'
 
 type Pros = {
     orbitals: OrbitalType[]
@@ -50,61 +50,72 @@ export const EtherTable = (props: Pros): JSX.Element => {
                 </thead>
                 {Object.keys(tableData)
                     .filter((rawKey) => tableData[rawKey])
-                    .map((orbit) => (
-                        <tbody
-                            key={`${orbit}-orbital`}
-                            className="border__bottom"
-                        >
-                            {showOrbital && (
-                                <Orbital
-                                    cols={cols}
-                                    tableData={tableData}
-                                    orbit={orbit}
-                                    title={`${orbit} Orbital`}
-                                />
-                            )}
-                            {showEther && (
-                                <Ether
-                                    cols={cols}
-                                    tableData={tableData}
-                                    orbit={orbit}
-                                    title={`${orbit} Orbital`}
-                                />
-                            )}
-                            {showRydberg && (
-                                <Rydberg
-                                    cols={cols}
-                                    tableData={tableData}
-                                    orbit={orbit}
-                                    digit={digit}
-                                />
-                            )}
-                            {showDiff && (
-                                <Diff
-                                    cols={cols}
-                                    tableData={tableData}
-                                    orbit={orbit}
-                                    digit={digit}
-                                />
-                            )}
-                            {showNth && (
-                                <Nth
-                                    cols={cols}
-                                    tableData={tableData}
-                                    orbit={orbit}
-                                    digit={digit}
-                                />
-                            )}
-                            {showPercentPoint && (
-                                <PercentPoint
-                                    cols={cols}
-                                    tableData={tableData}
-                                    orbit={orbit}
-                                    digit={digit}
-                                />
-                            )}
-                        </tbody>
-                    ))}
+                    .map((orbit, index) => {
+                        let orbitalTitle = 'Orbital'
+                        let etherTitle = `${index - 1}O Base`
+                        if (index === 0) {
+                            orbitalTitle = 's Orbital'
+                            etherTitle = 'Radial'
+                        }
+                        if (index === 1) {
+                            etherTitle = 'Linear'
+                        }
+                        return (
+                            <tbody
+                                key={`${orbit}-orbital`}
+                                className="border__bottom"
+                            >
+                                {showOrbital && (
+                                    <Orbital
+                                        cols={cols}
+                                        tableData={tableData}
+                                        orbit={orbit}
+                                        title={orbitalTitle}
+                                    />
+                                )}
+                                {showEther && (
+                                    <Ether
+                                        cols={cols}
+                                        tableData={tableData}
+                                        orbit={orbit}
+                                        title={etherTitle}
+                                    />
+                                )}
+                                {showRydberg && (
+                                    <Rydberg
+                                        cols={cols}
+                                        tableData={tableData}
+                                        orbit={orbit}
+                                        digit={digit}
+                                    />
+                                )}
+                                {showDiff && (
+                                    <Diff
+                                        cols={cols}
+                                        tableData={tableData}
+                                        orbit={orbit}
+                                        digit={digit}
+                                    />
+                                )}
+                                {showNth && (
+                                    <Nth
+                                        cols={cols}
+                                        tableData={tableData}
+                                        orbit={orbit}
+                                        digit={digit}
+                                    />
+                                )}
+                                {showPercentPoint && (
+                                    <PercentPoint
+                                        cols={cols}
+                                        tableData={tableData}
+                                        orbit={orbit}
+                                        digit={digit}
+                                    />
+                                )}
+                            </tbody>
+                        )
+                    })}
             </table>
         </div>
     )

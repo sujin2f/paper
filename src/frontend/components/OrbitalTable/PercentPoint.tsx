@@ -1,6 +1,6 @@
 import React from 'react'
 import { OrbitalTable } from 'src/types/orbital'
-import { getDiffWithNth } from 'src/utils/orbital'
+import { getDiffWithNth } from 'src/utils/models/raw-data'
 
 type Props = {
     cols: number[]

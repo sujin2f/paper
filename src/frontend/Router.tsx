@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Public } from 'src/frontend/scenes/public'
 import { Orbital } from 'src/frontend/scenes/public/Orbital'
 import { Ether } from 'src/frontend/scenes/public/Ether'
+import { RawData } from './scenes/public/RawData'
 
 export const Router = (): JSX.Element => {
     return (
@@ -18,7 +19,34 @@ export const Router = (): JSX.Element => {
             />
 
             <Route
-                path="/orbital/:atomNo"
+                path="/raw-data"
+                element={
+                    <Public>
+                        <RawData />
+                    </Public>
+                }
+            />
+
+            <Route
+                path="/raw-data/:number"
+                element={
+                    <Public>
+                        <RawData />
+                    </Public>
+                }
+            />
+
+            <Route
+                path="/raw-data/:number/:ion"
+                element={
+                    <Public>
+                        <RawData />
+                    </Public>
+                }
+            />
+
+            <Route
+                path="/orbital/:number?/:ion?"
                 element={
                     <Public>
                         <Orbital />
@@ -27,7 +55,7 @@ export const Router = (): JSX.Element => {
             />
 
             <Route
-                path="/ether/:atomNo"
+                path="/ether/:number?/:ion?"
                 element={
                     <Public>
                         <Ether />
@@ -39,7 +67,7 @@ export const Router = (): JSX.Element => {
                 path="*"
                 element={
                     <Public>
-                        <div>404</div>
+                        <div>Broken Router</div>
                     </Public>
                 }
             />

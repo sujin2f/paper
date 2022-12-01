@@ -5,11 +5,12 @@ import { Header } from 'src/frontend/components/OrbitalTable/Header'
 import { Table } from 'src/frontend/components/OrbitalTable'
 import { useParams } from 'react-router-dom'
 import { useOrbitalTable } from 'src/frontend/hooks/useOrbitalTable'
-import { getAtom } from 'src/utils/orbital'
+import { getAtom } from 'src/utils/atom'
 
 export const Orbital = (): JSX.Element => {
-    const { atomNo } = useParams()
-    const atom = parseInt(atomNo || '')
+    const param = useParams()
+    const atom = parseInt(param.number || '')
+    const ion = param.ion || 'I'
     const current = getAtom(atom)
 
     const {
@@ -32,7 +33,7 @@ export const Orbital = (): JSX.Element => {
         setPercentPoint,
     } = useOrbitalTable({
         atom: current?.symbol || '',
-        ion: 'I',
+        ion,
     })
 
     if (!atom) {

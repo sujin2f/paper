@@ -1,34 +1,68 @@
-import { SET_PAGE_INFO } from 'src/frontend/store/actions'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {
+    SET_DIGIT,
+    SET_ORBITAL,
+    SET_ETHER,
+    SET_RYDBERG,
+    SET_DIFF,
+    SET_NTH,
+    SET_PERCENT_POINT,
+} from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
 export const initialState: State = {
-    backgroundColor: '',
-    excerpt: '',
-    isLoading: false,
-    prefix: '',
-    title: '',
-    currentPage: '',
-    wrapperClasses: {
-        'wrapper--scrolled': false,
-        'wrapper--mobile-menu': false,
-        'wrapper--headline': false,
-    },
+    digit: 4,
+    orbital: true,
+    ether: true,
+    rydberg: true,
+    diff: true,
+    nth: true,
+    percentPoint: true,
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
     switch (action.type) {
-        case SET_PAGE_INFO: {
+        case SET_DIGIT: {
             return {
                 ...state,
-                ...action.pageInfo,
-                wrapperClasses: {
-                    ...state.wrapperClasses,
-                    ...action.pageInfo.wrapperClasses,
-                },
+                digit: action.digit!,
             }
         }
-
+        case SET_ORBITAL: {
+            return {
+                ...state,
+                orbital: action.orbital!,
+            }
+        }
+        case SET_ETHER: {
+            return {
+                ...state,
+                ether: action.ether!,
+            }
+        }
+        case SET_RYDBERG: {
+            return {
+                ...state,
+                rydberg: action.rydberg!,
+            }
+        }
+        case SET_DIFF: {
+            return {
+                ...state,
+                diff: action.diff!,
+            }
+        }
+        case SET_NTH: {
+            return {
+                ...state,
+                nth: action.nth!,
+            }
+        }
+        case SET_PERCENT_POINT: {
+            return {
+                ...state,
+                percentPoint: action.percentPoint!,
+            }
+        }
         default: {
             return state
         }

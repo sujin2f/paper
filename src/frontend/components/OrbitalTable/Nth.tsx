@@ -1,6 +1,6 @@
 import React from 'react'
 import { OrbitalTable } from 'src/types/orbital'
-import { getNth } from 'src/utils/orbital'
+import { getNth } from 'src/utils/models/raw-data'
 
 type Props = {
     cols: number[]
@@ -21,7 +21,10 @@ export const Nth = (props: Props): JSX.Element => {
                 const current = tableData[orbit][i + 1]
                 return (
                     <td className="align__right" key={`${orbit}-nth-${i}`}>
-                        {current && current.ry && getNth(i).toFixed(digit)}
+                        {i > 0 &&
+                            current &&
+                            current.ry &&
+                            getNth(i).toFixed(digit)}
                     </td>
                 )
             })}

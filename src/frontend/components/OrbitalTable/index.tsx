@@ -1,6 +1,6 @@
 import React from 'react'
 import { orbitalKeys } from 'src/constants/orbital'
-import { getOrbitalTable, getMaxCol } from 'src/utils/orbital'
+import { getOrbitalTable, getMaxCol } from 'src/utils/models/orbital'
 import { Orbital } from './Orbital'
 import { Ether } from './Ether'
 import { Rydberg } from './Rydberg'

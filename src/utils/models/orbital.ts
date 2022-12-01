@@ -1,23 +1,6 @@
 import { orbitalKeys } from 'src/constants/orbital'
-import { periodicTable } from 'src/constants/periodic-table'
 import { Nullable } from 'src/types/common'
 import { Orbital, Configure, OrbitalTable } from 'src/types/orbital'
-
-const getConfArray = (conf: string): string[] => {
-    const result: string[] = []
-    const div = conf.split('.')
-    div.forEach((el) => {
-        const hasMultiple = /([0-9]+)([a-z]+)([0-9]+)/.exec(el)
-        if (!hasMultiple) {
-            result.push(el)
-            return
-        }
-        Array(parseInt(hasMultiple[3]))
-            .fill('')
-            .forEach(() => result.push(`${hasMultiple[1]}${hasMultiple[2]}`))
-    })
-    return result
-}
 
 const getSeries = (base: Orbital, orbitals: Orbital[]): Orbital[] => {
     const result: Orbital[] = []
@@ -84,37 +67,6 @@ const getNextConf = (
     return { term, j, prefix }
 }
 
-export const getConfObject = (origin: string): Configure => {
-    const arr = getConfArray(origin)
-    const lastElement = [...arr].pop() || ''
-    const restElements = JSON.stringify(arr.slice(0, arr.length - 1))
-    const confReg = /([0-9]+)([a-z]+)/.exec(lastElement)
-    if (!confReg) {
-        return {
-            origin,
-            position: 0,
-            orbital: '',
-            prefix: restElements,
-            arr,
-        }
-    }
-    return {
-        origin,
-        position: parseInt(confReg[1]),
-        orbital: confReg[2],
-        prefix: restElements,
-        arr,
-    }
-}
-
-export const getAtom = (atomNo: number) => {
-    for (const element of periodicTable.elements) {
-        if (element.number === atomNo) {
-            return element
-        }
-    }
-}
-
 export const getOrbitalTable = (orbitals: Orbital[]): OrbitalTable => {
     const result: OrbitalTable = {}
 
@@ -140,12 +92,6 @@ export const getMaxCol = (tableData: OrbitalTable): number => {
     })
     return maxCol
 }
-
-export const getNth = (digit: number): number =>
-    1 / Math.pow(digit, 2) - 1 / Math.pow(digit + 1, 2)
-
-export const getDiffWithNth = (value: number, digit: number): number =>
-    (value / getNth(digit)) * 100 - 100
 
 export const confToEther = (conf: Configure): string => {
     const linear = orbitalKeys.indexOf(conf.orbital)
