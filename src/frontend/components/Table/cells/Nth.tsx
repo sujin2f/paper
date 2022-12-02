@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { RawData } from 'src/types/raw-data'
 import { Context, ContextType } from 'src/frontend/store'
-import { getNth } from 'src/utils/models/common'
+import { adjustRydberg, getNth } from 'src/utils/models/common'
 
 type Props = {
     rawData: RawData[]
@@ -22,13 +22,18 @@ export const Nth = (props: Props): JSX.Element => {
             {cols.map((_, index) => {
                 const current = rawData[index + 1] || undefined
                 const prev = rawData[index]
-                const prevRydberg = prev ? prev.rydberg : 0
+                const prevRydberg = prev
+                    ? adjustRydberg(prev.rydberg, options.z)
+                    : 0
+                const currentRydberg = current
+                    ? adjustRydberg(current.rydberg, options.z)
+                    : 0
 
                 if (
                     index < 1 ||
                     (!showValue && !prev) ||
                     !current ||
-                    prevRydberg === current.rydberg
+                    prevRydberg === currentRydberg
                 ) {
                     return (
                         <td
@@ -40,7 +45,7 @@ export const Nth = (props: Props): JSX.Element => {
 
                 return (
                     <td
-                        key={`${rowIndex}-diff-${index}`}
+                        key={`${rowIndex}-nth-${index}`}
                         className="align__right"
                     >
                         {getNth(index).toFixed(options.digit)}

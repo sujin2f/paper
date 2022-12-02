@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { RawData } from 'src/types/raw-data'
 import { Context, ContextType } from 'src/frontend/store'
+import { adjustRydberg } from 'src/utils/models/common'
 
 type Props = {
     rawData: RawData[]
@@ -16,14 +17,17 @@ export const Rydberg = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">Rydberg</th>
             {cols.map((_, index) => {
-                const item = rawData[index + 1] || undefined
+                const current = rawData[index + 1] || undefined
+                const currentRydberg = current
+                    ? adjustRydberg(current.rydberg, options.z)
+                    : 0
 
                 return (
                     <td
                         key={`${rowIndex}-rydberg-${index}`}
                         className="align__right"
                     >
-                        {item && item.rydberg.toFixed(options.digit)}
+                        {current && currentRydberg.toFixed(options.digit)}
                     </td>
                 )
             })}

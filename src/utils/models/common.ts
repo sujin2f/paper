@@ -21,15 +21,18 @@ export const confToEther = (conf: Configuration): string => {
     const linear = orbitalKeys.indexOf(conf.orbital)
     const radial = conf.position - linear - 1
 
-    if (linear > 4 || radial > 4) {
+    if (linear + radial > 4) {
         if (linear === 0) {
-            return `${radial}O`
+            return `${radial}🔘`
         }
         if (radial === 0) {
-            return `${linear}-`
+            return `${linear}➖`
         }
-        return `${radial}O${linear}-`
+        return `${radial}🔘${linear}➖`
     }
 
-    return Array(radial).fill('O').concat(Array(linear).fill('-')).join('')
+    return Array(radial).fill('🔘').concat(Array(linear).fill('➖')).join('')
 }
+
+export const adjustRydberg = (rydberg: number, ion = 1): number =>
+    (rydberg * 1.00053529) / ion

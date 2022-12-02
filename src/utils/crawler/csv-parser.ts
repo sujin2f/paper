@@ -5,6 +5,17 @@ import { addOne } from 'src/utils/mongo/raw-data'
 import { Nullable } from 'src/types/common'
 import { Atom } from 'src/types/atom'
 
+const filterNumValue = (value: string): string => {
+    const regex = new RegExp(/[0-9\.-]+/)
+    const exec = regex.exec(value)
+
+    if (!exec || !exec.length) {
+        return ''
+    }
+
+    return exec[0]
+}
+
 const filterValue = (value: string): string => {
     const regex = new RegExp(/[0-9a-zA-Z\.\/*,\(\) ]+/)
     const exec = regex.exec(value)
@@ -24,7 +35,7 @@ const createRawData = (param: {
     term: string
     j: string
 }): Nullable<RawData> => {
-    const rydberg = parseFloat(filterValue(param.rydberg))
+    const rydberg = parseFloat(filterNumValue(param.rydberg))
     const configuration = filterValue(param.configuration)
     const term = filterValue(param.term)
     const j = filterValue(param.j)

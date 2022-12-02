@@ -1,5 +1,7 @@
 # The space and time of the matter
 
+https://www.chartjs.org/docs/latest/samples/line/interpolation.html
+
 [한글 버전](./doc/intro.md)
 
 A matter as a mixture of mass and electromagnetic, a photon as an mass independent electromagnetic, and a mass as an electromagnetic independent matter
@@ -24,4 +26,4 @@ To prove it, I will try to reveal the independent ether, which is a mass space. 
 
 ---
 
-- Next Chapter: [Hypothesis](./doc/hypothesis_en.md)
+-   Next Chapter: [Hypothesis](./doc/hypothesis_en.md)

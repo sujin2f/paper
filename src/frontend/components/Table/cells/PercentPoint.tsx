@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { RawData } from 'src/types/raw-data'
 import { Context, ContextType } from 'src/frontend/store'
-import { getDiffWithNth } from 'src/utils/models/common'
+import { adjustRydberg, getDiffWithNth } from 'src/utils/models/common'
 
 type Props = {
     rawData: RawData[]
@@ -20,13 +20,18 @@ export const PercentPoint = (props: Props): JSX.Element => {
             {cols.map((_, index) => {
                 const current = rawData[index + 1] || undefined
                 const prev = rawData[index]
-                const prevRydberg = prev ? prev.rydberg : 0
+                const prevRydberg = prev
+                    ? adjustRydberg(prev.rydberg, options.z)
+                    : 0
+                const currentRydberg = current
+                    ? adjustRydberg(current.rydberg, options.z)
+                    : 0
 
                 if (
                     index < 1 ||
                     (!showValue && !prev) ||
                     !current ||
-                    prevRydberg === current.rydberg
+                    prevRydberg === currentRydberg
                 ) {
                     return (
                         <td
@@ -42,7 +47,7 @@ export const PercentPoint = (props: Props): JSX.Element => {
                         className="align__right"
                     >
                         {getDiffWithNth(
-                            current.rydberg - prevRydberg,
+                            currentRydberg - prevRydberg,
                             index,
                         ).toFixed(options.digit)}
                     </td>

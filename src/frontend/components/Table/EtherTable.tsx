@@ -11,6 +11,8 @@ import { Rydberg } from './cells/Rydberg'
 import { Diff } from './cells/Diff'
 import { Nth } from './cells/Nth'
 import { PercentPoint } from './cells/PercentPoint'
+import { Percent } from './cells/Percent'
+import { Lth } from './cells/Lth'
 
 export const EtherTable = (): JSX.Element => {
     const param = useParams()
@@ -106,6 +108,18 @@ export const EtherTable = (): JSX.Element => {
                                         showValue={showValue}
                                     />
                                 )}
+                                {/* <Lth
+                                    cols={cols}
+                                    rawData={rawData}
+                                    rowIndex={rowIndex}
+                                    showValue={showValue}
+                                />
+                                <Percent
+                                    cols={cols}
+                                    rawData={rawData}
+                                    rowIndex={rowIndex}
+                                    showValue={showValue}
+                                /> */}
                                 {options.percentPoint && (
                                     <PercentPoint
                                         cols={cols}

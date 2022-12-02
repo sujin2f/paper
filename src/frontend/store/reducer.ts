@@ -6,11 +6,13 @@ import {
     SET_DIFF,
     SET_NTH,
     SET_PERCENT_POINT,
+    SET_Z,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
 export const initialState: State = {
     digit: 4,
+    z: 1,
     orbital: true,
     ether: true,
     rydberg: true,
@@ -61,6 +63,12 @@ export const reducer = (state: State = initialState, action: Action): State => {
             return {
                 ...state,
                 percentPoint: action.percentPoint!,
+            }
+        }
+        case SET_Z: {
+            return {
+                ...state,
+                z: action.z!,
             }
         }
         default: {

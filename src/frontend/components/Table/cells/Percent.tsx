@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
 import { RawData } from 'src/types/raw-data'
 import { Context, ContextType } from 'src/frontend/store'
-import { evaluate } from 'src/utils/math'
-import { adjustRydberg } from 'src/utils/models/common'
+import { adjustRydberg, getDiffWithNth, getNth } from 'src/utils/models/common'
 
 type Props = {
     rawData: RawData[]
@@ -11,13 +10,13 @@ type Props = {
     showValue: boolean
 }
 
-export const Diff = (props: Props): JSX.Element => {
+export const Percent = (props: Props): JSX.Element => {
     const { rawData, rowIndex, cols, showValue } = props
     const [options] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
-            <th className="align__right">Diff</th>
+            <th className="align__right">% Nth</th>
             {cols.map((_, index) => {
                 const current = rawData[index + 1] || undefined
                 const prev = rawData[index]
@@ -37,21 +36,19 @@ export const Diff = (props: Props): JSX.Element => {
                     return (
                         <td
                             className="align__right"
-                            key={`${rowIndex}-diff-${index}`}
+                            key={`${rowIndex}-percent-point-${index}`}
                         ></td>
                     )
                 }
 
-                const weight = evaluate(index, currentRydberg - prevRydberg)
+                const percent = (currentRydberg - prevRydberg) / getNth(index)
 
                 return (
                     <td
-                        key={`${rowIndex}-diff-${index}`}
+                        key={`${rowIndex}-percent-point-${index}`}
                         className="align__right"
                     >
-                        {(currentRydberg - prevRydberg).toFixed(options.digit)}
-                        <br />
-                        {weight.toFixed(options.digit)}
+                        {percent.toFixed(options.digit)}
                     </td>
                 )
             })}

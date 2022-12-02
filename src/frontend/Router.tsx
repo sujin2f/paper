@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/public'
+import { FrontPage } from 'src/frontend/scenes/public/FrontPage'
 import { Orbital } from 'src/frontend/scenes/public/Orbital'
 import { Ether } from 'src/frontend/scenes/public/Ether'
 import { RawData } from 'src/frontend/scenes/public/RawData'
@@ -13,7 +14,7 @@ export const Router = (): JSX.Element => {
                 path="/"
                 element={
                     <Public>
-                        <div>/</div>
+                        <FrontPage />
                     </Public>
                 }
             />
