@@ -37,9 +37,9 @@ export const graphQL = `
         number: Int
         ion: String
         rydberg: Float
-        configuration: Configuration
         term: String
         j: String
+        configuration: Configuration
     }
     type Configuration {
         string: String
@@ -55,13 +55,13 @@ export const query = `
         rawData(number: $number, ion: $ion) {
             _id
             rydberg
+            term
+            j
             configuration {
                 string
                 position
                 orbital
             }
-            term
-            j
         }
     }
     `

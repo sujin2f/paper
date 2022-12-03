@@ -1,9 +1,7 @@
 import React, { Fragment, useContext } from 'react'
-import { useParams } from 'react-router-dom'
 import { Context, ContextType } from 'src/frontend/store'
-import { useRawData } from 'src/frontend/hooks/useRawData'
-import { getTableData } from 'src/utils/models/raw-data'
-import { getMaxCol } from 'src/utils/models/common'
+import { useOrbital } from 'src/frontend/hooks/useOrbital'
+import { getMaxCol } from 'src/utils/models/orbital'
 
 import { Ether } from './cells/Ether'
 import { Orbital } from './cells/Orbital'
@@ -11,14 +9,15 @@ import { Rydberg } from './cells/Rydberg'
 import { Diff } from './cells/Diff'
 import { Nth } from './cells/Nth'
 import { PercentPoint } from './cells/PercentPoint'
+import { Weight } from './cells/Weight'
+import { useTableParam } from 'src/frontend/hooks/useTableParam'
 
-export const RawDataTable = (): JSX.Element => {
-    const param = useParams()
-    const number = parseInt(param.number || '1')
-    const ion = param.ion || 'I'
-    const { rawData, loading, error } = useRawData({
+export const OrbitalTable = (): JSX.Element => {
+    const { number, ion, entry } = useTableParam()
+    const { orbital, loading, error } = useOrbital({
         number,
         ion,
+        entry,
     })
     const [options] = useContext(Context) as ContextType
 
@@ -30,19 +29,21 @@ export const RawDataTable = (): JSX.Element => {
         return <Fragment>Loading</Fragment>
     }
 
-    if (!rawData.length) {
+    if (!orbital) {
         return <Fragment>Something Went Wrong</Fragment>
     }
 
-    const { tableData, sortOrder } = getTableData(rawData)
-    const maxCol = getMaxCol(tableData)
+    const maxCol = getMaxCol(orbital)
     const cols = Array(maxCol - 1).fill('')
+
+    console.log(orbital)
 
     return (
         <div className="table-scroll">
             <table className="unstriped">
-                {sortOrder.map((row, rowIndex) => {
-                    const rawData = tableData[row]
+                {orbital.items.map((row, rowIndex) => {
+                    const rawData = row.items
+
                     let showValue = false
                     if (rowIndex === 0 || rowIndex === 1) {
                         showValue = true
@@ -84,6 +85,14 @@ export const RawDataTable = (): JSX.Element => {
                                 )}
                                 {options.diff && (
                                     <Diff
+                                        cols={cols}
+                                        rawData={rawData}
+                                        rowIndex={rowIndex}
+                                        showValue={showValue}
+                                    />
+                                )}
+                                {options.weight && (
+                                    <Weight
                                         cols={cols}
                                         rawData={rawData}
                                         rowIndex={rowIndex}

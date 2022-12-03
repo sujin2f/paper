@@ -11,6 +11,7 @@ export type State = {
     diff: boolean
     nth: boolean
     percentPoint: boolean
+    weight: boolean
 }
 
 export type Action = Partial<State> & Type

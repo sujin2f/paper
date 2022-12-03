@@ -60,3 +60,13 @@ export const getTableData = (rawData: RawData[]) => {
     })
     return { tableData: result, sortOrder }
 }
+
+export const getMaxCol = (tableData: Record<string, RawData[]>): number => {
+    let maxCol = 0
+    Object.keys(tableData).forEach((col) => {
+        if (maxCol < tableData[col as keyof Record<string, RawData[]>].length) {
+            maxCol = tableData[col as keyof Record<string, RawData[]>].length
+        }
+    })
+    return maxCol - 1
+}

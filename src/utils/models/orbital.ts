@@ -1,69 +1,106 @@
 import { orbitalKeys } from 'src/constants/orbital'
-import { Nullable } from 'src/types/common'
+import { Orbital } from 'src/types/orbital'
 import { RawData } from 'src/types/raw-data'
-import { getTableData as getRawDataTableData } from 'src/utils/models/raw-data'
+import { getNextOrbital, getNumber } from './common'
 
-const getRow = (
-    orbital: string,
-    rawData: Record<string, RawData[]>,
-    preData?: RawData,
-): Nullable<string> => {
-    if (!preData) {
-        for (const rowKey of Object.keys(rawData)) {
-            if (rawData[rowKey][0].configuration.orbital === orbital) {
-                return rowKey
-            }
-        }
-        return
-    }
+// Get the first target orbital
+const getNextEntryPoint = (
+    rawData: RawData[],
+    entryPoint: RawData,
+): RawData => {
+    const jWeight = entryPoint.j.indexOf('/') ? 2 : 1
+    const nextJ = getNumber(entryPoint.j) + jWeight
+    const nextOrbital = getNextOrbital(entryPoint.configuration.orbital)
+    const nextTerm = getNumber(entryPoint.term)
 
-    const termReg = /([0-9]+)/.exec(preData.term)
-    const jReg = /(([0-9]+)\/([0-9]+))|([0-9]+)/.exec(preData.j)
+    return rawData
+        .filter((data) => {
+            const orbital = data.configuration.orbital === nextOrbital
+            const prefix =
+                data.configuration.prefix === entryPoint.configuration.prefix
+            const j = getNumber(data.j) === nextJ
+            const term = getNumber(data.term) === nextTerm
 
-    if (!termReg || !jReg) {
-        return
-    }
-    const term = parseInt(termReg[1]).toString()
-    const prefix = preData.configuration.prefix
-
-    let j = ''
-    if (jReg[4]) {
-        j = (parseInt(jReg[4]) + 1).toString()
-    } else {
-        j = (parseInt(jReg[2]) + 2).toString()
-    }
-
-    for (const rowKey of Object.keys(rawData)) {
-        if (term && !rawData[rowKey][0].term.startsWith(term)) {
-            continue
-        }
-        if (j && !rawData[rowKey][0].j.startsWith(j)) {
-            continue
-        }
-        if (prefix && rawData[rowKey][0].configuration.prefix !== prefix) {
-            continue
-        }
-        if (rawData[rowKey][0].configuration.orbital !== orbital) {
-            continue
-        }
-        return rowKey
-    }
-    return
+            return orbital && prefix && j && term
+        })
+        .sort((a, b) => a.rydberg - b.rydberg)[0]
 }
 
-export const getTableData = (rawData: RawData[]) => {
-    const { tableData: tableRawData } = getRawDataTableData(rawData)
-    const result: Record<string, RawData[]> = {}
-    const sortOrder: string[] = []
-    let preData: RawData | undefined = undefined
+const getRow = (rawData: RawData[], entryPoint: RawData) =>
+    rawData
+        .filter(
+            (data) =>
+                data.j === entryPoint.j &&
+                data.term === entryPoint.term &&
+                data.configuration.prefix === entryPoint.configuration.prefix &&
+                data.configuration.orbital === entryPoint.configuration.orbital,
+        )
+        .reduce((acc, data) => {
+            acc[data.configuration.position] = data
+            return acc
+        }, [] as RawData[])
 
-    orbitalKeys.forEach((orbitalKey) => {
-        const rowKey = getRow(orbitalKey, tableRawData, preData)
-        if (rowKey) {
-            sortOrder.push(rowKey)
-            result[rowKey] = tableRawData[rowKey]
-            preData = tableRawData[rowKey][0]
+const getEntryPoints = (rawData: RawData[]): RawData[] => {
+    const keys: Record<string, RawData> = {}
+
+    rawData
+        .filter((data) => data.configuration.orbital === 's')
+        .forEach((data) => {
+            const key = `${data.j}--${data.term}--${data.configuration.prefix}`
+            if (Object.keys(keys).indexOf(key) === -1) {
+                keys[key] = data
+                return
+            }
+
+            if (keys[key].rydberg > data.rydberg) {
+                keys[key] = data
+            }
+        })
+
+    return Object.values(keys).sort((a, b) => a.rydberg - b.rydberg)
+}
+
+export const getOrbital = (rawData: RawData[], entry?: string): Orbital => {
+    const result: Orbital = {
+        entryPoints: getEntryPoints(rawData),
+        items: [],
+    }
+
+    let entryPoint = result.entryPoints[0]
+
+    if (entry) {
+        const entryCandidate = result.entryPoints.filter(
+            (item) => item.term === entry,
+        )[0]
+        if (entryCandidate) {
+            entryPoint = entryCandidate
         }
+    }
+
+    orbitalKeys.forEach((orbital) => {
+        if (!entryPoint) {
+            return result
+        }
+
+        const items = getRow(rawData, entryPoint)
+        items[0] = entryPoint
+
+        if (items.length) {
+            result.items.push({
+                orbital,
+                items,
+            })
+        }
+
+        entryPoint = getNextEntryPoint(rawData, entryPoint)
     })
-    return { tableData: result, sortOrder }
+    return result
+}
+
+export const getMaxCol = (orbital: Orbital): number => {
+    let maxCol = 0
+    orbital.items.forEach((row) => {
+        maxCol = row.items.length > maxCol ? row.items.length : maxCol
+    })
+    return maxCol
 }

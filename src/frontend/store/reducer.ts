@@ -7,6 +7,7 @@ import {
     SET_NTH,
     SET_PERCENT_POINT,
     SET_Z,
+    SET_WEIGHT,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -19,6 +20,7 @@ export const initialState: State = {
     diff: true,
     nth: true,
     percentPoint: true,
+    weight: true,
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
@@ -69,6 +71,12 @@ export const reducer = (state: State = initialState, action: Action): State => {
             return {
                 ...state,
                 z: action.z!,
+            }
+        }
+        case SET_WEIGHT: {
+            return {
+                ...state,
+                weight: action.weight!,
             }
         }
         default: {

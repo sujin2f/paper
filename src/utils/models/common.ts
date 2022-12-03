@@ -7,16 +7,6 @@ export const getNth = (digit: number): number =>
 export const getDiffWithNth = (value: number, digit: number): number =>
     (value / getNth(digit)) * 100 - 100
 
-export const getMaxCol = (tableData: Record<string, RawData[]>): number => {
-    let maxCol = 0
-    Object.keys(tableData).forEach((col) => {
-        if (maxCol < tableData[col as keyof Record<string, RawData[]>].length) {
-            maxCol = tableData[col as keyof Record<string, RawData[]>].length
-        }
-    })
-    return maxCol - 1
-}
-
 export const confToEther = (conf: Configuration): string => {
     const linear = orbitalKeys.indexOf(conf.orbital)
     const radial = conf.position - linear - 1
@@ -34,5 +24,44 @@ export const confToEther = (conf: Configuration): string => {
     return Array(radial).fill('🔘').concat(Array(linear).fill('➖')).join('')
 }
 
-export const adjustRydberg = (rydberg: number, ion = 1): number =>
+const adjustRydberg = (rydberg: number, ion = 1): number =>
     (rydberg * 1.00053529) / ion
+
+export const getTableCellValue = (
+    rawData: RawData[],
+    index: number,
+    z: number,
+    showValue = true,
+) => {
+    if (index < 1) {
+        return
+    }
+    const item = rawData[index + 1] || undefined
+    const prev = rawData[index]
+
+    if (!item || (!showValue && !prev)) {
+        return
+    }
+
+    const prevR = prev ? adjustRydberg(prev.rydberg, z) : 0
+    const current = item ? adjustRydberg(item.rydberg, z) : 0
+
+    if (!current) {
+        return
+    }
+
+    return {
+        current,
+        diff: current - prevR,
+    }
+}
+
+export const getNumber = (value: string): number => {
+    const regex = /([0-9]+)/.exec(value)
+    return parseInt(regex ? regex[1] : '')
+}
+
+export const getNextOrbital = (orbital: string): string => {
+    const index = orbitalKeys.indexOf(orbital) + 1
+    return (index && orbitalKeys[index]) || ''
+}

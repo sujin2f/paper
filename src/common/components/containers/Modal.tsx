@@ -6,10 +6,15 @@ import { Overlay } from './Overlay'
 
 type Props = {
     closeModal?: (e?: MouseEvent) => void
+    className?: string
 }
 export const Modal = (props: PropsWithChildren<Props>): JSX.Element => {
     return (
-        <Overlay style={{ display: 'block' }} onClick={props.closeModal}>
+        <Overlay
+            style={{ display: 'block' }}
+            onClick={props.closeModal}
+            className={props.className}
+        >
             <div className="reveal" style={{ display: 'block' }}>
                 {props.children}
 
