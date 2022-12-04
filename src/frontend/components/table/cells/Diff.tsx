@@ -22,6 +22,7 @@ export const Diff = (props: Props): JSX.Element => {
                     rawData,
                     index,
                     options.z,
+                    options.rydbergWeight,
                     showValue,
                 )
                 return (

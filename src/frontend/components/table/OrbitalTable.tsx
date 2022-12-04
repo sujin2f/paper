@@ -13,11 +13,11 @@ import { Weight } from './cells/Weight'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
 
 export const OrbitalTable = (): JSX.Element => {
-    const { number, ion, entry } = useTableParam()
+    const { number, ion, term } = useTableParam()
     const { orbital, loading, error } = useOrbital({
         number,
         ion,
-        entry,
+        term,
     })
     const [options] = useContext(Context) as ContextType
 
@@ -36,8 +36,6 @@ export const OrbitalTable = (): JSX.Element => {
     const maxCol = getMaxCol(orbital)
     const cols = Array(maxCol - 1).fill('')
 
-    console.log(orbital)
-
     return (
         <div className="table-scroll">
             <table className="unstriped">
@@ -50,11 +48,11 @@ export const OrbitalTable = (): JSX.Element => {
                     }
 
                     return (
-                        <Fragment key={`${row}-thead`}>
+                        <Fragment key={`${rowIndex}-thead`}>
                             <thead>
                                 <tr className="table__header">
                                     <th className="align__right">
-                                        {rawData[0].term}.{rawData[0].j}
+                                        {rawData[0].orbital} (j={rawData[0].j})
                                     </th>
                                     <td colSpan={cols.length + 1} />
                                 </tr>

@@ -20,8 +20,8 @@ export const graphQL = `
     `
 
 export const query = `
-    query orbital($number: Int!, $ion: String!) {
-        orbital(number: $number, ion: $ion) {
+    query orbital($number: Int!, $ion: String!, $term: String) {
+        orbital(number: $number, ion: $ion, term: $term) {
             entryPoints {
                 _id
                 term
@@ -48,7 +48,7 @@ export const query = `
     }
     `
 
-export type Param = { number: number; ion: string; entry?: string }
+export type Param = { number: number; ion: string; term?: string }
 
 export type ReturnType = {
     orbital: Orbital

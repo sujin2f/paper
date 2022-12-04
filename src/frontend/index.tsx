@@ -6,7 +6,7 @@ import { ApolloProvider } from '@apollo/client/react'
 
 import { Router } from 'src/frontend/Router'
 import { Store } from 'src/frontend/store'
-import { graphqlClient } from 'src/frontend/utils/graphql'
+import { graphqlClient } from 'src/utils/graphqlClient'
 
 import 'src/assets/styles/style.scss'
 

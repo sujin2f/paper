@@ -1,52 +1,86 @@
 import { orbitalKeys } from 'src/constants/orbital'
+import { Ether, EtherData } from 'src/types/ether'
 import { RawData } from 'src/types/raw-data'
-// import { getMaxCol } from 'src/utils/models/common'
-// import { getTableData as getOrbitalTableData } from 'src/utils/models/orbital'
+import { getOrbital } from './orbital'
 
-export const getTableData = (rawData: RawData[]) => {
-    return []
-    // const { tableData: orbitalTable, sortOrder } = getOrbitalTableData(rawData)
-    // const maxCol = getMaxCol(orbitalTable)
-    // const etherTable: Record<string, RawData[]> = {
-    //     '0': Array(maxCol).fill(undefined),
-    //     '1': Array(maxCol).fill(undefined),
-    // }
+export const getEther = (rawData: RawData[], term?: string): Ether => {
+    const orbital = getOrbital(rawData, term)
+    const result: Ether = {
+        number: 0,
+        ion: '',
+        term: '',
+        entryPoints: orbital.entryPoints,
+        items: [],
+    }
 
-    // sortOrder.forEach((orbitalRowKey) => {
-    //     const firstOrbital = orbitalTable[orbitalRowKey][0]
-    //     orbitalTable[orbitalRowKey].forEach((orbital) => {
-    //         if (!orbital) {
-    //             return
-    //         }
+    const firstItem = orbital.items[0].items[0]
+    result.number = firstItem.number
+    result.ion = firstItem.ion
+    result.term = firstItem.term
 
-    //         const position = orbital.configuration.position
+    const items: EtherData[][] = []
 
-    //         if (firstOrbital.configuration.orbital === 's') {
-    //             etherTable['0'][position] = orbital
+    Object.keys(orbital.items).forEach((keyString) => {
+        const key = parseInt(keyString)
+        const orbitalItem = orbital.items[key]
+        if (orbitalItem.orbital === 's') {
+            items.push(orbitalItem.items)
+            return
+        }
 
-    //             if (position > 1) {
-    //                 const rowKey = position.toString()
-    //                 if (Object.keys(etherTable).indexOf(rowKey) === -1) {
-    //                     etherTable[rowKey] = Array(maxCol).fill(undefined)
-    //                 }
-    //                 etherTable[rowKey][position] = orbital
-    //             }
-    //             return
-    //         } else {
-    //             if (position > 1) {
-    //                 const positionAdd =
-    //                     orbitalKeys.indexOf(
-    //                         firstOrbital.configuration.orbital,
-    //                     ) - 1
-    //                 const rowKey = (position - 1 - positionAdd).toString()
-    //                 if (Object.keys(etherTable).indexOf(rowKey) === -1) {
-    //                     etherTable[rowKey] = Array(maxCol).fill(undefined)
-    //                 }
-    //                 etherTable[rowKey][position] = orbital
-    //             }
-    //         }
-    //     })
-    // })
+        orbitalItem.items.forEach((data, index) => {
+            if (!data || index === 0) {
+                return
+            }
 
-    // return etherTable
+            // 2p  3d  4f  5g  6h
+            //     3p  4d  5f  6g
+            //         4p  5d  6f
+
+            const position = data.position
+            const orbitalIndex = orbitalKeys.indexOf(data.orbital)
+
+            const row = position - orbitalIndex
+            const col = position - 1
+
+            if (items.length < row + 1) {
+                items[row] = []
+                items[row][0] = orbital.items[0].items[row]
+            }
+
+            items[row][col] = data
+        })
+    })
+
+    items.forEach((item, index) => {
+        if (index === 0) {
+            result.items[index] = {
+                etherName: 'Radial',
+                items: item,
+            }
+            return
+        }
+
+        if (index === 1) {
+            result.items[index] = {
+                etherName: 'Linear',
+                items: item,
+            }
+            return
+        }
+
+        result.items[index] = {
+            etherName: `${index - 1} Base`,
+            items: item,
+        }
+    })
+    return result
+}
+
+export const getMaxCol = (ether: Ether): number => {
+    let maxCol = 0
+    ether.items.forEach((row) => {
+        maxCol = row.items.length > maxCol ? row.items.length : maxCol
+    })
+    return maxCol
 }

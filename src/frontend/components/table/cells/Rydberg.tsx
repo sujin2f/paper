@@ -17,7 +17,12 @@ export const Rydberg = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">Rydberg</th>
             {cols.map((_, index) => {
-                const value = getTableCellValue(rawData, index, options.z)
+                const value = getTableCellValue(
+                    rawData,
+                    index,
+                    options.z,
+                    options.rydbergWeight,
+                )
 
                 return (
                     <td

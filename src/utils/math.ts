@@ -1,19 +1,24 @@
 const getRydberg = (n: number, x: number): number =>
     1 / Math.pow(n - x, 2) - 1 / Math.pow(n - x + 1, 2)
 
-export const evaluate = (n: number, value: number): number => {
+export const evaluate = (
+    n: number,
+    value: number,
+    minProp = 0,
+    maxProp = 0.9999,
+): number => {
     const error = 0.0000005
-    let max = 0.9999
-    let min = -0.9999
+    let max = maxProp
+    let min = minProp
     let lastBetween = [max, min]
 
     let firstVal = getRydberg(n, max)
     let secondVal = getRydberg(n, min)
-    if (
-        (firstVal > value && secondVal > value) ||
-        (firstVal < value && secondVal < value)
-    ) {
-        return 0 // Out of range
+    if (firstVal > value && secondVal > value) {
+        return evaluate(n, value, minProp + 1, maxProp + 1)
+    }
+    if (firstVal < value && secondVal < value) {
+        return evaluate(n, value, minProp - 1, maxProp - 1)
     }
 
     for (let i = 0; i < 1000; i++) {

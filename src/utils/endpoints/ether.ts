@@ -1,11 +1,11 @@
 import { query } from 'src/utils/mongo/raw-data'
-import { Orbital, Param } from 'src/types/orbital'
+import { Ether, Param } from 'src/types/ether'
 import { addOne, getOne } from 'src/utils/mongo/crawler'
 import { crawl } from 'src/utils/crawler/crawler'
 import { periodicTable } from 'src/constants/periodic-table'
-import { getOrbital } from 'src/utils/models/orbital'
+import { getEther } from 'src/utils/models/ether'
 
-export const orbital = async (param: Param): Promise<Orbital> => {
+export const ether = async (param: Param): Promise<Ether> => {
     const crawled = await getOne(param).catch(() => false)
     if (!crawled) {
         const result = await crawl(
@@ -19,6 +19,5 @@ export const orbital = async (param: Param): Promise<Orbital> => {
     }
 
     const rawData = await query(param)
-    const orbital = getOrbital(rawData, param.term)
-    return orbital
+    return getEther(rawData, param.term)
 }

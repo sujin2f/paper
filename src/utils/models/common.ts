@@ -24,13 +24,14 @@ export const toEther = (item: RawData): string => {
     return Array(radial).fill('🔘').concat(Array(linear).fill('➖')).join('')
 }
 
-const adjustRydberg = (rydberg: number, ion = 1): number =>
-    (rydberg * 1.00053529) / ion
+const adjustRydberg = (rydberg: number, ion = 1, weight = 1): number =>
+    (rydberg * weight) / ion
 
 export const getTableCellValue = (
     rawData: RawData[],
     index: number,
     z: number,
+    weight: number,
     showValue = true,
 ) => {
     if (index < 1) {
@@ -43,8 +44,8 @@ export const getTableCellValue = (
         return
     }
 
-    const prevR = prev ? adjustRydberg(prev.rydberg, z) : 0
-    const current = item ? adjustRydberg(item.rydberg, z) : 0
+    const prevR = prev ? adjustRydberg(prev.rydberg, z, weight) : 0
+    const current = item ? adjustRydberg(item.rydberg, z, weight) : 0
 
     if (!current) {
         return

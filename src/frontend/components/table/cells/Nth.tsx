@@ -24,6 +24,7 @@ export const Nth = (props: Props): JSX.Element => {
                     rawData,
                     index,
                     options.z,
+                    options.rydbergWeight,
                     showValue,
                 )
 

@@ -48,7 +48,7 @@ export const RawDataTable = (): JSX.Element => {
                     }
 
                     return (
-                        <Fragment key={`${row}-thead`}>
+                        <Fragment key={`${rowIndex}-thead`}>
                             <thead>
                                 <tr className="table__header">
                                     <th className="align__right">

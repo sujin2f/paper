@@ -23,6 +23,7 @@ export const Weight = (props: Props): JSX.Element => {
                     rawData,
                     index,
                     options.z,
+                    options.rydbergWeight,
                     showValue,
                 )
 

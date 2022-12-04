@@ -74,7 +74,7 @@ export const Router = (): JSX.Element => {
             />
 
             <Route
-                path="/orbital/:number/:ion/:entry"
+                path="/orbital/:number/:ion/:term"
                 element={
                     <Public>
                         <Orbital />
@@ -102,6 +102,15 @@ export const Router = (): JSX.Element => {
 
             <Route
                 path="/ether/:number/:ion"
+                element={
+                    <Public>
+                        <Ether />
+                    </Public>
+                }
+            />
+
+            <Route
+                path="/ether/:number/:term"
                 element={
                     <Public>
                         <Ether />

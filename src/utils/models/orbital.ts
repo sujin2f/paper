@@ -8,7 +8,7 @@ const getNextEntryPoint = (
     rawData: RawData[],
     entryPoint: RawData,
 ): RawData => {
-    const jWeight = entryPoint.j.indexOf('/') ? 2 : 1
+    const jWeight = entryPoint.j.indexOf('/') !== -1 ? 2 : 1
     const nextJ = getNumber(entryPoint.j) + jWeight
     const nextOrbital = getNextOrbital(entryPoint.orbital)
     const nextTerm = getNumber(entryPoint.term)
@@ -39,7 +39,7 @@ const getRow = (rawData: RawData[], entryPoint: RawData) =>
             return acc
         }, [] as RawData[])
 
-const getEntryPoints = (rawData: RawData[]): RawData[] => {
+export const getEntryPoints = (rawData: RawData[]): RawData[] => {
     const keys: Record<string, RawData> = {}
 
     rawData
@@ -59,7 +59,7 @@ const getEntryPoints = (rawData: RawData[]): RawData[] => {
     return Object.values(keys).sort((a, b) => a.rydberg - b.rydberg)
 }
 
-export const getOrbital = (rawData: RawData[], entry?: string): Orbital => {
+export const getOrbital = (rawData: RawData[], term?: string): Orbital => {
     const result: Orbital = {
         entryPoints: getEntryPoints(rawData),
         items: [],
@@ -67,9 +67,9 @@ export const getOrbital = (rawData: RawData[], entry?: string): Orbital => {
 
     let entryPoint = result.entryPoints[0]
 
-    if (entry) {
+    if (term) {
         const entryCandidate = result.entryPoints.filter(
-            (item) => item.term === entry,
+            (item) => item.term === term,
         )[0]
         if (entryCandidate) {
             entryPoint = entryCandidate

@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom'
-import { getAtom } from 'src/utils/atom'
+import { getAtom } from 'src/utils/models/atom'
 
 export const useTableParam = () => {
     const param = useParams()
@@ -8,7 +8,7 @@ export const useTableParam = () => {
     const ion = param.ion || 'I'
     const atom = getAtom(number)
     const linkBase = location.pathname.split('/').filter((v) => v)[0]
-    const entry = param.entry
+    const term = param.term
 
-    return { number, ion, atom, linkBase, entry }
+    return { number, ion, atom, linkBase, term }
 }
