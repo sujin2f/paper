@@ -39,6 +39,16 @@ export const graphQL = `
         confPrefix: String
         confArray: [String]
     }
+    input RawDataInput {
+        _id: String
+        rydberg: Float
+        term: String
+        j: String
+        conf: String
+        position: Int
+        orbital: String
+        confPrefix: String
+    }
     `
 
 export const query = `

@@ -18,7 +18,13 @@ export const orbital = async (param: Param): Promise<Orbital> => {
         })
     }
 
-    const rawData = await query(param)
+    const paramModified = param.term
+        ? param
+        : {
+              number: param.number,
+              ion: param.ion,
+          }
+    const rawData = await query(paramModified)
     const orbital = getOrbital(rawData, param.term)
     return orbital
 }

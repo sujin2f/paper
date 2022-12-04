@@ -79,6 +79,8 @@ export const RawDataTable = (): JSX.Element => {
                                         cols={cols}
                                         rawData={rawData}
                                         rowIndex={rowIndex}
+                                        z={1}
+                                        weight={1}
                                     />
                                 )}
                                 {options.diff && (
@@ -87,6 +89,8 @@ export const RawDataTable = (): JSX.Element => {
                                         rawData={rawData}
                                         rowIndex={rowIndex}
                                         showValue={showValue}
+                                        z={1}
+                                        weight={1}
                                     />
                                 )}
                                 {options.weight && (
@@ -95,6 +99,8 @@ export const RawDataTable = (): JSX.Element => {
                                         rawData={rawData}
                                         rowIndex={rowIndex}
                                         showValue={showValue}
+                                        z={1}
+                                        weight={1}
                                     />
                                 )}
                                 {options.nth && (
@@ -103,6 +109,8 @@ export const RawDataTable = (): JSX.Element => {
                                         rawData={rawData}
                                         rowIndex={rowIndex}
                                         showValue={showValue}
+                                        z={1}
+                                        weight={1}
                                     />
                                 )}
                                 {options.percentPoint && (
@@ -111,6 +119,8 @@ export const RawDataTable = (): JSX.Element => {
                                         rawData={rawData}
                                         rowIndex={rowIndex}
                                         showValue={showValue}
+                                        z={1}
+                                        weight={1}
                                     />
                                 )}
                             </tbody>

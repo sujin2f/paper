@@ -6,6 +6,7 @@ export const evaluate = (
     value: number,
     minProp = 0,
     maxProp = 0.9999,
+    attempt = 1,
 ): number => {
     const error = 0.0000005
     let max = maxProp
@@ -14,11 +15,30 @@ export const evaluate = (
 
     let firstVal = getRydberg(n, max)
     let secondVal = getRydberg(n, min)
+
     if (firstVal > value && secondVal > value) {
-        return evaluate(n, value, minProp + 1, maxProp + 1)
+        if (attempt > 10) {
+            return NaN
+        }
+        return evaluate(
+            n,
+            value,
+            minProp - 0.9999,
+            maxProp - 0.9999,
+            attempt + 1,
+        )
     }
     if (firstVal < value && secondVal < value) {
-        return evaluate(n, value, minProp - 1, maxProp - 1)
+        if (attempt > 10) {
+            return NaN
+        }
+        return evaluate(
+            n,
+            value,
+            minProp + 0.9999,
+            maxProp + 0.9999,
+            attempt + 1,
+        )
     }
 
     for (let i = 0; i < 1000; i++) {

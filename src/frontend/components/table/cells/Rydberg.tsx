@@ -7,22 +7,19 @@ type Props = {
     rawData: RawData[]
     rowIndex: number
     cols: string[]
+    z: number
+    weight: number
 }
 
 export const Rydberg = (props: Props): JSX.Element => {
-    const { rawData, rowIndex, cols } = props
+    const { rawData, rowIndex, cols, z, weight } = props
     const [options] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
             <th className="align__right">Rydberg</th>
             {cols.map((_, index) => {
-                const value = getTableCellValue(
-                    rawData,
-                    index,
-                    options.z,
-                    options.rydbergWeight,
-                )
+                const value = getTableCellValue(rawData, index, z, weight)
 
                 return (
                     <td

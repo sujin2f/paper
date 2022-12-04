@@ -44,8 +44,11 @@ export const getTableCellValue = (
         return
     }
 
-    const prevR = prev ? adjustRydberg(prev.rydberg, z, weight) : 0
-    const current = item ? adjustRydberg(item.rydberg, z, weight) : 0
+    const zValue = z || 1
+    const weightValue = weight || 1
+
+    const prevR = prev ? adjustRydberg(prev.rydberg, zValue, weightValue) : 0
+    const current = item ? adjustRydberg(item.rydberg, zValue, weightValue) : 0
 
     if (!current) {
         return

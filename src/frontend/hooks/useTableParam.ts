@@ -8,7 +8,7 @@ export const useTableParam = () => {
     const ion = param.ion || 'I'
     const atom = getAtom(number)
     const linkBase = location.pathname.split('/').filter((v) => v)[0]
-    const term = param.term
+    const term = param.term || ''
 
     return { number, ion, atom, linkBase, term }
 }

@@ -52,7 +52,8 @@ export const OrbitalTable = (): JSX.Element => {
                             <thead>
                                 <tr className="table__header">
                                     <th className="align__right">
-                                        {rawData[0].orbital} (j={rawData[0].j})
+                                        {rawData[0].orbital} (j=
+                                        {rawData[0].j})
                                     </th>
                                     <td colSpan={cols.length + 1} />
                                 </tr>
@@ -79,6 +80,8 @@ export const OrbitalTable = (): JSX.Element => {
                                         cols={cols}
                                         rawData={rawData}
                                         rowIndex={rowIndex}
+                                        z={1}
+                                        weight={1}
                                     />
                                 )}
                                 {options.diff && (
@@ -87,6 +90,8 @@ export const OrbitalTable = (): JSX.Element => {
                                         rawData={rawData}
                                         rowIndex={rowIndex}
                                         showValue={showValue}
+                                        z={1}
+                                        weight={1}
                                     />
                                 )}
                                 {options.weight && (
@@ -95,6 +100,8 @@ export const OrbitalTable = (): JSX.Element => {
                                         rawData={rawData}
                                         rowIndex={rowIndex}
                                         showValue={showValue}
+                                        z={1}
+                                        weight={1}
                                     />
                                 )}
                                 {options.nth && (
@@ -103,6 +110,8 @@ export const OrbitalTable = (): JSX.Element => {
                                         rawData={rawData}
                                         rowIndex={rowIndex}
                                         showValue={showValue}
+                                        z={1}
+                                        weight={1}
                                     />
                                 )}
                                 {options.percentPoint && (
@@ -111,6 +120,8 @@ export const OrbitalTable = (): JSX.Element => {
                                         rawData={rawData}
                                         rowIndex={rowIndex}
                                         showValue={showValue}
+                                        z={1}
+                                        weight={1}
                                     />
                                 )}
                             </tbody>

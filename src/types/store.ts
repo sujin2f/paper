@@ -4,8 +4,6 @@ type Type = {
 
 export type State = {
     digit: number
-    z: number
-    rydbergWeight: number
     orbital: boolean
     ether: boolean
     rydberg: boolean

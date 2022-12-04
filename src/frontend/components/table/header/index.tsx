@@ -1,9 +1,8 @@
 import React, { Fragment, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { Input } from 'src/common/components/forms/Input'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
 import { Context, ContextType } from 'src/frontend/store'
-import { setDigit, setRydbergWeight, setZ } from 'src/frontend/store/actions'
+import { setDigit } from 'src/frontend/store/actions'
 import { getAtom } from 'src/utils/models/atom'
 import { InfoModal } from './InfoModal'
 import { OptionDropdown } from './OptionDropdown'
@@ -21,7 +20,7 @@ export const Header = (): JSX.Element => {
     const next = getAtom(number + 1)
 
     const doChangeDigit = (newDigit: number) => {
-        if (newDigit < 0 || newDigit > 10) {
+        if (newDigit < 0 || newDigit > 20) {
             return
         }
 
@@ -70,36 +69,6 @@ export const Header = (): JSX.Element => {
                 </nav>
                 <div className="top-bar-right">
                     <ul className="menu">
-                        <li>
-                            <Input
-                                defaultValue={options.z}
-                                label="Z"
-                                onChange={(e) => {
-                                    const data = (
-                                        e?.nativeEvent as unknown as Record<
-                                            string,
-                                            string
-                                        >
-                                    ).data
-                                    dispatch(setZ(parseInt(data)))
-                                }}
-                            />
-                        </li>
-                        <li>
-                            <Input
-                                defaultValue={options.rydbergWeight}
-                                label="Weight for Rydberg"
-                                onChange={(e) => {
-                                    const data = (
-                                        e?.nativeEvent as unknown as Record<
-                                            string,
-                                            string
-                                        >
-                                    ).data
-                                    dispatch(setRydbergWeight(parseFloat(data)))
-                                }}
-                            />
-                        </li>
                         <li>
                             <button
                                 type="button"

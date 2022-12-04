@@ -1,5 +1,5 @@
 import { orbitalKeys } from 'src/constants/orbital'
-import { Ether, EtherData } from 'src/types/ether'
+import { Ether } from 'src/types/ether'
 import { RawData } from 'src/types/raw-data'
 import { getOrbital } from './orbital'
 
@@ -18,11 +18,13 @@ export const getEther = (rawData: RawData[], term?: string): Ether => {
     result.ion = firstItem.ion
     result.term = firstItem.term
 
-    const items: EtherData[][] = []
+    const items: RawData[][] = []
 
     Object.keys(orbital.items).forEach((keyString) => {
         const key = parseInt(keyString)
         const orbitalItem = orbital.items[key]
+
+        // Radial Row
         if (orbitalItem.orbital === 's') {
             items.push(orbitalItem.items)
             return
@@ -41,7 +43,7 @@ export const getEther = (rawData: RawData[], term?: string): Ether => {
             const orbitalIndex = orbitalKeys.indexOf(data.orbital)
 
             const row = position - orbitalIndex
-            const col = position - 1
+            const col = position
 
             if (items.length < row + 1) {
                 items[row] = []
@@ -50,6 +52,16 @@ export const getEther = (rawData: RawData[], term?: string): Ether => {
 
             items[row][col] = data
         })
+    })
+
+    // Push S orbitals into items
+    items[0].forEach((item, index) => {
+        if (index <= 1) {
+            return
+        }
+        if (items[index]) {
+            items[index][index] = item
+        }
     })
 
     items.forEach((item, index) => {
@@ -80,7 +92,7 @@ export const getEther = (rawData: RawData[], term?: string): Ether => {
 export const getMaxCol = (ether: Ether): number => {
     let maxCol = 0
     ether.items.forEach((row) => {
-        maxCol = row.items.length > maxCol ? row.items.length : maxCol
+        maxCol = row && row.items.length > maxCol ? row.items.length : maxCol
     })
     return maxCol
 }

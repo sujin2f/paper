@@ -7,6 +7,9 @@ export const graphqlSchema = `
         rawData(number: Int!, ion: String!): [RawData]
         orbital(number: Int!, ion: String!, term: String): Orbital
         ether(number: Int!, ion: String!, term: String): Ether
+    }
+    type Mutation {
+        addEther(ether: EtherInput!): Ether
     },
     ${rawData}
     ${orbital}

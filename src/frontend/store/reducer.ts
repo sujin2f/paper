@@ -6,16 +6,12 @@ import {
     SET_DIFF,
     SET_NTH,
     SET_PERCENT_POINT,
-    SET_Z,
     SET_WEIGHT,
-    RYDBERG_WEIGHT,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
 export const initialState: State = {
     digit: 4,
-    z: 1,
-    rydbergWeight: 1,
     orbital: true,
     ether: true,
     rydberg: true,
@@ -69,22 +65,10 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 percentPoint: action.percentPoint!,
             }
         }
-        case SET_Z: {
-            return {
-                ...state,
-                z: action.z!,
-            }
-        }
         case SET_WEIGHT: {
             return {
                 ...state,
                 weight: action.weight!,
-            }
-        }
-        case RYDBERG_WEIGHT: {
-            return {
-                ...state,
-                rydbergWeight: action.rydbergWeight!,
             }
         }
         default: {

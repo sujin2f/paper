@@ -8,10 +8,12 @@ type Props = {
     rowIndex: number
     cols: string[]
     showValue: boolean
+    z: number
+    weight: number
 }
 
 export const PercentPoint = (props: Props): JSX.Element => {
-    const { rawData, rowIndex, cols, showValue } = props
+    const { rawData, rowIndex, cols, showValue, z, weight } = props
     const [options] = useContext(Context) as ContextType
 
     return (
@@ -21,8 +23,8 @@ export const PercentPoint = (props: Props): JSX.Element => {
                 const value = getTableCellValue(
                     rawData,
                     index,
-                    options.z,
-                    options.rydbergWeight,
+                    z,
+                    weight,
                     showValue,
                 )
 

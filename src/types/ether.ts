@@ -1,37 +1,31 @@
 import { Schema } from 'mongoose'
 import { RawData, schema as rawDataSchema } from './raw-data'
 
-export type EtherData = RawData & {
-    diff?: number
-    weight?: number
-}
-
 export type Ether = {
     _id?: string
     number: number
     ion: string
     term: string
+    z?: number
+    weight?: number
     entryPoints: RawData[]
     items: {
         etherName: string
-        items: EtherData[]
+        items: RawData[]
     }[]
 }
 
 const RawDataSchema = new Schema(rawDataSchema)
-const EtherDataSchema = new Schema({
-    ...rawDataSchema,
-    diff: Number,
-    weight: Number,
-})
 const ItemsSchema = new Schema({
     etherName: String,
-    items: [EtherDataSchema],
+    items: [RawDataSchema],
 })
 export const schema = {
     number: Number,
     ion: String,
     term: String,
+    z: Number,
+    weight: Number,
     entryPoints: [RawDataSchema],
     items: [ItemsSchema],
 }
@@ -42,29 +36,29 @@ export const graphQL = `
         number: Int
         ion: String
         term: String
+        z: Int
+        weight: Float
         entryPoints: [RawData]
         items: [EtherRaw]
     }
     type EtherRaw {
         etherName: String
-        items: [EtherData]
+        items: [RawData]
     }
-    type EtherData {
-        _id: String
+    input EtherInput {
         number: Int
         ion: String
-        rydberg: Float
         term: String
-        j: String
-        conf: String
-        position: Int
-        orbital: String
-        confPrefix: String
-        confArray: [String]
-        diff: Float
+        z: Int
         weight: Float
+        entryPoints: [RawDataInput]
+        items: [EtherRawInput]
     }
-    `
+    input EtherRawInput {
+        etherName: String
+        items: [RawDataInput]
+    }
+`
 
 export const query = `
     query ether($number: Int!, $ion: String!, $term: String) {
@@ -72,6 +66,8 @@ export const query = `
             number
             ion
             term
+            z
+            weight
             entryPoints {
                 _id
                 term
@@ -92,10 +88,15 @@ export const query = `
                     position
                     orbital
                     confPrefix
-                    diff
-                    weight
                 }
             }
+        }
+    }
+    `
+export const mutationQuery = `
+    mutation addEther($ether: EtherInput!) {
+        addEther(ether: $ether) {
+            _id
         }
     }
     `
