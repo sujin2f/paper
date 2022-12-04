@@ -1,34 +1,28 @@
-export type Configuration = {
-    string: string
-    position: number
-    orbital: string
-    prefix: string
-    array: string[]
-}
-
 export type RawData = {
     _id?: string
     number: number
     ion: string
     rydberg: number
-    configuration: Configuration
     term: string
     j: string
+    conf: string
+    position: number
+    orbital: string
+    confPrefix: string
+    confArray: string[]
 }
 
 export const schema = {
     number: Number,
     ion: String,
     rydberg: Number,
-    configuration: {
-        string: String,
-        position: Number,
-        orbital: String,
-        prefix: String,
-        array: [String],
-    },
     term: String,
     j: String,
+    conf: String,
+    position: Number,
+    orbital: String,
+    confPrefix: String,
+    confArray: [String],
 }
 
 export const graphQL = `
@@ -39,14 +33,11 @@ export const graphQL = `
         rydberg: Float
         term: String
         j: String
-        configuration: Configuration
-    }
-    type Configuration {
-        string: String
+        conf: String
         position: Int
         orbital: String
-        prefix: String
-        array: [String]
+        confPrefix: String
+        confArray: [String]
     }
     `
 
@@ -57,11 +48,9 @@ export const query = `
             rydberg
             term
             j
-            configuration {
-                string
-                position
-                orbital
-            }
+            conf
+            position
+            orbital
         }
     }
     `

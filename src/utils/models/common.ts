@@ -1,5 +1,5 @@
 import { orbitalKeys } from 'src/constants/orbital'
-import { Configuration, RawData } from 'src/types/raw-data'
+import { RawData } from 'src/types/raw-data'
 
 export const getNth = (digit: number): number =>
     1 / Math.pow(digit, 2) - 1 / Math.pow(digit + 1, 2)
@@ -7,9 +7,9 @@ export const getNth = (digit: number): number =>
 export const getDiffWithNth = (value: number, digit: number): number =>
     (value / getNth(digit)) * 100 - 100
 
-export const confToEther = (conf: Configuration): string => {
-    const linear = orbitalKeys.indexOf(conf.orbital)
-    const radial = conf.position - linear - 1
+export const toEther = (item: RawData): string => {
+    const linear = orbitalKeys.indexOf(item.orbital)
+    const radial = item.position - linear - 1
 
     if (linear + radial > 4) {
         if (linear === 0) {

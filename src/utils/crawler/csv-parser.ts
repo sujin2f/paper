@@ -1,6 +1,6 @@
 import { parse } from 'csv-parse'
 import { RawData } from 'src/types/raw-data'
-import { getConfigurationObject } from 'src/utils/models/raw-data'
+import { getConfObject } from 'src/utils/models/raw-data'
 import { addOne } from 'src/utils/mongo/raw-data'
 import { Nullable } from 'src/types/common'
 import { Atom } from 'src/types/atom'
@@ -31,27 +31,27 @@ const createRawData = (param: {
     number: number
     ion: string
     rydberg: string
-    configuration: string
+    conf: string
     term: string
     j: string
 }): Nullable<RawData> => {
     const rydberg = parseFloat(filterNumValue(param.rydberg))
-    const configuration = filterValue(param.configuration)
+    const conf = filterValue(param.conf)
     const term = filterValue(param.term)
     const j = filterValue(param.j)
 
-    if (!configuration || !term || !j || isNaN(rydberg)) {
+    if (!conf || !term || !j || isNaN(rydberg)) {
         return
     }
 
     return {
         ...param,
+        ...getConfObject(conf),
         ion: param.ion,
         rydberg,
         term,
         j,
-        configuration: getConfigurationObject(configuration),
-    }
+    } as RawData
 }
 
 export const csvParser = async (atom: Atom, ion: string, csv: string) => {
@@ -78,7 +78,7 @@ export const csvParser = async (atom: Atom, ion: string, csv: string) => {
                 number: atom.number,
                 ion,
                 rydberg: record.record[columns['Ei(Ry)']],
-                configuration: record.record[columns['conf_i']],
+                conf: record.record[columns['conf_i']],
                 j: record.record[columns['J_i']],
                 term: record.record[columns['term_i']],
             })
@@ -90,7 +90,7 @@ export const csvParser = async (atom: Atom, ion: string, csv: string) => {
                 number: atom.number,
                 ion,
                 rydberg: record.record[columns['Ek(Ry)']],
-                configuration: record.record[columns['conf_k']],
+                conf: record.record[columns['conf_k']],
                 j: record.record[columns['J_k']],
                 term: record.record[columns['term_k']],
             })

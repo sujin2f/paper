@@ -10,14 +10,13 @@ const getNextEntryPoint = (
 ): RawData => {
     const jWeight = entryPoint.j.indexOf('/') ? 2 : 1
     const nextJ = getNumber(entryPoint.j) + jWeight
-    const nextOrbital = getNextOrbital(entryPoint.configuration.orbital)
+    const nextOrbital = getNextOrbital(entryPoint.orbital)
     const nextTerm = getNumber(entryPoint.term)
 
     return rawData
         .filter((data) => {
-            const orbital = data.configuration.orbital === nextOrbital
-            const prefix =
-                data.configuration.prefix === entryPoint.configuration.prefix
+            const orbital = data.orbital === nextOrbital
+            const prefix = data.confPrefix === entryPoint.confPrefix
             const j = getNumber(data.j) === nextJ
             const term = getNumber(data.term) === nextTerm
 
@@ -32,11 +31,11 @@ const getRow = (rawData: RawData[], entryPoint: RawData) =>
             (data) =>
                 data.j === entryPoint.j &&
                 data.term === entryPoint.term &&
-                data.configuration.prefix === entryPoint.configuration.prefix &&
-                data.configuration.orbital === entryPoint.configuration.orbital,
+                data.confPrefix === entryPoint.confPrefix &&
+                data.orbital === entryPoint.orbital,
         )
         .reduce((acc, data) => {
-            acc[data.configuration.position] = data
+            acc[data.position] = data
             return acc
         }, [] as RawData[])
 
@@ -44,9 +43,9 @@ const getEntryPoints = (rawData: RawData[]): RawData[] => {
     const keys: Record<string, RawData> = {}
 
     rawData
-        .filter((data) => data.configuration.orbital === 's')
+        .filter((data) => data.orbital === 's')
         .forEach((data) => {
-            const key = `${data.j}--${data.term}--${data.configuration.prefix}`
+            const key = `${data.j}--${data.term}--${data.confPrefix}`
             if (Object.keys(keys).indexOf(key) === -1) {
                 keys[key] = data
                 return

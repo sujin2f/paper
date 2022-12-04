@@ -26,12 +26,10 @@ export const query = `
                 _id
                 term
                 j
-                configuration {
-                    string
-                    position
-                    orbital
-                    prefix
-                }
+                conf
+                position
+                orbital
+                confPrefix
             }
             items {
                 orbital
@@ -40,12 +38,10 @@ export const query = `
                     rydberg
                     term
                     j
-                    configuration {
-                        string
-                        position
-                        orbital
-                        prefix
-                    }
+                    conf
+                    position
+                    orbital
+                    confPrefix
                 }
             }
         }

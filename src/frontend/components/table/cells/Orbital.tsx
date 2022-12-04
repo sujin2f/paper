@@ -21,7 +21,7 @@ export const Orbital = (props: Props): JSX.Element => {
                         key={`${rowIndex}-orbital-${index}`}
                         className="align__center"
                     >
-                        {item && item.configuration.string}
+                        {item && item.conf}
                     </th>
                 )
             })}

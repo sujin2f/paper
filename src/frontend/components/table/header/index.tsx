@@ -40,7 +40,7 @@ export const Header = (): JSX.Element => {
                 <header className="align__center table-header__title">
                     <div>
                         <h1>
-                            ({atom.symbol} {ion})
+                            {atom.symbol} {ion}
                         </h1>
                         <h2>{atom.name}</h2>
                     </div>

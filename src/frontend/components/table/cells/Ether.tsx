@@ -1,6 +1,6 @@
 import React from 'react'
 import { RawData } from 'src/types/raw-data'
-import { confToEther } from 'src/utils/models/common'
+import { toEther } from 'src/utils/models/common'
 
 type Props = {
     rawData: RawData[]
@@ -22,7 +22,7 @@ export const Ether = (props: Props): JSX.Element => {
                         key={`${rowIndex}-ether-${index}`}
                         className="align__center"
                     >
-                        {item && confToEther(item.configuration)}
+                        {item && toEther(item)}
                     </th>
                 )
             })}
