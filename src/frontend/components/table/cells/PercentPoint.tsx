@@ -8,11 +8,10 @@ type Props = {
     rawData: Nullable<RawDataItem>[]
     rowIndex: number
     cols: string[]
-    showValue: boolean
 }
 
 export const PercentPoint = (props: Props): JSX.Element => {
-    const { rawData, rowIndex, cols, showValue } = props
+    const { rawData, rowIndex, cols } = props
     const [options] = useContext(Context) as ContextType
 
     return (

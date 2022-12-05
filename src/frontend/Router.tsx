@@ -3,9 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/public'
 import { FrontPage } from 'src/frontend/scenes/public/FrontPage'
-import { Orbital } from 'src/frontend/scenes/public/Orbital'
-import { Ether } from 'src/frontend/scenes/public/Ether'
-import { RawData } from 'src/frontend/scenes/public/RawData'
+import { Tables } from './scenes/public/Tables'
 
 export const Router = (): JSX.Element => {
     return (
@@ -19,104 +17,32 @@ export const Router = (): JSX.Element => {
                 }
             />
 
-            <Route
-                path="/raw-data"
-                element={
-                    <Public>
-                        <RawData />
-                    </Public>
-                }
-            />
-
-            <Route
-                path="/raw-data/:number"
-                element={
-                    <Public>
-                        <RawData />
-                    </Public>
-                }
-            />
-
-            <Route
-                path="/raw-data/:number/:ion"
-                element={
-                    <Public>
-                        <RawData />
-                    </Public>
-                }
-            />
-
-            <Route
-                path="/orbital"
-                element={
-                    <Public>
-                        <Orbital />
-                    </Public>
-                }
-            />
-
-            <Route
-                path="/orbital/:number"
-                element={
-                    <Public>
-                        <Orbital />
-                    </Public>
-                }
-            />
-
-            <Route
-                path="/orbital/:number/:ion"
-                element={
-                    <Public>
-                        <Orbital />
-                    </Public>
-                }
-            />
-
-            <Route
-                path="/orbital/:number/:ion/:term"
-                element={
-                    <Public>
-                        <Orbital />
-                    </Public>
-                }
-            />
-
-            <Route
-                path="/ether"
-                element={
-                    <Public>
-                        <Ether />
-                    </Public>
-                }
-            />
-
-            <Route
-                path="/ether/:number"
-                element={
-                    <Public>
-                        <Ether />
-                    </Public>
-                }
-            />
-
-            <Route
-                path="/ether/:number/:ion"
-                element={
-                    <Public>
-                        <Ether />
-                    </Public>
-                }
-            />
-
-            <Route
-                path="/ether/:number/:term"
-                element={
-                    <Public>
-                        <Ether />
-                    </Public>
-                }
-            />
+            <Route path="/:linkBase" element={<Tables />}>
+                <Route path=":number" element={<Tables />}>
+                    <Route path="graph" element={<Tables />}>
+                        <Route path=":graphType" element={<Tables />}>
+                            <Route path="diagonal" element={<Tables />} />
+                        </Route>
+                    </Route>
+                    <Route path=":ion" element={<Tables />}>
+                        <Route path="graph" element={<Tables />}>
+                            <Route path=":graphType" element={<Tables />}>
+                                <Route path="diagonal" element={<Tables />} />
+                            </Route>
+                        </Route>
+                        <Route path=":term" element={<Tables />}>
+                            <Route path="graph" element={<Tables />}>
+                                <Route path=":graphType" element={<Tables />}>
+                                    <Route
+                                        path="diagonal"
+                                        element={<Tables />}
+                                    />
+                                </Route>
+                            </Route>
+                        </Route>
+                    </Route>
+                </Route>
+            </Route>
 
             <Route
                 path="*"

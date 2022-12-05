@@ -1,14 +1,15 @@
 import { useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
-import { Param, ReturnType, query } from 'src/types/orbital'
+import { ReturnType, query } from 'src/types/orbital'
+import { Param, UseData } from 'src/types/store'
 
-export const useOrbital = (variables: Param) => {
+export const useOrbital: UseData = (variables) => {
     const { data, loading, error } = useQuery<ReturnType, Param>(gql(query), {
         variables,
     })
 
     return {
-        orbital: data ? data.orbital : [],
+        dataArray: data ? data.orbital : [],
         loading,
         error,
     }

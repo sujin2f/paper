@@ -6,6 +6,7 @@ import {
     SET_DIFF,
     SET_NTH,
     SET_PERCENT_POINT,
+    SET_PERCENT,
     SET_WEIGHT,
     SET_CHART_TITLE,
     SET_CHART_DATA,
@@ -21,6 +22,7 @@ export const initialState: State = {
     diff: true,
     nth: true,
     percentPoint: true,
+    percent: true,
     weight: true,
     chartTitle: '',
     shift: 0,
@@ -68,6 +70,12 @@ export const reducer = (state: State = initialState, action: Action): State => {
             return {
                 ...state,
                 percentPoint: action.percentPoint!,
+            }
+        }
+        case SET_PERCENT: {
+            return {
+                ...state,
+                percent: action.percent!,
             }
         }
         case SET_WEIGHT: {

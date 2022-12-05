@@ -1,14 +1,15 @@
 import { useQuery } from '@apollo/client'
 import { gql } from '@apollo/client'
-import { Param, ReturnType, query } from 'src/types/ether'
+import { ReturnType, query } from 'src/types/ether'
+import { Param, UseData } from 'src/types/store'
 
-export const useEther = (variables: Param) => {
+export const useEther: UseData = (variables) => {
     const { data, loading, error } = useQuery<ReturnType, Param>(gql(query), {
         variables,
     })
 
     return {
-        ether: (data && data.ether) || [],
+        dataArray: (data && data.ether) || [],
         loading,
         error,
     }

@@ -6,11 +6,12 @@ import { setDigit, setShift } from 'src/frontend/store/actions'
 import { getAtom } from 'src/utils/models/atom'
 import { ChartModal } from './ChartModal'
 import { InfoModal } from './InfoModal'
+import { IonDropdown } from './IonDropdown'
 import { OptionDropdown } from './OptionDropdown'
 import { PeriodicTableModal } from './PeriodicTableModal'
 
 export const Header = (): JSX.Element => {
-    const { atom, number, ion, linkBase } = useTableParam()
+    const { atom, number, ion, linkBase, term } = useTableParam()
     const [options, dispatch] = useContext(Context) as ContextType
 
     if (!atom) {
@@ -28,12 +29,16 @@ export const Header = (): JSX.Element => {
         dispatch(setDigit(newDigit))
     }
 
+    const navigateSuffix = term
+        ? `${number}/${ion}/${term}`
+        : `${number}/${ion}`
+
     return (
         <Fragment>
             <div className="table-header">
                 <nav className="align__left">
                     {prev && (
-                        <Link to={`/${linkBase}/${prev.number}/${ion}`}>
+                        <Link to={`/${linkBase}/${prev.number}`}>
                             &lt; {prev.name}
                         </Link>
                     )}
@@ -50,7 +55,7 @@ export const Header = (): JSX.Element => {
 
                 <nav className="align__right">
                     {next && (
-                        <Link to={`/${linkBase}/${next.number}/${ion}`}>
+                        <Link to={`/${linkBase}/${next.number}/`}>
                             {next.name} &gt;
                         </Link>
                     )}
@@ -58,15 +63,38 @@ export const Header = (): JSX.Element => {
             </div>
             <div className="top-bar">
                 <nav className="top-bar-left">
-                    <OptionDropdown />
-                    <span>&nbsp;|&nbsp;</span>
-                    <Link to={`/raw-data/${atom.number}/${ion}`}>Raw Data</Link>
-                    <span>&nbsp;|&nbsp;</span>
-                    <Link to={`/orbital/${atom.number}/${ion}`}>Orbital</Link>
-                    <span>&nbsp;|&nbsp;</span>
-                    <Link to={`/ether/${atom.number}/${ion}`}>Ether</Link>
-                    <span>&nbsp;|&nbsp;</span>
-                    <PeriodicTableModal />
+                    <ul className="dropdown menu">
+                        <OptionDropdown />
+                        <IonDropdown />
+                        <li
+                            className={`link-base ${
+                                linkBase === 'raw-data' && 'current'
+                            }`}
+                        >
+                            <Link to={`/raw-data/${navigateSuffix}`}>
+                                Raw Data
+                            </Link>
+                        </li>
+                        <li
+                            className={`link-base ${
+                                linkBase === 'orbital' && 'current'
+                            }`}
+                        >
+                            <Link to={`/orbital/${navigateSuffix}`}>
+                                Orbital
+                            </Link>
+                        </li>
+                        <li
+                            className={`link-base ${
+                                linkBase === 'ether' && 'current'
+                            }`}
+                        >
+                            <Link to={`/ether/${navigateSuffix}`}>Ether</Link>
+                        </li>
+                        <li>
+                            <PeriodicTableModal />
+                        </li>
+                    </ul>
                 </nav>
                 <div className="top-bar-right">
                     <ul className="menu">

@@ -1,6 +1,5 @@
 import React, { Fragment, useContext, useEffect } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
-import { useOrbital } from 'src/frontend/hooks/useOrbital'
 
 import { Ether } from './cells/Ether'
 import { Orbital } from './cells/Orbital'
@@ -16,12 +15,20 @@ import {
     getChartLabels,
     getMaxCol,
 } from 'src/utils/models/common'
-import { getPercent } from 'src/utils/math'
-import { getLabel } from 'src/utils/models/orbital'
+import { UseData } from 'src/types/store'
+import { LabelFunction } from 'src/types/common'
+import { Percent } from './cells/Percent'
+import { Link } from 'react-router-dom'
 
-export const OrbitalTable = (): JSX.Element => {
-    const { number, ion, term } = useTableParam()
-    const { orbital, loading, error } = useOrbital({
+type Props = {
+    useData: UseData
+    getLabel: LabelFunction
+}
+
+export const Table = (props: Props): JSX.Element => {
+    const { number, ion, term, graphTypeFunc, linkBase } = useTableParam()
+    const { useData, getLabel } = props
+    const { dataArray, loading, error } = useData({
         number,
         ion,
         term,
@@ -29,10 +36,10 @@ export const OrbitalTable = (): JSX.Element => {
     const [options, dispatch] = useContext(Context) as ContextType
 
     useEffect(() => {
-        if (orbital.length) {
+        if (dataArray.length) {
             const datasets = getChartData(
-                orbital,
-                getPercent,
+                dataArray,
+                graphTypeFunc,
                 getLabel,
                 options.shift,
             )
@@ -43,7 +50,7 @@ export const OrbitalTable = (): JSX.Element => {
                 }),
             )
         }
-    }, [orbital, options.shift, dispatch])
+    }, [dataArray, options.shift, dispatch, graphTypeFunc, getLabel])
 
     if (error) {
         return <Fragment>404</Fragment>
@@ -53,28 +60,31 @@ export const OrbitalTable = (): JSX.Element => {
         return <Fragment>Loading</Fragment>
     }
 
-    if (!orbital.length) {
+    if (!dataArray.length) {
         return <Fragment>Something Went Wrong</Fragment>
     }
 
-    const maxCol = getMaxCol(orbital)
+    const maxCol = getMaxCol(dataArray)
     const cols = Array(maxCol - 1).fill('')
 
     return (
         <div className="table-scroll">
             <table className="unstriped">
-                {orbital.map((row, rowIndex) => {
-                    let showValue = false
-                    if (rowIndex === 0 || rowIndex === 1) {
-                        showValue = true
-                    }
-
+                {dataArray.map((row, rowIndex) => {
                     return (
                         <Fragment key={`${rowIndex}-thead`}>
                             <thead>
                                 <tr className="table__header">
                                     <th className="align__right">
-                                        {row.label}
+                                        {(linkBase === 'raw-data' &&
+                                            row.item.orbital === 's' && (
+                                                <Link
+                                                    to={`/raw-data/${number}/${ion}/${row.item.term}`}
+                                                >
+                                                    {row.label}
+                                                </Link>
+                                            )) ||
+                                            row.label}
                                     </th>
                                     <td colSpan={cols.length + 1} />
                                 </tr>
@@ -115,7 +125,6 @@ export const OrbitalTable = (): JSX.Element => {
                                         cols={cols}
                                         rawData={row.items}
                                         rowIndex={rowIndex}
-                                        showValue={showValue}
                                     />
                                 )}
                                 {options.nth && (
@@ -130,7 +139,13 @@ export const OrbitalTable = (): JSX.Element => {
                                         cols={cols}
                                         rawData={row.items}
                                         rowIndex={rowIndex}
-                                        showValue={showValue}
+                                    />
+                                )}
+                                {options.percent && (
+                                    <Percent
+                                        cols={cols}
+                                        rawData={row.items}
+                                        rowIndex={rowIndex}
                                     />
                                 )}
                             </tbody>

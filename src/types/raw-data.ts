@@ -73,14 +73,12 @@ export const queryItems = `
     }
     `
 export const query = `
-    query rawData($number: Int!, $ion: String!) {
-        rawData(number: $number, ion: $ion) {
+    query rawData($number: Int!, $ion: String!, $term: String) {
+        rawData(number: $number, ion: $ion, term: $term) {
             ${queryItems}
         }
     }
     `
-
-export type Param = { number: number; ion: string }
 
 export type ReturnType = {
     rawData: RawData[]

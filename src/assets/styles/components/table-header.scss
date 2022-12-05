@@ -60,7 +60,32 @@
 
 .periodic-table-modal {
     .reveal {
-        width: 50em;
+        width: 90%;
+    }
+
+    td {
+        padding: 0;
+    }
+}
+
+.chart-modal {
+    .reveal {
+        width: 90vw;
+        height: 90vh;
+        top: 10px;
+    }
+
+    .chart-modal__links__wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        .chart-modal__links__left {
+            display: flex;
+        }
+
+        a {
+            padding: 0 1rem;
+        }
     }
 }
 
@@ -68,5 +93,14 @@
     li {
         display: flex;
         align-items: center;
+    }
+}
+
+.link-base.current {
+    background-color: map-get($foundation-palette, 'primary');
+    padding: 0 6px;
+
+    a {
+        color: white;
     }
 }

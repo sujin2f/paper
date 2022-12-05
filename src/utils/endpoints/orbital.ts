@@ -1,4 +1,4 @@
-import { Param } from 'src/types/orbital'
+import { Param } from 'src/types/store'
 import { getOrbital } from 'src/utils/models/orbital'
 import { rawData as getRawData } from './raw-data'
 import { RawData } from 'src/types/raw-data'

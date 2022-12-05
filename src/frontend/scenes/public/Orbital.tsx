@@ -2,9 +2,11 @@ import React, { Fragment } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
 import { Header } from 'src/frontend/components/table/header'
-import { OrbitalTable } from 'src/frontend/components/table/OrbitalTable'
 import { Link } from 'react-router-dom'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
+import { Table } from 'src/frontend/components/table'
+import { useOrbital } from 'src/frontend/hooks/useOrbital'
+import { getLabel } from 'src/utils/models/orbital'
 
 export const Orbital = (): JSX.Element => {
     const { atom } = useTableParam()
@@ -33,7 +35,7 @@ export const Orbital = (): JSX.Element => {
             </Row>
             <Row>
                 <Column>
-                    <OrbitalTable />
+                    <Table useData={useOrbital} getLabel={getLabel} />
                 </Column>
             </Row>
         </Fragment>

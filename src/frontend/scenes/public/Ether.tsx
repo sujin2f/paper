@@ -2,9 +2,11 @@ import React, { Fragment } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
 import { Header } from 'src/frontend/components/table/header'
-import { EtherTable } from 'src/frontend/components/table/EtherTable'
 import { Link } from 'react-router-dom'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
+import { useEther } from 'src/frontend/hooks/useEther'
+import { getLabel } from 'src/utils/models/ether'
+import { Table } from 'src/frontend/components/table'
 
 export const Ether = (): JSX.Element => {
     const { atom } = useTableParam()
@@ -33,7 +35,7 @@ export const Ether = (): JSX.Element => {
             </Row>
             <Row>
                 <Column>
-                    <EtherTable />
+                    <Table useData={useEther} getLabel={getLabel} />
                 </Column>
             </Row>
         </Fragment>

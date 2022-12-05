@@ -2,9 +2,11 @@ import React, { Fragment } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
 import { Header } from 'src/frontend/components/table/header'
-import { RawDataTable } from 'src/frontend/components/table/RawDataTable'
+import { Table } from 'src/frontend/components/table'
 import { Link } from 'react-router-dom'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
+import { useRawData } from 'src/frontend/hooks/useRawData'
+import { getLabel } from 'src/utils/models/raw-data'
 
 export const RawData = (): JSX.Element => {
     const { atom } = useTableParam()
@@ -33,7 +35,7 @@ export const RawData = (): JSX.Element => {
             </Row>
             <Row>
                 <Column>
-                    <RawDataTable />
+                    <Table useData={useRawData} getLabel={getLabel} />
                 </Column>
             </Row>
         </Fragment>

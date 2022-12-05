@@ -6,6 +6,7 @@ export const SET_RYDBERG = 'ether/v1/SET_RYDBERG'
 export const SET_DIFF = 'ether/v1/SET_DIFF'
 export const SET_NTH = 'ether/v1/SET_NTH'
 export const SET_PERCENT_POINT = 'ether/v1/SET_PERCENT_POINT'
+export const SET_PERCENT = 'ether/v1/SET_PERCENT'
 export const SET_WEIGHT = 'ether/v1/SET_WEIGHT'
 export const SET_CHART_TITLE = 'ether/v1/CHART_TITLE'
 export const SET_CHART_DATA = 'ether/v1/SET_CHART_DATA'
@@ -57,6 +58,13 @@ export const setPercentPoint = (percentPoint: boolean): Action => {
     return {
         type: SET_PERCENT_POINT,
         percentPoint,
+    }
+}
+
+export const setPercent = (percent: boolean): Action => {
+    return {
+        type: SET_PERCENT,
+        percent,
     }
 }
 

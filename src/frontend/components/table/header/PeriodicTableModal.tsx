@@ -6,7 +6,7 @@ import { useTableParam } from 'src/frontend/hooks/useTableParam'
 import { Atom } from 'src/types/atom'
 
 export const PeriodicTableModal = (): JSX.Element => {
-    const { linkBase, ion } = useTableParam()
+    const { linkBase } = useTableParam()
     const [showModal, setShowModal] = useState<boolean>(false)
 
     const table: Atom[][] = periodicTable.elements.reduce<Atom[][]>(
@@ -49,7 +49,7 @@ export const PeriodicTableModal = (): JSX.Element => {
                                             >
                                                 {atom && (
                                                     <Link
-                                                        to={`/${linkBase}/${atom.number}/${ion}`}
+                                                        to={`/${linkBase}/${atom.number}`}
                                                         onClick={() =>
                                                             setShowModal(false)
                                                         }
