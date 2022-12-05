@@ -1,31 +1,30 @@
 import React, { useContext } from 'react'
-import { RawData } from 'src/types/raw-data'
 import { Context, ContextType } from 'src/frontend/store'
-import { getDiffWithNth, getTableCellValue } from 'src/utils/models/common'
+import { RawDataItem } from 'src/types/raw-data'
+import { getPercentPoint } from 'src/utils/math'
+import { Nullable } from 'src/types/common'
 
 type Props = {
-    rawData: RawData[]
+    rawData: Nullable<RawDataItem>[]
     rowIndex: number
     cols: string[]
     showValue: boolean
-    z: number
-    weight: number
 }
 
 export const PercentPoint = (props: Props): JSX.Element => {
-    const { rawData, rowIndex, cols, showValue, z, weight } = props
+    const { rawData, rowIndex, cols, showValue } = props
     const [options] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
             <th className="align__right">%P</th>
             {cols.map((_, index) => {
-                const value = getTableCellValue(
-                    rawData,
-                    index,
-                    z,
-                    weight,
-                    showValue,
+                const current = rawData[index]
+                const prev = rawData[index - 1]
+                const percentPoint = getPercentPoint(
+                    current,
+                    prev,
+                    options.shift,
                 )
 
                 return (
@@ -33,10 +32,8 @@ export const PercentPoint = (props: Props): JSX.Element => {
                         key={`${rowIndex}-percent-point-${index}`}
                         className="align__right"
                     >
-                        {value &&
-                            getDiffWithNth(value.diff, index).toFixed(
-                                options.digit,
-                            )}
+                        {!isNaN(percentPoint) &&
+                            percentPoint.toFixed(options.digit)}
                     </td>
                 )
             })}

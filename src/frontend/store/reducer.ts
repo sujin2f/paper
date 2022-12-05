@@ -7,6 +7,9 @@ import {
     SET_NTH,
     SET_PERCENT_POINT,
     SET_WEIGHT,
+    SET_CHART_TITLE,
+    SET_CHART_DATA,
+    SET_SHIFT,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -19,6 +22,8 @@ export const initialState: State = {
     nth: true,
     percentPoint: true,
     weight: true,
+    chartTitle: '',
+    shift: 0,
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
@@ -69,6 +74,24 @@ export const reducer = (state: State = initialState, action: Action): State => {
             return {
                 ...state,
                 weight: action.weight!,
+            }
+        }
+        case SET_CHART_TITLE: {
+            return {
+                ...state,
+                chartTitle: action.chartTitle!,
+            }
+        }
+        case SET_CHART_DATA: {
+            return {
+                ...state,
+                chartData: action.chartData!,
+            }
+        }
+        case SET_SHIFT: {
+            return {
+                ...state,
+                shift: action.shift!,
             }
         }
         default: {

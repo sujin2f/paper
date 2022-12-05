@@ -1,8 +1,7 @@
-import React, { Fragment, useContext, useState } from 'react'
+import React, { Fragment, useContext, useEffect } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
 import { useEther } from 'src/frontend/hooks/useEther'
-import { getMaxCol } from 'src/utils/models/ether'
 import { Ether } from './cells/Ether'
 import { Orbital } from './cells/Orbital'
 import { Rydberg } from './cells/Rydberg'
@@ -10,18 +9,41 @@ import { Diff } from './cells/Diff'
 import { Nth } from './cells/Nth'
 import { PercentPoint } from './cells/PercentPoint'
 import { Weight } from './cells/Weight'
-import { EtherHeader } from './header/EtherHeader'
+import { setChartData } from 'src/frontend/store/actions'
+import {
+    getChartData,
+    getChartLabels,
+    getMaxCol,
+} from 'src/utils/models/common'
+import { getPercent } from 'src/utils/math'
+import { getLabel } from 'src/utils/models/ether'
 
 export const EtherTable = (): JSX.Element => {
     const { number, ion, term } = useTableParam()
-    const { ether, loading, error, addEther } = useEther({
+    const { ether, loading, error } = useEther({
         number,
         ion,
         term,
     })
-    const [options] = useContext(Context) as ContextType
-    const weight = useState<number>(ether?.weight || 1)
-    const z = useState<number>(ether?.z || 1)
+    const [options, dispatch] = useContext(Context) as ContextType
+
+    useEffect(() => {
+        if (ether.length) {
+            const datasets = getChartData(
+                ether,
+                getPercent,
+                getLabel,
+                options.shift,
+            )
+
+            dispatch(
+                setChartData({
+                    labels: getChartLabels(datasets),
+                    datasets,
+                }),
+            )
+        }
+    }, [ether, options.shift, dispatch])
 
     if (error) {
         return <Fragment>404</Fragment>
@@ -39,15 +61,9 @@ export const EtherTable = (): JSX.Element => {
 
     return (
         <Fragment>
-            <EtherHeader
-                addEther={() => addEther(z[0], weight[0])}
-                ether={ether}
-                z={z}
-                weight={weight}
-            />
             <div className="table-scroll">
                 <table className="unstriped">
-                    {ether.items.map((row, rowIndex) => {
+                    {ether.map((row, rowIndex) => {
                         const rawData = row ? row.items : []
 
                         let showValue = false
@@ -60,7 +76,8 @@ export const EtherTable = (): JSX.Element => {
                                 <thead>
                                     <tr className="table__header">
                                         <th className="align__right">
-                                            {row ? row.etherName : ''}
+                                            {/* TODO empty row should no be allowed */}
+                                            {row && row.label}
                                         </th>
                                         <td colSpan={cols.length + 1} />
                                     </tr>
@@ -87,8 +104,6 @@ export const EtherTable = (): JSX.Element => {
                                             cols={cols}
                                             rawData={rawData}
                                             rowIndex={rowIndex}
-                                            z={z[0]}
-                                            weight={weight[0]}
                                         />
                                     )}
                                     {options.diff && (
@@ -96,9 +111,6 @@ export const EtherTable = (): JSX.Element => {
                                             cols={cols}
                                             rawData={rawData}
                                             rowIndex={rowIndex}
-                                            showValue={showValue}
-                                            z={z[0]}
-                                            weight={weight[0]}
                                         />
                                     )}
                                     {options.weight && (
@@ -107,18 +119,13 @@ export const EtherTable = (): JSX.Element => {
                                             rawData={rawData}
                                             rowIndex={rowIndex}
                                             showValue={showValue}
-                                            z={z[0]}
-                                            weight={weight[0]}
                                         />
                                     )}
                                     {options.nth && (
                                         <Nth
                                             cols={cols}
-                                            rawData={rawData}
                                             rowIndex={rowIndex}
-                                            showValue={showValue}
-                                            z={z[0]}
-                                            weight={weight[0]}
+                                            rawData={row.items}
                                         />
                                     )}
                                     {options.percentPoint && (
@@ -127,8 +134,6 @@ export const EtherTable = (): JSX.Element => {
                                             rawData={rawData}
                                             rowIndex={rowIndex}
                                             showValue={showValue}
-                                            z={z[0]}
-                                            weight={weight[0]}
                                         />
                                     )}
                                 </tbody>

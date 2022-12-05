@@ -1,9 +1,10 @@
 import React from 'react'
-import { RawData } from 'src/types/raw-data'
 import { toEther } from 'src/utils/models/common'
+import { RawDataItem } from 'src/types/raw-data'
+import { Nullable } from 'src/types/common'
 
 type Props = {
-    rawData: RawData[]
+    rawData: Nullable<RawDataItem>[]
     rowIndex: number
     title: string
     cols: string[]
@@ -15,7 +16,7 @@ export const Ether = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">{title}</th>
             {cols.map((_, index) => {
-                const item = rawData[index + 1] || undefined
+                const item = rawData[index] || undefined
 
                 return (
                     <th

@@ -3,6 +3,7 @@ import { Param, RawData } from 'src/types/raw-data'
 import { addOne, getOne } from 'src/utils/mongo/crawler'
 import { crawl } from 'src/utils/crawler/crawler'
 import { periodicTable } from 'src/constants/periodic-table'
+import { getTableData } from '../models/raw-data'
 
 export const rawData = async (param: Param): Promise<RawData[]> => {
     const crawled = await getOne(param).catch(() => false)
@@ -17,6 +18,6 @@ export const rawData = async (param: Param): Promise<RawData[]> => {
         })
     }
 
-    const rawData = await query(param)
-    return rawData
+    const items = await query(param)
+    return getTableData(items)
 }

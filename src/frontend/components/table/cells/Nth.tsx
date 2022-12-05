@@ -1,19 +1,17 @@
 import React, { useContext } from 'react'
-import { RawData } from 'src/types/raw-data'
 import { Context, ContextType } from 'src/frontend/store'
-import { getNth, getTableCellValue } from 'src/utils/models/common'
+import { Nullable } from 'src/types/common'
+import { RawDataItem } from 'src/types/raw-data'
+import { getRydberg } from 'src/utils/math'
 
 type Props = {
-    rawData: RawData[]
+    rawData: Nullable<RawDataItem>[]
     rowIndex: number
     cols: string[]
-    showValue: boolean
-    z: number
-    weight: number
 }
 
 export const Nth = (props: Props): JSX.Element => {
-    const { rawData, rowIndex, cols, showValue, z, weight } = props
+    const { rowIndex, cols, rawData } = props
     const [options] = useContext(Context) as ContextType
 
     return (
@@ -22,20 +20,16 @@ export const Nth = (props: Props): JSX.Element => {
                 N<sub>th</sub>(n)
             </th>
             {cols.map((_, index) => {
-                const value = getTableCellValue(
-                    rawData,
-                    index,
-                    z,
-                    weight,
-                    showValue,
-                )
-
+                const current = rawData[index]
                 return (
                     <td
                         key={`${rowIndex}-nth-${index}`}
                         className="align__right"
                     >
-                        {value && getNth(index).toFixed(options.digit)}
+                        {current &&
+                            getRydberg(index, options.shift).toFixed(
+                                options.digit,
+                            )}
                     </td>
                 )
             })}

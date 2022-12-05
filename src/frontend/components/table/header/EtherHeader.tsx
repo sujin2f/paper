@@ -1,12 +1,12 @@
 import React, { Fragment, useRef } from 'react'
 import { Input } from 'src/common/components/forms/Input'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
-import { Ether } from 'src/types/ether'
-import { GraphModal } from './GraphModal'
+// import { Ether } from 'src/types/ether'
+import { ChartModal } from './ChartModal'
 
 type Props = {
     addEther: () => void
-    ether: Ether
+    // ether: Ether
     z: [number, React.Dispatch<React.SetStateAction<number>>]
     weight: [number, React.Dispatch<React.SetStateAction<number>>]
 }
@@ -26,7 +26,7 @@ export const EtherHeader = (props: Props): JSX.Element => {
     }
 
     const ether = {
-        ...props.ether,
+        // ...props.ether,
         z,
         weight,
     }
@@ -34,7 +34,7 @@ export const EtherHeader = (props: Props): JSX.Element => {
     return (
         <div className="top-bar">
             <nav className="top-bar-left">
-                <GraphModal ether={ether} />
+                <ChartModal />
             </nav>
             <div className="top-bar-right">
                 <ul className="menu menu__ether">

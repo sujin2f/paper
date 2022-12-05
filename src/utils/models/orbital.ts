@@ -1,105 +1,66 @@
 import { orbitalKeys } from 'src/constants/orbital'
-import { Orbital } from 'src/types/orbital'
+import { LabelFunction } from 'src/types/common'
 import { RawData } from 'src/types/raw-data'
-import { getNextOrbital, getNumber } from './common'
+import { getNumber } from './common'
 
-// Get the first target orbital
-const getNextEntryPoint = (
-    rawData: RawData[],
-    entryPoint: RawData,
-): RawData => {
-    const jWeight = entryPoint.j.indexOf('/') !== -1 ? 2 : 1
-    const nextJ = getNumber(entryPoint.j) + jWeight
-    const nextOrbital = getNextOrbital(entryPoint.orbital)
-    const nextTerm = getNumber(entryPoint.term)
-
-    return rawData
-        .filter((data) => {
-            const orbital = data.orbital === nextOrbital
-            const prefix = data.confPrefix === entryPoint.confPrefix
-            const j = getNumber(data.j) === nextJ
-            const term = getNumber(data.term) === nextTerm
-
-            return orbital && prefix && j && term
-        })
-        .sort((a, b) => a.rydberg - b.rydberg)[0]
+const getNextJ = (j: string) => {
+    const jWeight = j.indexOf('/') !== -1 ? 2 : 1
+    return getNumber(j) + jWeight
 }
 
-const getRow = (rawData: RawData[], entryPoint: RawData) =>
-    rawData
-        .filter(
-            (data) =>
-                data.j === entryPoint.j &&
-                data.term === entryPoint.term &&
-                data.confPrefix === entryPoint.confPrefix &&
-                data.orbital === entryPoint.orbital,
-        )
-        .reduce((acc, data) => {
-            acc[data.position] = data
-            return acc
-        }, [] as RawData[])
+export const getOrbital = (rawData: RawData[], term?: string): RawData[] => {
+    const result: RawData[] = []
+    let nextTerm = 0
+    let nextPrefix = ''
+    let nextJ = 0
 
-export const getEntryPoints = (rawData: RawData[]): RawData[] => {
-    const keys: Record<string, RawData> = {}
-
-    rawData
-        .filter((data) => data.orbital === 's')
-        .forEach((data) => {
-            const key = `${data.j}--${data.term}--${data.confPrefix}`
-            if (Object.keys(keys).indexOf(key) === -1) {
-                keys[key] = data
-                return
-            }
-
-            if (keys[key].rydberg > data.rydberg) {
-                keys[key] = data
-            }
-        })
-
-    return Object.values(keys).sort((a, b) => a.rydberg - b.rydberg)
-}
-
-export const getOrbital = (rawData: RawData[], term?: string): Orbital => {
-    const result: Orbital = {
-        entryPoints: getEntryPoints(rawData),
-        items: [],
-    }
-
-    let entryPoint = result.entryPoints[0]
-
+    // Get the first s orbital
     if (term) {
-        const entryCandidate = result.entryPoints.filter(
-            (item) => item.term === term,
-        )[0]
-        if (entryCandidate) {
-            entryPoint = entryCandidate
+        const sOrbital = rawData.filter(
+            (row) => row.item.term === term && row.item.orbital === 's',
+        )
+        if (sOrbital.length) {
+            nextTerm = getNumber(sOrbital[0].item.term)
+            nextPrefix = sOrbital[0].item.confPrefix
+            nextJ = getNumber(sOrbital[0].item.j)
         }
     }
 
+    // s, p, d, ...
     orbitalKeys.forEach((orbital) => {
-        if (!entryPoint) {
-            return result
+        const data: RawData[] = rawData.filter((row) => {
+            let match = row.item.orbital === orbital
+
+            if (nextTerm) {
+                match = match && getNumber(row.item.term) === nextTerm
+            }
+            if (nextPrefix) {
+                match = match && row.item.confPrefix === nextPrefix
+            }
+            if (nextJ) {
+                match = match && getNumber(row.item.j) === nextJ
+            }
+            return match
+        })
+
+        if (!data.length) {
+            return
         }
 
-        const items = getRow(rawData, entryPoint)
-        items[0] = entryPoint
-
-        if (items.length) {
-            result.items.push({
-                orbital,
-                items,
-            })
+        const item = {
+            ...data[0],
+            label: getLabel(data[0].item, 0),
         }
 
-        entryPoint = getNextEntryPoint(rawData, entryPoint)
+        result.push(item)
+
+        nextTerm = getNumber(item.item.term)
+        nextPrefix = item.item.confPrefix
+        nextJ = getNextJ(item.item.j)
     })
+
     return result
 }
 
-export const getMaxCol = (orbital: Orbital): number => {
-    let maxCol = 0
-    orbital.items.forEach((row) => {
-        maxCol = row.items.length > maxCol ? row.items.length : maxCol
-    })
-    return maxCol
-}
+export const getLabel: LabelFunction = (item, _) =>
+    `${item.orbital.toUpperCase()} Orbital`

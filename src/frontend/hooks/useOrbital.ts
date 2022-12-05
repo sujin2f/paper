@@ -8,7 +8,7 @@ export const useOrbital = (variables: Param) => {
     })
 
     return {
-        orbital: data && data.orbital,
+        orbital: data ? data.orbital : [],
         loading,
         error,
     }

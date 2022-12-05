@@ -1,41 +1,34 @@
 import React, { useContext } from 'react'
-import { RawData } from 'src/types/raw-data'
 import { Context, ContextType } from 'src/frontend/store'
-import { evaluate } from 'src/utils/math'
-import { getTableCellValue } from 'src/utils/models/common'
+import { getWeight } from 'src/utils/math'
+import { RawDataItem } from 'src/types/raw-data'
+import { Nullable } from 'src/types/common'
 
 type Props = {
-    rawData: RawData[]
+    rawData: Nullable<RawDataItem>[]
     rowIndex: number
     cols: string[]
     showValue: boolean
-    z: number
-    weight: number
 }
 
 export const Weight = (props: Props): JSX.Element => {
-    const { rawData, rowIndex, cols, showValue, z, weight } = props
+    const { rawData, rowIndex, cols, showValue } = props
     const [options] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
             <th className="align__right">Weight</th>
             {cols.map((_, index) => {
-                const value = getTableCellValue(
-                    rawData,
-                    index,
-                    z,
-                    weight,
-                    showValue,
-                )
+                const current = rawData[index]
+                const prev = rawData[index - 1]
+                const weight = getWeight(current, prev, options.shift)
 
                 return (
                     <td
                         key={`${rowIndex}-weight-${index}`}
                         className="align__right"
                     >
-                        {value &&
-                            evaluate(index, value.diff).toFixed(options.digit)}
+                        {!isNaN(weight) && weight.toFixed(options.digit)}
                     </td>
                 )
             })}

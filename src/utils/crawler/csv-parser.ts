@@ -1,9 +1,47 @@
 import { parse } from 'csv-parse'
-import { RawData } from 'src/types/raw-data'
-import { getConfObject } from 'src/utils/models/raw-data'
+import { RawDataItem } from 'src/types/raw-data'
 import { addOne } from 'src/utils/mongo/raw-data'
 import { Nullable } from 'src/types/common'
 import { Atom } from 'src/types/atom'
+
+const getConfArray = (conf: string): string[] => {
+    const result: string[] = []
+    const div = conf.split('.')
+    div.forEach((el) => {
+        const hasMultiple = /([0-9]+)([a-z]+)([0-9]+)/.exec(el)
+        if (!hasMultiple) {
+            result.push(el)
+            return
+        }
+        Array(parseInt(hasMultiple[3]))
+            .fill('')
+            .forEach(() => result.push(`${hasMultiple[1]}${hasMultiple[2]}`))
+    })
+    return result
+}
+
+const getConfObject = (conf: string): Partial<RawDataItem> => {
+    const confArray = getConfArray(conf)
+    const lastElement = [...confArray].pop() || ''
+    const restElements = confArray.slice(0, confArray.length - 1).join('.')
+    const confReg = /([0-9]+)([a-z]+)/.exec(lastElement)
+    if (!confReg) {
+        return {
+            conf,
+            position: 0,
+            orbital: '',
+            confPrefix: restElements,
+            confArray,
+        }
+    }
+    return {
+        conf,
+        position: parseInt(confReg[1]),
+        orbital: confReg[2],
+        confPrefix: restElements,
+        confArray,
+    }
+}
 
 const filterNumValue = (value: string): string => {
     const regex = new RegExp(/[0-9\.-]+/)
@@ -17,7 +55,7 @@ const filterNumValue = (value: string): string => {
 }
 
 const filterValue = (value: string): string => {
-    const regex = new RegExp(/[0-9a-zA-Z\.\/*,\(\) ]+/)
+    const regex = new RegExp(/[0-9a-zA-Z\.\/*,\(\) <>\[\]]+/)
     const exec = regex.exec(value)
 
     if (!exec || !exec.length) {
@@ -34,7 +72,7 @@ const createRawData = (param: {
     conf: string
     term: string
     j: string
-}): Nullable<RawData> => {
+}): Nullable<RawDataItem> => {
     const rydberg = parseFloat(filterNumValue(param.rydberg))
     const conf = filterValue(param.conf)
     const term = filterValue(param.term)
@@ -51,7 +89,7 @@ const createRawData = (param: {
         rydberg,
         term,
         j,
-    } as RawData
+    } as RawDataItem
 }
 
 export const csvParser = async (atom: Atom, ion: string, csv: string) => {

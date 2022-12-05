@@ -2,8 +2,9 @@ import React, { Fragment, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
 import { Context, ContextType } from 'src/frontend/store'
-import { setDigit } from 'src/frontend/store/actions'
+import { setDigit, setShift } from 'src/frontend/store/actions'
 import { getAtom } from 'src/utils/models/atom'
+import { ChartModal } from './ChartModal'
 import { InfoModal } from './InfoModal'
 import { OptionDropdown } from './OptionDropdown'
 import { PeriodicTableModal } from './PeriodicTableModal'
@@ -69,6 +70,40 @@ export const Header = (): JSX.Element => {
                 </nav>
                 <div className="top-bar-right">
                     <ul className="menu">
+                        <li>
+                            <ChartModal />
+                        </li>
+                        <li>
+                            <button
+                                type="button"
+                                className="button small"
+                                onClick={() =>
+                                    dispatch(setShift(options.shift + 1))
+                                }
+                            >
+                                &lt;
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                type="button"
+                                className="button small"
+                                onClick={() => dispatch(setShift(0))}
+                            >
+                                0
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                type="button"
+                                className="button small"
+                                onClick={() =>
+                                    dispatch(setShift(options.shift - 1))
+                                }
+                            >
+                                &gt;
+                            </button>
+                        </li>
                         <li>
                             <button
                                 type="button"

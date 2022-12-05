@@ -1,55 +1,15 @@
-import { RawData } from './raw-data'
-
-export type Orbital = {
-    entryPoints: RawData[]
-    items: {
-        orbital: string
-        items: RawData[]
-    }[]
-}
-
-export const graphQL = `
-    type Orbital {
-        entryPoints: [RawData]
-        items: [OrbitalRaw]
-    }
-    type OrbitalRaw {
-        orbital: String
-        items: [RawData]
-    }
-    `
+import { queryItems, RawData, Param as RawDataParam } from './raw-data'
 
 export const query = `
     query orbital($number: Int!, $ion: String!, $term: String) {
         orbital(number: $number, ion: $ion, term: $term) {
-            entryPoints {
-                _id
-                term
-                j
-                conf
-                position
-                orbital
-                confPrefix
-            }
-            items {
-                orbital
-                items {
-                    _id
-                    rydberg
-                    term
-                    j
-                    conf
-                    position
-                    orbital
-                    confPrefix
-                }
-            }
+            ${queryItems}
         }
     }
     `
 
-export type Param = { number: number; ion: string; term?: string }
+export type Param = RawDataParam & { term?: string }
 
 export type ReturnType = {
-    orbital: Orbital
+    orbital: RawData[]
 }
