@@ -1,6 +1,9 @@
 import { CalcFunction } from 'src/types/common'
+import { RawData, RawDataContainer } from 'src/types/raw-data'
 
 export const getRydberg = (n: number, shift = 0, weight = 0): number => {
+    if (n === 0) {
+    }
     const rydberg = n - weight + shift
     const leftHand = 1 / Math.pow(rydberg, 2)
     const rightHand = 1 / Math.pow(rydberg + 1, 2)
@@ -94,7 +97,7 @@ const findWeight = (
     return (firstVal - secondVal) / 2
 }
 
-export const getDiff: CalcFunction = (current, prev, shift) => {
+const getDiff: CalcFunction = (current, prev, shift) => {
     if (!current) {
         return NaN
     }
@@ -112,7 +115,7 @@ export const getDiff: CalcFunction = (current, prev, shift) => {
     return current.rydberg - prev.rydberg
 }
 
-export const getPercent: CalcFunction = (current, prev, shift) => {
+const getPercent: CalcFunction = (current, prev, shift) => {
     const diff = getDiff(current, prev, 0)
     if (isNaN(diff)) {
         return NaN
@@ -120,19 +123,88 @@ export const getPercent: CalcFunction = (current, prev, shift) => {
     return diff / getRydberg(current!.position - 1, shift)
 }
 
-export const getPercentPoint: CalcFunction = (current, prev, shift) => {
-    const percent = getPercent(current, prev, shift)
-    if (isNaN(percent)) {
-        return NaN
-    }
-    return percent * 100 - 100
-}
-
-export const getWeight: CalcFunction = (current, prev, shift) => {
+const getWeight: CalcFunction = (current, prev, shift) => {
     const diff = getDiff(current, prev, 0)
     if (isNaN(diff)) {
         return NaN
     }
 
     return findWeight(current!.position - 1, diff, shift)
+}
+
+export const getValues = (
+    data: RawDataContainer,
+    shift: number,
+    isDiagonal: boolean,
+    isOrbital = false,
+): RawDataContainer => {
+    let items: RawData[] = data.items.map((row) => ({
+        ...row,
+        items: row.items.map((col, index) => {
+            if (!col) {
+                return col
+            }
+
+            const prev = row.items[index - 1]
+            const diff = getDiff(col, prev, 0)
+            const weight = getWeight(col, prev, shift)
+            const nth = getRydberg(index, shift)
+            const percent = getPercent(col, prev, shift)
+
+            return {
+                ...col,
+                diff,
+                weight,
+                nth,
+                percent,
+            }
+        }),
+    }))
+
+    if (isDiagonal) {
+        const newItems: RawData[] = []
+        items.forEach((row, rowIndex) => {
+            // S Orbital
+            if (rowIndex === 0) {
+                newItems[0] = {
+                    ...row,
+                    items: row.items,
+                }
+                return
+            }
+
+            if (isOrbital && rowIndex === 1) {
+                newItems[1] = {
+                    ...row,
+                    items: row.items,
+                }
+            }
+
+            row.items.forEach((item, index) => {
+                if (!item) {
+                    return
+                }
+
+                const weight = isOrbital ? 1 : 0
+                const newRowIndex = index - rowIndex + 1 + weight
+                if (!newItems[newRowIndex]) {
+                    newItems[newRowIndex] = {
+                        label: `Diagonal ${index}`,
+                        item,
+                        items: [],
+                    }
+                }
+
+                if (newRowIndex > weight) {
+                    newItems[newRowIndex].items[item.position - 1] = item
+                }
+            })
+        })
+        items = newItems
+    }
+
+    return {
+        entries: data.entries,
+        items,
+    }
 }

@@ -1,9 +1,9 @@
 import { Param } from 'src/types/store'
 import { getOrbital } from 'src/utils/models/orbital'
 import { rawData as getRawData } from './raw-data'
-import { RawData } from 'src/types/raw-data'
+import { RawDataContainer } from 'src/types/raw-data'
 
-export const orbital = async (param: Param): Promise<RawData[]> => {
+export const orbital = async (param: Param): Promise<RawDataContainer> => {
     const rawData = await getRawData({
         number: param.number,
         ion: param.ion,

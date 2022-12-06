@@ -1,46 +1,22 @@
 import { useLocation, useParams } from 'react-router-dom'
-import { CalcFunction } from 'src/types/common'
-import { getDiff, getPercent, getPercentPoint, getWeight } from 'src/utils/math'
+import { RawDataItem } from 'src/types/raw-data'
 import { getAtom } from 'src/utils/models/atom'
 
 export const useTableParam = () => {
-    const param = useParams()
+    const { linkBase, atom, graphType } = useParams()
+    const [number, ion, term] = atom!.split('+')
     const location = useLocation()
-    const number = parseInt(param.number || '1')
-    const ion = param.ion || 'I'
-    const atom = getAtom(number)
-    const linkBase = param.linkBase || ''
-    const term = param.term || ''
     const isGraph = location.pathname.indexOf('/graph') !== -1
-    let graphType = param.graphType || 'percent'
-    let graphTypeFunc: CalcFunction = getPercent
-
-    switch (graphType) {
-        case 'diff':
-            graphTypeFunc = getDiff
-            break
-
-        case 'percent-point':
-            graphTypeFunc = getPercentPoint
-            break
-
-        case 'percent':
-            graphTypeFunc = getPercent
-            break
-
-        case 'weight':
-            graphTypeFunc = getWeight
-            break
-    }
+    const isDiagonal = location.pathname.indexOf('/diagonal') !== -1
 
     return {
-        number,
-        ion,
-        atom,
+        number: parseInt(number || '1'),
+        ion: ion || 'I',
+        atom: getAtom(parseInt(number || '1')),
         linkBase,
-        term,
-        graphTypeFunc,
-        graphType,
+        term: term || '',
+        graphType: (graphType || 'percent') as keyof RawDataItem,
         isGraph,
+        isDiagonal,
     }
 }

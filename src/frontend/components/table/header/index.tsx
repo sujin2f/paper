@@ -9,9 +9,10 @@ import { InfoModal } from './InfoModal'
 import { IonDropdown } from './IonDropdown'
 import { OptionDropdown } from './OptionDropdown'
 import { PeriodicTableModal } from './PeriodicTableModal'
+import { TermDropdown } from './TermDropdown'
 
 export const Header = (): JSX.Element => {
-    const { atom, number, ion, linkBase, term } = useTableParam()
+    const { atom, number, ion, linkBase, term, isDiagonal } = useTableParam()
     const [options, dispatch] = useContext(Context) as ContextType
 
     if (!atom) {
@@ -29,9 +30,7 @@ export const Header = (): JSX.Element => {
         dispatch(setDigit(newDigit))
     }
 
-    const navigateSuffix = term
-        ? `${number}/${ion}/${term}`
-        : `${number}/${ion}`
+    const atomParam = [number, ion, term].filter((v) => v).join('+')
 
     return (
         <Fragment>
@@ -48,7 +47,9 @@ export const Header = (): JSX.Element => {
                         <h1>
                             {atom.symbol} {ion}
                         </h1>
-                        <h2>{atom.name}</h2>
+                        <p>
+                            <PeriodicTableModal />
+                        </p>
                     </div>
                     <InfoModal />
                 </header>
@@ -66,34 +67,59 @@ export const Header = (): JSX.Element => {
                     <ul className="dropdown menu">
                         <OptionDropdown />
                         <IonDropdown />
+                        <TermDropdown />
+                        <li> | </li>
                         <li
                             className={`link-base ${
-                                linkBase === 'raw-data' && 'current'
+                                linkBase === 'raw-data' ? 'current' : ''
                             }`}
                         >
-                            <Link to={`/raw-data/${navigateSuffix}`}>
-                                Raw Data
-                            </Link>
+                            <Link to={`/raw-data/${atomParam}`}>Raw Data</Link>
                         </li>
                         <li
                             className={`link-base ${
-                                linkBase === 'orbital' && 'current'
+                                linkBase === 'orbital' ? 'current' : ''
                             }`}
                         >
-                            <Link to={`/orbital/${navigateSuffix}`}>
+                            <Link
+                                to={`/orbital/${atomParam}${
+                                    isDiagonal ? '/diagonal' : ''
+                                }`}
+                            >
                                 Orbital
                             </Link>
                         </li>
                         <li
                             className={`link-base ${
-                                linkBase === 'ether' && 'current'
+                                linkBase === 'ether' ? 'current' : ''
                             }`}
                         >
-                            <Link to={`/ether/${navigateSuffix}`}>Ether</Link>
+                            <Link
+                                to={`/ether/${atomParam}${
+                                    isDiagonal ? '/diagonal' : ''
+                                }`}
+                            >
+                                Ether
+                            </Link>
                         </li>
-                        <li>
-                            <PeriodicTableModal />
-                        </li>
+                        {linkBase !== 'raw-data' && (
+                            <Fragment>
+                                <li> | </li>
+                                <li
+                                    className={`link-base ${
+                                        isDiagonal ? 'current' : ''
+                                    }`}
+                                >
+                                    <Link
+                                        to={`/${linkBase}/${atomParam}${
+                                            isDiagonal ? '' : '/diagonal'
+                                        }`}
+                                    >
+                                        Diagonal
+                                    </Link>
+                                </li>
+                            </Fragment>
+                        )}
                     </ul>
                 </nav>
                 <div className="top-bar-right">

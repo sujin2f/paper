@@ -1,37 +1,49 @@
 import { orbitalKeys } from 'src/constants/orbital'
 import { LabelFunction } from 'src/types/common'
-import { RawData, RawDataItem } from 'src/types/raw-data'
+import { RawDataContainer, RawDataItem } from 'src/types/raw-data'
 import { getNumber } from './common'
 
 export const getTableData = (
     rawData: RawDataItem[],
     term?: string,
-): RawData[] => {
+): RawDataContainer => {
     /*
      * Assignment
      */
     const keys: string[] = []
-    const result: RawData[] = []
+    const result: RawDataContainer = {
+        entries: [],
+        items: [],
+    }
     rawData.forEach((item) => {
         const key = `${item.confPrefix}-${item.orbital}-${item.term}-${item.j}`
         if (keys.indexOf(key) === -1) {
             keys.push(key)
-            result.push({
+            result.items.push({
                 label: getLabel(item, 0),
                 item,
                 items: [],
             })
         }
         const position = keys.indexOf(key)
-        result[position].items[item.position - 1] = item
+        result.items[position].items[item.position - 1] = item
+    })
+
+    result.items.forEach((row) => {
+        if (row.item.orbital === 's') {
+            result.entries.push(row.item)
+        }
     })
 
     /*
      * Sort, Remove Empty, and Filter Term
      */
-    let currentTerm = term && result.filter((row) => row.item.term === term)[0]
-    return (
-        result
+    let currentTerm =
+        term && result.items.filter((row) => row.item.term === term)[0]
+    return {
+        ...result,
+
+        items: result.items
             .sort((rowA, rowB) => {
                 const indexA = orbitalKeys.indexOf(rowA.item.orbital)
                 const indexB = orbitalKeys.indexOf(rowB.item.orbital)
@@ -65,8 +77,8 @@ export const getTableData = (
                     orbitalKeys.indexOf(row.item.orbital)
                 const j2 = getNumber(row.item.j)
                 return j1 === j2
-            })
-    )
+            }),
+    }
 }
 
 export const getLabel: LabelFunction = (item, _) => `${item.term}.${item.j}`

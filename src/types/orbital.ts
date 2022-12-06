@@ -1,4 +1,4 @@
-import { queryItems, RawData } from './raw-data'
+import { queryItems, RawDataContainer } from './raw-data'
 
 export const query = `
     query orbital($number: Int!, $ion: String!, $term: String) {
@@ -9,5 +9,5 @@ export const query = `
     `
 
 export type ReturnType = {
-    orbital: RawData[]
+    orbital: RawDataContainer
 }

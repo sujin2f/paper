@@ -1,46 +1,44 @@
 import { orbitalKeys } from 'src/constants/orbital'
 import { LabelFunction } from 'src/types/common'
-import { RawData } from 'src/types/raw-data'
+import { RawData, RawDataContainer, RawDataItem } from 'src/types/raw-data'
 import { getNumber } from './common'
 
-const getNextJ = (j: string) => {
-    const jWeight = j.indexOf('/') !== -1 ? 2 : 1
-    return getNumber(j) + jWeight
-}
-
-export const getOrbital = (rawData: RawData[], term?: string): RawData[] => {
-    const result: RawData[] = []
-    let nextTerm = 0
-    let nextPrefix = ''
-    let nextJ = 0
+export const getOrbital = (
+    rawData: RawDataContainer,
+    term?: string,
+): RawDataContainer => {
+    const result: RawDataContainer = {
+        entries: rawData.entries,
+        items: [],
+    }
+    let sOrbital: RawDataItem = rawData.entries[0]
 
     // Get the first s orbital
     if (term) {
-        const sOrbital = rawData.filter(
+        const sOrbitals = rawData.items.filter(
             (row) => row.item.term === term && row.item.orbital === 's',
         )
-        if (sOrbital.length) {
-            nextTerm = getNumber(sOrbital[0].item.term)
-            nextPrefix = sOrbital[0].item.confPrefix
-            nextJ = getNumber(sOrbital[0].item.j)
+        if (sOrbitals.length) {
+            sOrbital = sOrbitals[0].item
         }
     }
 
-    // s, p, d, ...
-    orbitalKeys.forEach((orbital) => {
-        const data: RawData[] = rawData.filter((row) => {
-            let match = row.item.orbital === orbital
+    if (!sOrbital) {
+        return result
+    }
 
-            if (nextTerm) {
-                match = match && getNumber(row.item.term) === nextTerm
-            }
-            if (nextPrefix) {
-                match = match && row.item.confPrefix === nextPrefix
-            }
-            if (nextJ) {
-                match = match && getNumber(row.item.j) === nextJ
-            }
-            return match
+    const jWeight = sOrbital.j.indexOf('/') !== -1 ? 2 : 1
+
+    // s, p, d, ...
+    orbitalKeys.forEach((orbital, orbitalIndex) => {
+        const data: RawData[] = rawData.items.filter((row) => {
+            const j = getNumber(sOrbital!.j) + jWeight * orbitalIndex
+            return (
+                row.item.orbital === orbital &&
+                getNumber(row.item.term) === getNumber(sOrbital!.term) &&
+                row.item.confPrefix === sOrbital!.confPrefix &&
+                getNumber(row.item.j) === j
+            )
         })
 
         if (!data.length) {
@@ -52,11 +50,24 @@ export const getOrbital = (rawData: RawData[], term?: string): RawData[] => {
             label: getLabel(data[0].item, 0),
         }
 
-        result.push(item)
+        result.items.push(item)
+    })
 
-        nextTerm = getNumber(item.item.term)
-        nextPrefix = item.item.confPrefix
-        nextJ = getNextJ(item.item.j)
+    // Push Linear Ethers into rows
+    result.items.forEach((row, rowIndex) => {
+        row.items.forEach((item, index) => {
+            if (!item) {
+                return
+            }
+            const linear = orbitalKeys.indexOf(item.orbital)
+            const radial = item.position - linear - 1
+
+            if (linear && !radial) {
+                if (result.items[index + 1]) {
+                    result.items[index + 1].items[index] = item
+                }
+            }
+        })
     })
 
     return result

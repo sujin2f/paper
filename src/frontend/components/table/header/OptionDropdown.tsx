@@ -6,7 +6,6 @@ import {
     setEther,
     setNth,
     setOrbital,
-    setPercentPoint,
     setPercent,
     setRydberg,
     setWeight,
@@ -30,7 +29,7 @@ export const OptionDropdown = (): JSX.Element => {
                     setShowOptions(!showOptions)
                 }}
             >
-                View Option
+                Option ▾
             </Link>
             {showOptions && (
                 <ul className="menu vertical" ref={dropdown}>
@@ -122,23 +121,6 @@ export const OptionDropdown = (): JSX.Element => {
                             }
                         >
                             ✔ N<sub>th</sub>(n)
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="#"
-                            type="button"
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                dispatch(setPercentPoint(!options.percentPoint))
-                            }}
-                            className={
-                                options.percentPoint
-                                    ? ''
-                                    : 'view-option__unselected'
-                            }
-                        >
-                            ✔ %P
                         </Link>
                     </li>
                     <li>

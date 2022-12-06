@@ -1,4 +1,4 @@
-import { queryItems, RawData } from './raw-data'
+import { queryItems, RawDataContainer } from './raw-data'
 
 export const query = `
     query ether($number: Int!, $ion: String!, $term: String) {
@@ -8,5 +8,5 @@ export const query = `
     }
     `
 export type ReturnType = {
-    ether: RawData[]
+    ether: RawDataContainer
 }

@@ -16,30 +16,12 @@ export const Router = (): JSX.Element => {
                     </Public>
                 }
             />
-
-            <Route path="/:linkBase" element={<Tables />}>
-                <Route path=":number" element={<Tables />}>
-                    <Route path="graph" element={<Tables />}>
-                        <Route path=":graphType" element={<Tables />}>
-                            <Route path="diagonal" element={<Tables />} />
-                        </Route>
-                    </Route>
-                    <Route path=":ion" element={<Tables />}>
-                        <Route path="graph" element={<Tables />}>
-                            <Route path=":graphType" element={<Tables />}>
-                                <Route path="diagonal" element={<Tables />} />
-                            </Route>
-                        </Route>
-                        <Route path=":term" element={<Tables />}>
-                            <Route path="graph" element={<Tables />}>
-                                <Route path=":graphType" element={<Tables />}>
-                                    <Route
-                                        path="diagonal"
-                                        element={<Tables />}
-                                    />
-                                </Route>
-                            </Route>
-                        </Route>
+            <Route path="/:linkBase/:atom" element={<Tables />}>
+                <Route path="diagonal" element={<Tables />} />
+                <Route path="graph" element={<Tables />}>
+                    <Route path="diagonal" element={<Tables />} />
+                    <Route path=":graphType" element={<Tables />}>
+                        <Route path="diagonal" element={<Tables />} />
                     </Route>
                 </Route>
             </Route>

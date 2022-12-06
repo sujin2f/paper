@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
-import { getWeight } from 'src/utils/math'
 import { RawDataItem } from 'src/types/raw-data'
 import { Nullable } from 'src/types/common'
 
@@ -18,10 +17,7 @@ export const Weight = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">Weight</th>
             {cols.map((_, index) => {
-                const current = rawData[index]
-                const prev = rawData[index - 1]
-                const weight = getWeight(current, prev, options.shift)
-
+                const weight = (rawData[index] && rawData[index]!.weight) || NaN
                 return (
                     <td
                         key={`${rowIndex}-weight-${index}`}

@@ -1,6 +1,5 @@
 import { chartColors } from 'src/constants/chart'
 import { orbitalKeys } from 'src/constants/orbital'
-import { CalcFunction, LabelFunction } from 'src/types/common'
 import { RawData, RawDataItem } from 'src/types/raw-data'
 import { StateChartDataset } from 'src/types/store'
 
@@ -31,15 +30,12 @@ export const getMaxCol = (rawData: RawData[]): number =>
 
 export const getChartData = (
     rawData: RawData[],
-    valueFunction: CalcFunction,
-    labelFunction: LabelFunction,
-    shift = 0,
+    valueKey: keyof RawDataItem,
 ): StateChartDataset[] =>
     rawData
         .map((row, index) => {
-            const data = row.items.map((item, index) => {
-                const prev = row.items[index - 1]
-                const value = valueFunction(item, prev, shift)
+            const data = row.items.map((item) => {
+                const value = !item ? NaN : (item[valueKey] as number)
 
                 if (isNaN(value)) {
                     return undefined
@@ -55,7 +51,7 @@ export const getChartData = (
             }
 
             return {
-                label: labelFunction(row.item, index),
+                label: row.label,
                 data,
                 fill: false,
                 borderColor: chartColors[index] || 'rgb(200, 200, 200)',

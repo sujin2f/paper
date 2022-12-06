@@ -12,13 +12,22 @@ export type RawDataItem = {
     orbital: string
     confPrefix: string
     confArray: string[]
+    diff?: number
+    weight?: number
+    nth?: number
+    percent?: number
 }
 
 export type RawData = {
     _id?: string
-    label?: string
+    label: string
     item: RawDataItem
     items: Nullable<RawDataItem>[]
+}
+
+export type RawDataContainer = {
+    entries: RawDataItem[]
+    items: RawData[]
 }
 
 export const schema = {
@@ -35,6 +44,10 @@ export const schema = {
 }
 
 export const graphQL = `
+    type RawDataContainer {
+        entries: [RawDataItem]
+        items: [RawData]
+    }
     type RawData {
         label: String
         item: RawDataItem
@@ -56,8 +69,7 @@ export const graphQL = `
     `
 
 export const queryItems = `
-    label
-    item {
+    entries {
         rydberg
         conf
         orbital
@@ -66,10 +78,21 @@ export const queryItems = `
         j
     }
     items {
-        rydberg
-        conf
-        orbital
-        position
+        label
+        item {
+            rydberg
+            conf
+            orbital
+            position
+            term
+            j
+        }
+        items {
+            rydberg
+            conf
+            orbital
+            position
+        }
     }
     `
 export const query = `
@@ -81,5 +104,5 @@ export const query = `
     `
 
 export type ReturnType = {
-    rawData: RawData[]
+    rawData: RawDataContainer
 }

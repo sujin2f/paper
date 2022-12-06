@@ -25,13 +25,13 @@ ChartJS.register(
 )
 
 export const ChartModal = (): JSX.Element => {
-    const { isGraph, linkBase, number, ion, term, graphType } = useTableParam()
+    const { isGraph, linkBase, number, ion, term, graphType, isDiagonal } =
+        useTableParam()
     const [optionsContext] = useContext(Context) as ContextType
     const navigate = useNavigate()
 
-    const navigateBase = term
-        ? `${linkBase}/${number}/${ion}/${term}`
-        : `${linkBase}/${number}/${ion}`
+    const atomParam = [number, ion, term].filter((v) => v).join('+')
+    const url = [linkBase, atomParam].filter((v) => v).join('/')
 
     const options = {
         responsive: true,
@@ -48,31 +48,59 @@ export const ChartModal = (): JSX.Element => {
 
     return (
         <Fragment>
-            <Link type="button" to={`/${navigateBase}/graph`}>
-                Show Graph
+            <Link
+                type="button"
+                to={`/${url}/graph${isDiagonal ? '/diagonal' : ''}`}
+            >
+                Graph View
             </Link>
             {isGraph && (
                 <Modal
-                    closeModal={() => navigate(`/${navigateBase}`)}
+                    closeModal={() =>
+                        navigate(`/${url}${isDiagonal ? '/diagonal' : ''}`)
+                    }
                     hideCloseButton
                     className="chart-modal"
                 >
                     <div className="chart-modal__links__wrapper">
                         <div className="chart-modal__links__left">
-                            <Link to={`/${navigateBase}/graph/percent`}>
+                            <Link
+                                className={
+                                    graphType === 'percent' ? 'current' : ''
+                                }
+                                to={`/${url}/graph/percent${
+                                    isDiagonal ? '/diagonal' : ''
+                                }`}
+                            >
                                 Percent
                             </Link>
-                            <Link to={`/${navigateBase}/graph/percent-point`}>
-                                % Point
+                            <Link
+                                className={
+                                    graphType === 'diff' ? 'current' : ''
+                                }
+                                to={`/${url}/graph/diff${
+                                    isDiagonal ? '/diagonal' : ''
+                                }`}
+                            >
+                                Diff
                             </Link>
-                            <Link to={`/${navigateBase}/graph/diff`}>Diff</Link>
-                            <Link to={`/${navigateBase}/graph/weight`}>
+                            <Link
+                                className={
+                                    graphType === 'weight' ? 'current' : ''
+                                }
+                                to={`/${url}/graph/weight${
+                                    isDiagonal ? '/diagonal' : ''
+                                }`}
+                            >
                                 Weight
                             </Link>
                         </div>
                         {linkBase !== 'raw-data' && (
                             <Link
-                                to={`/${navigateBase}/graph/${graphType}/diagonal`}
+                                className={isDiagonal ? 'current' : ''}
+                                to={`/${url}/graph/${graphType}${
+                                    !isDiagonal ? '/diagonal' : ''
+                                }`}
                             >
                                 Diagonal
                             </Link>

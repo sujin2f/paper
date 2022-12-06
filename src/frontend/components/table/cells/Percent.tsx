@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
 import { RawDataItem } from 'src/types/raw-data'
-import { getPercent } from 'src/utils/math'
 import { Nullable } from 'src/types/common'
 
 type Props = {
@@ -18,10 +17,8 @@ export const Percent = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">%</th>
             {cols.map((_, index) => {
-                const current = rawData[index]
-                const prev = rawData[index - 1]
-                const percent = getPercent(current, prev, options.shift)
-
+                const percent =
+                    (rawData[index] && rawData[index]!.percent) || NaN
                 return (
                     <td
                         key={`${rowIndex}-percent-${index}`}

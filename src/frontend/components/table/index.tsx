@@ -1,24 +1,21 @@
-import React, { Fragment, useContext, useEffect } from 'react'
+import React, { Fragment, useContext } from 'react'
+import { Link } from 'react-router-dom'
+
 import { Context, ContextType } from 'src/frontend/store'
+import { useTableParam } from 'src/frontend/hooks/useTableParam'
+import { getMaxCol } from 'src/utils/models/common'
+import { UseData } from 'src/types/store'
+import { LabelFunction } from 'src/types/common'
 
 import { Ether } from './cells/Ether'
 import { Orbital } from './cells/Orbital'
 import { Rydberg } from './cells/Rydberg'
 import { Diff } from './cells/Diff'
 import { Nth } from './cells/Nth'
-import { PercentPoint } from './cells/PercentPoint'
 import { Weight } from './cells/Weight'
-import { useTableParam } from 'src/frontend/hooks/useTableParam'
-import { setChartData } from 'src/frontend/store/actions'
-import {
-    getChartData,
-    getChartLabels,
-    getMaxCol,
-} from 'src/utils/models/common'
-import { UseData } from 'src/types/store'
-import { LabelFunction } from 'src/types/common'
-import { Percent } from './cells/Percent'
-import { Link } from 'react-router-dom'
+import { useGraph } from 'src/frontend/hooks/useGraph'
+import { useEntries } from 'src/frontend/hooks/useEntries'
+import { PercentPoint } from './cells/PercentPoint'
 
 type Props = {
     useData: UseData
@@ -26,31 +23,19 @@ type Props = {
 }
 
 export const Table = (props: Props): JSX.Element => {
-    const { number, ion, term, graphTypeFunc, linkBase } = useTableParam()
-    const { useData, getLabel } = props
-    const { dataArray, loading, error } = useData({
-        number,
-        ion,
-        term,
-    })
-    const [options, dispatch] = useContext(Context) as ContextType
-
-    useEffect(() => {
-        if (dataArray.length) {
-            const datasets = getChartData(
-                dataArray,
-                graphTypeFunc,
-                getLabel,
-                options.shift,
-            )
-            dispatch(
-                setChartData({
-                    labels: getChartLabels(datasets),
-                    datasets,
-                }),
-            )
-        }
-    }, [dataArray, options.shift, dispatch, graphTypeFunc, getLabel])
+    const { number, ion, term, linkBase } = useTableParam()
+    const { useData } = props
+    const [options] = useContext(Context) as ContextType
+    const { data, loading, error } = useData(
+        {
+            number,
+            ion,
+            term,
+        },
+        options.shift,
+    )
+    useGraph(data)
+    useEntries(data)
 
     if (error) {
         return <Fragment>404</Fragment>
@@ -60,17 +45,17 @@ export const Table = (props: Props): JSX.Element => {
         return <Fragment>Loading</Fragment>
     }
 
-    if (!dataArray.length) {
-        return <Fragment>Something Went Wrong</Fragment>
+    if (!data) {
+        return <Fragment>Processing...</Fragment>
     }
 
-    const maxCol = getMaxCol(dataArray)
+    const maxCol = getMaxCol(data.items)
     const cols = Array(maxCol - 1).fill('')
 
     return (
         <div className="table-scroll">
             <table className="unstriped">
-                {dataArray.map((row, rowIndex) => {
+                {data.items.map((row, rowIndex) => {
                     return (
                         <Fragment key={`${rowIndex}-thead`}>
                             <thead>
@@ -79,7 +64,7 @@ export const Table = (props: Props): JSX.Element => {
                                         {(linkBase === 'raw-data' &&
                                             row.item.orbital === 's' && (
                                                 <Link
-                                                    to={`/raw-data/${number}/${ion}/${row.item.term}`}
+                                                    to={`/raw-data/${number}+${ion}+${row.item.term}`}
                                                 >
                                                     {row.label}
                                                 </Link>
@@ -134,15 +119,8 @@ export const Table = (props: Props): JSX.Element => {
                                         rawData={row.items}
                                     />
                                 )}
-                                {options.percentPoint && (
-                                    <PercentPoint
-                                        cols={cols}
-                                        rawData={row.items}
-                                        rowIndex={rowIndex}
-                                    />
-                                )}
                                 {options.percent && (
-                                    <Percent
+                                    <PercentPoint
                                         cols={cols}
                                         rawData={row.items}
                                         rowIndex={rowIndex}

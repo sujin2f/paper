@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
 import { Nullable } from 'src/types/common'
 import { RawDataItem } from 'src/types/raw-data'
-import { getRydberg } from 'src/utils/math'
 
 type Props = {
     rawData: Nullable<RawDataItem>[]
@@ -20,16 +19,13 @@ export const Nth = (props: Props): JSX.Element => {
                 N<sub>th</sub>(n)
             </th>
             {cols.map((_, index) => {
-                const current = rawData[index]
+                const nth = (rawData[index] && rawData[index]!.nth) || NaN
                 return (
                     <td
                         key={`${rowIndex}-nth-${index}`}
                         className="align__right"
                     >
-                        {current &&
-                            getRydberg(index, options.shift).toFixed(
-                                options.digit,
-                            )}
+                        {!isNaN(nth) && nth.toFixed(options.digit)}
                     </td>
                 )
             })}

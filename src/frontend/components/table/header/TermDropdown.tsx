@@ -1,15 +1,13 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { romanize } from 'src/common/utils/number'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
+import { Context, ContextType } from 'src/frontend/store'
 
-export const IonDropdown = (): JSX.Element => {
-    const { linkBase, number } = useTableParam()
+export const TermDropdown = (): JSX.Element => {
+    const { linkBase, number, ion } = useTableParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
-    const ions = Array(number)
-        .fill('')
-        .map((_, index) => romanize(index + 1))
+    const [options] = useContext(Context) as ContextType
 
     document.addEventListener('click', () => {
         setShowOptions(false)
@@ -24,17 +22,27 @@ export const IonDropdown = (): JSX.Element => {
                     setShowOptions(!showOptions)
                 }}
             >
-                Ion ▾
+                Terms ▾
             </Link>
             {showOptions && (
                 <ul className="menu vertical" ref={dropdown}>
-                    {ions.map((ion) => (
-                        <li key={`ion-selector-${ion}`}>
+                    {linkBase === 'raw-data' && (
+                        <li>
                             <Link
                                 to={`/${linkBase}/${number}+${ion}`}
                                 type="button"
                             >
-                                {ion}
+                                Show All
+                            </Link>
+                        </li>
+                    )}
+                    {options.entries.map((entry) => (
+                        <li key={`term-selector-${entry.term}`}>
+                            <Link
+                                to={`/${linkBase}/${number}+${ion}+${entry.term}`}
+                                type="button"
+                            >
+                                {entry.term}
                             </Link>
                         </li>
                     ))}

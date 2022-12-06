@@ -58,37 +58,6 @@
     align-items: center;
 }
 
-.periodic-table-modal {
-    .reveal {
-        width: 90%;
-    }
-
-    td {
-        padding: 0;
-    }
-}
-
-.chart-modal {
-    .reveal {
-        width: 90vw;
-        height: 90vh;
-        top: 10px;
-    }
-
-    .chart-modal__links__wrapper {
-        display: flex;
-        justify-content: space-between;
-
-        .chart-modal__links__left {
-            display: flex;
-        }
-
-        a {
-            padding: 0 1rem;
-        }
-    }
-}
-
 .menu__ether {
     li {
         display: flex;

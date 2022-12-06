@@ -1,14 +1,17 @@
 import { orbitalKeys } from 'src/constants/orbital'
 import { LabelFunction } from 'src/types/common'
-import { RawData } from 'src/types/raw-data'
+import { RawDataContainer } from 'src/types/raw-data'
 
-export const getEther = (rawData: RawData[]): RawData[] => {
-    const result: RawData[] = []
+export const getEther = (rawData: RawDataContainer): RawDataContainer => {
+    const result: RawDataContainer = {
+        entries: rawData.entries,
+        items: [],
+    }
 
-    rawData.forEach((row) => {
+    rawData.items.forEach((row) => {
         // Radial Row
         if (row.item.orbital === 's') {
-            result.push({
+            result.items.push({
                 ...row,
                 label: getLabel(row.item, 0),
             })
@@ -30,26 +33,29 @@ export const getEther = (rawData: RawData[]): RawData[] => {
             const posY = position - orbitalIndex
             const posX = position - 1
 
-            if (!result[posY]) {
-                result[posY] = {
+            if (!result.items[posY]) {
+                result.items[posY] = {
                     label: getLabel(data, posY),
                     item: data,
                     items: [],
                 }
             }
 
-            result[posY].items[posX] = data
+            result.items[posY].items[posX] = data
         })
     })
 
     // Push S orbitals into items
-    result[0].items.forEach((item, index) => {
-        if (result[index + 1]) {
-            result[index + 1].items[index] = item
+    result.items[0].items.forEach((item, index) => {
+        if (result.items[index + 1]) {
+            result.items[index + 1].items[index] = item
         }
     })
 
-    return result.filter((v) => v)
+    return {
+        ...result,
+        items: result.items.filter((v) => v),
+    }
 }
 
 export const getLabel: LabelFunction = (_, index) => {

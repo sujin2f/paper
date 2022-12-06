@@ -11,6 +11,7 @@ import {
     SET_CHART_TITLE,
     SET_CHART_DATA,
     SET_SHIFT,
+    SET_ENTRIES,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -26,6 +27,7 @@ export const initialState: State = {
     weight: true,
     chartTitle: '',
     shift: 0,
+    entries: [],
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
@@ -100,6 +102,12 @@ export const reducer = (state: State = initialState, action: Action): State => {
             return {
                 ...state,
                 shift: action.shift!,
+            }
+        }
+        case SET_ENTRIES: {
+            return {
+                ...state,
+                entries: action.entries!,
             }
         }
         default: {

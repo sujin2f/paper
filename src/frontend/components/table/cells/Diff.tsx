@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { RawDataItem } from 'src/types/raw-data'
 import { Context, ContextType } from 'src/frontend/store'
 import { Nullable } from 'src/types/common'
-import { getDiff } from 'src/utils/math'
 
 type Props = {
     rawData: Nullable<RawDataItem>[]
@@ -18,9 +17,7 @@ export const Diff = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">Diff</th>
             {cols.map((_, index) => {
-                const current = rawData[index]
-                const prev = rawData[index - 1]
-                const diff = getDiff(current, prev, 0)
+                const diff = (rawData[index] && rawData[index]!.diff) || NaN
                 return (
                     <td
                         className="align__right"
