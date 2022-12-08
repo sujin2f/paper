@@ -1,17 +1,15 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
-import { Nullable } from 'src/types/common'
-import { RawDataItem } from 'src/types/raw-data'
+import { RowInterface } from 'src/model/RowInterface'
 
 type Props = {
-    rawData: Nullable<RawDataItem>[]
-    rowIndex: number
-    cols: string[]
+    row: RowInterface
+    cols: number[]
 }
 
 export const Nth = (props: Props): JSX.Element => {
-    const { rowIndex, cols, rawData } = props
-    const [options] = useContext(Context) as ContextType
+    const { row, cols } = props
+    const [{ digit, shift }] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
@@ -19,13 +17,13 @@ export const Nth = (props: Props): JSX.Element => {
                 N<sub>th</sub>(n)
             </th>
             {cols.map((_, index) => {
-                const nth = (rawData[index] && rawData[index]!.nth) || NaN
+                const nth = row.item(index) && row.item(index).nth(shift)
                 return (
                     <td
-                        key={`${rowIndex}-nth-${index}`}
+                        key={`${row.label}-nth-${index}`}
                         className="align__right"
                     >
-                        {!isNaN(nth) && nth.toFixed(options.digit)}
+                        {nth && nth.toFixed(digit)}
                     </td>
                 )
             })}

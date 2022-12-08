@@ -1,19 +1,18 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
 import { Header } from 'src/frontend/components/header'
-import { Table } from 'src/frontend/components/table'
 import { Link } from 'react-router-dom'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
-// import { useRawData } from 'src/frontend/hooks/useRawData'
-// import { getLabel } from 'src/utils/models/raw-data'
+import { Public } from '.'
+import { DataWrapper } from 'src/frontend/components/DataWrapper'
 
-export const RawData = (): JSX.Element => {
+export const Data = (): JSX.Element => {
     const { atom } = useTableParam()
 
     if (!atom) {
         return (
-            <Fragment>
+            <Public>
                 <p>
                     The atom you are trying to find does not exist in this
                     universe
@@ -22,12 +21,12 @@ export const RawData = (): JSX.Element => {
                     Please visit another universe or go back to our
                     <Link to="/">front page</Link>
                 </p>
-            </Fragment>
+            </Public>
         )
     }
 
     return (
-        <Fragment>
+        <Public>
             <Row>
                 <Column>
                     <Header />
@@ -35,9 +34,9 @@ export const RawData = (): JSX.Element => {
             </Row>
             <Row>
                 <Column>
-                    <Table />
+                    <DataWrapper />
                 </Column>
             </Row>
-        </Fragment>
+        </Public>
     )
 }

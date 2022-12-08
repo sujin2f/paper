@@ -1,29 +1,26 @@
 import React from 'react'
-import { toEther } from 'src/utils/models/common'
-import { RawDataItem } from 'src/types/raw-data'
-import { Nullable } from 'src/types/common'
+import { RowInterface } from 'src/model/RowInterface'
 
 type Props = {
-    rawData: Nullable<RawDataItem>[]
-    rowIndex: number
-    title: string
-    cols: string[]
+    row: RowInterface
+    cols: number[]
 }
 
 export const Ether = (props: Props): JSX.Element => {
-    const { rawData, rowIndex, title, cols } = props
+    const { row, cols } = props
+
     return (
         <tr className="border__bottom">
-            <th className="align__right">{title}</th>
+            <th className="align__right">Ether</th>
             {cols.map((_, index) => {
-                const item = rawData[index] || undefined
+                const ether = row.item(index) && row.item(index).ether
 
                 return (
                     <th
-                        key={`${rowIndex}-ether-${index}`}
+                        key={`${row.label}-ether-${index}`}
                         className="align__center"
                     >
-                        {item && toEther(item)}
+                        {ether}
                     </th>
                 )
             })}

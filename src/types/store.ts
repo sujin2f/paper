@@ -1,16 +1,8 @@
 import { ApolloError } from '@apollo/client'
-import { ChartDataset, DefaultDataPoint } from 'chart.js'
-import { RawData, RawDataContainer, RawDataItem } from './raw-data'
+import { RawDataContainer } from 'src/model/RawDataContainer'
 
 type Type = {
     type: string
-}
-
-export type StateChartDataset = ChartDataset<'line', DefaultDataPoint<'line'>>
-
-export type StateChartData = {
-    labels?: number[]
-    datasets: StateChartDataset[]
 }
 
 export type State = {
@@ -23,21 +15,15 @@ export type State = {
     percentPoint: boolean
     percent: boolean
     weight: boolean
-    chartTitle: string
-    chartData?: StateChartData
     shift: number
-    entries: RawDataItem[]
+    data?: RawDataContainer
 }
 
 export type Action = Partial<State> & Type
 
 export type Param = { number: number; ion: string; term?: string }
 
-export type UseData = (
-    variables: Param,
-    shift: number,
-) => {
-    data?: RawDataContainer
+export type UseData = (variables: Param) => {
     loading: boolean
     error: ApolloError | undefined
 }

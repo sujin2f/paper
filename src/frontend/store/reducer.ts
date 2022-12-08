@@ -8,10 +8,8 @@ import {
     SET_PERCENT_POINT,
     SET_PERCENT,
     SET_WEIGHT,
-    SET_CHART_TITLE,
-    SET_CHART_DATA,
     SET_SHIFT,
-    SET_ENTRIES,
+    SET_DATA,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -25,14 +23,15 @@ export const initialState: State = {
     percentPoint: true,
     percent: true,
     weight: true,
-    chartTitle: '',
     shift: 0,
-    entries: [],
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
     switch (action.type) {
         case SET_DIGIT: {
+            if (action.digit! < 0 || action.digit! > 13) {
+                return state
+            }
             return {
                 ...state,
                 digit: action.digit!,
@@ -86,28 +85,16 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 weight: action.weight!,
             }
         }
-        case SET_CHART_TITLE: {
-            return {
-                ...state,
-                chartTitle: action.chartTitle!,
-            }
-        }
-        case SET_CHART_DATA: {
-            return {
-                ...state,
-                chartData: action.chartData!,
-            }
-        }
         case SET_SHIFT: {
             return {
                 ...state,
                 shift: action.shift!,
             }
         }
-        case SET_ENTRIES: {
+        case SET_DATA: {
             return {
                 ...state,
-                entries: action.entries!,
+                data: action.data!,
             }
         }
         default: {

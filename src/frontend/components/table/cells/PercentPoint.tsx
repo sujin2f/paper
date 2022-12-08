@@ -1,32 +1,29 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
-import { RawDataItem } from 'src/types/raw-data'
-import { Nullable } from 'src/types/common'
+import { RowInterface } from 'src/model/RowInterface'
 
 type Props = {
-    rawData: Nullable<RawDataItem>[]
-    rowIndex: number
-    cols: string[]
+    row: RowInterface
+    cols: number[]
 }
 
 export const PercentPoint = (props: Props): JSX.Element => {
-    const { rawData, rowIndex, cols } = props
-    const [options] = useContext(Context) as ContextType
+    const { row, cols } = props
+    const [{ digit, shift }] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
             <th className="align__right">%P</th>
             {cols.map((_, index) => {
                 const percent =
-                    (rawData[index] && rawData[index]!.percent) || NaN
-                const percentPoint = percent ? percent * 100 - 100 : NaN
+                    row.item(index) && row.item(index).percent(shift)
+                const percentPoint = percent ? percent * 100 - 100 : 0
                 return (
                     <td
-                        key={`${rowIndex}-percent-point-${index}`}
+                        key={`${row.label}-percent-point-${index}`}
                         className="align__right"
                     >
-                        {!isNaN(percentPoint) &&
-                            percentPoint.toFixed(options.digit)}
+                        {percentPoint && percentPoint.toFixed(digit)}
                     </td>
                 )
             })}

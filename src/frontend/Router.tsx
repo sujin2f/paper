@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/public'
 import { FrontPage } from 'src/frontend/scenes/public/FrontPage'
-import { Tables } from './scenes/public/Tables'
+import { Data } from 'src/frontend/scenes/public/Data'
 
 export const Router = (): JSX.Element => {
     return (
@@ -16,12 +16,12 @@ export const Router = (): JSX.Element => {
                     </Public>
                 }
             />
-            <Route path="/:linkBase/:atom" element={<Tables />}>
-                <Route path="diagonal" element={<Tables />} />
-                <Route path="graph" element={<Tables />}>
-                    <Route path="diagonal" element={<Tables />} />
-                    <Route path=":graphType" element={<Tables />}>
-                        <Route path="diagonal" element={<Tables />} />
+            <Route path="/:linkBase/:atom" element={<Data />}>
+                <Route path="diagonal" element={<Data />} />
+                <Route path="graph" element={<Data />}>
+                    <Route path="diagonal" element={<Data />} />
+                    <Route path=":graphType" element={<Data />}>
+                        <Route path="diagonal" element={<Data />} />
                     </Route>
                 </Route>
             </Route>

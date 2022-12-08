@@ -1,19 +1,18 @@
-import { RawDataItem } from 'src/types/raw-data'
 import { Param } from 'src/types/store'
-import mongoose, { Schema } from 'mongoose'
-import { schema } from 'src/types/raw-data'
+import mongoose from 'mongoose'
+import { mongoSchema, RawDataT } from 'src/types/raw-data'
 
-export const model = mongoose.model('RawData', new Schema(schema))
+export const model = mongoose.model('rawData', mongoSchema)
 
-const getOne = async (rawData: Partial<RawDataItem>): Promise<RawDataItem> =>
-    await model.findOne<RawDataItem>(rawData).then((item) => {
+const getOne = async (rawData: Partial<RawDataT>): Promise<RawDataT> =>
+    await model.findOne<RawDataT>(rawData).then((item) => {
         if (!item) {
             throw new Error('Does not exist')
         }
         return item
     })
 
-export const addOne = async (rawData: Partial<RawDataItem>): Promise<boolean> =>
+export const addOne = async (rawData: Partial<RawDataT>): Promise<boolean> =>
     await getOne(rawData)
         .then(() => false)
         .catch(async () => {
@@ -21,5 +20,5 @@ export const addOne = async (rawData: Partial<RawDataItem>): Promise<boolean> =>
             return true
         })
 
-export const query = async (param: Param): Promise<RawDataItem[]> =>
-    await model.find<RawDataItem>(param).sort({ rydberg: 1 })
+export const query = async (param: Param): Promise<RawDataT[]> =>
+    await model.find<RawDataT>(param).sort({ rydberg: 1 })

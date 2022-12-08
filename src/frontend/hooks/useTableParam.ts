@@ -1,11 +1,11 @@
 import { useLocation, useParams } from 'react-router-dom'
-import { RawDataItem } from 'src/types/raw-data'
+import { URLParam } from 'src/types/common'
 import { getAtom } from 'src/utils/models/atom'
 
 export const useTableParam = () => {
-    const { linkBase, atom, graphType } = useParams()
-    const [number, ion, term] = atom!.split('+')
     const location = useLocation()
+    const { linkBase, atom, graphType } = useParams<URLParam>()
+    const [number, ion, term] = atom!.split('+')
     const isGraph = location.pathname.indexOf('/graph') !== -1
     const isDiagonal = location.pathname.indexOf('/diagonal') !== -1
 
@@ -15,7 +15,7 @@ export const useTableParam = () => {
         atom: getAtom(parseInt(number || '1')),
         linkBase,
         term: term || '',
-        graphType: (graphType || 'percent') as keyof RawDataItem,
+        graphType: graphType || 'percent',
         isGraph,
         isDiagonal,
     }

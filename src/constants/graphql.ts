@@ -1,10 +1,8 @@
-import { graphQL as rawData } from 'src/types/raw-data'
+import { graphQL } from 'src/types/raw-data'
 
 export const graphqlSchema = `
     type Query {
-        rawData(number: Int!, ion: String!, term: String): RawDataContainer
-        orbital(number: Int!, ion: String!, term: String): RawDataContainer
-        ether(number: Int!, ion: String!, term: String): RawDataContainer
+        ${graphQL.query}
     }
-    ${rawData}
+    ${graphQL.type}
 `

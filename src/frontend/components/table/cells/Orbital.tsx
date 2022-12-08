@@ -1,28 +1,26 @@
 import React from 'react'
-import { RawDataItem } from 'src/types/raw-data'
-import { Nullable } from 'src/types/common'
+import { RowInterface } from 'src/model/RowInterface'
 
 type Props = {
-    rawData: Nullable<RawDataItem>[]
-    rowIndex: number
-    title: string
-    cols: string[]
+    row: RowInterface
+    cols: number[]
 }
 
 export const Orbital = (props: Props): JSX.Element => {
-    const { rawData, rowIndex, title, cols } = props
+    const { row, cols } = props
+
     return (
         <tr className="border__bottom">
-            <th className="align__right">{title}</th>
+            <th className="align__right">Orbital</th>
             {cols.map((_, index) => {
-                const current = rawData[index]
+                const conf = row.item(index) && row.item(index).conf
 
                 return (
                     <th
-                        key={`${rowIndex}-orbital-${index}`}
+                        key={`${row.label}-orbital-${index}`}
                         className="align__center"
                     >
-                        {current && current.conf}
+                        {conf}
                     </th>
                 )
             })}

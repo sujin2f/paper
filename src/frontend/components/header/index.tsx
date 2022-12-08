@@ -4,12 +4,12 @@ import { useTableParam } from 'src/frontend/hooks/useTableParam'
 import { Context, ContextType } from 'src/frontend/store'
 import { setDigit, setShift } from 'src/frontend/store/actions'
 import { getAtom } from 'src/utils/models/atom'
-import { ChartModal } from './ChartModal'
+// import { ChartModal } from './ChartModal'
 import { InfoModal } from './InfoModal'
 import { IonDropdown } from './IonDropdown'
 import { OptionDropdown } from './OptionDropdown'
 import { PeriodicTableModal } from './PeriodicTableModal'
-import { TermDropdown } from './TermDropdown'
+// import { TermDropdown } from './TermDropdown'
 
 export const Header = (): JSX.Element => {
     const { atom, number, ion, linkBase, term, isDiagonal } = useTableParam()
@@ -21,14 +21,6 @@ export const Header = (): JSX.Element => {
 
     const prev = getAtom(number - 1)
     const next = getAtom(number + 1)
-
-    const doChangeDigit = (newDigit: number) => {
-        if (newDigit < 0 || newDigit > 20) {
-            return
-        }
-
-        dispatch(setDigit(newDigit))
-    }
 
     const atomParam = [number, ion, term].filter((v) => v).join('+')
 
@@ -67,7 +59,7 @@ export const Header = (): JSX.Element => {
                     <ul className="dropdown menu">
                         <OptionDropdown />
                         <IonDropdown />
-                        <TermDropdown />
+                        {/* <TermDropdown /> */}
                         <li> | </li>
                         <li
                             className={`link-base ${
@@ -124,15 +116,13 @@ export const Header = (): JSX.Element => {
                 </nav>
                 <div className="top-bar-right">
                     <ul className="menu">
-                        <li>
-                            <ChartModal />
-                        </li>
+                        <li>{/* <ChartModal /> */}</li>
                         <li>
                             <button
                                 type="button"
                                 className="button small"
                                 onClick={() =>
-                                    dispatch(setShift(options.shift + 1))
+                                    dispatch(setShift(options.shift - 1))
                                 }
                             >
                                 &lt;
@@ -152,7 +142,7 @@ export const Header = (): JSX.Element => {
                                 type="button"
                                 className="button small"
                                 onClick={() =>
-                                    dispatch(setShift(options.shift - 1))
+                                    dispatch(setShift(options.shift + 1))
                                 }
                             >
                                 &gt;
@@ -162,7 +152,9 @@ export const Header = (): JSX.Element => {
                             <button
                                 type="button"
                                 className="button small"
-                                onClick={() => doChangeDigit(options.digit - 1)}
+                                onClick={() =>
+                                    dispatch(setDigit(options.digit - 1))
+                                }
                             >
                                 .0
                             </button>
@@ -171,7 +163,9 @@ export const Header = (): JSX.Element => {
                             <button
                                 type="button"
                                 className="button small"
-                                onClick={() => doChangeDigit(options.digit + 1)}
+                                onClick={() =>
+                                    dispatch(setDigit(options.digit + 1))
+                                }
                             >
                                 .00
                             </button>
