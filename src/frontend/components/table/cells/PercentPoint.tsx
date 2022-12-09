@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
-import { RowInterface } from 'src/model/RowInterface'
+import { RowAbstract } from 'src/model/RowAbstract'
 
 type Props = {
-    row: RowInterface
+    row: RowAbstract
     cols: number[]
 }
 
@@ -17,13 +17,13 @@ export const PercentPoint = (props: Props): JSX.Element => {
             {cols.map((_, index) => {
                 const percent =
                     row.item(index) && row.item(index).percent(shift)
-                const percentPoint = percent ? percent * 100 - 100 : 0
+                const percentPoint = !isNaN(percent) ? percent * 100 - 100 : NaN
                 return (
                     <td
                         key={`${row.label}-percent-point-${index}`}
                         className="align__right"
                     >
-                        {percentPoint && percentPoint.toFixed(digit)}
+                        {!isNaN(percentPoint) && percentPoint.toFixed(digit)}
                     </td>
                 )
             })}

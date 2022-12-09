@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
 import { Context, ContextType } from 'src/frontend/store'
 import { setDigit, setShift } from 'src/frontend/store/actions'
-import { getAtom } from 'src/utils/models/atom'
-// import { ChartModal } from './ChartModal'
+import { getAtom } from 'src/utils/atom'
+import { ChartDropdown } from './ChartDropdown'
 import { InfoModal } from './InfoModal'
 import { IonDropdown } from './IonDropdown'
 import { OptionDropdown } from './OptionDropdown'
 import { PeriodicTableModal } from './PeriodicTableModal'
-// import { TermDropdown } from './TermDropdown'
+import { TermDropdown } from './TermDropdown'
 
 export const Header = (): JSX.Element => {
     const { atom, number, ion, linkBase, term, isDiagonal } = useTableParam()
@@ -39,9 +39,7 @@ export const Header = (): JSX.Element => {
                         <h1>
                             {atom.symbol} {ion}
                         </h1>
-                        <p>
-                            <PeriodicTableModal />
-                        </p>
+                        <PeriodicTableModal />
                     </div>
                     <InfoModal />
                 </header>
@@ -59,8 +57,10 @@ export const Header = (): JSX.Element => {
                     <ul className="dropdown menu">
                         <OptionDropdown />
                         <IonDropdown />
-                        {/* <TermDropdown /> */}
-                        <li> | </li>
+                        <TermDropdown />
+
+                        <li className="divider">|</li>
+
                         <li
                             className={`link-base ${
                                 linkBase === 'raw-data' ? 'current' : ''
@@ -94,24 +94,10 @@ export const Header = (): JSX.Element => {
                                 Ether
                             </Link>
                         </li>
-                        {linkBase !== 'raw-data' && (
-                            <Fragment>
-                                <li> | </li>
-                                <li
-                                    className={`link-base ${
-                                        isDiagonal ? 'current' : ''
-                                    }`}
-                                >
-                                    <Link
-                                        to={`/${linkBase}/${atomParam}${
-                                            isDiagonal ? '' : '/diagonal'
-                                        }`}
-                                    >
-                                        Diagonal
-                                    </Link>
-                                </li>
-                            </Fragment>
-                        )}
+
+                        <li className="divider">|</li>
+
+                        <ChartDropdown />
                     </ul>
                 </nav>
                 <div className="top-bar-right">

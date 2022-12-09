@@ -1,8 +1,12 @@
 import { RawData } from './RawData'
 
-export abstract class RowInterface {
+export abstract class RowAbstract {
     protected get first(): RawData {
         return [...this.items].filter((v) => v)[0]
+    }
+
+    public get array(): RawData[] {
+        return this.items
     }
 
     public get length(): number {
@@ -21,6 +25,14 @@ export abstract class RowInterface {
         return this.first.term
     }
 
+    public get jNumber() {
+        return this.first.jNumber
+    }
+
+    public get termNumber() {
+        return this.first.termNumber
+    }
+
     public abstract get label(): string
 
     public constructor(protected items: RawData[]) {
@@ -33,6 +45,12 @@ export abstract class RowInterface {
 
     public map(callback: (item: RawData, index: number) => any) {
         return this.items.map((item, index) => callback(item, index))
+    }
+
+    public forEach(callback: (item: RawData, index: number) => any) {
+        return this.items.forEach((item, index) => {
+            callback(item, index)
+        })
     }
 
     protected abstract generate(): void

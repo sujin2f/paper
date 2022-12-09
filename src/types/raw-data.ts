@@ -52,3 +52,5 @@ export const graphQL = {
 export type ReturnType = {
     rawData: RawDataT[]
 }
+
+export type Param = { number: number; ion: string }

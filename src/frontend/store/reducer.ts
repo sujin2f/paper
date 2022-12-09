@@ -7,7 +7,7 @@ import {
     SET_NTH,
     SET_PERCENT_POINT,
     SET_PERCENT,
-    SET_WEIGHT,
+    SET_COLLECTION,
     SET_SHIFT,
     SET_DATA,
 } from 'src/frontend/store/actions'
@@ -22,7 +22,7 @@ export const initialState: State = {
     nth: true,
     percentPoint: true,
     percent: true,
-    weight: true,
+    collection: true,
     shift: 0,
 }
 
@@ -79,10 +79,10 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 percent: action.percent!,
             }
         }
-        case SET_WEIGHT: {
+        case SET_COLLECTION: {
             return {
                 ...state,
-                weight: action.weight!,
+                collection: action.collection!,
             }
         }
         case SET_SHIFT: {

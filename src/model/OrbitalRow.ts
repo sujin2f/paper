@@ -1,8 +1,8 @@
 import { RowAbstract } from './RowAbstract'
 
-export class RawDataRow extends RowAbstract {
+export class OrbitalRow extends RowAbstract {
     public get label(): string {
-        return `${this.first.term}.${this.first.j}`
+        return this.first.orbital.toUpperCase()
     }
 
     protected generate(): void {

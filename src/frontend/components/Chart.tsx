@@ -38,8 +38,5 @@ export const Chart = (): JSX.Element => {
         },
     }
 
-    const data2 = data.chart(graphType, shift)
-    console.log(data2)
-
-    return <Line options={options} data={data2} />
+    return <Line options={options} data={data.chart(graphType, shift)} />
 }

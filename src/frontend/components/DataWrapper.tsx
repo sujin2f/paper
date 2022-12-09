@@ -12,12 +12,11 @@ type Props = {
 }
 
 export const DataWrapper = (props: Props): JSX.Element => {
-    const { number, ion, term, isGraph } = useTableParam()
+    const { number, ion, isGraph } = useTableParam()
     const [{ data }] = useContext(Context) as ContextType
     const { loading, error } = useRawData({
         number,
         ion,
-        term,
     })
 
     if (error) {
@@ -29,7 +28,12 @@ export const DataWrapper = (props: Props): JSX.Element => {
     }
 
     if (isGraph) {
-        return <Chart />
+        return (
+            <Fragment>
+                <Chart />
+                <Table />
+            </Fragment>
+        )
     }
 
     return <Table />

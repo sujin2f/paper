@@ -1,4 +1,5 @@
 import { ApolloError } from '@apollo/client'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
 import { RawDataContainer } from 'src/model/RawDataContainer'
 
 type Type = {
@@ -14,16 +15,9 @@ export type State = {
     nth: boolean
     percentPoint: boolean
     percent: boolean
-    weight: boolean
+    collection: boolean
     shift: number
-    data?: RawDataContainer
+    data?: ContainerAbstract
 }
 
 export type Action = Partial<State> & Type
-
-export type Param = { number: number; ion: string; term?: string }
-
-export type UseData = (variables: Param) => {
-    loading: boolean
-    error: ApolloError | undefined
-}

@@ -3,8 +3,6 @@ import { graphqlHTTP } from 'express-graphql'
 import { buildSchema } from 'graphql'
 
 import { graphqlSchema } from 'src/constants/graphql'
-// import { orbital } from 'src/utils/endpoints/orbital'
-// import { ether } from 'src/utils/endpoints/ether'
 import { rawData } from 'src/utils/endpoints/raw-data'
 
 const graphqlRouter = express.Router()
@@ -15,10 +13,7 @@ graphqlRouter.use(
     graphqlHTTP({
         schema,
         rootValue: {
-            // orbital,
             rawData,
-            // ether,
-            // addEther,
         },
         graphiql: true,
     }),

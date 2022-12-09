@@ -1,6 +1,6 @@
 import { useLocation, useParams } from 'react-router-dom'
 import { URLParam } from 'src/types/common'
-import { getAtom } from 'src/utils/models/atom'
+import { getAtom } from 'src/utils/atom'
 
 export const useTableParam = () => {
     const location = useLocation()

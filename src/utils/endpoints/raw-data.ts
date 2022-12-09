@@ -1,8 +1,5 @@
 import { periodicTable } from 'src/constants/periodic-table'
-
-import { RawDataT } from 'src/types/raw-data'
-import { Param } from 'src/types/store'
-
+import { RawDataT, Param } from 'src/types/raw-data'
 import { crawl } from 'src/utils/crawler'
 import { query } from 'src/utils/mongo/raw-data'
 import { addOne, getOne } from 'src/utils/mongo/crawler'
@@ -20,8 +17,5 @@ export const rawData = async (param: Param): Promise<RawDataT[]> => {
         })
     }
 
-    return await query({
-        number: param.number,
-        ion: param.ion,
-    })
+    return await query(param)
 }

@@ -1,6 +1,5 @@
-import { Param } from 'src/types/store'
 import mongoose from 'mongoose'
-import { mongoSchema, RawDataT } from 'src/types/raw-data'
+import { mongoSchema, RawDataT, Param } from 'src/types/raw-data'
 
 export const model = mongoose.model('rawData', mongoSchema)
 

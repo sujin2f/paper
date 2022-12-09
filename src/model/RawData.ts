@@ -1,15 +1,16 @@
 import { RawDataT } from 'src/types/raw-data'
 
 export class RawData {
-    private termNumber: number
-    private jNumber: number
-    private jWeight: number
+    private _termNumber: number
+    private _jNumber: number
+    private _jWeight: number
     private _position: number
     private _orbital: string
     private _confPrefix: string
     private _diff?: number
 
     public static orbitalKeys = ['s', 'p', 'd', 'f', 'g', 'h', 'i', 'k']
+    private static baseState = [1, 1, 2, 2]
 
     public get rydberg() {
         return this.data.rydberg
@@ -63,7 +64,35 @@ export class RawData {
             .join('')
     }
 
-    public weight(shift = 0, maxProp = 0, minProp = 0, attempt = 1): number {
+    public get jNumber() {
+        return this._jNumber
+    }
+
+    public get jWeight() {
+        return this._jWeight
+    }
+
+    public get termNumber() {
+        return this._termNumber
+    }
+
+    public constructor(private data: RawDataT) {
+        this._termNumber = this.getNumber(data.term)
+        this._jNumber = this.getNumber(data.j)
+        this._jWeight = data.j.indexOf('/') === -1 ? 1 : 2
+
+        const { position, orbital, confPrefix } = this.getConfObject(data.conf)
+        this._position = position
+        this._orbital = orbital
+        this._confPrefix = confPrefix
+    }
+
+    public correction(
+        shift = 0,
+        maxProp = 0,
+        minProp = 0,
+        attempt = 1,
+    ): number {
         if (!this._diff || this._diff <= 0) {
             return 0
         }
@@ -89,7 +118,7 @@ export class RawData {
 
         // Adjust range
         if (minVal > this._diff) {
-            return this.weight(shift, min, min + 5, attempt + 1)
+            return this.correction(shift, min, min + 5, attempt + 1)
         }
 
         let oneThird = 0
@@ -145,27 +174,9 @@ export class RawData {
 
     public percent(shift = 0) {
         if (!this._diff) {
-            return 0
+            return NaN
         }
         return this._diff / this.nth(shift)
-    }
-
-    public constructor(private data: RawDataT) {
-        this.termNumber = this.getNumber(data.term)
-        this.jNumber = this.getNumber(data.j)
-        this.jWeight = data.j.indexOf('/') === -1 ? 1 : 2
-
-        const { position, orbital, confPrefix } = this.getConfObject(data.conf)
-        this._position = position
-        this._orbital = orbital
-        this._confPrefix = confPrefix
-    }
-
-    // TODO Base statement
-    public setDiff(prev?: RawData) {
-        if (prev) {
-            this._diff = this.data.rydberg - prev.rydberg
-        }
     }
 
     private getNumber(value: string): number {
@@ -173,18 +184,49 @@ export class RawData {
         return parseInt(regex ? regex[1] : '')
     }
 
-    private getConfObject(conf: string) {
+    private getConfArray = (conf: string): string[] => {
+        const result: string[] = []
         const div = conf.split('.')
-        const last = div[div.length - 1]
+        div.forEach((el) => {
+            const hasMultiple = /([0-9]+)([a-z]+)([0-9]+)/.exec(el)
+            if (!hasMultiple) {
+                result.push(el)
+                return
+            }
+            Array(parseInt(hasMultiple[3]))
+                .fill('')
+                .forEach(() =>
+                    result.push(`${hasMultiple[1]}${hasMultiple[2]}`),
+                )
+        })
+        return result
+    }
+
+    private getConfObject(conf: string) {
+        const confArray = this.getConfArray(conf).reverse()
+        if (confArray[0].indexOf('(') !== -1) {
+            confArray.shift()
+        }
+        const last = confArray.shift()
         const orbital = new RegExp(`(${RawData.orbitalKeys.join('|')})`).exec(
-            last,
+            last || '',
         )
-        const position = /([0-9]+)/.exec(last)
+        const position = /([0-9]+)/.exec(last || '')
 
         return {
             position: parseInt(position ? position[1] : '0'),
             orbital: orbital ? orbital[1] : '',
-            confPrefix: div.slice(0, div.length - 1).join('.'),
+            confPrefix: confArray.reverse().join('.'),
+        }
+    }
+
+    public setDiff(prev?: RawData) {
+        const prevValue = prev ? prev.rydberg : 0
+        const baseState = RawData.baseState[this.data.number - 1] + 1
+        if (prevValue) {
+            this._diff = this.data.rydberg - prevValue
+        } else if (this._position === baseState) {
+            this._diff = this.data.rydberg
         }
     }
 }

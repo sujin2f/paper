@@ -8,7 +8,7 @@ import {
     setOrbital,
     setPercent,
     setRydberg,
-    setWeight,
+    setCollection,
 } from 'src/frontend/store/actions'
 
 export const OptionDropdown = (): JSX.Element => {
@@ -99,10 +99,12 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setWeight(!options.weight))
+                                dispatch(setCollection(!options.collection))
                             }}
                             className={
-                                options.weight ? '' : 'view-option__unselected'
+                                options.collection
+                                    ? ''
+                                    : 'view-option__unselected'
                             }
                         >
                             ✔ Weight

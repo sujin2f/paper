@@ -1,8 +1,8 @@
 import React from 'react'
-import { RowInterface } from 'src/model/RowInterface'
+import { RowAbstract } from 'src/model/RowAbstract'
 
 type Props = {
-    row: RowInterface
+    row: RowAbstract
     cols: number[]
 }
 

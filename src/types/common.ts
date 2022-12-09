@@ -15,7 +15,7 @@ export type GlobalVariable = {
     is404?: boolean
 }
 
-export type GraphType = 'diff' | 'weight' | 'percent'
+export type GraphType = 'diff' | 'correction' | 'percent'
 
 export type URLParam = {
     linkBase: 'raw-data' | 'orbital' | 'ether'

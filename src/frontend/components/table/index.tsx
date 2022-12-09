@@ -7,11 +7,11 @@ import { Orbital } from './cells/Orbital'
 import { Rydberg } from './cells/Rydberg'
 import { Diff } from './cells/Diff'
 import { Nth } from './cells/Nth'
-import { Weight } from './cells/Weight'
+import { Correction } from './cells/Correction'
 import { PercentPoint } from './cells/PercentPoint'
 
 export const Table = (): JSX.Element => {
-    const [{ data, orbital, ether, rydberg, diff, nth, weight, percent }] =
+    const [{ data, orbital, ether, rydberg, diff, nth, collection, percent }] =
         useContext(Context) as ContextType
 
     if (!data) {
@@ -35,7 +35,7 @@ export const Table = (): JSX.Element => {
                         <tbody>
                             {rydberg && <Rydberg cols={cols} row={row} />}
                             {diff && <Diff cols={cols} row={row} />}
-                            {weight && <Weight cols={cols} row={row} />}
+                            {collection && <Correction cols={cols} row={row} />}
                             {nth && <Nth cols={cols} row={row} />}
                             {percent && <PercentPoint cols={cols} row={row} />}
                         </tbody>

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
-import { RowInterface } from 'src/model/RowInterface'
+import { RowAbstract } from 'src/model/RowAbstract'
 
 type Props = {
-    row: RowInterface
+    row: RowAbstract
     cols: number[]
 }
 
