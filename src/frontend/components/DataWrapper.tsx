@@ -6,25 +6,41 @@ import { useTableParam } from 'src/frontend/hooks/useTableParam'
 import { useRawData } from 'src/frontend/hooks/useRawData'
 import { Table } from 'src/frontend/components/table'
 import { Chart } from './Chart'
+import { RawDataContainer } from 'src/model/RawDataContainer'
+import { OrbitalContainer } from 'src/model/OrbitalContainer'
+import { EtherContainer } from 'src/model/EtherContainer'
+import { ContainerInterface } from 'src/model/ContainerAbstract'
 
-type Props = {
-    // getLabel: LabelFunction
-}
-
-export const DataWrapper = (props: Props): JSX.Element => {
-    const { number, ion, isGraph } = useTableParam()
+export const DataWrapper = (): JSX.Element => {
+    const { linkBase, number, ion, isGraph } = useTableParam()
     const [{ data }] = useContext(Context) as ContextType
-    const { loading, error } = useRawData({
-        number,
-        ion,
-    })
+
+    let model: ContainerInterface =
+        RawDataContainer as unknown as ContainerInterface
+    if (linkBase === 'ether') {
+        model = EtherContainer as unknown as ContainerInterface
+    } else if (linkBase === 'orbital') {
+        model = OrbitalContainer as unknown as ContainerInterface
+    }
+
+    const { loading, error } = useRawData(
+        {
+            number,
+            ion,
+        },
+        model,
+    )
 
     if (error) {
         return <Fragment>404</Fragment>
     }
 
-    if (loading || !data) {
+    if (loading) {
         return <Fragment>Loading</Fragment>
+    }
+
+    if (!data) {
+        return <Fragment>Something went wrong</Fragment>
     }
 
     if (isGraph) {

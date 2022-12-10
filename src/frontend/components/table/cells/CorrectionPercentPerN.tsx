@@ -7,21 +7,24 @@ type Props = {
     cols: number[]
 }
 
-export const Rydberg = (props: Props): JSX.Element => {
+export const CorrectionPercentPerN = (props: Props): JSX.Element => {
     const { row, cols } = props
     const [{ digit }] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
-            <th className="align__right">Rydberg</th>
+            <th className="align__right">%P</th>
             {cols.map((_, index) => {
-                const rydberg = row.items[index] && row.items[index].rydberg
+                const correctionPercent =
+                    row.items[index] &&
+                    row.items[index].correctionPercentPerN - 100
                 return (
                     <td
-                        key={`${row.label}-rydberg-${index}`}
+                        key={`${row.label}-correction-${index}`}
                         className="align__right"
                     >
-                        {rydberg && rydberg.toFixed(digit)}
+                        {!isNaN(correctionPercent) &&
+                            correctionPercent.toFixed(digit)}
                     </td>
                 )
             })}

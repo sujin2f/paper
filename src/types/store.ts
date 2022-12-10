@@ -15,9 +15,10 @@ export type State = {
     nth: boolean
     percentPoint: boolean
     percent: boolean
-    collection: boolean
+    correction: boolean
     shift: number
     data?: ContainerAbstract
+    location: string
 }
 
 export type Action = Partial<State> & Type

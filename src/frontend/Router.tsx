@@ -17,12 +17,13 @@ export const Router = (): JSX.Element => {
                 }
             />
             <Route path="/:linkBase/:atom" element={<Data />}>
-                <Route path="diagonal" element={<Data />} />
-                <Route path="graph" element={<Data />}>
-                    <Route path="diagonal" element={<Data />} />
-                    <Route path=":graphType" element={<Data />}>
-                        <Route path="diagonal" element={<Data />} />
+                <Route path=":term" element={<Data />}>
+                    <Route path="graph" element={<Data />}>
+                        <Route path=":graphType" element={<Data />} />
                     </Route>
+                </Route>
+                <Route path="graph" element={<Data />}>
+                    <Route path=":graphType" element={<Data />} />
                 </Route>
             </Route>
 

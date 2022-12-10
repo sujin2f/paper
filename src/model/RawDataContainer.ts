@@ -1,8 +1,11 @@
-import { ContainerAbstract } from './ContainerAbstract'
+import { Nullable } from 'src/types/common'
+import { ContainerAbstract, ContainerInterface } from './ContainerAbstract'
 import { RawData } from './RawData'
 import { RawDataRow } from './RawDataRow'
 
 export class RawDataContainer extends ContainerAbstract {
+    term: Nullable<RawData>
+
     protected generate(groups: RawData[][]): void {
         this.items = groups
             .map((row) => new RawDataRow(row.slice(1)))

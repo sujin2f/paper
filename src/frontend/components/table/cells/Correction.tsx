@@ -9,14 +9,14 @@ type Props = {
 
 export const Correction = (props: Props): JSX.Element => {
     const { row, cols } = props
-    const [{ digit, shift }] = useContext(Context) as ContextType
+    const [{ digit }] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
             <th className="align__right">Correction</th>
             {cols.map((_, index) => {
                 const correction =
-                    row.item(index) && row.item(index).correction(shift)
+                    row.items[index] && row.items[index].correction
                 return (
                     <td
                         key={`${row.label}-correction-${index}`}

@@ -12,8 +12,10 @@ import { PeriodicTableModal } from './PeriodicTableModal'
 import { TermDropdown } from './TermDropdown'
 
 export const Header = (): JSX.Element => {
-    const { atom, number, ion, linkBase, term, isDiagonal } = useTableParam()
-    const [options, dispatch] = useContext(Context) as ContextType
+    const { atom, number, ion, linkBase, getAddress } = useTableParam()
+    const [{ digit, shift, data }, dispatch] = useContext(
+        Context,
+    ) as ContextType
 
     if (!atom) {
         return <Fragment></Fragment>
@@ -22,14 +24,18 @@ export const Header = (): JSX.Element => {
     const prev = getAtom(number - 1)
     const next = getAtom(number + 1)
 
-    const atomParam = [number, ion, term].filter((v) => v).join('+')
-
     return (
         <Fragment>
             <div className="table-header">
                 <nav className="align__left">
                     {prev && (
-                        <Link to={`/${linkBase}/${prev.number}`}>
+                        <Link
+                            to={getAddress({
+                                number: prev.number,
+                                term: '',
+                                ion: '',
+                            })}
+                        >
                             &lt; {prev.name}
                         </Link>
                     )}
@@ -46,7 +52,13 @@ export const Header = (): JSX.Element => {
 
                 <nav className="align__right">
                     {next && (
-                        <Link to={`/${linkBase}/${next.number}/`}>
+                        <Link
+                            to={getAddress({
+                                number: next.number,
+                                term: '',
+                                ion: '',
+                            })}
+                        >
                             {next.name} &gt;
                         </Link>
                     )}
@@ -66,7 +78,14 @@ export const Header = (): JSX.Element => {
                                 linkBase === 'raw-data' ? 'current' : ''
                             }`}
                         >
-                            <Link to={`/raw-data/${atomParam}`}>Raw Data</Link>
+                            <Link
+                                to={getAddress({
+                                    linkBase: 'raw-data',
+                                    term: '',
+                                })}
+                            >
+                                Raw Data
+                            </Link>
                         </li>
                         <li
                             className={`link-base ${
@@ -74,9 +93,9 @@ export const Header = (): JSX.Element => {
                             }`}
                         >
                             <Link
-                                to={`/orbital/${atomParam}${
-                                    isDiagonal ? '/diagonal' : ''
-                                }`}
+                                to={getAddress({
+                                    linkBase: 'orbital',
+                                })}
                             >
                                 Orbital
                             </Link>
@@ -87,9 +106,9 @@ export const Header = (): JSX.Element => {
                             }`}
                         >
                             <Link
-                                to={`/ether/${atomParam}${
-                                    isDiagonal ? '/diagonal' : ''
-                                }`}
+                                to={getAddress({
+                                    linkBase: 'ether',
+                                })}
                             >
                                 Ether
                             </Link>
@@ -107,9 +126,10 @@ export const Header = (): JSX.Element => {
                             <button
                                 type="button"
                                 className="button small"
-                                onClick={() =>
-                                    dispatch(setShift(options.shift - 1))
-                                }
+                                onClick={() => {
+                                    data!.shift = shift - 1
+                                    dispatch(setShift(shift - 1))
+                                }}
                             >
                                 &lt;
                             </button>
@@ -118,7 +138,10 @@ export const Header = (): JSX.Element => {
                             <button
                                 type="button"
                                 className="button small"
-                                onClick={() => dispatch(setShift(0))}
+                                onClick={() => {
+                                    data!.shift = 0
+                                    dispatch(setShift(0))
+                                }}
                             >
                                 0
                             </button>
@@ -127,9 +150,10 @@ export const Header = (): JSX.Element => {
                             <button
                                 type="button"
                                 className="button small"
-                                onClick={() =>
-                                    dispatch(setShift(options.shift + 1))
-                                }
+                                onClick={() => {
+                                    data!.shift = shift + 1
+                                    dispatch(setShift(shift + 1))
+                                }}
                             >
                                 &gt;
                             </button>
@@ -138,9 +162,7 @@ export const Header = (): JSX.Element => {
                             <button
                                 type="button"
                                 className="button small"
-                                onClick={() =>
-                                    dispatch(setDigit(options.digit - 1))
-                                }
+                                onClick={() => dispatch(setDigit(digit - 1))}
                             >
                                 .0
                             </button>
@@ -149,9 +171,7 @@ export const Header = (): JSX.Element => {
                             <button
                                 type="button"
                                 className="button small"
-                                onClick={() =>
-                                    dispatch(setDigit(options.digit + 1))
-                                }
+                                onClick={() => dispatch(setDigit(digit + 1))}
                             >
                                 .00
                             </button>

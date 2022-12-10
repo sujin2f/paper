@@ -23,7 +23,7 @@ ChartJS.register(
 
 export const Chart = (): JSX.Element => {
     const { graphType } = useTableParam()
-    const [{ data, shift }] = useContext(Context) as ContextType
+    const [{ data }] = useContext(Context) as ContextType
 
     if (!data) {
         return <Fragment></Fragment>
@@ -38,5 +38,5 @@ export const Chart = (): JSX.Element => {
         },
     }
 
-    return <Line options={options} data={data.chart(graphType, shift)} />
+    return <Line options={options} data={data.chart(graphType)} />
 }

@@ -1,16 +1,20 @@
 import { RawData } from './RawData'
 
 export abstract class RowAbstract {
+    private _first?: RawData
     protected get first(): RawData {
-        return [...this.items].filter((v) => v)[0]
+        if (!this._first) {
+            this._first = [...this._items].filter((v) => v)[0]
+        }
+        return this._first
     }
 
-    public get array(): RawData[] {
-        return this.items
+    public get items(): RawData[] {
+        return this._items
     }
 
     public get length(): number {
-        return this.items.length
+        return this._items.length
     }
 
     public get orbital(): string {
@@ -33,18 +37,38 @@ export abstract class RowAbstract {
         return this.first.termNumber
     }
 
-    public abstract get label(): string
+    public get confPrefix() {
+        return this.first.confPrefix
+    }
 
-    public constructor(protected items: RawData[]) {
+    public set shift(shift: number) {
+        this.forEach((item) => (item.shift = shift))
+    }
+
+    public set correction(correction: number) {
+        this.forEach((item) => (item.correction = correction))
+    }
+
+    public constructor(protected _items: RawData[]) {
         this.generate()
     }
 
-    public item(index: number): RawData {
-        return this.items[index]
+    private generate(): void {
+        this._items.forEach((item, index) => {
+            if (index === 0) {
+                return
+            }
+            if (!this.items) {
+                return
+            }
+            item.diff = this.items[index - 1]
+                ? this.items[index - 1].rydberg
+                : 0
+        })
     }
 
     public map(callback: (item: RawData, index: number) => any) {
-        return this.items.map((item, index) => callback(item, index))
+        return this._items.map((item, index) => callback(item, index))
     }
 
     public forEach(callback: (item: RawData, index: number) => any) {
@@ -53,5 +77,5 @@ export abstract class RowAbstract {
         })
     }
 
-    protected abstract generate(): void
+    public abstract get label(): string
 }

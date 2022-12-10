@@ -10,13 +10,4 @@ export class EtherRow extends RowAbstract {
     public set label(label: string) {
         this._label = label
     }
-
-    protected generate(): void {
-        this.items.forEach((item, index) => {
-            if (index === 0) {
-                return
-            }
-            item.setDiff(this.items[index - 1])
-        })
-    }
 }

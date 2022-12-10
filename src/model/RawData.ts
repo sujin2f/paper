@@ -7,10 +7,16 @@ export class RawData {
     private _position: number
     private _orbital: string
     private _confPrefix: string
-    private _diff?: number
+    private _diff = NaN
+    private _shift = 0
+    private _correction = NaN
 
     public static orbitalKeys = ['s', 'p', 'd', 'f', 'g', 'h', 'i', 'k']
     private static baseState = [1, 1, 2, 2]
+
+    public get id() {
+        return this.data._id
+    }
 
     public get rydberg() {
         return this.data.rydberg
@@ -38,6 +44,19 @@ export class RawData {
 
     public get diff() {
         return this._diff
+    }
+
+    public set diff(rydberg: number) {
+        const prevValue = rydberg || 0
+        const baseState = RawData.baseState[this.data.number - 1] + 1
+        if (prevValue) {
+            this._diff = this.data.rydberg - prevValue
+            return
+        } else if (this._position === baseState) {
+            this._diff = this.data.rydberg
+            return
+        }
+        this._diff = NaN
     }
 
     public get conf() {
@@ -76,6 +95,45 @@ export class RawData {
         return this._termNumber
     }
 
+    public set shift(shift: number) {
+        this._shift = shift
+    }
+
+    public get percent() {
+        if (!this._diff) {
+            return NaN
+        }
+        return (this._diff / this.getNth()) * 100
+    }
+
+    public get nth() {
+        return this.getNth()
+    }
+
+    public get correction() {
+        return !isNaN(this._correction)
+            ? this._correction
+            : this.getCorrection()
+    }
+
+    public set correction(correction: number) {
+        this._correction = correction
+    }
+
+    public get correctionPercent() {
+        if (isNaN(this._correction)) {
+            return NaN
+        }
+        return (this._diff / this.getNth(this._correction)) * 100
+    }
+
+    public get correctionPercentPerN() {
+        if (isNaN(this._correction)) {
+            return NaN
+        }
+        return (this._diff / this.getNthPerN(this._correction)) * 100
+    }
+
     public constructor(private data: RawDataT) {
         this._termNumber = this.getNumber(data.term)
         this._jNumber = this.getNumber(data.j)
@@ -87,24 +145,19 @@ export class RawData {
         this._confPrefix = confPrefix
     }
 
-    public correction(
-        shift = 0,
-        maxProp = 0,
-        minProp = 0,
-        attempt = 1,
-    ): number {
+    private getCorrection(maxProp = 0, minProp = 0, attempt = 1): number {
         if (!this._diff || this._diff <= 0) {
             return 0
         }
         const error = 0.0000005
-        const newN = this._position - shift - 1
+        const newN = this._position - this._shift - 1
         const infinity = -newN
 
         let max = maxProp || infinity + error
         let min = minProp || infinity + error + 5
 
-        let maxVal = this.nth(shift, max)
-        let minVal = this.nth(shift, min)
+        let maxVal = this.getNth(max)
+        let minVal = this.getNth(min)
 
         // Invalid range
         if (maxVal < this._diff) {
@@ -118,14 +171,14 @@ export class RawData {
 
         // Adjust range
         if (minVal > this._diff) {
-            return this.correction(shift, min, min + 5, attempt + 1)
+            return this.getCorrection(min, min + 5, attempt + 1)
         }
 
         let oneThird = 0
 
         for (let i = 0; i < 50; i++) {
-            maxVal = this.nth(shift, max)
-            minVal = this.nth(shift, min)
+            maxVal = this.getNth(max)
+            minVal = this.getNth(min)
 
             const diffMax = Math.abs(maxVal - this._diff)
             const diffMin = Math.abs(minVal - this._diff)
@@ -165,18 +218,19 @@ export class RawData {
         return (max - min) / 2
     }
 
-    public nth(shift = 0, weight = 0) {
-        const rydberg = this._position - 1 + weight - shift
+    public getNth(correction = 0) {
+        const rydberg = this._position - 1 + correction - this._shift
         const leftHand = 1 / Math.pow(rydberg, 2)
         const rightHand = 1 / Math.pow(rydberg + 1, 2)
         return leftHand - rightHand
     }
 
-    public percent(shift = 0) {
-        if (!this._diff) {
-            return NaN
-        }
-        return this._diff / this.nth(shift)
+    public getNthPerN(correction = 0) {
+        const rydberg =
+            this._position - 1 + correction / this._position - this._shift
+        const leftHand = 1 / Math.pow(rydberg, 2)
+        const rightHand = 1 / Math.pow(rydberg + 1, 2)
+        return leftHand - rightHand
     }
 
     private getNumber(value: string): number {
@@ -217,16 +271,6 @@ export class RawData {
             position: parseInt(position ? position[1] : '0'),
             orbital: orbital ? orbital[1] : '',
             confPrefix: confArray.reverse().join('.'),
-        }
-    }
-
-    public setDiff(prev?: RawData) {
-        const prevValue = prev ? prev.rydberg : 0
-        const baseState = RawData.baseState[this.data.number - 1] + 1
-        if (prevValue) {
-            this._diff = this.data.rydberg - prevValue
-        } else if (this._position === baseState) {
-            this._diff = this.data.rydberg
         }
     }
 }

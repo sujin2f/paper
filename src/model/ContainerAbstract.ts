@@ -12,16 +12,14 @@ type ChartData = {
     datasets: ChartDataset<'line', DefaultDataPoint<'line'>>[]
 }
 
+export interface ContainerInterface {
+    new (rawData: RawDataT[], _term?: string): ContainerAbstract
+}
+
 export abstract class ContainerAbstract {
+    abstract term: Nullable<RawData>
     protected items: RowAbstract[] = []
     private _entries: RawData[] = []
-
-    protected abstract generate(groups: RawData[][]): void
-
-    public constructor(rawData: RawDataT[], protected term?: string) {
-        const groups = this.setEntries(rawData)
-        this.generate(groups)
-    }
 
     public get entries() {
         return this._entries
@@ -38,11 +36,30 @@ export abstract class ContainerAbstract {
             .map((_, index) => index + 1)
     }
 
+    public set shift(shift: number) {
+        this.forEach((item) => (item.shift = shift))
+    }
+
+    public set correction(correction: number) {
+        this.forEach((item) => (item.correction = correction))
+    }
+
+    public constructor(rawData: RawDataT[], protected _term?: string) {
+        const groups = this.setEntries(rawData)
+        this.generate(groups)
+    }
+
     public map(callback: (item: RowAbstract, index: number) => any) {
         return this.items.map((item, index) => callback(item, index))
     }
 
-    public chart(valueKey: GraphType, shift: number): ChartData {
+    public forEach(callback: (item: RowAbstract, index: number) => any) {
+        return this.items.forEach((item, index) => {
+            callback(item, index)
+        })
+    }
+
+    public chart(valueKey: GraphType): ChartData {
         let index = 0
         const datasets: ChartDataset<'line', DefaultDataPoint<'line'>>[] =
             this.map((row) => {
@@ -57,10 +74,10 @@ export abstract class ContainerAbstract {
                             value = item.diff
                             break
                         case 'correction':
-                            value = item.correction(shift)
+                            value = item.correction
                             break
                         default:
-                            value = item.percent(shift)
+                            value = item.percent
                     }
                     return value
                 })
@@ -86,6 +103,60 @@ export abstract class ContainerAbstract {
                 .fill(0)
                 .map((_, index) => index + 1),
             datasets,
+        }
+    }
+
+    protected getByTerm(groups: RawData[][], rowModel: string) {
+        if (this._term) {
+            this.term = this.entries.filter((row) => row.term === this._term)[0]
+        } else {
+            this.term = this.entries[0]
+        }
+
+        if (!this.term) {
+            return
+        }
+
+        const items = groups.map((row) =>
+            rowModel === 'orbital'
+                ? new OrbitalRow(row.slice(1))
+                : new EtherRow(row.slice(1)),
+        )
+
+        let jNumber = this.term!.jNumber
+
+        // s, p, d, ...
+        RawData.orbitalKeys.forEach((orbital) => {
+            items.forEach((row) => {
+                if (
+                    row.jNumber === jNumber &&
+                    row.termNumber === this.term!.termNumber &&
+                    row.confPrefix === this.term!.confPrefix &&
+                    row.orbital === orbital
+                ) {
+                    this.items.push(row)
+                    return
+                }
+            })
+
+            jNumber += this.term!.jWeight
+        })
+
+        // Second row to Linear ether
+        if (rowModel === 'orbital') {
+            const linear: RawData[] = []
+            const radial = this.items.slice(0, 1)
+            const rest = this.items.slice(1)
+
+            rest.forEach((item, index) => {
+                linear[index + 1] = item.items[index + 1]
+            })
+            const l =
+                rowModel === 'orbital'
+                    ? new OrbitalRow(linear)
+                    : new EtherRow(linear)
+
+            this.items = radial.concat(l).concat(rest)
         }
     }
 
@@ -115,40 +186,5 @@ export abstract class ContainerAbstract {
         return groups
     }
 
-    protected getByTerm(groups: RawData[][], rowModel: string) {
-        let termData: Nullable<RawData>
-        if (this.term) {
-            termData = this.entries.filter((row) => row.term === this.term)[0]
-        } else {
-            termData = this.entries[0]
-        }
-
-        if (!termData) {
-            return
-        }
-
-        const items = groups.map((row) =>
-            rowModel === 'orbital'
-                ? new OrbitalRow(row.slice(1))
-                : new EtherRow(row.slice(1)),
-        )
-
-        let jNumber = termData!.jNumber
-
-        // s, p, d, ...
-        RawData.orbitalKeys.forEach((orbital, orbitalIndex) => {
-            items.forEach((row) => {
-                if (
-                    row.jNumber === jNumber &&
-                    row.termNumber === termData!.termNumber &&
-                    row.orbital === orbital
-                ) {
-                    this.items.push(row)
-                    return
-                }
-            })
-
-            jNumber += termData!.jWeight
-        })
-    }
+    protected abstract generate(groups: RawData[][]): void
 }

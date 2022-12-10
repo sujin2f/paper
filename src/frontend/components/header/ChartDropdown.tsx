@@ -3,15 +3,13 @@ import { Link } from 'react-router-dom'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
 
 export const ChartDropdown = (): JSX.Element => {
-    const { linkBase, number, ion, term } = useTableParam()
+    const { isGraph, graphType, getAddress } = useTableParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
 
     document.addEventListener('click', () => {
         setShowOptions(false)
     })
-
-    const atomParam = [number, ion, term].filter((v) => v).join('+')
 
     return (
         <li>
@@ -26,30 +24,57 @@ export const ChartDropdown = (): JSX.Element => {
             </Link>
             {showOptions && (
                 <ul className="menu vertical" ref={dropdown}>
-                    <li>
-                        <Link to={`/${linkBase}/${atomParam}`} type="button">
-                            Do not show
+                    <li className={!isGraph ? 'link-base current' : ''}>
+                        <Link to={getAddress({ isGraph: false })} type="button">
+                            None
                         </Link>
                     </li>
-                    <li>
+                    <li
+                        className={
+                            isGraph && graphType === 'percent'
+                                ? 'link-base current'
+                                : ''
+                        }
+                    >
                         <Link
-                            to={`/${linkBase}/${atomParam}/graph/percent`}
+                            to={getAddress({
+                                isGraph: true,
+                                graphType: 'percent',
+                            })}
                             type="button"
                         >
                             Percent
                         </Link>
                     </li>
-                    <li>
+                    <li
+                        className={
+                            isGraph && graphType === 'diff'
+                                ? 'link-base current'
+                                : ''
+                        }
+                    >
                         <Link
-                            to={`/${linkBase}/${atomParam}/graph/diff`}
+                            to={getAddress({
+                                isGraph: true,
+                                graphType: 'diff',
+                            })}
                             type="button"
                         >
                             Diff
                         </Link>
                     </li>
-                    <li>
+                    <li
+                        className={
+                            isGraph && graphType === 'correction'
+                                ? 'link-base current'
+                                : ''
+                        }
+                    >
                         <Link
-                            to={`/${linkBase}/${atomParam}/graph/correction`}
+                            to={getAddress({
+                                isGraph: true,
+                                graphType: 'correction',
+                            })}
                             type="button"
                         >
                             Correction

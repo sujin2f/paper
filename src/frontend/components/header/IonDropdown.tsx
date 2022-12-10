@@ -4,7 +4,7 @@ import { romanize } from 'src/common/utils/number'
 import { useTableParam } from 'src/frontend/hooks/useTableParam'
 
 export const IonDropdown = (): JSX.Element => {
-    const { linkBase, number } = useTableParam()
+    const { number, getAddress, ion: current } = useTableParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
     const ions = Array(number)
@@ -29,9 +29,16 @@ export const IonDropdown = (): JSX.Element => {
             {showOptions && (
                 <ul className="menu vertical" ref={dropdown}>
                     {ions.map((ion) => (
-                        <li key={`ion-selector-${ion}`}>
+                        <li
+                            key={`ion-selector-${ion}`}
+                            className={
+                                ion === current ? 'link-base current' : ''
+                            }
+                        >
                             <Link
-                                to={`/${linkBase}/${number}+${ion}`}
+                                to={getAddress({
+                                    ion,
+                                })}
                                 type="button"
                             >
                                 {ion}

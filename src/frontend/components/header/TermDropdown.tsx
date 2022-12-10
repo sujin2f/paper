@@ -4,7 +4,7 @@ import { useTableParam } from 'src/frontend/hooks/useTableParam'
 import { Context, ContextType } from 'src/frontend/store'
 
 export const TermDropdown = (): JSX.Element => {
-    const { linkBase, number, ion } = useTableParam()
+    const { linkBase, term: current, getAddress } = useTableParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
 
@@ -29,18 +29,19 @@ export const TermDropdown = (): JSX.Element => {
                     </Link>
                     {showOptions && (
                         <ul className="menu vertical" ref={dropdown}>
-                            <li>
-                                <Link
-                                    to={`/${linkBase}/${number}+${ion}`}
-                                    type="button"
-                                >
-                                    Show All
-                                </Link>
-                            </li>
                             {data.entries.map((entry) => (
-                                <li key={`term-selector-${entry.term}`}>
+                                <li
+                                    key={`term-selector-${entry.term}-${entry.id}`}
+                                    className={
+                                        current === entry.term
+                                            ? 'link-base current'
+                                            : ''
+                                    }
+                                >
                                     <Link
-                                        to={`/${linkBase}/${number}+${ion}+${entry.term}`}
+                                        to={getAddress({
+                                            term: entry.term,
+                                        })}
                                         type="button"
                                     >
                                         {entry.term}

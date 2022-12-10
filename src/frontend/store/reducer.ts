@@ -10,6 +10,7 @@ import {
     SET_COLLECTION,
     SET_SHIFT,
     SET_DATA,
+    SET_LOCATION,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -22,8 +23,9 @@ export const initialState: State = {
     nth: true,
     percentPoint: true,
     percent: true,
-    collection: true,
+    correction: true,
     shift: 0,
+    location: '',
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
@@ -82,7 +84,7 @@ export const reducer = (state: State = initialState, action: Action): State => {
         case SET_COLLECTION: {
             return {
                 ...state,
-                collection: action.collection!,
+                correction: action.correction!,
             }
         }
         case SET_SHIFT: {
@@ -95,6 +97,12 @@ export const reducer = (state: State = initialState, action: Action): State => {
             return {
                 ...state,
                 data: action.data!,
+            }
+        }
+        case SET_LOCATION: {
+            return {
+                ...state,
+                location: action.location!,
             }
         }
         default: {

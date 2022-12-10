@@ -15,13 +15,13 @@ export const Diff = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">Diff</th>
             {cols.map((_, index) => {
-                const diff = row.item(index) && row.item(index).diff
+                const diff = row.items[index] && row.items[index].diff
                 return (
                     <td
                         className="align__right"
                         key={`${row.label}-diff-${index}`}
                     >
-                        {diff && diff.toFixed(digit)}
+                        {!isNaN(diff) && diff && diff.toFixed(digit)}
                     </td>
                 )
             })}

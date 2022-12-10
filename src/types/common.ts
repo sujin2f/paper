@@ -16,9 +16,10 @@ export type GlobalVariable = {
 }
 
 export type GraphType = 'diff' | 'correction' | 'percent'
+export type LinkBaseType = 'raw-data' | 'orbital' | 'ether'
 
 export type URLParam = {
-    linkBase: 'raw-data' | 'orbital' | 'ether'
+    linkBase: LinkBaseType
     atom: string
     graphType: GraphType
 }

@@ -9,7 +9,7 @@ type Props = {
 
 export const Nth = (props: Props): JSX.Element => {
     const { row, cols } = props
-    const [{ digit, shift }] = useContext(Context) as ContextType
+    const [{ digit }] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
@@ -17,7 +17,7 @@ export const Nth = (props: Props): JSX.Element => {
                 N<sub>th</sub>(n)
             </th>
             {cols.map((_, index) => {
-                const nth = row.item(index) && row.item(index).nth(shift)
+                const nth = row.items[index] && row.items[index].nth
                 return (
                     <td
                         key={`${row.label}-nth-${index}`}

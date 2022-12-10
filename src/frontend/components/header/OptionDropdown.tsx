@@ -8,7 +8,7 @@ import {
     setOrbital,
     setPercent,
     setRydberg,
-    setCollection,
+    setCorrection,
 } from 'src/frontend/store/actions'
 
 export const OptionDropdown = (): JSX.Element => {
@@ -99,10 +99,10 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setCollection(!options.collection))
+                                dispatch(setCorrection(!options.correction))
                             }}
                             className={
-                                options.collection
+                                options.correction
                                     ? ''
                                     : 'view-option__unselected'
                             }
