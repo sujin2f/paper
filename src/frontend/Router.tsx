@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Public } from 'src/frontend/scenes/public'
 import { FrontPage } from 'src/frontend/scenes/public/FrontPage'
 import { Data } from 'src/frontend/scenes/public/Data'
+import { Cart } from './scenes/public/Cart'
 
 export const Router = (): JSX.Element => {
     return (
@@ -16,6 +17,13 @@ export const Router = (): JSX.Element => {
                     </Public>
                 }
             />
+
+            <Route path="/cart" element={<Cart />}>
+                <Route path="graph" element={<Cart />}>
+                    <Route path=":graphType" element={<Data />} />
+                </Route>
+            </Route>
+
             <Route path="/:linkBase/:atom" element={<Data />}>
                 <Route path=":term" element={<Data />}>
                     <Route path="graph" element={<Data />}>

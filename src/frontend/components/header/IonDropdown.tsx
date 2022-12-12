@@ -1,15 +1,15 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { romanize } from 'src/common/utils/number'
-import { useTableParam } from 'src/frontend/hooks/useTableParam'
+import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
 
 export const IonDropdown = (): JSX.Element => {
-    const { number, getAddress, ion: current } = useTableParam()
+    const { atomNumber, getAddress, ion: current } = useTableParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
-    const ions = Array(number)
+    const ions = Array(atomNumber)
         .fill('')
-        .map((_, index) => romanize(index + 1))
+        .map((_, index) => index + 1)
 
     document.addEventListener('click', () => {
         setShowOptions(false)
@@ -41,7 +41,7 @@ export const IonDropdown = (): JSX.Element => {
                                 })}
                                 type="button"
                             >
-                                {ion}
+                                {romanize(ion)}
                             </Link>
                         </li>
                     ))}

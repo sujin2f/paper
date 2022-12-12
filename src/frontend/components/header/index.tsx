@@ -1,10 +1,10 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { useTableParam } from 'src/frontend/hooks/useTableParam'
-import { Context, ContextType } from 'src/frontend/store'
-import { setDigit, setShift } from 'src/frontend/store/actions'
+import { romanize } from 'src/common/utils/number'
+import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
 import { getAtom } from 'src/utils/atom'
 import { ChartDropdown } from './ChartDropdown'
+import { HeaderRight } from './HeaderRight'
 import { InfoModal } from './InfoModal'
 import { IonDropdown } from './IonDropdown'
 import { OptionDropdown } from './OptionDropdown'
@@ -12,17 +12,14 @@ import { PeriodicTableModal } from './PeriodicTableModal'
 import { TermDropdown } from './TermDropdown'
 
 export const Header = (): JSX.Element => {
-    const { atom, number, ion, linkBase, getAddress } = useTableParam()
-    const [{ digit, shift, data }, dispatch] = useContext(
-        Context,
-    ) as ContextType
+    const { atom, atomNumber, ion, linkBase, getAddress } = useTableParam()
 
     if (!atom) {
         return <Fragment></Fragment>
     }
 
-    const prev = getAtom(number - 1)
-    const next = getAtom(number + 1)
+    const prev = getAtom(atomNumber - 1)
+    const next = getAtom(atomNumber + 1)
 
     return (
         <Fragment>
@@ -33,7 +30,7 @@ export const Header = (): JSX.Element => {
                             to={getAddress({
                                 number: prev.number,
                                 term: '',
-                                ion: '',
+                                ion: 1,
                             })}
                         >
                             &lt; {prev.name}
@@ -43,9 +40,11 @@ export const Header = (): JSX.Element => {
                 <header className="align__center table-header__title">
                     <div>
                         <h1>
-                            {atom.symbol} {ion}
+                            {atom.symbol} {romanize(ion)}
                         </h1>
-                        <PeriodicTableModal />
+                        <div>
+                            <PeriodicTableModal />
+                        </div>
                     </div>
                     <InfoModal />
                 </header>
@@ -56,7 +55,7 @@ export const Header = (): JSX.Element => {
                             to={getAddress({
                                 number: next.number,
                                 term: '',
-                                ion: '',
+                                ion: 1,
                             })}
                         >
                             {next.name} &gt;
@@ -119,65 +118,7 @@ export const Header = (): JSX.Element => {
                         <ChartDropdown />
                     </ul>
                 </nav>
-                <div className="top-bar-right">
-                    <ul className="menu">
-                        <li>{/* <ChartModal /> */}</li>
-                        <li>
-                            <button
-                                type="button"
-                                className="button small"
-                                onClick={() => {
-                                    data!.shift = shift - 1
-                                    dispatch(setShift(shift - 1))
-                                }}
-                            >
-                                &lt;
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                type="button"
-                                className="button small"
-                                onClick={() => {
-                                    data!.shift = 0
-                                    dispatch(setShift(0))
-                                }}
-                            >
-                                0
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                type="button"
-                                className="button small"
-                                onClick={() => {
-                                    data!.shift = shift + 1
-                                    dispatch(setShift(shift + 1))
-                                }}
-                            >
-                                &gt;
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                type="button"
-                                className="button small"
-                                onClick={() => dispatch(setDigit(digit - 1))}
-                            >
-                                .0
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                type="button"
-                                className="button small"
-                                onClick={() => dispatch(setDigit(digit + 1))}
-                            >
-                                .00
-                            </button>
-                        </li>
-                    </ul>
-                </div>
+                <HeaderRight />
             </div>
         </Fragment>
     )

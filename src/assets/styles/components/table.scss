@@ -32,3 +32,25 @@ table.unstriped {
         border-top: 3px solid $medium-gray;
     }
 }
+
+.row-header__correction {
+    width: 8rem;
+}
+
+.row-header__container {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    list-style: none;
+
+    input {
+        margin: 0;
+    }
+    button {
+        margin: 0;
+    }
+}
+
+.row-header__start {
+    width: 5rem;
+}

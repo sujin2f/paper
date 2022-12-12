@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { Modal } from 'src/common/components/containers/Modal'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { useTableParam } from 'src/frontend/hooks/useTableParam'
+import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
 
 export const InfoModal = (): JSX.Element => {
     const { atom } = useTableParam()

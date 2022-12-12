@@ -3,7 +3,7 @@ import { Schema } from 'mongoose'
 export type RawDataT = {
     _id?: string
     number: number
-    ion: string
+    ion: number
     rydberg: number
     term: string
     j: string
@@ -12,7 +12,7 @@ export type RawDataT = {
 
 export const mongoSchema = new Schema({
     number: Number,
-    ion: String,
+    ion: Number,
     rydberg: Number,
     term: String,
     j: String,
@@ -21,10 +21,10 @@ export const mongoSchema = new Schema({
 
 export const graphQL = {
     query: `
-        rawData(number: Int!, ion: String!, term: String): [RawData]
+        rawData(number: Int!, ion: Int!, term: String): [RawData]
     `,
     request: `
-        query rawData($number: Int!, $ion: String!, $term: String) {
+        query rawData($number: Int!, $ion: Int!, $term: String) {
             rawData(number: $number, ion: $ion, term: $term) {
                 _id
                 number
@@ -40,7 +40,7 @@ export const graphQL = {
         type RawData {
             _id: String
             number: Int
-            ion: String
+            ion: Int
             rydberg: Float
             term: String
             j: String
@@ -53,4 +53,4 @@ export type ReturnType = {
     rawData: RawDataT[]
 }
 
-export type Param = { number: number; ion: string }
+export type Param = { number: number; ion: number }

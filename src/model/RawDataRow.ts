@@ -2,6 +2,6 @@ import { RowAbstract } from './RowAbstract'
 
 export class RawDataRow extends RowAbstract {
     public get label(): string {
-        return `${this.first.term}.${this.first.j}`
+        return this._label || `${this.first.term}.${this.first.j}`
     }
 }

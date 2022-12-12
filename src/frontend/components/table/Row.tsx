@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useRef, useState } from 'react'
+import React, { Fragment, useContext } from 'react'
 
 import { Context, ContextType } from 'src/frontend/store'
 
@@ -12,6 +12,7 @@ import { PercentPoint } from './cells/PercentPoint'
 import { RowAbstract } from 'src/model/RowAbstract'
 import { CorrectionPercent } from './cells/CorrectionPercent'
 import { CorrectionPercentPerN } from './cells/CorrectionPercentPerN'
+import { RowHeader } from './RowHeader'
 
 type Props = {
     cols: number[]
@@ -30,14 +31,7 @@ export const Row = (props: Props): JSX.Element => {
             percent,
         },
     ] = useContext(Context) as ContextType
-    const inputRef = useRef<HTMLInputElement>(null)
-    const [correction, setCorrection] = useState<number>(NaN)
     const { cols, row } = props
-
-    const setRowCorrection = (value: number) => {
-        row.correction = value
-        setCorrection(value)
-    }
 
     return (
         <Fragment>
@@ -45,18 +39,7 @@ export const Row = (props: Props): JSX.Element => {
                 <tr className="table__header">
                     <th className="align__right">{row.label}</th>
                     <td colSpan={cols.length + 1}>
-                        <input
-                            type="number"
-                            step="any"
-                            ref={inputRef}
-                            onChange={() => {
-                                const value = !inputRef.current?.value
-                                    ? NaN
-                                    : parseFloat(inputRef.current?.value)
-                                setRowCorrection(value)
-                            }}
-                            value={!isNaN(correction) ? correction : ''}
-                        />
+                        <RowHeader row={row} />
                     </td>
                 </tr>
                 {orbital && <Orbital cols={cols} row={row} />}
@@ -68,7 +51,7 @@ export const Row = (props: Props): JSX.Element => {
                 {correctionVisible && (
                     <Fragment>
                         <Correction cols={cols} row={row} />
-                        {!isNaN(correction) && (
+                        {!isNaN(row.correction) && (
                             <Fragment>
                                 <CorrectionPercent cols={cols} row={row} />
                                 <CorrectionPercentPerN cols={cols} row={row} />

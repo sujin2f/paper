@@ -10,7 +10,7 @@ import {
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { Context, ContextType } from 'src/frontend/store'
-import { useTableParam } from '../hooks/useTableParam'
+import { useTableParam } from '../hooks/useRawDataParam'
 
 ChartJS.register(
     CategoryScale,

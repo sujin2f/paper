@@ -11,6 +11,9 @@ import {
     SET_SHIFT,
     SET_DATA,
     SET_LOCATION,
+    ADD_CART,
+    REMOVE_CART,
+    SET_FORCE_UPDATE,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -26,6 +29,8 @@ export const initialState: State = {
     correction: true,
     shift: 0,
     location: '',
+    cart: [],
+    forceUpdate: undefined,
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
@@ -103,6 +108,26 @@ export const reducer = (state: State = initialState, action: Action): State => {
             return {
                 ...state,
                 location: action.location!,
+            }
+        }
+        case ADD_CART: {
+            return {
+                ...state,
+                cart: [...state.cart, ...action.cart!],
+            }
+        }
+        case REMOVE_CART: {
+            return {
+                ...state,
+                cart: state.cart.filter(
+                    (item) => action.cart!.indexOf(item) === -1,
+                ),
+            }
+        }
+        case SET_FORCE_UPDATE: {
+            return {
+                ...state,
+                forceUpdate: action.forceUpdate!,
             }
         }
         default: {

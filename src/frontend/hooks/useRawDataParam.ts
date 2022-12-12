@@ -5,9 +5,10 @@ import { getAtom } from 'src/utils/atom'
 export const useTableParam = () => {
     const location = useLocation()
     const { linkBase, atom, graphType: graphTypeParam } = useParams<URLParam>()
-    const [numberParam, ion, termParam] = atom!.split('+')
+    const [numberParam, ionParam, termParam] = atom ? atom.split('+') : []
 
-    const number = parseInt(numberParam || '1')
+    const atomNumber = parseInt(numberParam || '1', 10)
+    const ion = parseInt(ionParam || '1', 10)
     const term = termParam || ''
     const graphType = graphTypeParam || 'percent'
     const isGraph = location.pathname.indexOf('/graph') !== -1
@@ -15,13 +16,13 @@ export const useTableParam = () => {
     const getAddress = (param: {
         linkBase?: LinkBaseType
         number?: number
-        ion?: string
+        ion?: number
         term?: string
         isGraph?: boolean
         graphType?: GraphType
-    }) => {
+    }): string => {
         const linkBaseEntry = param.linkBase || linkBase
-        const numberEntry = param.number || number
+        const numberEntry = param.number || atomNumber
         const ionEntry = param.ion !== undefined ? param.ion : ion
         const termEntry = param.term !== undefined ? param.term : term
         const isGraphEntry =
@@ -37,9 +38,9 @@ export const useTableParam = () => {
     }
 
     return {
-        number,
-        ion: ion || 'I',
-        atom: getAtom(number),
+        atomNumber,
+        ion,
+        atom: getAtom(atomNumber),
         linkBase,
         term,
         graphType,

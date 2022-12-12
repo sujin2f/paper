@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
+import { useCartParam } from 'src/frontend/hooks/useCartParam'
 
-export const ChartDropdown = (): JSX.Element => {
-    const { isGraph, graphType, getAddress } = useTableParam()
+export const CartChartDropdown = (): JSX.Element => {
+    const { isGraph, graphType, getAddress } = useCartParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
 

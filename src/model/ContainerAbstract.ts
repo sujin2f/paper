@@ -12,9 +12,10 @@ type ChartData = {
     datasets: ChartDataset<'line', DefaultDataPoint<'line'>>[]
 }
 
-export interface ContainerInterface {
-    new (rawData: RawDataT[], _term?: string): ContainerAbstract
-}
+export type ContainerInterface = new (
+    rawData: RawDataT[],
+    _term?: string,
+) => ContainerAbstract
 
 export abstract class ContainerAbstract {
     abstract term: Nullable<RawData>
@@ -37,11 +38,19 @@ export abstract class ContainerAbstract {
     }
 
     public set shift(shift: number) {
-        this.forEach((item) => (item.shift = shift))
+        this.forEach((item) => {
+            if (item) {
+                item.shift = shift
+            }
+        })
     }
 
     public set correction(correction: number) {
         this.forEach((item) => (item.correction = correction))
+    }
+
+    public set start(start: number) {
+        this.forEach((row) => (row.start = start))
     }
 
     public constructor(rawData: RawDataT[], protected _term?: string) {
@@ -101,7 +110,7 @@ export abstract class ContainerAbstract {
         return {
             labels: Array(Math.max(...length))
                 .fill(0)
-                .map((_, index) => index + 1),
+                .map((_, i) => i + 1),
             datasets,
         }
     }
@@ -151,11 +160,8 @@ export abstract class ContainerAbstract {
             rest.forEach((item, index) => {
                 linear[index + 1] = item.items[index + 1]
             })
-            const l =
-                rowModel === 'orbital'
-                    ? new OrbitalRow(linear)
-                    : new EtherRow(linear)
-
+            const l = new OrbitalRow(linear)
+            l.label = 'Linear'
             this.items = radial.concat(l).concat(rest)
         }
     }

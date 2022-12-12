@@ -1,5 +1,5 @@
 import { Nullable } from 'src/types/common'
-import { ContainerAbstract, ContainerInterface } from './ContainerAbstract'
+import { ContainerAbstract } from './ContainerAbstract'
 import { EtherRow } from './EtherRow'
 import { RawData } from './RawData'
 
@@ -12,6 +12,9 @@ export class EtherContainer extends ContainerAbstract {
 
         this.items.slice(1).forEach((row) =>
             row.forEach((item) => {
+                if (!item) {
+                    return
+                }
                 // 2p  3d  4f  5g  6h
                 //     3p  4d  5f  6g
                 //         4p  5d  6f
@@ -29,12 +32,13 @@ export class EtherContainer extends ContainerAbstract {
         )
 
         // Push S orbitals into items
-        this.items[0] &&
+        if (this.items[0]) {
             this.items[0].forEach((item, index) => {
                 if (rawData[index + 1]) {
                     rawData[index + 1][index] = item
                 }
             })
+        }
 
         const result = rawData.map((row, index) => {
             const model = new EtherRow(row)

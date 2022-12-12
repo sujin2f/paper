@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Modal } from 'src/common/components/containers/Modal'
 import { periodicTable } from 'src/constants/periodic-table'
-import { useTableParam } from 'src/frontend/hooks/useTableParam'
+import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
 import { Atom } from 'src/types/atom'
 
 export const PeriodicTableModal = (): JSX.Element => {
@@ -24,8 +24,8 @@ export const PeriodicTableModal = (): JSX.Element => {
         [[]],
     )
 
-    const rows = Array(10).fill('')
-    const cols = Array(18).fill('')
+    const rows = [...Array(10).fill('').keys()]
+    const cols = [...Array(18).fill('').keys()]
 
     return (
         <Fragment>
@@ -39,26 +39,26 @@ export const PeriodicTableModal = (): JSX.Element => {
                 >
                     <table>
                         <tbody>
-                            {rows.map((_, row) => (
+                            {rows.map((row) => (
                                 <tr key={`periodic-table-row-${row}`}>
-                                    {cols.map((_, col) => {
-                                        const atom = table[row][col]
+                                    {cols.map((col) => {
+                                        const current = table[row][col]
                                         return (
                                             <td
                                                 key={`periodic-table-col-${row}-${col}`}
                                             >
-                                                {atom && (
+                                                {current && (
                                                     <Link
                                                         to={getAddress({
-                                                            number: atom.number,
-                                                            ion: '',
+                                                            number: current.number,
+                                                            ion: 1,
                                                             term: '',
                                                         })}
                                                         onClick={() =>
                                                             setShowModal(false)
                                                         }
                                                     >
-                                                        {atom.symbol}
+                                                        {current.symbol}
                                                     </Link>
                                                 )}
                                             </td>

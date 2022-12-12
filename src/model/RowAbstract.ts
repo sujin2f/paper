@@ -2,6 +2,9 @@ import { RawData } from './RawData'
 
 export abstract class RowAbstract {
     private _first?: RawData
+    private _start = 0
+    protected _label = ''
+
     protected get first(): RawData {
         if (!this._first) {
             this._first = [...this._items].filter((v) => v)[0]
@@ -10,7 +13,7 @@ export abstract class RowAbstract {
     }
 
     public get items(): RawData[] {
-        return this._items
+        return [...this._items].slice(this._start)
     }
 
     public get length(): number {
@@ -30,11 +33,11 @@ export abstract class RowAbstract {
     }
 
     public get jNumber() {
-        return this.first.jNumber
+        return this.first ? this.first.jNumber : 0
     }
 
     public get termNumber() {
-        return this.first.termNumber
+        return this.first ? this.first.termNumber : 0
     }
 
     public get confPrefix() {
@@ -42,11 +45,27 @@ export abstract class RowAbstract {
     }
 
     public set shift(shift: number) {
-        this.forEach((item) => (item.shift = shift))
+        this.forEach((item) => {
+            if (item) {
+                item.shift = shift
+            }
+        })
     }
 
     public set correction(correction: number) {
         this.forEach((item) => (item.correction = correction))
+    }
+
+    public set label(label: string) {
+        this._label = label
+    }
+
+    public get label(): string {
+        return ''
+    }
+
+    public set start(start: number) {
+        this._start = start
     }
 
     public constructor(protected _items: RawData[]) {
@@ -61,6 +80,9 @@ export abstract class RowAbstract {
             if (!this.items) {
                 return
             }
+            if (!item) {
+                return
+            }
             item.diff = this.items[index - 1]
                 ? this.items[index - 1].rydberg
                 : 0
@@ -68,7 +90,7 @@ export abstract class RowAbstract {
     }
 
     public map(callback: (item: RawData, index: number) => any) {
-        return this._items.map((item, index) => callback(item, index))
+        return this.items.map((item, index) => callback(item, index))
     }
 
     public forEach(callback: (item: RawData, index: number) => any) {
@@ -76,6 +98,4 @@ export abstract class RowAbstract {
             callback(item, index)
         })
     }
-
-    public abstract get label(): string
 }

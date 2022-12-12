@@ -2,9 +2,11 @@ import { parse } from 'csv-parse'
 import { addOne } from 'src/utils/mongo/raw-data'
 import { Atom } from 'src/types/atom'
 import { RawDataT } from 'src/types/raw-data'
+import { romanize } from 'src/common/utils/number'
 
-export const crawl = async (atom: Atom, ion: string) => {
-    const nistUrl = `https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=${atom.symbol}+${ion}&limits_type=0&low_w=&upp_w=&unit=1&de=0&I_scale_type=1&format=2&line_out=0&remove_js=on&en_unit=2&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on&submit=Retrieve+Data`
+export const crawl = async (atom: Atom, ion: number) => {
+    const ionRoman = romanize(ion)
+    const nistUrl = `https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=${atom.symbol}+${ionRoman}&limits_type=0&low_w=&upp_w=&unit=1&de=0&I_scale_type=1&format=2&line_out=0&remove_js=on&en_unit=2&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on&submit=Retrieve+Data`
 
     const result = await fetch(nistUrl)
         .then(async (response) => await response.text())
@@ -20,7 +22,7 @@ export const crawl = async (atom: Atom, ion: string) => {
     return false
 }
 
-const csvParser = async (atom: Atom, ion: string, csv: string) => {
+const csvParser = async (atom: Atom, ion: number, csv: string) => {
     const columns: Record<string, number> = {
         'Ei(Ry)': 0,
         conf_i: 0,
@@ -40,6 +42,7 @@ const csvParser = async (atom: Atom, ion: string, csv: string) => {
                 columns[key] = record.record.indexOf(key)
             })
         } else {
+            /* tslint:disable no-string-literal */
             let rawData = createRawData({
                 number: atom.number,
                 ion,
@@ -60,6 +63,7 @@ const csvParser = async (atom: Atom, ion: string, csv: string) => {
                 j: record.record[columns['J_k']],
                 term: record.record[columns['term_k']],
             })
+            /* tslint:enable */
 
             if (rawData) {
                 await addOne(rawData)
@@ -93,7 +97,7 @@ const filterValue = (value: string): string => {
 
 const createRawData = (param: {
     number: number
-    ion: string
+    ion: number
     rydberg: string
     conf: string
     term: string

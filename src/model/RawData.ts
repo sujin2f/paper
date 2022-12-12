@@ -103,7 +103,7 @@ export class RawData {
         if (!this._diff) {
             return NaN
         }
-        return (this._diff / this.getNth()) * 100
+        return ((this._diff / this.getNth()) * 100) / this.z
     }
 
     public get nth() {
@@ -132,6 +132,13 @@ export class RawData {
             return NaN
         }
         return (this._diff / this.getNthPerN(this._correction)) * 100
+    }
+
+    public get z() {
+        if (this.data.ion === this.data.number) {
+            return Math.pow(this.data.number, 2)
+        }
+        return 1
     }
 
     public constructor(private data: RawDataT) {
@@ -235,7 +242,7 @@ export class RawData {
 
     private getNumber(value: string): number {
         const regex = /([0-9]+)/.exec(value)
-        return parseInt(regex ? regex[1] : '')
+        return parseInt(regex ? regex[1] : '', 10)
     }
 
     private getConfArray = (conf: string): string[] => {
@@ -247,7 +254,7 @@ export class RawData {
                 result.push(el)
                 return
             }
-            Array(parseInt(hasMultiple[3]))
+            Array(parseInt(hasMultiple[3], 10))
                 .fill('')
                 .forEach(() =>
                     result.push(`${hasMultiple[1]}${hasMultiple[2]}`),
@@ -268,7 +275,7 @@ export class RawData {
         const position = /([0-9]+)/.exec(last || '')
 
         return {
-            position: parseInt(position ? position[1] : '0'),
+            position: parseInt(position ? position[1] : '0', 10),
             orbital: orbital ? orbital[1] : '',
             confPrefix: confArray.reverse().join('.'),
         }

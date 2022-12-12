@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from 'react'
 
 import { Context, ContextType } from 'src/frontend/store'
-import { useTableParam } from 'src/frontend/hooks/useTableParam'
+import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
 
 import { useRawData } from 'src/frontend/hooks/useRawData'
 import { Table } from 'src/frontend/components/table'
@@ -12,7 +12,7 @@ import { EtherContainer } from 'src/model/EtherContainer'
 import { ContainerInterface } from 'src/model/ContainerAbstract'
 
 export const DataWrapper = (): JSX.Element => {
-    const { linkBase, number, ion, isGraph } = useTableParam()
+    const { linkBase, atomNumber, ion, isGraph } = useTableParam()
     const [{ data }] = useContext(Context) as ContextType
 
     let model: ContainerInterface =
@@ -25,7 +25,7 @@ export const DataWrapper = (): JSX.Element => {
 
     const { loading, error } = useRawData(
         {
-            number,
+            number: atomNumber,
             ion,
         },
         model,

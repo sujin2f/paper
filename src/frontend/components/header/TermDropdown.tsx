@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useTableParam } from 'src/frontend/hooks/useTableParam'
+import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
 import { Context, ContextType } from 'src/frontend/store'
 
 export const TermDropdown = (): JSX.Element => {

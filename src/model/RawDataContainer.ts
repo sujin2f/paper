@@ -1,5 +1,5 @@
 import { Nullable } from 'src/types/common'
-import { ContainerAbstract, ContainerInterface } from './ContainerAbstract'
+import { ContainerAbstract } from './ContainerAbstract'
 import { RawData } from './RawData'
 import { RawDataRow } from './RawDataRow'
 

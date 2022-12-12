@@ -1,4 +1,5 @@
 import { ContainerAbstract } from 'src/model/ContainerAbstract'
+import { RowAbstract } from 'src/model/RowAbstract'
 import { Action } from 'src/types/store'
 
 export const SET_DIGIT = 'ether/v1/SET_DIGIT'
@@ -13,6 +14,9 @@ export const SET_COLLECTION = 'ether/v1/SET_COLLECTION'
 export const SET_SHIFT = 'ether/v1/SET_SHIFT'
 export const SET_DATA = 'ether/v1/SET_DATA'
 export const SET_LOCATION = 'ether/v1/SET_LOCATION'
+export const ADD_CART = 'ether/v1/ADD_CART'
+export const REMOVE_CART = 'ether/v1/REMOVE_CART'
+export const SET_FORCE_UPDATE = 'ether/v1/SET_FORCE_UPDATE'
 
 export const setDigit = (digit: number): Action => {
     return {
@@ -95,5 +99,28 @@ export const setLocation = (location: string): Action => {
     return {
         type: SET_LOCATION,
         location,
+    }
+}
+
+export const addCart = (cart: RowAbstract[]): Action => {
+    return {
+        type: ADD_CART,
+        cart,
+    }
+}
+
+export const removeCart = (cart: RowAbstract[]): Action => {
+    return {
+        type: REMOVE_CART,
+        cart,
+    }
+}
+
+export const setForceUpdate = (
+    forceUpdate: React.DispatchWithoutAction,
+): Action => {
+    return {
+        type: SET_FORCE_UPDATE,
+        forceUpdate,
     }
 }

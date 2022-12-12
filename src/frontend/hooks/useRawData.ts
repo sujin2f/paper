@@ -5,7 +5,7 @@ import { ContainerInterface } from 'src/model/ContainerAbstract'
 import { ReturnType, graphQL, Param } from 'src/types/raw-data'
 import { Context, ContextType } from '../store'
 import { setData, setLocation } from '../store/actions'
-import { useTableParam } from './useTableParam'
+import { useTableParam } from './useRawDataParam'
 
 export const useRawData = (variables: Param, model: ContainerInterface) => {
     const { term, getAddress } = useTableParam()
@@ -24,7 +24,7 @@ export const useRawData = (variables: Param, model: ContainerInterface) => {
             return
         }
 
-        if (data && getAddress({}) !== location) {
+        if (getAddress({}) !== location) {
             const rawData = new model(data.rawData, term)
             dispatch(setData(rawData))
             dispatch(setLocation(getAddress({})))

@@ -1,12 +1,12 @@
 export type Crawler = {
     _id?: string
     number: number
-    ion: string
+    ion: number
     result: boolean
 }
 
 export const schema = {
     number: Number,
-    ion: String,
+    ion: Number,
     result: Boolean,
 }
