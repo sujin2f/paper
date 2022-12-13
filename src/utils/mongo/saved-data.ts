@@ -72,6 +72,7 @@ export const getRow = async (_id: string): Promise<SavedDataRowT> => {
             correction: data.correction,
             shift: data.shift,
             start: data.start,
+            color: data.color,
             items,
         }
     })
@@ -95,3 +96,17 @@ export const getOne = async (_id: string): Promise<SavedDataContainerT> =>
                 items,
             }
         })
+
+export const removeOne = async (_id: string): Promise<boolean> => {
+    const savedData = await getOne(_id)
+    savedData.items.forEach(async (row) => {
+        row.items.forEach(async (item) => {
+            if (item) {
+                await modelItem.deleteOne({ _id: item?._id })
+            }
+        })
+        await modelRow.deleteOne({ _id: row._id })
+    })
+    await modelContainer.deleteOne({ _id })
+    return true
+}

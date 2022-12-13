@@ -1,3 +1,4 @@
+import { chartColors } from 'src/constants/chart'
 import { Nullable } from 'src/types/common'
 import { ContainerAbstract } from './ContainerAbstract'
 import { EtherRow } from './EtherRow'
@@ -53,6 +54,10 @@ export class EtherContainer extends ContainerAbstract {
         const radial = new EtherRow(this.items[0].items)
         radial.label = 'Radial'
         result.unshift(radial)
+        result.forEach(
+            (row, index) =>
+                (row.color = chartColors[index] || 'rgb(200, 200, 200)'),
+        )
         this.items = result
     }
 }

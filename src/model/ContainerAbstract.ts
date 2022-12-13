@@ -66,7 +66,6 @@ export abstract class ContainerAbstract {
     }
 
     public chart(valueKey: GraphType): ChartData {
-        let index = 0
         const datasets: ChartDataset<'line', DefaultDataPoint<'line'>>[] =
             this.map((row) => {
                 const data: number[] = row.map((item) => {
@@ -96,10 +95,9 @@ export abstract class ContainerAbstract {
                     label: row.label,
                     data,
                     fill: false,
-                    borderColor: chartColors[index] || 'rgb(200, 200, 200)',
+                    borderColor: row.color,
                     tension: 0.1,
                 }
-                index++
                 return result
             }).filter((v) => v)
         const length: number[] = datasets
@@ -165,6 +163,11 @@ export abstract class ContainerAbstract {
             l.label = 'Linear'
             this.items = radial.concat(l).concat(rest)
         }
+
+        this.items.forEach(
+            (row, index) =>
+                (row.color = chartColors[index] || 'rgb(200, 200, 200)'),
+        )
     }
 
     private setEntries(rawData: RawDataT[]) {

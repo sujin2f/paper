@@ -1,3 +1,4 @@
+import { chartColors } from 'src/constants/chart'
 import { Nullable } from 'src/types/common'
 import { ContainerAbstract } from './ContainerAbstract'
 import { RawData } from './RawData'
@@ -17,5 +18,9 @@ export class RawDataContainer extends ContainerAbstract {
                 }
                 return indexA - indexB
             })
+        this.items.forEach(
+            (row, index) =>
+                (row.color = chartColors[index] || 'rgb(200, 200, 200)'),
+        )
     }
 }

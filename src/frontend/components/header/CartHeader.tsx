@@ -7,7 +7,11 @@ import { HeaderRight } from './HeaderRight'
 export const CartHeader = (): JSX.Element => {
     const [{ data }] = useContext(Context) as ContextType
     const titleRef = useRef<HTMLInputElement>(null)
-    const { saveData } = useSavedDataMutation()
+    const { saveData, saved } = useSavedDataMutation()
+
+    if (saved) {
+        return <Fragment />
+    }
 
     return (
         <Fragment>

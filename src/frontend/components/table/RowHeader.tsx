@@ -18,10 +18,26 @@ export const RowHeader = (props: Props): JSX.Element => {
     const correctionRef = useRef<HTMLInputElement>(null)
     const labelRef = useRef<HTMLInputElement>(null)
     const startRef = useRef<HTMLInputElement>(null)
+    const colorRef = useRef<HTMLInputElement>(null)
     const [shift, setShift] = useState<number>(contextShift)
 
     return (
         <ul className="row-header__container">
+            <li>
+                <input
+                    type="color"
+                    ref={colorRef}
+                    defaultValue={row.color}
+                    className="row-header__color"
+                    onChange={() => {
+                        const value = !colorRef.current?.value
+                            ? row.color
+                            : colorRef.current?.value
+                        row.color = value
+                        forceUpdate!()
+                    }}
+                />
+            </li>
             <li>
                 <input
                     className="row-header__correction"

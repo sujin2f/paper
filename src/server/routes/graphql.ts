@@ -8,6 +8,7 @@ import {
     savedData,
     savedDataList,
     savedDataMutation,
+    savedDataRemove,
 } from 'src/utils/endpoints/saved-data'
 
 const graphqlRouter = express.Router()
@@ -22,6 +23,7 @@ graphqlRouter.use(
             savedData,
             savedDataList,
             savedDataMutation,
+            savedDataRemove,
         },
         graphiql: true,
     }),

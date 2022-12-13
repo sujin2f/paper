@@ -9,5 +9,6 @@ export class SavedDataRow extends RowAbstract {
         this._items = row.items.map((item) =>
             item ? new SavedData(item) : undefined,
         )
+        this.color = row.color
     }
 }

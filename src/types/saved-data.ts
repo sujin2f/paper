@@ -17,6 +17,7 @@ export type SavedDataRowT = {
     correction: number
     shift: number
     start: number
+    color: string
     items: (SavedDataT | undefined)[]
 }
 
@@ -40,6 +41,7 @@ export const mongoSchema = {
         correction: Number,
         shift: Number,
         start: Number,
+        color: String,
         items: [{ type: Schema.Types.ObjectId, ref: 'savedData' }],
     }),
     container: new Schema({
@@ -51,6 +53,7 @@ export const mongoSchema = {
 export const graphQL = {
     mutation: `
         savedDataMutation(data: SavedDataContainerM!): String
+        savedDataRemove(_id: String!): Boolean
     `,
     query: `
         savedData(_id: String!): SavedDataContainer
@@ -60,6 +63,11 @@ export const graphQL = {
         mutation: `
             mutation savedDataMutation($data: SavedDataContainerM!) {
                 savedDataMutation(data: $data)
+            }
+        `,
+        remove: `
+            mutation savedDataRemove($_id: String!) {
+                savedDataRemove(_id: $_id)
             }
         `,
         query: `
@@ -73,6 +81,7 @@ export const graphQL = {
                         correction
                         shift
                         start
+                        color
                         items {
                             _id
                             conf
@@ -105,6 +114,7 @@ export const graphQL = {
             correction: Float
             shift: Int
             start: Int
+            color: String
             items: [SavedDataM]
         }
         input SavedDataM {
@@ -126,6 +136,7 @@ export const graphQL = {
             correction: Float
             shift: Int
             start: Int
+            color: String
             items: [SavedData]
         }
         type SavedData {

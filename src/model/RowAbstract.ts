@@ -3,6 +3,7 @@ import { RawData } from './RawData'
 
 export abstract class RowAbstract {
     public start = 0
+    public color = ''
     private _first?: Nullable<RawData>
     private _shift = 0
     private _correction = 0
@@ -103,6 +104,7 @@ export abstract class RowAbstract {
             start: this.start,
             shift: this._shift,
             correction: this._correction,
+            color: this.color,
             items: this.map((item) => (item ? item.toSavedData() : null)),
         }
     }

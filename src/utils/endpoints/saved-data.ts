@@ -5,6 +5,7 @@ import {
     addSavedDataRow,
     getAllId,
     getOne,
+    removeOne,
 } from '../mongo/saved-data'
 
 export const savedData = async (param: {
@@ -47,4 +48,11 @@ export const savedDataMutation = async (param: {
         )
     }
     return await addSavedDataContainer(savedData)
+}
+
+export const savedDataRemove = async (param: {
+    _id: string
+}): Promise<boolean> => {
+    await removeOne(param._id)
+    return true
 }
