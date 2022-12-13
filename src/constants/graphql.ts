@@ -1,8 +1,14 @@
-import { graphQL } from 'src/types/raw-data'
+import { graphQL as rawData } from 'src/types/raw-data'
+import { graphQL as savedData } from 'src/types/saved-data'
 
 export const graphqlSchema = `
     type Query {
-        ${graphQL.query}
+        ${rawData.query}
+        ${savedData.query}
     }
-    ${graphQL.type}
+    type Mutation {
+        ${savedData.mutation}
+    }
+    ${rawData.type}
+    ${savedData.type}
 `

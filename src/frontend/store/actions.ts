@@ -1,5 +1,6 @@
 import { ContainerAbstract } from 'src/model/ContainerAbstract'
 import { RowAbstract } from 'src/model/RowAbstract'
+import { Nullable } from 'src/types/common'
 import { Action } from 'src/types/store'
 
 export const SET_DIGIT = 'ether/v1/SET_DIGIT'
@@ -117,7 +118,7 @@ export const removeCart = (cart: RowAbstract[]): Action => {
 }
 
 export const setForceUpdate = (
-    forceUpdate: React.DispatchWithoutAction,
+    forceUpdate: Nullable<React.DispatchWithoutAction>,
 ): Action => {
     return {
         type: SET_FORCE_UPDATE,

@@ -10,10 +10,10 @@ export class RawDataContainer extends ContainerAbstract {
         this.items = groups
             .map((row) => new RawDataRow(row.slice(1)))
             .sort((rowA, rowB) => {
-                const indexA = RawData.orbitalKeys.indexOf(rowA.orbital)
-                const indexB = RawData.orbitalKeys.indexOf(rowB.orbital)
+                const indexA = RawData.orbitalKeys.indexOf(rowA.orbital || '')
+                const indexB = RawData.orbitalKeys.indexOf(rowB.orbital || '')
                 if (indexA === indexB) {
-                    return rowA.rydberg - rowB.rydberg
+                    return (rowA.rydberg || 0) - (rowB.rydberg || 0)
                 }
                 return indexA - indexB
             })

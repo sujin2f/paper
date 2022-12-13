@@ -4,6 +4,11 @@ import { buildSchema } from 'graphql'
 
 import { graphqlSchema } from 'src/constants/graphql'
 import { rawData } from 'src/utils/endpoints/raw-data'
+import {
+    savedData,
+    savedDataList,
+    savedDataMutation,
+} from 'src/utils/endpoints/saved-data'
 
 const graphqlRouter = express.Router()
 const schema = buildSchema(graphqlSchema)
@@ -14,6 +19,9 @@ graphqlRouter.use(
         schema,
         rootValue: {
             rawData,
+            savedData,
+            savedDataList,
+            savedDataMutation,
         },
         graphiql: true,
     }),

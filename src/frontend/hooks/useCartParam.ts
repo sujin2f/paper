@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom'
-import { GraphType, URLParam } from 'src/types/common'
+import { GraphType, URLParam } from 'src/types/raw-data'
 
 export const useCartParam = () => {
     const location = useLocation()

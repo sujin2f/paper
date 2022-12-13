@@ -1,71 +1,46 @@
 import { RawDataT } from 'src/types/raw-data'
 
 export class RawData {
-    private _termNumber: number
-    private _jNumber: number
-    private _jWeight: number
-    private _position: number
-    private _orbital: string
-    private _confPrefix: string
-    private _diff = NaN
-    private _shift = 0
+    public _id?: string
+    public number: number
+    public ion: number
+    public rydberg: number
+    public term: string
+    public j: string
+    public conf: string
+    public termNumber: number
+    public jNumber: number
+    public jWeight: number
+    public position: number
+    public orbital: string
+    public confPrefix: string
+    public shift = 0
+
     private _correction = NaN
+    protected _diff = NaN
 
     public static orbitalKeys = ['s', 'p', 'd', 'f', 'g', 'h', 'i', 'k']
     private static baseState = [1, 1, 2, 2]
 
-    public get id() {
-        return this.data._id
-    }
-
-    public get rydberg() {
-        return this.data.rydberg
-    }
-
-    public get term() {
-        return this.data.term
-    }
-
-    public get j() {
-        return this.data.j
-    }
-
-    public get confPrefix() {
-        return this._confPrefix
-    }
-
-    public get orbital() {
-        return this._orbital
-    }
-
-    public get position() {
-        return this._position
-    }
-
     public get diff() {
         return this._diff
     }
-
     public set diff(rydberg: number) {
         const prevValue = rydberg || 0
-        const baseState = RawData.baseState[this.data.number - 1] + 1
+        const baseState = RawData.baseState[this.number - 1] + 1
         if (prevValue) {
-            this._diff = this.data.rydberg - prevValue
+            this._diff = this.rydberg - prevValue
             return
-        } else if (this._position === baseState) {
-            this._diff = this.data.rydberg
+        } else if (this.position === baseState) {
+            this._diff = this.rydberg
             return
         }
         this._diff = NaN
     }
 
-    public get conf() {
-        return this.data.conf
-    }
-
     public get ether() {
-        const linear = RawData.orbitalKeys.indexOf(this._orbital)
-        const radial = this._position - linear - 1
+        const linear = RawData.orbitalKeys.indexOf(this.orbital)
+        const radial = this.position - linear - 1
 
         if (linear + radial > 4) {
             if (linear === 0) {
@@ -81,22 +56,6 @@ export class RawData {
             .fill('🔘')
             .concat(Array(linear).fill('➖'))
             .join('')
-    }
-
-    public get jNumber() {
-        return this._jNumber
-    }
-
-    public get jWeight() {
-        return this._jWeight
-    }
-
-    public get termNumber() {
-        return this._termNumber
-    }
-
-    public set shift(shift: number) {
-        this._shift = shift
     }
 
     public get percent() {
@@ -120,36 +79,28 @@ export class RawData {
         this._correction = correction
     }
 
-    public get correctionPercent() {
-        if (isNaN(this._correction)) {
-            return NaN
-        }
-        return (this._diff / this.getNth(this._correction)) * 100
-    }
-
-    public get correctionPercentPerN() {
-        if (isNaN(this._correction)) {
-            return NaN
-        }
-        return (this._diff / this.getNthPerN(this._correction)) * 100
-    }
-
     public get z() {
-        if (this.data.ion === this.data.number) {
-            return Math.pow(this.data.number, 2)
+        if (this.ion === this.number) {
+            return Math.pow(this.number, 2)
         }
         return 1
     }
 
-    public constructor(private data: RawDataT) {
-        this._termNumber = this.getNumber(data.term)
-        this._jNumber = this.getNumber(data.j)
-        this._jWeight = data.j.indexOf('/') === -1 ? 1 : 2
+    public constructor(data: RawDataT) {
+        this.number = data.number
+        this.ion = data.ion
+        this.rydberg = data.rydberg
+        this.term = data.term
+        this.j = data.j
+        this.conf = data.conf
+        this.termNumber = this.getNumber(data.term)
+        this.jNumber = this.getNumber(data.j)
+        this.jWeight = data.j.indexOf('/') === -1 ? 1 : 2
 
         const { position, orbital, confPrefix } = this.getConfObject(data.conf)
-        this._position = position
-        this._orbital = orbital
-        this._confPrefix = confPrefix
+        this.position = position
+        this.orbital = orbital
+        this.confPrefix = confPrefix
     }
 
     private getCorrection(maxProp = 0, minProp = 0, attempt = 1): number {
@@ -157,7 +108,7 @@ export class RawData {
             return 0
         }
         const error = 0.0000005
-        const newN = this._position - this._shift - 1
+        const newN = this.position - this.shift - 1
         const infinity = -newN
 
         let max = maxProp || infinity + error
@@ -226,7 +177,7 @@ export class RawData {
     }
 
     public getNth(correction = 0) {
-        const rydberg = this._position - 1 + correction - this._shift
+        const rydberg = this.position - 1 + correction - this.shift
         const leftHand = 1 / Math.pow(rydberg, 2)
         const rightHand = 1 / Math.pow(rydberg + 1, 2)
         return leftHand - rightHand
@@ -234,7 +185,7 @@ export class RawData {
 
     public getNthPerN(correction = 0) {
         const rydberg =
-            this._position - 1 + correction / this._position - this._shift
+            this.position - 1 + correction / this.position - this.shift
         const leftHand = 1 / Math.pow(rydberg, 2)
         const rightHand = 1 / Math.pow(rydberg + 1, 2)
         return leftHand - rightHand
@@ -278,6 +229,17 @@ export class RawData {
             position: parseInt(position ? position[1] : '0', 10),
             orbital: orbital ? orbital[1] : '',
             confPrefix: confArray.reverse().join('.'),
+        }
+    }
+
+    public toSavedData() {
+        return {
+            rydberg: this.rydberg,
+            conf: this.conf,
+            position: this.position,
+            diff: this.diff,
+            ion: this.ion,
+            number: this.number,
         }
     }
 }

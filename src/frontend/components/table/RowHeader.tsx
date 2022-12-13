@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 
 import { Context, ContextType } from 'src/frontend/store'
 
@@ -96,29 +96,28 @@ export const RowHeader = (props: Props): JSX.Element => {
                     &gt;
                 </button>
             </li>
+            <li>
+                <input
+                    className="row-header__correction"
+                    ref={labelRef}
+                    type="text"
+                    placeholder="Label"
+                    onChange={() => {
+                        row.label = labelRef.current?.value || ''
+                        forceUpdate!()
+                    }}
+                />
+            </li>
             {cart.indexOf(row) === -1 && (
-                <Fragment>
-                    <li>
-                        <input
-                            className="row-header__correction"
-                            ref={labelRef}
-                            type="text"
-                            placeholder="Label"
-                        />
-                    </li>
-                    <li>
-                        <Button
-                            onClick={() => {
-                                if (labelRef.current?.value) {
-                                    row.label = labelRef.current.value
-                                }
-                                dispatch(addCart([row]))
-                            }}
-                            title="Add to Cart"
-                            className="row-header__cart"
-                        />
-                    </li>
-                </Fragment>
+                <li>
+                    <Button
+                        onClick={() => {
+                            dispatch(addCart([row]))
+                        }}
+                        title="Add to Cart"
+                        className="row-header__cart"
+                    />
+                </li>
             )}
             {cart.indexOf(row) !== -1 && (
                 <li>

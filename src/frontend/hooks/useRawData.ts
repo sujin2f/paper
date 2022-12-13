@@ -20,6 +20,12 @@ export const useRawData = (variables: Param, model: ContainerInterface) => {
     )
 
     useEffect(() => {
+        if (getAddress({}) !== location) {
+            dispatch(setData(undefined))
+        }
+    }, [dispatch, location, getAddress])
+
+    useEffect(() => {
         if (!data) {
             return
         }

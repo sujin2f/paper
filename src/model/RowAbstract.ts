@@ -1,50 +1,47 @@
+import { Nullable } from 'src/types/common'
 import { RawData } from './RawData'
 
 export abstract class RowAbstract {
-    private _first?: RawData
-    private _start = 0
+    public start = 0
+    private _first?: Nullable<RawData>
+    private _shift = 0
+    private _correction = 0
     protected _label = ''
 
-    protected get first(): RawData {
-        if (!this._first) {
-            this._first = [...this._items].filter((v) => v)[0]
-        }
-        return this._first
+    protected get first() {
+        return this._first || [...this._items].filter((v) => v)[0]
     }
 
-    public get items(): RawData[] {
-        return [...this._items].slice(this._start)
+    public get items() {
+        return [...this._items].slice(this.start)
     }
 
-    public get length(): number {
+    public get length() {
         return this._items.length
     }
 
-    public get orbital(): string {
-        return this.first.orbital
+    public get orbital() {
+        return this.first && this.first.orbital
     }
 
-    public get rydberg(): number {
-        return this.first.rydberg
-    }
-
-    public get term(): string {
-        return this.first.term
+    public get rydberg() {
+        return this.first && this.first.rydberg
     }
 
     public get jNumber() {
-        return this.first ? this.first.jNumber : 0
+        return this.first && this.first.jNumber
     }
 
     public get termNumber() {
-        return this.first ? this.first.termNumber : 0
+        return this.first && this.first.termNumber
     }
 
     public get confPrefix() {
-        return this.first.confPrefix
+        return this.first && this.first.confPrefix
     }
 
     public set shift(shift: number) {
+        this._shift = shift
         this.forEach((item) => {
             if (item) {
                 item.shift = shift
@@ -53,7 +50,12 @@ export abstract class RowAbstract {
     }
 
     public set correction(correction: number) {
-        this.forEach((item) => (item.correction = correction))
+        this._correction = correction
+        this.forEach((item) => {
+            if (item) {
+                item.correction = correction
+            }
+        })
     }
 
     public set label(label: string) {
@@ -61,14 +63,10 @@ export abstract class RowAbstract {
     }
 
     public get label(): string {
-        return ''
+        return this._label
     }
 
-    public set start(start: number) {
-        this._start = start
-    }
-
-    public constructor(protected _items: RawData[]) {
+    public constructor(protected _items: Nullable<RawData>[]) {
         this.generate()
     }
 
@@ -84,18 +82,28 @@ export abstract class RowAbstract {
                 return
             }
             item.diff = this.items[index - 1]
-                ? this.items[index - 1].rydberg
+                ? this.items[index - 1]!.rydberg
                 : 0
         })
     }
 
-    public map(callback: (item: RawData, index: number) => any) {
+    public map(callback: (item: Nullable<RawData>, index: number) => any) {
         return this.items.map((item, index) => callback(item, index))
     }
 
-    public forEach(callback: (item: RawData, index: number) => any) {
+    public forEach(callback: (item: Nullable<RawData>, index: number) => any) {
         return this.items.forEach((item, index) => {
             callback(item, index)
         })
+    }
+
+    public toSavedData() {
+        return {
+            label: this.label,
+            start: this.start,
+            shift: this._shift,
+            correction: this._correction,
+            items: this.map((item) => (item ? item.toSavedData() : null)),
+        }
     }
 }

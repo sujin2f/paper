@@ -5,6 +5,7 @@ import { Public } from 'src/frontend/scenes/public'
 import { FrontPage } from 'src/frontend/scenes/public/FrontPage'
 import { Data } from 'src/frontend/scenes/public/Data'
 import { Cart } from './scenes/public/Cart'
+import { SavedData } from './scenes/public/SavedData'
 
 export const Router = (): JSX.Element => {
     return (
@@ -17,6 +18,14 @@ export const Router = (): JSX.Element => {
                     </Public>
                 }
             />
+
+            <Route path="/saved-data" element={<SavedData />}>
+                <Route path=":_id" element={<SavedData />}>
+                    <Route path="graph" element={<SavedData />}>
+                        <Route path=":graphType" element={<SavedData />} />
+                    </Route>
+                </Route>
+            </Route>
 
             <Route path="/cart" element={<Cart />}>
                 <Route path="graph" element={<Cart />}>

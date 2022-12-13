@@ -14,12 +14,3 @@ export type GlobalVariable = {
     isProd?: boolean
     is404?: boolean
 }
-
-export type GraphType = 'diff' | 'correction' | 'percent'
-export type LinkBaseType = 'raw-data' | 'orbital' | 'ether'
-
-export type URLParam = {
-    linkBase: LinkBaseType
-    atom: string
-    graphType: GraphType
-}

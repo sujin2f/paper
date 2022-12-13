@@ -31,7 +31,7 @@ export const TermDropdown = (): JSX.Element => {
                         <ul className="menu vertical" ref={dropdown}>
                             {data.entries.map((entry) => (
                                 <li
-                                    key={`term-selector-${entry.term}-${entry.id}`}
+                                    key={`term-selector-${entry.term}-${entry._id}`}
                                     className={
                                         current === entry.term
                                             ? 'link-base current'

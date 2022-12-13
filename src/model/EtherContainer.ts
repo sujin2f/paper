@@ -8,7 +8,7 @@ export class EtherContainer extends ContainerAbstract {
     protected generate(groups: RawData[][]): void {
         this.getByTerm(groups, 'ether')
 
-        const rawData: RawData[][] = []
+        const rawData: (RawData | undefined)[][] = []
 
         this.items.slice(1).forEach((row) =>
             row.forEach((item) => {

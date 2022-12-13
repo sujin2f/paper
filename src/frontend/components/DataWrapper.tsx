@@ -40,7 +40,7 @@ export const DataWrapper = (): JSX.Element => {
     }
 
     if (!data) {
-        return <Fragment>Something went wrong</Fragment>
+        return <Fragment>Processing</Fragment>
     }
 
     if (isGraph) {

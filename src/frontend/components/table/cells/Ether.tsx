@@ -13,7 +13,7 @@ export const Ether = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">Ether</th>
             {cols.map((_, index) => {
-                const ether = row.items[index] && row.items[index].ether
+                const ether = row.items[index] ? row.items[index]!.ether : ''
 
                 return (
                     <th

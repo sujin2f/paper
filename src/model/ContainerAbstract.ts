@@ -1,8 +1,8 @@
 import { ChartDataset, DefaultDataPoint } from 'chart.js'
 import { chartColors } from 'src/constants/chart'
 import { RawData } from './RawData'
-import { GraphType, Nullable } from 'src/types/common'
-import { RawDataT } from 'src/types/raw-data'
+import { Nullable } from 'src/types/common'
+import { GraphType, RawDataT } from 'src/types/raw-data'
 import { RowAbstract } from './RowAbstract'
 import { EtherRow } from './EtherRow'
 import { OrbitalRow } from './OrbitalRow'
@@ -18,13 +18,10 @@ export type ContainerInterface = new (
 ) => ContainerAbstract
 
 export abstract class ContainerAbstract {
-    abstract term: Nullable<RawData>
+    public _id = ''
+    public entries: RawData[] = []
     protected items: RowAbstract[] = []
-    private _entries: RawData[] = []
-
-    public get entries() {
-        return this._entries
-    }
+    abstract term: Nullable<RawData>
 
     public get columns() {
         const length = this.items
@@ -105,12 +102,16 @@ export abstract class ContainerAbstract {
                 index++
                 return result
             }).filter((v) => v)
-        const length: number[] = datasets.map((v) => v.data.length)
+        const length: number[] = datasets
+            .map((v) => v.data.length)
+            .filter((v) => v)
 
         return {
-            labels: Array(Math.max(...length))
-                .fill(0)
-                .map((_, i) => i + 1),
+            labels: datasets.length
+                ? Array(Math.max(...length))
+                      .fill(0)
+                      .map((_, i) => i + 1)
+                : [],
             datasets,
         }
     }
@@ -153,7 +154,7 @@ export abstract class ContainerAbstract {
 
         // Second row to Linear ether
         if (rowModel === 'orbital') {
-            const linear: RawData[] = []
+            const linear: (RawData | undefined)[] = []
             const radial = this.items.slice(0, 1)
             const rest = this.items.slice(1)
 
@@ -185,11 +186,18 @@ export abstract class ContainerAbstract {
             groups[position][object.position] = object
         })
 
-        this._entries = groups
+        this.entries = groups
             .filter((row) => row.filter((v) => v)[0].orbital === 's')
             .map((row) => row.filter((v) => v)[0])
 
         return groups
+    }
+
+    public toSavedData(label: string) {
+        return {
+            label,
+            items: this.map((item) => item.toSavedData()),
+        }
     }
 
     protected abstract generate(groups: RawData[][]): void

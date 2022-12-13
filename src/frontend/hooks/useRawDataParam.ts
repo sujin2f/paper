@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom'
-import { GraphType, LinkBaseType, URLParam } from 'src/types/common'
+import { GraphType, LinkBaseType, URLParam } from 'src/types/raw-data'
 import { getAtom } from 'src/utils/atom'
 
 export const useTableParam = () => {

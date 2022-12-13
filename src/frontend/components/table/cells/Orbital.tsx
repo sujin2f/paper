@@ -13,7 +13,7 @@ export const Orbital = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">Orbital</th>
             {cols.map((_, index) => {
-                const conf = row.items[index] && row.items[index].conf
+                const conf = row.items[index] ? row.items[index]!.conf : ''
 
                 return (
                     <th

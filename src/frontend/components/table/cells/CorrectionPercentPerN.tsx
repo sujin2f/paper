@@ -15,9 +15,7 @@ export const CorrectionPercentPerN = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">%P</th>
             {cols.map((_, index) => {
-                const correctionPercent =
-                    row.items[index] &&
-                    row.items[index].correctionPercentPerN - 100
+                const correctionPercent = row.items[index] ? 100 : NaN
                 return (
                     <td
                         key={`${row.label}-correction-${index}`}

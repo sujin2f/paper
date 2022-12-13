@@ -15,7 +15,7 @@ export const Percent = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">%</th>
             {cols.map((_, index) => {
-                const percent = row.items[index] && row.items[index].percent
+                const percent = row.items[index] ? row.items[index]!.percent : 0
                 return (
                     <td
                         key={`${row.label}-percent-${index}`}

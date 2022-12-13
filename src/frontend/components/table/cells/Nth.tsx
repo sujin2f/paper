@@ -17,7 +17,7 @@ export const Nth = (props: Props): JSX.Element => {
                 N<sub>th</sub>(n)
             </th>
             {cols.map((_, index) => {
-                const nth = row.items[index] && row.items[index].nth
+                const nth = row.items[index] ? row.items[index]!.nth : 0
                 return (
                     <td
                         key={`${row.label}-nth-${index}`}
