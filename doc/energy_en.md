@@ -12,15 +12,15 @@ $$\dfrac{1}{\lambda} = R(\dfrac{1}{m^2} - \dfrac{1}{n^2}) \hspace{10pt} \\\{ R=1
 | --------------- | ------ | ------ | ----- | ----- | ----- | ----- | ----- |
 | Wavelength `nm` | 121.50 | 102.51 | 97.20 | 94.92 | 93.73 | 93.02 | 92.57 |
 
-<p align="center"><strong>Lyman Series</strong></p>
+<p align="center"><strong>the Lyman Series</strong></p>
 
 | n               | 4        | 5        | 6        | 7        | 8      |
 | --------------- | -------- | -------- | -------- | -------- | ------ |
 | Wavelength `nm` | 1,874.60 | 1,281.46 | 1,093.52 | 1,004.67 | 954.34 |
 
-<p align="center"><strong>Paschen Series</strong></p>
+<p align="center"><strong>the Paschen Series</strong></p>
 
-It tends to have rules, but there's no rule between series. For example, the emissions from four to three are different. What I assume is there is a certain amount of energy between the same orbit, so these tables are not matched my assumption. Here's the reciprocal of a fraction, a wave number.
+It tends to have rules, but there is no rule between series. For example, the emissions from four to three are different. What I assume is there is a certain amount of energy between the same orbit, so these tables are not matched my assumption. Here's the reciprocal of a fraction, a wave number.
 
 | n                   | 2         | 3         | 4          | 5          | 6          | 7          | 8          |
 | ------------------- | --------- | --------- | ---------- | ---------- | ---------- | ---------- | ---------- |

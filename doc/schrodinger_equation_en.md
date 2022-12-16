@@ -100,19 +100,19 @@ The red dotted line is the radial equation of the hydrogen atom, and the green o
 
 ### Adjusting R<sub>th</sub>(r): The Angular Momentum, l
 
-R<sub>th</sub>(r) is close to the node of hydrogen orbital, but it has an approximation error, and it doesn't contain the l value. Here I will try to fix those problems. To be honest, this process will be more mathematically incorrect than the previous equation. However, this process will provide we need to adjust l value like I adjusted n<sup>2</sup> to N<sub>th</sub>(n) \* 1/(n-1) above.
+R<sub>th</sub>(r) is close to the node of hydrogen orbital, but it has an approximation error, and it does not contain the l value. Here I will try to fix those problems. To be honest, this process will be more mathematically incorrect than the previous equation. However, this process will provide we need to adjust l value like I adjusted n<sup>2</sup> to N<sub>th</sub>(n) \* 1/(n-1) above.
 
-Let's get back to the hydrogen atom Schrödinger equation.
+Let me get back to the hydrogen atom Schrödinger equation.
 
 $$R_{n,l}(r) = Ae^{-x/2} x^l L_{j}^{k}(x)$$
 
-I eliminated L to assume the j value is always 1. To make j to 1, we need to redeclare l. The l would not be the angular momentum. Let's examine R<sub>th</sub>(r) again.
+I eliminated L to assume the j value is always 1. To make j to 1, we need to redeclare l. The l would not be the angular momentum. Let me examine R<sub>th</sub>(r) again.
 
 $$x = \frac{2r}{a_0} \sqrt{\frac{N_{th}(n)}{n-1}}$$
 
 $$R_{th}(r, n) = Ae^{-\frac{x}{2}} x^l L_{j}^{k}(x)$$
 
-Let's watch the orbital again. Along with the increment of l, the count of radial nodes decreased, and linear nodes increased. The increment of angular momentum means the radial ether becomes linear, and it is decreasing node from the hydrogen R equation. Therefore, 1 / (n - 1), which means the position of ether, should become 1 / (n - l - 1).
+Please watch the orbital again. Along with the increment of l, the count of radial nodes decreased, and linear nodes increased. The increment of angular momentum means the radial ether becomes linear, and it is decreasing node from the hydrogen R equation. Therefore, 1 / (n - 1), which means the position of ether, should become 1 / (n - l - 1).
 
 $$x = \frac{2r}{a_0} \sqrt{\frac{N_{th}(n)}{n-l-1}}$$
 
@@ -120,7 +120,7 @@ $$R_{th}(r, n_{th}) = Ae^{-\frac{x}{2}} x^l L_{j}^{k}(x)$$
 
 We replaced (2j + k + 1) / 2 to n - 1, yet for the hydrogen equation, that was n<sup>2</sup>.
 
-Also, the electron's energy n converted to N<sub>th</sub>(n) / (n - 1) in the hydrogen atom. One comes from the hydrogen, and the other one comes from my equation, and I will merge them in one place. I know it's nonsense. The left equation is from hydrogen, and the right is from ether to get a new l.
+Also, the electron's energy n converted to N<sub>th</sub>(n) / (n - 1) in the hydrogen atom. One comes from the hydrogen, and the other one comes from my equation, and I will merge them in one place. I know it is nonsense. The left equation is from hydrogen, and the right is from ether to get a new l.
 
 $$(\frac{2j + k + 1}{2})^2 = \frac{N_{th}(n)}{n-1}$$
 
