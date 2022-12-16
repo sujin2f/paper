@@ -1,8 +1,8 @@
 ## Proof(1): Classic Physics
 
-### The Emission Wavelength of Photon-Ether from Bohr Model
+### The Emission Wavelength of Photon-Ether from the Bohr Model
 
-Rydberg formula is the solution to calculate the wavelength from an electron. The next ones are the Rydberg formula and tables of Lyman series, emission wavelengths from n >=2 to n = 1, Paschen series, emission wavelengths from n >=4 to n = 3.
+Rydberg formula is the solution to calculate the wavelength from an electron. The next ones are the Rydberg formula and tables of the Lyman series, emission wavelengths from n >=2 to n = 1, and the Paschen series, emission wavelengths from n >=4 to n = 3.
 
 $$\dfrac{1}{\lambda} = R(\dfrac{1}{m^2} - \dfrac{1}{n^2}) \hspace{10pt} \\\{ R=1.0974 \times 10^7 m^2 \\\}$$
 
@@ -20,7 +20,7 @@ $$\dfrac{1}{\lambda} = R(\dfrac{1}{m^2} - \dfrac{1}{n^2}) \hspace{10pt} \\\{ R=1
 
 <p align="center"><strong>Paschen Series</strong></p>
 
-It tends to have rules, but there's no rule between series. For example, the emissions from four to three are different. What I assume is there is a certain amount of energy between the same orbit, so these tables are not matched to my assumption. Here's the reciprocal of a fraction, a wave number.
+It tends to have rules, but there's no rule between series. For example, the emissions from four to three are different. What I assume is there is a certain amount of energy between the same orbit, so these tables are not matched my assumption. Here's the reciprocal of a fraction, a wave number.
 
 | n                   | 2         | 3         | 4          | 5          | 6          | 7          | 8          |
 | ------------------- | --------- | --------- | ---------- | ---------- | ---------- | ---------- | ---------- |
@@ -28,29 +28,29 @@ It tends to have rules, but there's no rule between series. For example, the emi
 
 <p align="center"><strong>Wave Number of Lyman Series</strong></p>
 
-The next tables are differences between the orbit number, which means from two to one, from three to two, etc.
+The following tables are differences between the orbit number, which means from two to one, from three to two, etc.
 
 | n                               | $3 \to 2$ | $4 \to 3$ | $5 \to 4$ | $6 \to 5$ | $7 \to 6$ | $8 \to 7$ |
 | ------------------------------- | --------- | --------- | --------- | --------- | --------- | --------- |
 | Wave Number Differences `cm^−1` | 15,241.29 | 5,334.45  | 2,469.08  | 1,341.23  | 808.72    | 524.89    |
 
-<p align="center"><strong>Wave Number Differences of Lyman Series</strong></p>
+<p align="center"><strong>Wave Number Differences of the Lyman Series</strong></p>
 
 | n                               | $5 \to 4$ | $6 \to 5$ | $7 \to 6$ | $8 \to 7$ |
 | ------------------------------- | --------- | --------- | --------- | --------- |
 | Wave Number Differences `cm^−1` | 2,469.08  | 1,341.23  | 808.72    | 524.89    |
 
-<p align="center"><strong>Wave Number Differences of Paschen Series</strong></p>
+<p align="center"><strong>Wave Number Differences of the Paschen Series</strong></p>
 
-They match together. This supports the certain amount of energy stores in between the orbits. Now, calculation of electron energy is just plus equation.
+They match together. This result supports the exact amount of energy stored in between the orbits. Now, the calculation of electron energy is just an adding equation.
 
 ### Energy of Photon-Ether
 
-If the wavelength between the orbit is always same, we can calculate its energy. `E = hc / λ` is a energy formula, and λ is a wavelength. The result unit is J, and converting to eV is the table below. I declare a function 1 / (n - 1)<sup>2</sup> - 1 / n<sup>2</sup> as N<sub>th</sub>(n), and this function will be used in this document.
+If the wavelength between the orbit is always the same, we can calculate its energy. `E = hc / λ` is an energy formula, and λ is a wavelength. The resulting unit is J, and converting to eV is in the table below. I declare a function 1 / (n - 1)<sup>2</sup> - 1 / n<sup>2</sup> as N<sub>th</sub>(n), and this function will be used in this document again and again.
 
 $$N_{th}(n) = \dfrac{1}{(n-1)^2} - \dfrac{1}{n^2}$$
 
-<p align="center"><strong>N<sub>th</sub>(n)</strong>: remember this function</p>
+<p align="center"><strong>N<sub>th</sub>(n)</strong></p>
 
 $$E = Rhc(N_{th}(n))\cdot6.242\cdot10^{32}$$
 
@@ -62,11 +62,11 @@ $$E = Rhc(N_{th}(n))\cdot6.242\cdot10^{32}$$
 
 <p align="center"><strong>Result from the formula</strong></p>
 
-From Bohr model and Schrödinger equation, the energy of n shell is:
+From the Bohr model and Schrödinger equation, the energy of n shell is:
 
 $$E_n = -\frac{ℏ^2}{2 \mu a_0 ^ 2} \frac{1}{n^2}$$
 
-I swap 1 / n<sup>2</sup> to N<sub>th</sub>(n), and convert J to eV. The values are similar with a table above.
+I swap 1 / n<sup>2</sup> to N<sub>th</sub>(n) and convert J to eV. The values are similar to the table above.
 
 $$E_{th}(n) = \frac{ℏ^2}{2 \mu a_0 ^ 2}N_{th}(n) \hspace{10pt} \\\{ n \geqq 2 \\\}$$
 
@@ -81,21 +81,21 @@ $$E_{th}(n) = \frac{ℏ^2}{2 \mu a_0 ^ 2}N_{th}(n) \hspace{10pt} \\\{ n \geqq 2 
 
 <p align="center"><strong>Rydberg of Photon-Ether</strong><br>simple plus calculation</p>
 
-As you can see, we can get the energy of ether by the plus calculation. Also wavelength and mass would be able to calculate.
+As you can see, we can get the energy of ether by the plus calculation. Also, wavelength and mass would be able to calculate.
 
 Two formulas has N<sub>th</sub>(n) as only variable. Therefore the value is changed by the part of N<sub>th</sub>(n). It is called <strong>Rydberg</strong> as a unit.
 
 ### Recap
 
-So far, it is obvious. It is all from a classic physics text book. It is right in hydrogen-like atom in Bohr era, before a century ago. However, it does not match to multi-electron atoms. I made y'all fool.
+So far, it is obvious. It is all from a classic physics textbook. It is right in the hydrogen-like atom in the Bohr era, a century ago. However, it does not match multi-electron atoms. I made y'all fool.
 
-I want to suggest conditions that makes ether-sparkle hypothesis would be right.
+I want to suggest conditions that make the ether-sparkle hypothesis would be right.
 
 -   First, the ether energy should be **possible to guess**
 -   Second, the ether energy should be **summed**
 -   Third, the two conditions above should be established in **multi-electron atoms**
 
-If I pass the conditions, I may prove the electron energy is stored as a form of ether. Next chapter is about the multi-electron atoms.
+If it passes the conditions, I may prove the electron energy is stored as a form of ether. The next chapter is about multi-electron atoms.
 
 ---
 

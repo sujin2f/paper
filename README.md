@@ -2,7 +2,7 @@
 
 [한글 버전](./doc/intro.md)
 
-A matter as a mixture of mass and electromagnetic, a photon as an mass independent electromagnetic, and a mass as an electromagnetic independent matter
+A matter is a composition of mass and electromagnetic, a photon is mass-independent electromagnetic, and mass is an electromagnetic-independent matter.
 
 Sujin sujin.2f@gmail.om
 
@@ -10,9 +10,9 @@ Sujin sujin.2f@gmail.om
 
 ## Abstract
 
-This document introduces the new hypothesis about the structure of a matter. According to the hypothesis, a matter can be divided to an ether, the space that has a mass, and a sparkle, the electromagnetic-like object; and those two elements can be swapped. A particle like electron is a compound of ether and sparkle, and a photon is a independent sparkle. I call this hypothesis as a ether-sparkle theory.
+This document introduces a new hypothesis about the structure of a matter. According to this hypothesis, the matter can be divided into the ether, which is the space of mass, and the sparkle, the electromagnetic-like object. And ether and a sparkle even can be swapped as a different form of energy. A particle, like an electron, is a compound of ether and a sparkle, and a photon is an independent sparkle. I call this hypothesis the ether-sparkle theory.
 
-To prove it, I will try to reveal the independent ether, which is a mass space. In class physics, an energy from an hydrogen-like atom is certain; it can be solved by a simple equation. What if it would seem to be able to calculate in multi-electron atoms along with my theory? This document will follow the step to open the possibilities.
+To prove it, I will try to reveal what the independent ether is, which is a space with mass. In the classic physics, energy from a hydrogen-like atom is concrete. It is a simple equation. What if it would seem to be able to calculate in multi-electron atom along with my theory? This document will follow the step to open the possibilities.
 
 **Table of Content**
 

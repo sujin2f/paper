@@ -1,10 +1,10 @@
 ## Conclusion
 
-This document explains aggressive argument, and there is very small possibility that the hypothesis would be right.
+This document explains aggressive arguments, and there is a very small possibility that the hypothesis would be right.
 
-If the hypothesis is right, the particle is completely different then what we know before. Mass becomes to the space which we knew as probability cloud. The photon is similar thing with a sparkle inside the ether. An energy absorbed into an atom preserves into the form of the mass.
+If the hypothesis is right, the particle is completely different than what we know before. Mass becomes the space that we knew as a probability cloud. The photon is a similar thing with a sparkle inside the ether. Energy absorbed into an atom preserves the form of the mass.
 
-Therefore, what is the Photon-Ether, the independent ether, invisible, and has weight. The one possibility is a dark matter. Otherwise, it would be a Higgs boson. Or it would be a Neutrino. Possibly, none of them. ~~Personally, I prefer a new one, Ether, because I like the name.~~
+Therefore, what is the Photon-Ether, the independent ether, is invisible, and has weight. One possibility is dark matter. Otherwise, it would be a Higgs boson. Or it would be a Neutrino. Possibly, none of them. ~~Personally, I prefer a new one, Ether, because I like the name.~~
 
 ### Suggesting an Experiment
 
@@ -14,13 +14,13 @@ Therefore, what is the Photon-Ether, the independent ether, invisible, and has w
 
 <p align="center"><strong>Double Tunnel Experiment</strong>: Where it suppose to go if it is divided into two pieces?</p>
 
-I imagine the experiment to prove the hypothesis, making double tunnel instead of the double slit. What would happen inside the tunnel? Each tunnel contains the divided ethers, and the sparkle would travel through the spaces. I expect one ether should be disappeared. Otherwise, our world will be full of divided ether, and it is not stable.
+I imagine the experiment to prove the hypothesis, making a double tunnel instead of the double slit. What would happen inside the tunnel? Each tunnel contains the divided ethers, and the sparkle would travel through the spaces. I expect one ether should be disappeared. Otherwise, our world will be full of divided ether, and it is not stable.
 
-**Added on 2022-11-15** It happened. The experience is changing spin of a divided neutron, and the neutron was affected by both tunnel. [Quantifying the presence of a neutron in the paths of an interferometer](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.023075)
+**Added on 2022-11-15** It happened. The experience is changing the spin of a divided neutron, and the neutron was affected by both tunnels. [Quantifying the presence of a neutron in the paths of an interferometer](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.023075)
 
 ### Hypothesis of the Hypothesis (1): Time does not exist in our universe.
 
-What is a sparkle? Ether cannot travel more than the speed of light because the mass will be increased and become like a black hole, and the sparkle will be stopped eventually. Therefore, the independent sparkle, the light, can fly into the speed of light. In the other words, the sparkle has the property, named time. Time is not the property of our universe. It is the property of the matter. Logically speaking, there is no concrete reason the universe should have time.
+What is a sparkle? Ether cannot travel more than the speed of light because the mass will be increased and become like a black hole, and the sparkle will be stopped eventually. Therefore, the independent sparkle, the light, can fly at the speed of light. In the other words, the sparkle has the property, named time. Time is not the property of our universe. It is the property of the matter. Logically speaking, there is no concrete reason the universe should have time.
 
 <p align="center">
  <img src="../images/pic14.png">
@@ -28,7 +28,7 @@ What is a sparkle? Ether cannot travel more than the speed of light because the 
 
 <p align="center"><strong>Time Dilation in Ether-Sparkle</strong><br>Time is a property of sparkle, and it can be changed by its surrounding ether.</p>
 
-In this way, the time dilation can be explained clearer. In different inertial frame, in different gravity, the speed of sparkle will be changed, and it is related its time. The time is not in our universe. We, the matter, has the time. Each sparkle might have different time due to the ether's weight. This may be the reason that the atomic clock is so accuracy. An atom has its own time. Time is the part of an atom.
+In this way, the time dilation can be explained more clearly. In a different inertial frame, in different gravity, the speed of the sparkle will be changed, and it is related to its time. Time is not in our universe. We, the matter, have the time. Each sparkle might have a different time due to the ether's weight. This may be the reason that the atomic clock is so accurate. An atom has its own time. Time is the part of an atom.
 
 ### Hypothesis of the Hypothesis (2): Entanglement is divided ether?
 
@@ -42,11 +42,11 @@ According to the hypothesis, the electron-ether can be divided by the photon-eth
 
 ### Follow-Ups
 
-In the multi-electron atom, the Rydberg tends to follow the certain formula. If I found the exact formula to find Rydberg of radial and linear, I would be able to calculate the overall value by adding.
+In the multi-electron atom, the Rydberg tends to follow a certain formula. If I found the exact formula to find Rydberg of radial and linear, I would be able to calculate the overall value by adding.
 
 [Fin]
 
 ---
 
 -   First Page: [Introduction](../README.md)
--   Prev Chapter: [Proof(3): Schrodinger Equation](./schrodinger_equation_en.md)
+-   Prev Chapter: [Proof(3): Schrödinger Equation](./schrodinger_equation_en.md)
