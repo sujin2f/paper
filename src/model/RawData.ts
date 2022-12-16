@@ -232,6 +232,13 @@ export class RawData {
         }
     }
 
+    public getTermKey() {
+        return `${this.confPrefix}-${this.orbital}-${this.term}-${this.j}`.replace(
+            '/',
+            '.',
+        )
+    }
+
     public toSavedData() {
         return {
             rydberg: this.rydberg,

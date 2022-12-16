@@ -98,6 +98,10 @@ export abstract class RowAbstract {
         })
     }
 
+    public getTermKey() {
+        return this.first?.getTermKey()
+    }
+
     public toSavedData() {
         return {
             label: this.label,

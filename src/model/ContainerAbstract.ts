@@ -116,7 +116,9 @@ export abstract class ContainerAbstract {
 
     protected getByTerm(groups: RawData[][], rowModel: string) {
         if (this._term) {
-            this.term = this.entries.filter((row) => row.term === this._term)[0]
+            this.term = this.entries.filter(
+                (row) => row.getTermKey() === this._term,
+            )[0]
         } else {
             this.term = this.entries[0]
         }
@@ -176,7 +178,7 @@ export abstract class ContainerAbstract {
 
         rawData.forEach((item) => {
             const object = new RawData(item)
-            const key = `${object.confPrefix}-${object.orbital}-${object.term}-${object.j}`
+            const key = object.getTermKey()
 
             let position = keys.indexOf(key)
             if (position === -1) {

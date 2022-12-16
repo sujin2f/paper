@@ -29,25 +29,28 @@ export const TermDropdown = (): JSX.Element => {
                     </Link>
                     {showOptions && (
                         <ul className="menu vertical" ref={dropdown}>
-                            {data.entries.map((entry) => (
-                                <li
-                                    key={`term-selector-${entry.term}-${entry._id}`}
-                                    className={
-                                        current === entry.term
-                                            ? 'link-base current'
-                                            : ''
-                                    }
-                                >
-                                    <Link
-                                        to={getAddress({
-                                            term: entry.term,
-                                        })}
-                                        type="button"
+                            {data.entries.map((entry) => {
+                                const term = entry.getTermKey()
+                                return (
+                                    <li
+                                        key={`term-selector-${term}-${entry._id}`}
+                                        className={
+                                            current === entry.term
+                                                ? 'link-base current'
+                                                : ''
+                                        }
                                     >
-                                        {entry.term}
-                                    </Link>
-                                </li>
-                            ))}
+                                        <Link
+                                            to={getAddress({
+                                                term: `${term}`,
+                                            })}
+                                            type="button"
+                                        >
+                                            {entry.term}.{entry.j}
+                                        </Link>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     )}
                 </li>
