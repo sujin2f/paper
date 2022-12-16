@@ -1,0 +1,61 @@
+table.unstriped {
+    thead {
+        tr.table__header {
+            background-color: smart-scale(
+                $table-background,
+                $table-color-scale
+            );
+            color: white;
+        }
+    }
+    tr.border__bottom {
+        border-bottom: 1px solid
+            smart-scale($table-background, $table-color-scale);
+    }
+
+    th {
+        min-width: 6rem;
+        text-align: center;
+        border-right: 1px solid
+            smart-scale($table-background, $table-color-scale);
+    }
+    td {
+        border-right: 1px solid
+            smart-scale($table-background, $table-color-scale);
+    }
+
+    .border__bottom {
+        border-bottom: 3px solid $medium-gray;
+    }
+
+    .border__top {
+        border-top: 3px solid $medium-gray;
+    }
+}
+
+.row-header__correction {
+    width: 8rem;
+}
+
+.row-header__color {
+    width: 3em;
+    padding: 0.3em;
+}
+
+.row-header__container {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    list-style: none;
+
+    input {
+        margin: 0;
+    }
+    button {
+        margin: 0;
+    }
+}
+
+.row-header__start {
+    width: 5rem;
+}

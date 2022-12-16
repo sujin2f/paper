@@ -1,0 +1,24 @@
+{
+    "ts-node": {
+        "files": true
+    },
+    "files": ["src/server/index.ts"],
+    "compilerOptions": {
+        "target": "es2018",
+        "module": "commonjs",
+        "jsx": "react",
+        "outDir": "./.build/development",
+        "removeComments": true,
+        "strict": true,
+        "rootDirs": ["src"],
+        "baseUrl": "./",
+        "paths": {
+            "src/*": ["src/*"]
+        },
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["dom", "dom.iterable", "esnext"]
+    },
+    "include": ["src/**/*"]
+}
