@@ -1,8 +1,9 @@
-import express from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import { graphqlHTTP } from 'express-graphql'
 import { buildSchema } from 'graphql'
 
 import { graphqlSchema } from 'src/constants/graphql'
+import { SavedDataContainerT } from 'src/types/saved-data'
 import { rawData } from 'src/utils/endpoints/raw-data'
 import {
     savedData,
@@ -22,8 +23,32 @@ graphqlRouter.use(
             rawData,
             savedData,
             savedDataList,
-            savedDataMutation,
-            savedDataRemove,
+            savedDataMutation: (
+                param: {
+                    data: SavedDataContainerT
+                },
+                req: Request,
+            ) => {
+                if (
+                    req.session.user?.toString() !== '639c38cfa532bf7fed2fbca1'
+                ) {
+                    throw new Error('Only Sujin can edit this.')
+                }
+                return savedDataMutation(param)
+            },
+            savedDataRemove: (
+                param: {
+                    _id: string
+                },
+                req: Request,
+            ) => {
+                if (
+                    req.session.user?.toString() !== '639c38cfa532bf7fed2fbca1'
+                ) {
+                    throw new Error('Only Sujin can edit this.')
+                }
+                return savedDataRemove(param)
+            },
         },
         graphiql: true,
     }),

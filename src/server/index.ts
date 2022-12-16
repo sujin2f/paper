@@ -2,7 +2,9 @@ import express from 'express'
 import { config as dotEnvConfig } from 'dotenv'
 import path from 'path'
 import moduleAlias from 'module-alias'
-import { mongoConnect } from 'src/utils/mongo/connect'
+import session from 'express-session'
+import http from 'http'
+import ConnectMongoDBSession from 'connect-mongodb-session'
 
 const nodeEnv = process.env.NODE_ENV || ''
 const rootDir =
@@ -19,8 +21,10 @@ if (['production', 'stage'].includes(nodeEnv)) {
 }
 
 /* eslint-disable import/first */
+import { mongoConnect } from 'src/utils/mongo/connect'
 import { staticRouter } from 'src/server/routes/static'
 import { graphqlRouter } from 'src/server/routes/graphql'
+import { authRouter } from 'src/server/routes/auth'
 /* eslint-enable import/first */
 
 /**
@@ -34,9 +38,7 @@ dotEnvConfig({ path: envPath })
 
 // Create a new express application instance
 const app: express.Application = express()
-app.use('/graphql', graphqlRouter)
-app.use('/', staticRouter)
-
+const server = http.createServer(app)
 let port: number = 8080
 switch (nodeEnv) {
     case 'development':
@@ -47,8 +49,38 @@ switch (nodeEnv) {
         break
 }
 
+/**
+ * Session
+ */
+const MongoDBStore = ConnectMongoDBSession(session)
+const store = new MongoDBStore({
+    uri: process.env.MONGO_URI || '',
+    collection: 'sessions',
+})
+store.on('error', (e: Error) => {
+    console.log(e)
+})
+
+const sessionMiddleware = session({
+    secret: process.env.SESSION_SECRET || '',
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 365 * 100, // 100 years
+    },
+    store,
+    // Boilerplate options, see:
+    // * https://www.npmjs.com/package/express-session#resave
+    // * https://www.npmjs.com/package/express-session#saveuninitialized
+    resave: true,
+    saveUninitialized: true,
+})
+app.use(sessionMiddleware)
+
+app.use('/graphql', graphqlRouter)
+app.use('/auth', authRouter)
+app.use('/', staticRouter)
+
 // Go!
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`🤩 Server started at http://localhost:${port}`)
     mongoConnect().then(() => console.log('🤩 Mongo DB connected'))
 })
