@@ -30,7 +30,11 @@ $$Diff = (\frac{1}{n+c})^2 - (\frac{1}{n+1+c})^2$$
 
 수소는 보어 원자모형도 만족할 정도로 매우 규칙적인 값을 보인다. 여기서 수소를 굳이 언급하는 것은 NIST에서 제공되는 관측데이터의 정확성을 알아봄과 동시에 앞으로 다른 원자에서 어떤 것에 집중해야 하는지 환기하기 위함이다.
 
-https://ether.sujinc.com/orbital/1+1/graph/percent
+<p align="center">
+ <img src="../images/pic16.png">
+</p>
+
+<p align="center">https://ether.sujinc.com/orbital/1+1/graph/percent</p>
 
 <p align="center"><strong>수소원자</strong><br>고전 물리학으로도 설명할 수 있는 단순함</p>
 
@@ -38,13 +42,17 @@ NIST의 데이터는 한 번의 관측이 아닌, 여러 번의 관측 결과를
 
 눈 여겨봐야 하는 값은 첫째, **s 오비탈**이다. **원형 에테르가 하나씩 증가**하는 부분이기 때문이다. **p 오비탈을 시작으로 좌상단에서 우하단으로의 대각선** 값 역시 주목해봐야 하는데, 첫번째 대각선 값은 **선형 에테르가 하나씩 증가**하는 부분이다. 두번째 부터는 **원형 에테르만을 보았을 때 같은 변화**를 나타내기 때문이다. 예를 들어 p4는 [-O]에서 [-OO] 으로, 원형 에테르 하나에서 둘로 변화한 결과이며, 그 대각선에 위치한 d5는 [--O]에서 [--OO] 으로, 역시 원형 하나가 원형 둘이 되는 변화이기 때문이다. 이는 같은 개념인 s 오비탈을 포함해서 일정한 규칙을 지녀야 한다. 즉, **s 오비탈과 다른 오비탈의 변화는 같은 경향성을, 선형 에테르와 대각선 변화는 같은 경향성을 가져야 한다**는 것이다.
 
-다시 그래프를 보자. 원형 에테르의 증가인 s 오비탈(붉은색)은 올라갔다 내려오는 형태를 보인다. 선형 에테르는 좌상단에서 우하단으로의 곡선 형태인 y=a/x와 같은 모습을 보인다. p 오비탈 부터는 내려갔다 올라갔다 다시 내려가는 형태를 보인다. 위에서 내가 강조한 '경향성'이란 s 오비탈의 원형 에테르의 증가와 p 오비탈의 원형 에테르 증가가 비슷한 형상을 보여야 한다는 것이다. 그래프가 예쁘기는 하지만 딱 드러맞지는 않는다.
+다시 그래프를 보자. 원형 에테르의 증가인 s 오비탈(붉은색)은 올라갔다 내려오는 형태를 보인다. 선형 에테르는 좌상단에서 우하단으로의 곡선 형태인 y=a/x와 같은 모습을 보인다. p 오비탈 부터는 내려갔다 올라갔다 다시 내려가는 형태를 보인다. 위에서 내가 강조한 '경향성'이란 s 오비탈의 원형 에테르의 증가와 p 오비탈의 원형 에테르 증가가 비슷한 형상을 보여야 한다는 것이다. 그래프가 예쁘기는 하지만 딱 드러맞지는 않는다. 가설에 따르면 s도 p도 d도 원형 에테르의 증가인데 그 추이가 다르다는 것이다.
 
 ### 헬륨: 다전자 원자 (2개)
 
 전자가 둘 이상인 다전자 원자의 Rydberg는 수소형 원자와 같이 일정하지 않다. 과학자들은 이것이 다른 전자의 영향이라 이야기한다. 그럼에도 에테르-스파클 가설을 증명하기 위해서는 이것이 단순한 덧셈은 아니라도 일정한 경향을 가진다는 것을 보여야 한다. 비교적 다양한 오비탈을 볼 수 있는 헬륨의 데이터를 가져오도록 하자. 이것을 표로 정리하면 **매우 실망스러운 결과**를 볼 수 있다.
 
-https://ether.sujinc.com/orbital/2+1/graph/percent
+<p align="center">
+ <img src="../images/pic17.png">
+</p>
+
+<p align="center">https://ether.sujinc.com/orbital/2+1/graph/percent</p>
 
 <p align="center"><strong>헬륨 원자</strong><br>예상과는 너무 다르다 / 폭망</p>
 
@@ -56,7 +64,11 @@ s와 p 오비탈 그리고 선형 에테르에서 2번 위치는 100%p 정도로
 
 우리가 오비탈을 이해할 때 s형, p형과 같이 이미 정의된 방식으로 선형 오비탈의 개수를 기준으로 분류를 받아들이게 된다. 만일 이것이 원형이 먼저 쌓이고 그 위에 선형이 쌓이는 것이라면 어떨까?
 
-https://ether.sujinc.com/ether/2+1/graph/percent
+<p align="center">
+ <img src="../images/pic18.png">
+</p>
+
+<p align="center">https://ether.sujinc.com/ether/2+1/graph/percent</p>
 
 <p align="center"><strong>원형이 먼저다!!</strong></p>
 
@@ -99,7 +111,65 @@ https://ether.sujinc.com/ether/2+1/graph/percent
 
 <p align="center"><strong>헬륨의 에테르 [OO--]</strong><br>각 자리수에 있는 값은 예측 가능해 보이고 그것들을 더하거나 빼는 것으로 총 Rydberg를 계산할 수 있다.<br>실제로 쓰여진 값은 원형 1번을 시작으로 →→↘︎↘︎로 내려가면 된다.</p>
 
-데이터가 약간 부족하기는 하나, 이는 리튬, 베릴륨, 붕소, 네온 등과 같은 다른 원소에서도 관찰할 수 있다. 역시 같은 사이트에서 값을 바꿈으로 확인 가능하다. 예를 들자면 [네온](https://ether.sujinc.com/ether/10+1/graph/percent)과 같이 말이다. 노력을 더 기울이면 완벽한 예측이 가능한, 아름다운 수식으로 정리할 수 있을 것도 같지만 이는 다음 과제로 삼기로 하자.
+데이터가 약간 부족하기는 하나, 이는 리튬, 베릴륨, 붕소, 네온 등과 같은 다른 원소에서도 관찰할 수 있다. 역시 같은 사이트에서 값을 바꿈으로 확인 가능하다. 예를 들자면 [네온](https://ether.sujinc.com/ether/10+1/graph/percent)과 같이 말이다.
+
+### 원형 에테르의 변화 추이
+
+아래 셋은 수소 부터 마그네슘 까지의 원형 에테르(s 오비탈)의 변화들을 모아놓은 것이다. 알맞은 J 값을 잘 선택하면 일정한 규칙을 찾을 수 있을 것으로 기대된다.
+
+<p align="center">
+ <img src="../images/pic19.png">
+</p>
+
+<p align="center">https://ether.sujinc.com/saved-data/639ccf1ad649ed64672f6a67/graph/percent</p>
+
+<p align="center"><strong>원형 에테르들의 % 값</strong></p>
+
+<p align="center">
+ <img src="../images/pic20.png">
+</p>
+
+<p align="center">https://ether.sujinc.com/saved-data/639ccf1ad649ed64672f6a67/graph/correction</p>
+
+<p align="center"><strong>원형 에테르들의 Correction 값</strong></p>
+
+Correction 값이 -1이 넘어간다는 이야기는 N<sub>th</sub>(n)의 자릿수가 변화하는 것으로 해석할 수 있다. 원자 번호가 증가함에 따라 원형 에테르가 쌓이는 방식은 일정한 규칙을 발견할 수 있을 것이다.
+
+### 에테르의 변화 추이
+
+앞서 경향성을 언급했는데, 이 경향성을 그래프로 나열하도록 하겠다. 이러한 경향성은 오차가 극히 적은 수소 원자에서도 동일하게 나타남을 주목하도록 하자.
+
+<p align="center">
+ <img src="../images/pic21.png">
+</p>
+
+<p align="center">https://ether.sujinc.com/ether/1+1/graph/percent</p>
+
+<p align="center"><strong>수소 원자의 에테르</strong></p>
+
+<p align="center">
+ <img src="../images/pic22.png">
+</p>
+
+<p align="center">https://ether.sujinc.com/ether/2+1/graph/percent</p>
+
+<p align="center"><strong>헬륨 원자의 에테르</strong></p>
+
+<p align="center">
+ <img src="../images/pic23.png">
+</p>
+
+<p align="center">https://ether.sujinc.com/ether/3+1/graph/percent</p>
+
+<p align="center"><strong>리튬 원자의 에테르</strong></p>
+
+<p align="center">
+ <img src="../images/pic24.png">
+</p>
+
+<p align="center">https://ether.sujinc.com/ether/4+1/graph/percent</p>
+
+<p align="center"><strong>베릴륨 원자의 에테르</strong></p>
 
 ---
 
