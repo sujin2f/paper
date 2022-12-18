@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/public'
-import { FrontPage } from 'src/frontend/scenes/public/FrontPage'
+import { Doc } from 'src/frontend/scenes/doc'
 import { Data } from 'src/frontend/scenes/public/Data'
 import { Cart } from './scenes/public/Cart'
 import { SavedData } from './scenes/public/SavedData'
@@ -10,14 +10,7 @@ import { SavedData } from './scenes/public/SavedData'
 export const Router = (): JSX.Element => {
     return (
         <Routes>
-            <Route
-                path="/"
-                element={
-                    <Public>
-                        <FrontPage />
-                    </Public>
-                }
-            />
+            <Route path="/" element={<Doc />} />
 
             <Route path="/saved-data" element={<SavedData />}>
                 <Route path=":_id" element={<SavedData />}>

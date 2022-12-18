@@ -2,9 +2,7 @@ import express from 'express'
 import { config as dotEnvConfig } from 'dotenv'
 import path from 'path'
 import moduleAlias from 'module-alias'
-import session from 'express-session'
 import http from 'http'
-import ConnectMongoDBSession from 'connect-mongodb-session'
 
 const nodeEnv = process.env.NODE_ENV || ''
 const rootDir =
@@ -24,7 +22,7 @@ if (['production', 'stage'].includes(nodeEnv)) {
 import { mongoConnect } from 'src/utils/mongo/connect'
 import { staticRouter } from 'src/server/routes/static'
 import { graphqlRouter } from 'src/server/routes/graphql'
-import { authRouter } from 'src/server/routes/auth'
+import { isDev } from 'src/utils/environment'
 /* eslint-enable import/first */
 
 /**
@@ -49,34 +47,39 @@ switch (nodeEnv) {
         break
 }
 
-/**
- * Session
- */
-const MongoDBStore = ConnectMongoDBSession(session)
-const store = new MongoDBStore({
-    uri: process.env.MONGO_URI || '',
-    collection: 'sessions',
-})
-store.on('error', (e: Error) => {
-    console.log(e)
-})
+if (!isDev) {
+    const ConnectMongoDBSession = require('connect-mongodb-session')
+    const session = require('express-session')
+    const authRouter = require('src/server/routes/auth').authRouter
+    /**
+     * Session
+     */
+    const MongoDBStore = ConnectMongoDBSession(session)
+    const store = new MongoDBStore({
+        uri: process.env.MONGO_URI || '',
+        collection: 'sessions',
+    })
+    store.on('error', (e: Error) => {
+        console.log(e)
+    })
 
-const sessionMiddleware = session({
-    secret: process.env.SESSION_SECRET || '',
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 365 * 100, // 100 years
-    },
-    store,
-    // Boilerplate options, see:
-    // * https://www.npmjs.com/package/express-session#resave
-    // * https://www.npmjs.com/package/express-session#saveuninitialized
-    resave: true,
-    saveUninitialized: true,
-})
-app.use(sessionMiddleware)
+    const sessionMiddleware = session({
+        secret: process.env.SESSION_SECRET || '',
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24 * 365 * 100, // 100 years
+        },
+        store,
+        // Boilerplate options, see:
+        // * https://www.npmjs.com/package/express-session#resave
+        // * https://www.npmjs.com/package/express-session#saveuninitialized
+        resave: true,
+        saveUninitialized: true,
+    })
+    app.use(sessionMiddleware)
+    app.use('/auth', authRouter)
+}
 
 app.use('/graphql', graphqlRouter)
-app.use('/auth', authRouter)
 app.use('/', staticRouter)
 
 // Go!
