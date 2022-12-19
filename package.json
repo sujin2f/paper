@@ -7,7 +7,7 @@
         "dev": "npm-run-all -s dev:clean dev:watch",
         "dev:clean": "rimraf .build/development/*",
         "dev:watch": "concurrently --kill-others-on-fail \"yarn dev:node\" \"yarn dev:react\"",
-        "dev:node": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --respawn ./src/server/index_dev.ts",
+        "dev:node": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --respawn ./src/server/index.ts",
         "dev:react": "NODE_ENV=development webpack --watch",
         "stage": "npm-run-all -s stage:clean stage:tsc stage:webpack",
         "stage:clean": "rimraf .build/stage/*",

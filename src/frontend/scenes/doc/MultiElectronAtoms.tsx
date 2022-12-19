@@ -3,7 +3,7 @@ import Latex from 'react-latex'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
 import pic10 from 'src/assets/images/doc/pic10.png'
-import pic11 from 'src/assets/images/doc/pic11.png'
+import pic11 from 'src/assets/images/doc/pic11_eng.png'
 import pic16 from 'src/assets/images/doc/pic16.png'
 import pic17 from 'src/assets/images/doc/pic17.png'
 import pic18 from 'src/assets/images/doc/pic18.png'
@@ -18,23 +18,27 @@ export const MultiElectronAtoms = (): JSX.Element => {
     return (
         <Fragment>
             <h2 id="multi-electron-atoms">Proof(2): Multi-Electron Atoms</h2>
+
             <p>
                 So far, I tried to prove the hypothesis from the Bohr model.
                 However, the Bohr model is not accurate anymore. In quantum
                 physics, an electron creates an orbital shape as a result of
                 absorbing energy. The ether is not a radial shape anymore.
             </p>
-            <img src={pic9} alt="Atomic Orbital" />
-            <p>
-                <strong>Atomic Orbital</strong>
-                <a
-                    href="https://en.wikipedia.org/wiki/Atomic_orbital"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    From : Wikipedia
-                </a>
-            </p>
+
+            <div className="align__center">
+                <img src={pic9} alt="Atomic Orbital" />
+                <p>
+                    <strong>Atomic Orbital</strong>{' '}
+                    <a
+                        href="https://en.wikipedia.org/wiki/Atomic_orbital"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        From : Wikipedia
+                    </a>
+                </p>
+            </div>
 
             <p>
                 The shape of the orbital is determined by quantum numbers n, l,
@@ -52,12 +56,14 @@ export const MultiElectronAtoms = (): JSX.Element => {
                 orbital has.
             </p>
 
-            <img src={pic10} alt="The Orbital with the Hypothesis" />
-            <p>
-                <strong>The Orbital with the Hypothesis</strong>
-                <br />
-                The combination of radial and linear ethers
-            </p>
+            <div className="align__center">
+                <img src={pic10} alt="The Orbital with the Hypothesis" />
+                <p>
+                    <strong>The Orbital with the Hypothesis</strong>
+                    <br />
+                    The combination of radial and linear ethers
+                </p>
+            </div>
 
             <p>
                 We can translate the node into the ether. Increasing n increases
@@ -79,15 +85,29 @@ export const MultiElectronAtoms = (): JSX.Element => {
             </p>
 
             <p>
-                To be clear, I want to suggest the notation. The p3 is [-O], and
-                [--O] is d4. Too many ethers like [--OOOOO] can be written in
-                [2-5O] for your readability. The data below is from
-                [NIST](https://physics.nist.gov/PhysRefData/ASD/lines_form.html).
-                The configuration is from the same set which just changed l
+                To be clear, I want to suggest the notation. The p3 is{' '}
+                <strong>[-O]</strong>, and <strong>[--O]</strong> is d4. Too
+                many ethers like <strong>[--OOOOO]</strong> can be written in{' '}
+                <strong>[2-5O]</strong> for your readability. The data below is
+                from{' '}
+                <a
+                    href="https://physics.nist.gov/PhysRefData/ASD/lines_form.html"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    NIST
+                </a>
+                . The configuration is from the same set which just changed l
                 value (1S/J=0, 1P/J=1, 1D/J=2...) I built the website to
-                visualize the data
-                [here](https://ether.sujinc.com/orbital/1+1/graph/percent). The
-                correction value is what the formula satisfied.
+                visualize the data{' '}
+                <a
+                    href="https://ether.sujinc.com/orbital/1+1/graph/percent"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    here
+                </a>
+                . The correction value is what the formula satisfied.
             </p>
 
             <Latex
@@ -102,13 +122,22 @@ export const MultiElectronAtoms = (): JSX.Element => {
                 to reveal what should be focused on in other atoms.
             </p>
 
-            <img src={pic16} alt="Hydrogen Atom" />
-            <p>https://ether.sujinc.com/orbital/1+1/graph/percent</p>
-            <p>
-                <strong>Hydrogen Atom</strong>
-                <br />
-                Simple as Classic Physics
-            </p>
+            <div className="align__center">
+                <img src={pic16} alt="Hydrogen Atom" />
+                <p>
+                    <strong>
+                        <a
+                            href="https://ether.sujinc.com/orbital/1+1/graph/percent"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Hydrogen Atom
+                        </a>
+                    </strong>
+                    <br />
+                    Simple as Classic Physics
+                </p>
+            </div>
 
             <p>
                 NIST data is from various observations, and the values are the
@@ -118,27 +147,34 @@ export const MultiElectronAtoms = (): JSX.Element => {
             </p>
 
             <p>
-                The first-row set **s orbital** is what we should focus on. This
-                set shows **an increment of radial ether**. The **diagonal set
-                of top left to bottom right from p** is also important. The
-                first diagonal set is **the increment of linear ether**. From
-                the second set, they represent a **similar set of increments of
-                radial ether**. For example, p4 is [-O] to [-OO], and p5 is
-                [--O] to [--OO]. So, every orbital should have the same tendency
-                because it is all about radial ether increment. In the other
-                words, **the diagonal sets and linear; and s orbital and the
-                other orbitals should have a similar tendency** because they are
-                the same increments.
+                The first-row set <strong>s orbital</strong> is what we should
+                focus on. This set shows{' '}
+                <strong>an increment of radial ether</strong>. The{' '}
+                <strong>diagonal set of top left to bottom right from p</strong>{' '}
+                is also important. The first diagonal set is{' '}
+                <strong>the increment of linear ether</strong>. From the second
+                set, they represent a{' '}
+                <strong>similar set of increments of radial ether</strong>. For
+                example, p4 is <strong>[-O]</strong> to <strong>[-OO]</strong>,
+                and p5 is <strong>[--O]</strong> to <strong>[--OO]</strong>. So,
+                every orbital should have the same tendency because it is all
+                about radial ether increment. In the other words,{' '}
+                <strong>
+                    the diagonal sets and linear; and s orbital and the other
+                    orbitals should have a similar tendency
+                </strong>{' '}
+                because they are the same increments.
             </p>
 
             <p>
                 Let us go back to the graph. The s orbital goes up and keeps
                 down. Linear ether comes from top-left to bottom-right as the
-                y=a/x graph goes. Other orbitals, well..., not quite organized,
-                and also not quite matched to the s orbital changes. This is a
-                pretty graph, but I cannot say it is satisfactory. According to
-                the hypothesis, s, p, and d orbitals are the increment of radial
-                ether, but the tendencies are different.
+                <Latex>{`$y=\\dfrac{a}{x}$`}</Latex> graph goes. Other orbitals,
+                well..., not quite organized, and also not quite matched to the
+                s orbital changes. This is a pretty graph, but I cannot say it
+                is satisfactory. According to the hypothesis, s, p, and d
+                orbitals are the increment of radial ether, but the tendencies
+                are different.
             </p>
 
             <h3>Helium: Multi-Electron Atom (two electrons)</h3>
@@ -149,17 +185,26 @@ export const MultiElectronAtoms = (): JSX.Element => {
                 of other electrons. Nevertheless, to prove the ether-sparkle
                 hypothesis, it should have a tendency even though it is not as
                 simple as N<sub>th</sub>(n). Let me check the helium, which
-                shows the variety of orbital. And its result is
+                shows the variety of orbital. And its result is{' '}
                 <strong>very disappointing</strong>.
             </p>
 
-            <img src={pic17} alt="Helium Atom" />
-            <p>https://ether.sujinc.com/orbital/2+1/graph/percent</p>
-            <p>
-                <strong>Helium Atom</strong>
-                <br />
-                Too irregular & huge failure
-            </p>
+            <div className="align__center">
+                <img src={pic17} alt="Helium Atom" />
+                <p>
+                    <strong>
+                        <a
+                            href="https://ether.sujinc.com/orbital/2+1/graph/percent"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Helium Atom
+                        </a>
+                    </strong>
+                    <br />
+                    Too irregular & huge failure
+                </p>
+            </div>
 
             <p>
                 The first positions of s, p, and linear orbital are high Rydberg
@@ -190,11 +235,20 @@ export const MultiElectronAtoms = (): JSX.Element => {
                 the radial ether?
             </p>
 
-            <img src={pic18} alt="Radial Ether First!!" />
-            <p>https://ether.sujinc.com/ether/2+1/graph/percent</p>
-            <p>
-                <strong>Radial Ether First!!</strong>
-            </p>
+            <div className="align__center">
+                <img src={pic18} alt="Radial Ether First!!" />
+                <p>
+                    <strong>
+                        <a
+                            href="https://ether.sujinc.com/ether/2+1/graph/percent"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Radial Ether First!!
+                        </a>
+                    </strong>
+                </p>
+            </div>
 
             <p>
                 See, human? See this beautiful tendency! Each row shows the
@@ -447,20 +501,28 @@ export const MultiElectronAtoms = (): JSX.Element => {
                 </tbody>
             </table>
 
-            <img src={pic11} alt="The Ether [OO--] of Helium" />
-            <p>
-                <strong>The Ether [OO--] of Helium</strong>
-                <br />
-                The value seems to be calculated, and we can get the Rydberg by
-                summing the value.
-                <br />
-                The values are from radial 1 to →→↘︎↘︎ order.
-            </p>
+            <div className="align__center">
+                <img src={pic11} alt="The Ether [OO--] of Helium" />
+                <p>
+                    <strong>The Ether [OO--] of Helium</strong>
+                    <br />
+                    The value seems to be calculated, and we can get the Rydberg
+                    by summing the value.
+                    <br />
+                    The values are from radial 1 to →→↘︎↘︎ order.
+                </p>
+            </div>
 
             <p>
                 This tendency can be observed in other atoms like lithium,
-                beryllium, boron, and neon. It is also on the same site as
-                [Neon](https://ether.sujinc.com/ether/10+1/graph/percent).
+                beryllium, boron, and neon. It is also on the same site as{' '}
+                <a
+                    href="https://ether.sujinc.com/ether/10+1/graph/percent"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Neon
+                </a>
             </p>
 
             <h3>Radial Ethers</h3>
@@ -471,21 +533,35 @@ export const MultiElectronAtoms = (): JSX.Element => {
                 function with atom number, term, and J value.
             </p>
 
-            <img src={pic19} alt="% Values of Radial Ethers" />
-            <p>
-                https://ether.sujinc.com/saved-data/639ccf1ad649ed64672f6a67/graph/percent
-            </p>
-            <p>
-                <strong>% Values of Radial Ethers</strong>
-            </p>
+            <div className="align__center">
+                <img src={pic19} alt="% Values of Radial Ethers" />
+                <p>
+                    <strong>
+                        <a
+                            href="https://ether.sujinc.com/saved-data/639ccf1ad649ed64672f6a67/graph/percent"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            % Values of Radial Ethers
+                        </a>
+                    </strong>
+                </p>
+            </div>
 
-            <img src={pic20} alt="Correction Values of Radial Ethers" />
-            <p>
-                https://ether.sujinc.com/saved-data/639ccf1ad649ed64672f6a67/graph/correction
-            </p>
-            <p>
-                <strong>Correction Values of Radial Ethers</strong>
-            </p>
+            <div className="align__center">
+                <img src={pic20} alt="Correction Values of Radial Ethers" />
+                <p>
+                    <strong>
+                        <a
+                            href="https://ether.sujinc.com/saved-data/639ccf1ad649ed64672f6a67/graph/correction"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Correction Values of Radial Ethers
+                        </a>
+                    </strong>
+                </p>
+            </div>
 
             <p>
                 Under -1 correction value means the changing digit of N
@@ -494,35 +570,72 @@ export const MultiElectronAtoms = (): JSX.Element => {
             </p>
 
             <h3>Tendency of other ethers</h3>
+
             <p>
                 I mentioned the tendency, so I will serve you graphs of them.
                 Please watch the similar tendency in the hydrogen whose error is
                 too small.
             </p>
 
-            <img src={pic21} alt="Hydrogen" />
-            <p>https://ether.sujinc.com/ether/1+1/graph/percent</p>
-            <p>
-                <strong>Hydrogen</strong>
-            </p>
+            <div className="align__center">
+                <img src={pic21} alt="Hydrogen" />
+                <p>
+                    <strong>
+                        <a
+                            href="https://ether.sujinc.com/ether/1+1/graph/percent"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Hydrogen
+                        </a>
+                    </strong>
+                </p>
+            </div>
 
-            <img src={pic22} alt="Helium" />
-            <p>https://ether.sujinc.com/ether/2+1/graph/percent</p>
-            <p>
-                <strong>Helium</strong>
-            </p>
+            <div className="align__center">
+                <img src={pic22} alt="Helium" />
+                <p>
+                    <strong>
+                        <a
+                            href="https://ether.sujinc.com/ether/2+1/graph/percent"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Helium
+                        </a>
+                    </strong>
+                </p>
+            </div>
 
-            <img src={pic23} alt="Lithium" />
-            <p>https://ether.sujinc.com/ether/3+1/graph/percent</p>
-            <p>
-                <strong>Lithium</strong>
-            </p>
+            <div className="align__center">
+                <img src={pic23} alt="Lithium" />
+                <p>
+                    <strong>
+                        <a
+                            href="https://ether.sujinc.com/ether/3+1/graph/percent"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Lithium
+                        </a>
+                    </strong>
+                </p>
+            </div>
 
-            <img src={pic24} alt="Beryllium" />
-            <p>https://ether.sujinc.com/ether/4+1/graph/percent</p>
-            <p>
-                <strong>Beryllium</strong>
-            </p>
+            <div className="align__center">
+                <img src={pic24} alt="Beryllium" />
+                <p>
+                    <strong>
+                        <a
+                            href="https://ether.sujinc.com/ether/4+1/graph/percent"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Beryllium
+                        </a>
+                    </strong>
+                </p>
+            </div>
         </Fragment>
     )
 }

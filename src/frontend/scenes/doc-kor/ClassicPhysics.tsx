@@ -6,16 +6,16 @@ import pic5 from 'src/assets/images/doc/pic5_eng.png'
 export const ClassicPhysics = (): JSX.Element => {
     return (
         <Fragment>
-            <h2 id="classic-physics">Proof(1): Classic Physics</h2>
-            <h3>The Emission Wavelength of Photon-Ether from the Bohr Model</h3>
+            <h2 id="classic-physics">가설의 검증(1): 고전 물리학</h2>
+            <h3>보어의 원자 모형에 기초한 광자-에테르의 방출 파장</h3>
 
             <p>
-                Rydberg formula is the solution to calculate the wavelength from
-                an electron. The next ones are the Rydberg formula and tables of
-                the Lyman series, emission wavelengths from{' '}
-                <Latex>$n \geq 2$</Latex> to <Latex>$n = 1$</Latex>, and the
-                Paschen series, emission wavelengths from{' '}
-                <Latex>$n \geq 4$</Latex> to <Latex>$n = 3$</Latex>.
+                전자가 방출하는 파장은 뤼드베리 공식으로 구할 수 있다. 아래는
+                뤼드베리 공식과 <Latex>$n \geq 2$</Latex>에서{' '}
+                <Latex>$n = 1$</Latex>로 준위가 떨어질 때 방출되는 빛의 파장인
+                라이먼 계열과 <Latex>$n \geq 4$</Latex>에서{' '}
+                <Latex>$n = 3$</Latex>으로 변화하는 파센 계열의 방출 파장을
+                정리한 것이다.
             </p>
 
             <div className="align__center">
@@ -23,8 +23,8 @@ export const ClassicPhysics = (): JSX.Element => {
                     displayMode={true}
                 >{`$$\\dfrac{1}{\\lambda} = R(\\dfrac{1}{m^2} - \\dfrac{1}{n^2}) \\hspace{10pt} \\{ R=1.0974 \\times 10^7 m^2 \\}$$`}</Latex>
                 <p>
-                    <strong>Rydberg Formula</strong>: how did you figure it out,
-                    sir?
+                    <strong>뤼드베리 공식</strong>: 이걸 도데체 어떻게
+                    알아낸거야?
                 </p>
             </div>
 
@@ -55,7 +55,7 @@ export const ClassicPhysics = (): JSX.Element => {
                 </tbody>
             </table>
             <p className="align__center">
-                <strong>Wavelength of the Lyman Series</strong>
+                <strong>라이먼 계열의 방출 파장</strong>
             </p>
 
             <table>
@@ -81,15 +81,17 @@ export const ClassicPhysics = (): JSX.Element => {
                 </tbody>
             </table>
             <p className="align__center">
-                <strong>Wavelength of the Paschen Series</strong>
+                <strong>파센 계열의 방출 파장</strong>
             </p>
 
             <p>
-                It tends to have rules, but there is no rule between series. For
-                example, the emissions from four to three are different. What I
-                assume is there is a certain amount of energy between the same
-                orbit, so these tables are not matched my assumption. Here's the
-                reciprocal of a fraction, a wave number.
+                언뜻 보면 같은 계열 사이에서는 수치가 줄어드는 규칙이 있는
+                듯하지만 다른 계열 사이에서는 어떤 방식으로 값이 변화하는지
+                알아보기 힘들다. 4에서 3으로 가는 수치를 라이먼 계열의
+                값만으로는 유추하기 힘들다는 것이다. 우리는 n 껍질 사이의 공간이
+                일정한 수치가 되는 것을 원하기 때문에 파장은 적절하지 않다.
+                라이먼 계열의 파장을 그 역수인 파수로 바꾸어 표현하면 아래와
+                같다.
             </p>
 
             <table>
@@ -121,12 +123,12 @@ export const ClassicPhysics = (): JSX.Element => {
                 </tbody>
             </table>
             <p className="align__center">
-                <strong>Wave Number of Lyman Series</strong>
+                <strong>라이먼 계열의 방출 파수</strong>
             </p>
 
             <p>
-                The following tables are differences between the orbit number,
-                which means from two to one, from three to two, etc.
+                파수의 간극을 보기로 하자. 즉, 2번에서 1번으로, 4번에서 3번으로
+                이동할 때의 값을 살펴보는 것이다.
             </p>
 
             <table>
@@ -168,7 +170,7 @@ export const ClassicPhysics = (): JSX.Element => {
                 </tbody>
             </table>
             <p className="align__center">
-                <strong>Wave Number Differences of the Lyman Series</strong>
+                <strong>라이먼 계열의 파수 차이</strong>
             </p>
 
             <table>
@@ -202,25 +204,29 @@ export const ClassicPhysics = (): JSX.Element => {
                 </tbody>
             </table>
             <p className="align__center">
-                <strong>Wave Number Differences of the Paschen Series</strong>
+                <strong>파센 계열의 파수 차이</strong>
             </p>
 
             <p>
-                They match together. This result supports the exact amount of
-                energy stored in between the orbits. Now, the calculation of
-                electron energy is just an adding equation.
+                파수의 차이는 두 계열에서 동일하다. n 껍질 사이의 공간에 특정한
+                에너지가 에테르의 형태로 보존된다는 가설을 뒷받침해 준다. 각
+                껍질과 껍질 사이에 해당하는 광자-에테르는 일정한 에너지를 가지고
+                있고, 딱 그 에너지만큼의 광자-스파클로 전환되어 방출되는 것으로
+                해석할 수 있다. 이제 에너지의 흡수와 방출은 덧셈이 되었다.
             </p>
 
-            <h3>Energy of Photon-Ether</h3>
+            <h3>광자-에테르의 방출 에너지</h3>
 
             <p>
-                If the wavelength between the orbit is always the same, we can
-                calculate its energy. <Latex>$E = hc / λ$</Latex> is an energy
-                formula, and λ is a wavelength. The resulting unit is J, and
-                converting to eV is in the table below. I declare a function
-                <Latex>{`$\\dfrac{1}{n - 1}^2 - \\dfrac{1}{n}^2$`}</Latex>
-                as <Latex>{`$N_{th}(n)$`}</Latex>, and this function will be
-                used in this document again and again.
+                광자-에테르가 일정한 파장을 가지고 있다면 그 에너지를 구할 수
+                있을 것이다. 빛의 에너지는 <Latex>$E = hc / λ$</Latex>의 식으로
+                구할 수 있다. 여기서 λ는 앞서 구한 파수를 의미한다. 여기서 λ는
+                앞서 구한 파수를 의미하며, 이렇게 구한 값은 J의 단위를 가진다.
+                이를 eV를 단위로 갖는 에너지 값은 아래의 수식과 같으며, 이를
+                정리하면 아래의 표와 같다. 여기서{' '}
+                <Latex>{`$\\dfrac{1}{n - 1}^2 - \\dfrac{1}{n}^2$`}</Latex>를
+                함수 <Latex>{`$N_{th}(n)$`}</Latex>이라 하자. 이 함수는 앞으로도
+                계속 쓰일 것이다.
             </p>
 
             <div className="align__center">
@@ -231,12 +237,13 @@ export const ClassicPhysics = (): JSX.Element => {
                     <strong>
                         N<sub>th</sub>(n)
                     </strong>
+                    : 이 함수 계속 나온다
                 </p>
                 <Latex
                     displayMode={true}
                 >{`$$E = Rhc(N_{th}(n))\\cdot6.242\\cdot10^{32}$$`}</Latex>
                 <p>
-                    <strong>Energy Formula from Wavelength</strong>
+                    <strong>파장을 이용해 에너지를 구하는 공식</strong>
                 </p>
             </div>
 
@@ -281,12 +288,12 @@ export const ClassicPhysics = (): JSX.Element => {
                 </tbody>
             </table>
             <p className="align__center">
-                <strong>Result Energy from the Formula</strong>
+                <strong>그렇게 구한 에너지</strong>
             </p>
 
             <p>
-                From the Bohr model and Schrödinger equation, the energy of n
-                shell is:
+                보어 원자 모형과 수소 원자의 슈뢰딩거 방정식에서 n 껍질의
+                에너지는 다음의 수식을 만족한다.
             </p>
 
             <Latex
@@ -294,9 +301,9 @@ export const ClassicPhysics = (): JSX.Element => {
             >{`$$E_n = -\\frac{ℏ^2}{2 \\mu a_0 ^ 2} \\frac{1}{n^2}$$`}</Latex>
 
             <p>
-                I swap <Latex>{`$\\dfrac{1}{n^2}$`}</Latex> to{' '}
-                <Latex>{`$N_{th}(n)$`}</Latex> and convert J to eV. The values
-                are similar to the table above.
+                여기서 <Latex>{`$\\dfrac{1}{n^2}$`}</Latex>을{' '}
+                <Latex>{`$N_{th}(n)$`}</Latex>로 치환하고, J를 eV로 변환하면
+                위에서 구한 방식과 거의 일치하는 것을 알 수 있다.
             </p>
 
             <Latex
@@ -354,54 +361,56 @@ export const ClassicPhysics = (): JSX.Element => {
                 </tbody>
             </table>
             <div className="align__center">
-                <img src={pic5} alt="Rydberg of Photon-Ether" />
+                <img src={pic5} alt="광자 에테르의 뤼드베리 값" />
                 <p>
-                    <strong>Rydberg of Photon-Ether</strong>
+                    <strong>광자 에테르의 뤼드베리 값</strong>
                     <br />
-                    simple plus calculation
+                    이제 덧셈이 되었다.
                 </p>
             </div>
 
             <p>
-                As you can see, we can get the energy of ether by the plus
-                calculation. Also, wavelength and mass would be able to
-                calculate.
+                그림에서 볼 수 있듯, 이제 에테르가 가진 에너지는 덧셈으로 쉽게
+                구할 수 있게 되었다. 에너지, 파장, 심지어는 질량 마저도 구할 수
+                있게 되었다.
             </p>
             <p>
-                Two formulas has N<sub>th</sub>(n) as only variable. Therefore
-                the value is changed by the part of N<sub>th</sub>(n). It is
-                called <strong>Rydberg</strong> as a unit.
+                두 방법 모두 상수값들을 제외하면 N<sub>th</sub>(n)만이 변화되는
+                양임을 알 수 있다. 즉, 이 부분에 어떤 값이 들어가는지에 따라
+                에너지의 값이 변하게 된다. 이 부분을 단위로{' '}
+                <strong>Rydberg</strong>라고 부른다.
             </p>
 
-            <h3>Recap</h3>
+            <h3>정리</h3>
             <p>
-                So far, it is obvious. It is all from a classic physics
-                textbook. It is right in the hydrogen-like atom in the Bohr era,
-                a century ago. However, it does not match multi-electron atoms.
-                I made y'all fool.
+                여기서 한 이야기는 모두 너무 당연한 이야기이다. 고전물리 교과서
+                잠깐만 보면 모두 알 수 있는 내용이다. 이건 한 세기도 전인 닐스
+                보어 시대에도 수소 원자에서 당연하게 딱딱 맞는 내용이다. 그러나
+                다전자 원자에서는 하나도 맞지 않는다. 여러분은 낚였다.
             </p>
             <p>
-                I want to suggest conditions that make the ether-sparkle
-                hypothesis would be right.
+                여기서 내가 원하는 것은 에테르-스파클 가설이 설득력을 가질 수
+                있는 조건을 제시하는 것이다.
             </p>
 
             <ul>
                 <li>
-                    First, the ether energy should be{' '}
-                    <strong>possible to guess</strong>
+                    첫째, 에테르가 가진 에너지는 <strong>예상 가능</strong>해야
+                    한다.
                 </li>
                 <li>
-                    Second, the ether energy should be <strong>summed</strong>
+                    둘째, 에테르가 가진 에너지는 <strong>덧셈</strong>에 의해
+                    구할 수 있어야 한다.
                 </li>
                 <li>
-                    Third, the two conditions above should be established in{' '}
-                    <strong>multi-electron atoms</strong>
+                    셋째, 위 조건은 <strong>다전자 원자</strong>에서도 성립
+                    해야한다.
                 </li>
             </ul>
             <p>
-                If it passes the conditions, I may prove the electron energy is
-                stored as a form of ether. The next chapter is about
-                multi-electron atoms.
+                위 조건을 만족한다면, 에너지가 에테르의 형태로 저장된다는 것을
+                증명할 수 있을 것이다. 다음 장에서는 다전자 원자에 대해 다루고자
+                한다.
             </p>
         </Fragment>
     )

@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 
-import pic1 from 'src/assets/images/doc/pic1.png'
-import pic2 from 'src/assets/images/doc/pic2.png'
-import pic3 from 'src/assets/images/doc/pic3.png'
-import pic4 from 'src/assets/images/doc/pic4.png'
-import pic7 from 'src/assets/images/doc/pic7.png'
-import pic8 from 'src/assets/images/doc/pic8.png'
+import pic1 from 'src/assets/images/doc/pic1_eng.png'
+import pic2 from 'src/assets/images/doc/pic2_eng.png'
+import pic3 from 'src/assets/images/doc/pic3_eng.png'
+import pic4 from 'src/assets/images/doc/pic4_eng.png'
+import pic7 from 'src/assets/images/doc/pic7_eng.png'
+import pic8 from 'src/assets/images/doc/pic8_eng.png'
 
 export const Hypothesis = (): JSX.Element => {
     return (

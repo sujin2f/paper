@@ -12,7 +12,7 @@ import { MultiElectronAtoms } from './MultiElectronAtoms'
 import { SchrodingerEquation } from './SchrodingerEquation'
 import { Conclusion } from './Conclusion'
 
-export const Doc = (): JSX.Element => {
+export const DocKor = (): JSX.Element => {
     return (
         <Public>
             <MainHeader />

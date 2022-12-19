@@ -1,7 +1,7 @@
 // Tags
 html {
     scroll-behavior: smooth;
-    font-size: 17pt;
+    font-size: 12pt;
 }
 
 html[lang='en-US'],
@@ -20,7 +20,8 @@ strong {
     font-weight: 700;
 }
 
-a {
+a,
+.anchor {
     color: map-get($foundation-palette, 'primary');
 }
 
@@ -90,4 +91,16 @@ dd {
 
 .align__center {
     text-align: center !important;
+}
+
+.strike_through {
+    text-decoration: line-through;
+}
+
+.mfrac {
+    background: transparent url('../images/dot.png') repeat-x 0 center;
+}
+
+.position__fixed {
+    position: fixed;
 }

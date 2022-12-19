@@ -6,11 +6,13 @@ import { Doc } from 'src/frontend/scenes/doc'
 import { Data } from 'src/frontend/scenes/public/Data'
 import { Cart } from './scenes/public/Cart'
 import { SavedData } from './scenes/public/SavedData'
+import { DocKor } from './scenes/doc-kor'
 
 export const Router = (): JSX.Element => {
     return (
         <Routes>
             <Route path="/" element={<Doc />} />
+            <Route path="/kor" element={<DocKor />} />
 
             <Route path="/saved-data" element={<SavedData />}>
                 <Route path=":_id" element={<SavedData />}>

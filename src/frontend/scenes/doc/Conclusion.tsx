@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
-import pic13 from 'src/assets/images/doc/pic13.png'
-import pic14 from 'src/assets/images/doc/pic14.png'
+import pic13 from 'src/assets/images/doc/pic13_eng.png'
+import pic14 from 'src/assets/images/doc/pic14_eng.png'
 import pic15 from 'src/assets/images/doc/pic15.png'
 
 export const Conclusion = (): JSX.Element => {
@@ -23,15 +23,21 @@ export const Conclusion = (): JSX.Element => {
                 Therefore, what is the Photon-Ether, the independent ether, is
                 invisible, and has weight. One possibility is dark matter.
                 Otherwise, it would be a Higgs boson. Or it would be a Neutrino.
-                Possibly, none of them. ~~Personally, I prefer a new one, Ether,
-                because I like the name.~~
+                Possibly, none of them.{' '}
+                <span className="strike_through">
+                    Personally, I prefer a new one, Ether, because I like the
+                    name
+                </span>
+                .
             </p>
             <h3>Suggesting an Experiment</h3>
-            <img src={pic13} alt="Double Tunnel Experiment" />
-            <p>
-                <strong>Double Tunnel Experiment</strong>: Where it suppose to
-                go if it is divided into two pieces?
-            </p>
+            <div className="align__center">
+                <img src={pic13} alt="Double Tunnel Experiment" />
+                <p>
+                    <strong>Double Tunnel Experiment</strong>: Where it suppose
+                    to go if it is divided into two pieces?
+                </p>
+            </div>
             <p>
                 I imagine the experiment to prove the hypothesis, making a
                 double tunnel instead of the double slit. What would happen
@@ -41,11 +47,17 @@ export const Conclusion = (): JSX.Element => {
                 divided ether, and it is not stable.
             </p>
             <p>
-                **Added on 2022-11-15** It happened. The experience is changing
-                the spin of a divided neutron, and the neutron was affected by
-                both tunnels. [Quantifying the presence of a neutron in the
-                paths of an
-                interferometer](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.023075)
+                <strong>Added on 2022-11-15</strong> It happened. The experience
+                is changing the spin of a divided neutron, and the neutron was
+                affected by both tunnels.{' '}
+                <a
+                    href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.023075"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Quantifying the presence of a neutron in the paths of an
+                    interferometer
+                </a>
             </p>
             <h3>
                 Hypothesis of the Hypothesis (1): Time does not exist in our
@@ -61,13 +73,15 @@ export const Conclusion = (): JSX.Element => {
                 the matter. Logically speaking, there is no concrete reason the
                 universe should have time.
             </p>
-            <img src={pic14} alt="Time Dilation in Ether-Sparkle" />
-            <p>
-                <strong>Time Dilation in Ether-Sparkle</strong>
-                <br />
-                Time is a property of sparkle, and it can be changed by its
-                surrounding ether.
-            </p>
+            <div className="align__center">
+                <img src={pic14} alt="Time Dilation in Ether-Sparkle" />
+                <p>
+                    <strong>Time Dilation in Ether-Sparkle</strong>
+                    <br />
+                    Time is a property of sparkle, and it can be changed by its
+                    surrounding ether.
+                </p>
+            </div>
             <p>
                 In this way, the time dilation can be explained more clearly. In
                 a different inertial frame, in different gravity, the speed of
@@ -80,12 +94,14 @@ export const Conclusion = (): JSX.Element => {
             <h3>
                 Hypothesis of the Hypothesis (2): Entanglement is divided ether?
             </h3>
-            <img src={pic15} alt="Entanglement of Ether-Sparkle" />
-            <p>
-                <strong>Entanglement of Ether-Sparkle</strong>
-                <br />
-                Sparkle can travel into two ethers
-            </p>
+            <div className="align__center">
+                <img src={pic15} alt="Entanglement of Ether-Sparkle" />
+                <p>
+                    <strong>Entanglement of Ether-Sparkle</strong>
+                    <br />
+                    Sparkle can travel into two ethers
+                </p>
+            </div>
             <p>
                 According to the hypothesis, the electron-ether can be divided
                 by the photon-ether. The electron-ether is also divided by the
