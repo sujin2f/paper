@@ -5,7 +5,7 @@ import { periodicTable } from 'src/constants/periodic-table'
 import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
 import { Atom } from 'src/types/atom'
 
-export const PeriodicTableModal = (): JSX.Element => {
+export const PeriodicTable = (): JSX.Element => {
     const { atom, getAddress } = useTableParam()
     const [showModal, setShowModal] = useState<boolean>(false)
 

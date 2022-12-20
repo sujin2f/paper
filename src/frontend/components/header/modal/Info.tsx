@@ -4,7 +4,7 @@ import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
 import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
 
-export const InfoModal = (): JSX.Element => {
+export const Info = (): JSX.Element => {
     const { atom } = useTableParam()
     const [showModal, setShowModal] = useState<boolean>(false)
 

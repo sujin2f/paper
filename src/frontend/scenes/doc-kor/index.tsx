@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { TableOfContent } from 'src/frontend/scenes/doc-kor/TableOfContent'
+import { TOCKor } from 'src/frontend/components/document/TOCKor'
 
 export const Doc = (props: PropsWithChildren<{}>): JSX.Element => (
     <Row>
@@ -12,7 +12,7 @@ export const Doc = (props: PropsWithChildren<{}>): JSX.Element => (
             <div className="position__fixed">
                 <h2>Table of Content</h2>
                 <ol>
-                    <TableOfContent />
+                    <TOCKor />
                 </ol>
             </div>
         </Column>

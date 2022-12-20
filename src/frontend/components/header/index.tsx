@@ -5,10 +5,10 @@ import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
 import { getAtom } from 'src/utils/atom'
 import { ChartDropdown } from './ChartDropdown'
 import { HeaderRight } from './HeaderRight'
-import { InfoModal } from './InfoModal'
+import { Info } from './modal/Info'
 import { IonDropdown } from './IonDropdown'
 import { OptionDropdown } from './OptionDropdown'
-import { PeriodicTableModal } from './PeriodicTableModal'
+import { PeriodicTable } from './modal/PeriodicTable'
 import { TermDropdown } from './TermDropdown'
 
 export const Header = (): JSX.Element => {
@@ -43,10 +43,10 @@ export const Header = (): JSX.Element => {
                             {atom.symbol} {romanize(ion)}
                         </h1>
                         <div>
-                            <PeriodicTableModal />
+                            <PeriodicTable />
                         </div>
                     </div>
-                    <InfoModal />
+                    <Info />
                 </header>
 
                 <nav className="align__right">

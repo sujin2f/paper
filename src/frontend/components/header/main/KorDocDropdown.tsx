@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { TableOfContent } from 'src/frontend/scenes/doc/TableOfContent'
+import { TOCKor } from 'src/frontend/components/document/TOCKor'
 
-export const EngDocDropdown = (): JSX.Element => {
+export const KorDocDropdown = (): JSX.Element => {
     const [showOptions, setShowOptions] = useState<boolean>(false)
 
     document.addEventListener('click', () => {
@@ -18,11 +18,11 @@ export const EngDocDropdown = (): JSX.Element => {
                     setShowOptions(!showOptions)
                 }}
             >
-                Document (Eng) ▾
+                Document (Kor) ▾
             </Link>
             {!!showOptions && (
                 <ul className="menu vertical">
-                    <TableOfContent />
+                    <TOCKor />
                 </ul>
             )}
         </li>
