@@ -1,41 +1,18 @@
 import React, { PropsWithChildren } from 'react'
-import { Link } from 'react-router-dom'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
+import { TableOfContent } from 'src/frontend/scenes/doc/TableOfContent'
 
 export const Doc = (props: PropsWithChildren<{}>): JSX.Element => (
     <Row>
-        <Column small={9} dom="article">
+        <Column small={12} medium={9} dom="article">
             {props.children}
         </Column>
-        <Column small={3} dom="aside">
+        <Column medium={3} dom="aside" className="hide-for-small">
             <div className="position__fixed">
                 <h2>Table of Content</h2>
                 <ol>
-                    <li>
-                        <Link to="/">Introduction</Link>
-                    </li>
-                    <li>
-                        <Link to="/hypothesis">Hypothesis</Link>
-                    </li>
-                    <li>
-                        <Link to="/classic-physics">
-                            Proof(1): Classic Physics
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/multi-electron-atoms">
-                            Proof(2): Multi-Electron Atoms
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/schrodinger-equation">
-                            Proof(3): Schrödinger Equation
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/conclusion">Conclusion</Link>
-                    </li>
+                    <TableOfContent />
                 </ol>
             </div>
         </Column>

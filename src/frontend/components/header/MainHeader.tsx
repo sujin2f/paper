@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useSavedDataList } from 'src/frontend/hooks/useSavedDataList'
 import { Context, ContextType } from 'src/frontend/store'
 import { setForceUpdate } from 'src/frontend/store/actions'
+import { EngDocDropdown } from './EngDocDropdown'
+import { KorDocDropdown } from './KorDocDropdown' 
 
 export const MainHeader = (): JSX.Element => {
     const location = useLocation()
@@ -14,13 +16,9 @@ export const MainHeader = (): JSX.Element => {
     return (
         <div className="top-bar">
             <nav className="top-bar-left">
-                <ul className="menu">
-                    <li>
-                        <Link to="/">Document (eng)</Link>
-                    </li>
-                    <li>
-                        <Link to="/kor">Document (kor)</Link>
-                    </li>
+                <ul className="dropdown menu">
+                    <EngDocDropdown />
+                    <KorDocDropdown />
                 </ul>
             </nav>
             <div className="top-bar-right">
