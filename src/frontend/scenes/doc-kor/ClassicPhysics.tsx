@@ -26,58 +26,62 @@ export const ClassicPhysics = (): JSX.Element => (
             </p>
         </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>n</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>nm</th>
-                    <td>121.50</td>
-                    <td>102.51</td>
-                    <td>97.20</td>
-                    <td>94.92</td>
-                    <td>93.73</td>
-                    <td>93.02</td>
-                    <td>92.57</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>n</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>nm</th>
+                        <td>121.50</td>
+                        <td>102.51</td>
+                        <td>97.20</td>
+                        <td>94.92</td>
+                        <td>93.73</td>
+                        <td>93.02</td>
+                        <td>92.57</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <p className="align__center">
             <strong>라이먼 계열의 방출 파장</strong>
         </p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>n</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>nm</th>
-                    <td>1,874.60</td>
-                    <td>1,281.46</td>
-                    <td>1,093.52</td>
-                    <td>1,004.67</td>
-                    <td>954.34</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>n</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>nm</th>
+                        <td>1,874.60</td>
+                        <td>1,281.46</td>
+                        <td>1,093.52</td>
+                        <td>1,004.67</td>
+                        <td>954.34</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <p className="align__center">
             <strong>파센 계열의 방출 파장</strong>
         </p>
@@ -91,34 +95,36 @@ export const ClassicPhysics = (): JSX.Element => (
             바꾸어 표현하면 아래와 같다.
         </p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>n</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>
-                        cm<sup>-1</sup>
-                    </th>
-                    <td>82,302.98</td>
-                    <td>97,544.28</td>
-                    <td>102,878.73</td>
-                    <td>105,347.82</td>
-                    <td>106,689.05</td>
-                    <td>107,497.77</td>
-                    <td>108,022.67</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>n</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+                            cm<sup>-1</sup>
+                        </th>
+                        <td>82,302.98</td>
+                        <td>97,544.28</td>
+                        <td>102,878.73</td>
+                        <td>105,347.82</td>
+                        <td>106,689.05</td>
+                        <td>107,497.77</td>
+                        <td>108,022.67</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <p className="align__center">
             <strong>라이먼 계열의 방출 파수</strong>
         </p>
@@ -128,78 +134,82 @@ export const ClassicPhysics = (): JSX.Element => (
             이동할 때의 값을 살펴보는 것이다.
         </p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>n</th>
-                    <th>
-                        <Latex>$3 \to 2$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$4 \to 3$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$5 \to 4$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$6 \to 5$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$7 \to 6$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$8 \to 7$</Latex>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>
-                        cm<sup>-1</sup>
-                    </th>
-                    <td>15,241.29</td>
-                    <td>5,334.45</td>
-                    <td>2,469.08</td>
-                    <td>1,341.23</td>
-                    <td>808.72</td>
-                    <td>524.89</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>n</th>
+                        <th>
+                            <Latex>$3 \to 2$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$4 \to 3$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$5 \to 4$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$6 \to 5$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$7 \to 6$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$8 \to 7$</Latex>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+                            cm<sup>-1</sup>
+                        </th>
+                        <td>15,241.29</td>
+                        <td>5,334.45</td>
+                        <td>2,469.08</td>
+                        <td>1,341.23</td>
+                        <td>808.72</td>
+                        <td>524.89</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <p className="align__center">
             <strong>라이먼 계열의 파수 차이</strong>
         </p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>n</th>
-                    <th>
-                        <Latex>$5 \to 4$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$6 \to 5$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$7 \to 6$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$8 \to 7$</Latex>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>
-                        cm<sup>-1</sup>
-                    </th>
-                    <td>2,469.08</td>
-                    <td>1,341.23</td>
-                    <td>808.72</td>
-                    <td>524.89</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>n</th>
+                        <th>
+                            <Latex>$5 \to 4$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$6 \to 5$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$7 \to 6$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$8 \to 7$</Latex>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+                            cm<sup>-1</sup>
+                        </th>
+                        <td>2,469.08</td>
+                        <td>1,341.23</td>
+                        <td>808.72</td>
+                        <td>524.89</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <p className="align__center">
             <strong>파센 계열의 파수 차이</strong>
         </p>
@@ -244,46 +254,48 @@ export const ClassicPhysics = (): JSX.Element => (
             </p>
         </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>n</th>
-                    <th>
-                        <Latex>$2 \to 1$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$3 \to 2$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$4 \to 3$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$5 \to 4$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$6 \to 5$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$7 \to 6$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$8 \to 7$</Latex>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>eV</th>
-                    <td>10.2050</td>
-                    <td>1.8898</td>
-                    <td>0.6614</td>
-                    <td>0.3061</td>
-                    <td>0.1663</td>
-                    <td>0.1002</td>
-                    <td>0.0650</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>n</th>
+                        <th>
+                            <Latex>$2 \to 1$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$3 \to 2$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$4 \to 3$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$5 \to 4$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$6 \to 5$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$7 \to 6$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$8 \to 7$</Latex>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>eV</th>
+                        <td>10.2050</td>
+                        <td>1.8898</td>
+                        <td>0.6614</td>
+                        <td>0.3061</td>
+                        <td>0.1663</td>
+                        <td>0.1002</td>
+                        <td>0.0650</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <p className="align__center">
             <strong>그렇게 구한 에너지</strong>
         </p>
@@ -307,56 +319,58 @@ export const ClassicPhysics = (): JSX.Element => (
             displayMode={true}
         >{`$$E_{th}(n) = \\frac{ℏ^2}{2 \\mu a_0 ^ 2}N_{th}(n) \\hspace{10pt} \\{ n \\geqq 2 \\}$$`}</Latex>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>n</th>
-                    <th>
-                        <Latex>$2 \to 1$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$3 \to 2$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$4 \to 3$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$5 \to 4$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$6 \to 5$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$7 \to 6$</Latex>
-                    </th>
-                    <th>
-                        <Latex>$8 \to 7$</Latex>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>1st values</th>
-                    <td>10.2050</td>
-                    <td>1.8898</td>
-                    <td>0.6614</td>
-                    <td>0.3061</td>
-                    <td>0.1663</td>
-                    <td>0.1002</td>
-                    <td>0.0650</td>
-                </tr>
-                <tr>
-                    <th>2nd values</th>
-                    <td>10.2009</td>
-                    <td>1.8890</td>
-                    <td>0.6611</td>
-                    <td>0.3060</td>
-                    <td>0.1662</td>
-                    <td>0.1002</td>
-                    <td>0.0650</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>n</th>
+                        <th>
+                            <Latex>$2 \to 1$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$3 \to 2$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$4 \to 3$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$5 \to 4$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$6 \to 5$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$7 \to 6$</Latex>
+                        </th>
+                        <th>
+                            <Latex>$8 \to 7$</Latex>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1st values</th>
+                        <td>10.2050</td>
+                        <td>1.8898</td>
+                        <td>0.6614</td>
+                        <td>0.3061</td>
+                        <td>0.1663</td>
+                        <td>0.1002</td>
+                        <td>0.0650</td>
+                    </tr>
+                    <tr>
+                        <th>2nd values</th>
+                        <td>10.2009</td>
+                        <td>1.8890</td>
+                        <td>0.6611</td>
+                        <td>0.3060</td>
+                        <td>0.1662</td>
+                        <td>0.1002</td>
+                        <td>0.0650</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div className="align__center">
             <img src={pic5} alt="광자 에테르의 뤼드베리 값" />
             <p>

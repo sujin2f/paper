@@ -252,107 +252,109 @@ export const MultiElectronAtoms = (): JSX.Element => (
 
         <p>My excitement makes me draw the diagonal table for you.</p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>digit</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                    <th>9</th>
-                    <th>10</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>first linear %p</th>
-                    <td>107.933</td>
-                    <td>30.776</td>
-                    <td>24.247</td>
-                    <td>21.593</td>
-                    <td>20.143</td>
-                    <td>19.228</td>
-                    <td>18.597</td>
-                    <td>18.136</td>
-                    <td>17.784</td>
-                </tr>
-                <tr>
-                    <th>second linear %p</th>
-                    <td></td>
-                    <td>-1.780</td>
-                    <td>-1.825</td>
-                    <td>-1.762</td>
-                    <td>-1.709</td>
-                    <td>-1.670</td>
-                    <td>-1.639</td>
-                    <td>-1.616</td>
-                    <td>-1.597</td>
-                </tr>
-                <tr>
-                    <th>third linear %p</th>
-                    <td></td>
-                    <td></td>
-                    <td>0.234</td>
-                    <td>0.226</td>
-                    <td>0.217</td>
-                    <td>0.209</td>
-                    <td>0.202</td>
-                    <td>0.197</td>
-                    <td>0.193</td>
-                </tr>
-                <tr>
-                    <th>fourth linear %p</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>0.026</td>
-                    <td>0.027</td>
-                    <td>0.027</td>
-                    <td>0.026</td>
-                    <td>0.026</td>
-                    <td>0.025</td>
-                </tr>
-                <tr>
-                    <th>fifth linear %p</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>-0.004</td>
-                    <td>-0.004</td>
-                    <td>-0.004</td>
-                    <td>-0.004</td>
-                    <td>-0.004</td>
-                </tr>
-                <tr>
-                    <th>sixth linear %p</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>-0.011</td>
-                    <td>-0.011</td>
-                    <td>-0.011</td>
-                    <td>-0.011</td>
-                </tr>
-                <tr>
-                    <th>seventh linear %p</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>-0.013</td>
-                    <td>-0.013</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>digit</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>first linear %p</th>
+                        <td>107.933</td>
+                        <td>30.776</td>
+                        <td>24.247</td>
+                        <td>21.593</td>
+                        <td>20.143</td>
+                        <td>19.228</td>
+                        <td>18.597</td>
+                        <td>18.136</td>
+                        <td>17.784</td>
+                    </tr>
+                    <tr>
+                        <th>second linear %p</th>
+                        <td></td>
+                        <td>-1.780</td>
+                        <td>-1.825</td>
+                        <td>-1.762</td>
+                        <td>-1.709</td>
+                        <td>-1.670</td>
+                        <td>-1.639</td>
+                        <td>-1.616</td>
+                        <td>-1.597</td>
+                    </tr>
+                    <tr>
+                        <th>third linear %p</th>
+                        <td></td>
+                        <td></td>
+                        <td>0.234</td>
+                        <td>0.226</td>
+                        <td>0.217</td>
+                        <td>0.209</td>
+                        <td>0.202</td>
+                        <td>0.197</td>
+                        <td>0.193</td>
+                    </tr>
+                    <tr>
+                        <th>fourth linear %p</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>0.026</td>
+                        <td>0.027</td>
+                        <td>0.027</td>
+                        <td>0.026</td>
+                        <td>0.026</td>
+                        <td>0.025</td>
+                    </tr>
+                    <tr>
+                        <th>fifth linear %p</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>-0.004</td>
+                        <td>-0.004</td>
+                        <td>-0.004</td>
+                        <td>-0.004</td>
+                        <td>-0.004</td>
+                    </tr>
+                    <tr>
+                        <th>sixth linear %p</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>-0.011</td>
+                        <td>-0.011</td>
+                        <td>-0.011</td>
+                        <td>-0.011</td>
+                    </tr>
+                    <tr>
+                        <th>seventh linear %p</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>-0.013</td>
+                        <td>-0.013</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <p>
             The first linear ether has a high Rydberg vale, the second is minus,
@@ -379,120 +381,122 @@ export const MultiElectronAtoms = (): JSX.Element => (
             not need s1 which means no ether.
         </p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>digit</th>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                    <th>9</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>radial</th>
-                    <td>1.515</td>
-                    <td>0.169</td>
-                    <td>0.055</td>
-                    <td>0.025</td>
-                    <td>0.013</td>
-                    <td>0.008</td>
-                    <td>0.005</td>
-                    <td>0.003</td>
-                    <td>0.002</td>
-                </tr>
-                <tr>
-                    <th>1st linear</th>
-                    <td>1.559</td>
-                    <td>0.182</td>
-                    <td>0.060</td>
-                    <td>0.027</td>
-                    <td>0.015</td>
-                    <td>0.009</td>
-                    <td>0.006</td>
-                    <td>0.004</td>
-                    <td>0.003</td>
-                </tr>
-                <tr>
-                    <th>2nd linear</th>
-                    <td></td>
-                    <td>0.136</td>
-                    <td>0.048</td>
-                    <td>0.022</td>
-                    <td>0.012</td>
-                    <td>0.007</td>
-                    <td>0.005</td>
-                    <td>0.003</td>
-                    <td>0.002</td>
-                </tr>
-                <tr>
-                    <th>3rd linear</th>
-                    <td></td>
-                    <td></td>
-                    <td>0.049</td>
-                    <td>0.023</td>
-                    <td>0.012</td>
-                    <td>0.007</td>
-                    <td>0.005</td>
-                    <td>0.003</td>
-                    <td>0.002</td>
-                </tr>
-                <tr>
-                    <th>4th linear</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>0.023</td>
-                    <td>0.012</td>
-                    <td>0.007</td>
-                    <td>0.005</td>
-                    <td>0.003</td>
-                    <td>0.002</td>
-                </tr>
-                <tr>
-                    <th>5th linear</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>0.012</td>
-                    <td>0.007</td>
-                    <td>0.005</td>
-                    <td>0.003</td>
-                    <td>0.002</td>
-                </tr>
-                <tr>
-                    <th>6th linear</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>0.007</td>
-                    <td>0.005</td>
-                    <td>0.003</td>
-                    <td>0.002</td>
-                </tr>
-                <tr>
-                    <th>7th linear</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>0.005</td>
-                    <td>0.003</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>digit</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>radial</th>
+                        <td>1.515</td>
+                        <td>0.169</td>
+                        <td>0.055</td>
+                        <td>0.025</td>
+                        <td>0.013</td>
+                        <td>0.008</td>
+                        <td>0.005</td>
+                        <td>0.003</td>
+                        <td>0.002</td>
+                    </tr>
+                    <tr>
+                        <th>1st linear</th>
+                        <td>1.559</td>
+                        <td>0.182</td>
+                        <td>0.060</td>
+                        <td>0.027</td>
+                        <td>0.015</td>
+                        <td>0.009</td>
+                        <td>0.006</td>
+                        <td>0.004</td>
+                        <td>0.003</td>
+                    </tr>
+                    <tr>
+                        <th>2nd linear</th>
+                        <td></td>
+                        <td>0.136</td>
+                        <td>0.048</td>
+                        <td>0.022</td>
+                        <td>0.012</td>
+                        <td>0.007</td>
+                        <td>0.005</td>
+                        <td>0.003</td>
+                        <td>0.002</td>
+                    </tr>
+                    <tr>
+                        <th>3rd linear</th>
+                        <td></td>
+                        <td></td>
+                        <td>0.049</td>
+                        <td>0.023</td>
+                        <td>0.012</td>
+                        <td>0.007</td>
+                        <td>0.005</td>
+                        <td>0.003</td>
+                        <td>0.002</td>
+                    </tr>
+                    <tr>
+                        <th>4th linear</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>0.023</td>
+                        <td>0.012</td>
+                        <td>0.007</td>
+                        <td>0.005</td>
+                        <td>0.003</td>
+                        <td>0.002</td>
+                    </tr>
+                    <tr>
+                        <th>5th linear</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>0.012</td>
+                        <td>0.007</td>
+                        <td>0.005</td>
+                        <td>0.003</td>
+                        <td>0.002</td>
+                    </tr>
+                    <tr>
+                        <th>6th linear</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>0.007</td>
+                        <td>0.005</td>
+                        <td>0.003</td>
+                        <td>0.002</td>
+                    </tr>
+                    <tr>
+                        <th>7th linear</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>0.005</td>
+                        <td>0.003</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <div className="align__center">
             <img src={pic11} alt="The Ether [OO--] of Helium" />
