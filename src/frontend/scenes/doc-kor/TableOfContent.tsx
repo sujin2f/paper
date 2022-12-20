@@ -10,9 +10,7 @@ export const TableOfContent = (): JSX.Element => (
             <Link to="/kor/hypothesis">Hypothesis</Link>
         </li>
         <li>
-            <Link to="/kor/classic-physics">
-                Proof(1): Classic Physics
-            </Link>
+            <Link to="/kor/classic-physics">Proof(1): Classic Physics</Link>
         </li>
         <li>
             <Link to="/kor/multi-electron-atoms">
@@ -29,4 +27,3 @@ export const TableOfContent = (): JSX.Element => (
         </li>
     </Fragment>
 )
-

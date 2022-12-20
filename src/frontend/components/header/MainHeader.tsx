@@ -4,7 +4,7 @@ import { useSavedDataList } from 'src/frontend/hooks/useSavedDataList'
 import { Context, ContextType } from 'src/frontend/store'
 import { setForceUpdate } from 'src/frontend/store/actions'
 import { EngDocDropdown } from './EngDocDropdown'
-import { KorDocDropdown } from './KorDocDropdown' 
+import { KorDocDropdown } from './KorDocDropdown'
 
 export const MainHeader = (): JSX.Element => {
     const location = useLocation()

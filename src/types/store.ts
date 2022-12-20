@@ -1,6 +1,4 @@
-import { ApolloError } from '@apollo/client'
 import { ContainerAbstract } from 'src/model/ContainerAbstract'
-import { RawDataContainer } from 'src/model/RawDataContainer'
 import { RowAbstract } from 'src/model/RowAbstract'
 import { Nullable } from './common'
 

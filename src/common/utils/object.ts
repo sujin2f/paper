@@ -17,7 +17,7 @@ export const removeEmpty = (
 export const isEmpty = (
     value: Record<string, unknown> | string | number | unknown[] | null,
 ): boolean => {
-    /* tslint:disable-next-line use-isnan */
+    /* eslint-disable-next-line use-isnan */
     if (value === undefined || value === null || value === NaN) {
         return true
     }

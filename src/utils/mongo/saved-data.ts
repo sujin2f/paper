@@ -1,4 +1,3 @@
-import { E } from 'chart.js/dist/chunks/helpers.core'
 import mongoose from 'mongoose'
 import {
     SavedDataT,

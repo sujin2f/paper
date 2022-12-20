@@ -12,5 +12,5 @@ export const useCart = () => {
         }
 
         dispatch(setData(new CartContainer(cart)))
-    }, [cart])
+    }, [cart, dispatch])
 }
