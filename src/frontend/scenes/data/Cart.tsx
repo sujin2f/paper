@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useReducer } from 'react'
+import React, { Fragment, useContext, useEffect, useReducer } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { Public } from '.'
 import { CartWrapper } from 'src/frontend/components/CartWrapper'
 import { CartHeader } from 'src/frontend/components/header/CartHeader'
-import { MainHeader } from 'src/frontend/components/header/MainHeader'
 import { setForceUpdate } from 'src/frontend/store/actions'
 import { Context, ContextType } from 'src/frontend/store'
 
@@ -21,8 +19,7 @@ export const Cart = (): JSX.Element => {
     }, [update, dispatch])
 
     return (
-        <Public>
-            <MainHeader />
+        <Fragment>
             <Row>
                 <Column>
                     <CartHeader />
@@ -33,6 +30,6 @@ export const Cart = (): JSX.Element => {
                     <CartWrapper />
                 </Column>
             </Row>
-        </Public>
+        </Fragment>
     )
 }

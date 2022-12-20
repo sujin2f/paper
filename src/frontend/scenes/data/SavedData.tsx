@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useReducer } from 'react'
+import React, { Fragment, useContext, useEffect, useReducer } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { Public } from '.'
 import { SavedDataWrapper } from 'src/frontend/components/SavedDataWrapper'
-import { MainHeader } from 'src/frontend/components/header/MainHeader'
 import { setForceUpdate } from 'src/frontend/store/actions'
 import { Context, ContextType } from 'src/frontend/store'
 import { SavedDataHeader } from 'src/frontend/components/header/SavedDataHeader'
@@ -21,8 +19,7 @@ export const SavedData = (): JSX.Element => {
     }, [update, dispatch])
 
     return (
-        <Public>
-            <MainHeader />
+        <Fragment>
             <Row>
                 <Column>
                     <SavedDataHeader />
@@ -33,6 +30,6 @@ export const SavedData = (): JSX.Element => {
                     <SavedDataWrapper />
                 </Column>
             </Row>
-        </Public>
+        </Fragment>
     )
 }

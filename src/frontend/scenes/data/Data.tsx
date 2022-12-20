@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useReducer } from 'react'
+import React, { Fragment, useContext, useEffect, useReducer } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
 import { Header } from 'src/frontend/components/header'
 import { Link } from 'react-router-dom'
 import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
-import { Public } from '.'
 import { DataWrapper } from 'src/frontend/components/DataWrapper'
 import { Context, ContextType } from 'src/frontend/store'
 import { setForceUpdate } from 'src/frontend/store/actions'
-import { MainHeader } from 'src/frontend/components/header/MainHeader'
 
 export const Data = (): JSX.Element => {
     const { atom } = useTableParam()
@@ -25,7 +23,7 @@ export const Data = (): JSX.Element => {
 
     if (!atom) {
         return (
-            <Public>
+            <Fragment>
                 <p>
                     The atom you are trying to find does not exist in this
                     universe
@@ -34,13 +32,12 @@ export const Data = (): JSX.Element => {
                     Please visit another universe or go back to our
                     <Link to="/">front page</Link>
                 </p>
-            </Public>
+            </Fragment>
         )
     }
 
     return (
-        <Public>
-            <MainHeader />
+        <Fragment>
             <Row>
                 <Column>
                     <Header />
@@ -51,6 +48,6 @@ export const Data = (): JSX.Element => {
                     <DataWrapper />
                 </Column>
             </Row>
-        </Public>
+        </Fragment>
     )
 }
