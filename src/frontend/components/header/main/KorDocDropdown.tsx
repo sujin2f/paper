@@ -18,7 +18,7 @@ export const KorDocDropdown = (): JSX.Element => {
                     setShowOptions(!showOptions)
                 }}
             >
-                Document (Kor) ▾
+                문서 ▾
             </Link>
             {!!showOptions && (
                 <ul className="menu vertical">

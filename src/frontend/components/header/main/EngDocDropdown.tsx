@@ -18,7 +18,7 @@ export const EngDocDropdown = (): JSX.Element => {
                     setShowOptions(!showOptions)
                 }}
             >
-                Document (Eng) ▾
+                Document ▾
             </Link>
             {!!showOptions && (
                 <ul className="menu vertical">

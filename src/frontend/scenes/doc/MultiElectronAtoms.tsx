@@ -632,5 +632,12 @@ export const MultiElectronAtoms = (): JSX.Element => (
                 </strong>
             </p>
         </div>
+
+        <h3>Limit</h3>
+        <p>
+            Unfortunately, there are enough atoms that have enough linear
+            ethers. I need to analyze more data or create a possible equation
+            from helium.
+        </p>
     </Doc>
 )

@@ -193,7 +193,7 @@ export abstract class ContainerAbstract {
             .filter((row) => row.filter((v) => v)[0].orbital === 's')
             .map((row) => row.filter((v) => v)[0])
 
-        return groups
+        return groups.filter((v) => v.length > 1)
     }
 
     public toSavedData(label: string) {
