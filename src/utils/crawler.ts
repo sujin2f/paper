@@ -76,7 +76,7 @@ const csvParser = async (atom: Atom, ion: number, csv: string) => {
 }
 
 const filterNumValue = (value: string): string => {
-    const regex = new RegExp(/[0-9\.-]+/)
+    const regex = new RegExp(/[0-9.-]+/)
     const exec = regex.exec(value)
 
     if (!exec || !exec.length) {
@@ -87,7 +87,7 @@ const filterNumValue = (value: string): string => {
 }
 
 const filterValue = (value: string): string => {
-    const regex = new RegExp(/[0-9a-zA-Z\.\/*,\(\) <>\[\]]+/)
+    const regex = new RegExp(/[0-9a-zA-Z./*,() <>[\]]+/)
     const exec = regex.exec(value)
 
     if (!exec || !exec.length) {

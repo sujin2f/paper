@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express'
+import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
 import { buildSchema } from 'graphql'
 
@@ -11,6 +11,7 @@ import {
     savedDataMutation,
     savedDataRemove,
 } from 'src/utils/endpoints/saved-data'
+import { isDev } from 'src/utils/environment'
 
 const graphqlRouter = express.Router()
 const schema = buildSchema(graphqlSchema)
@@ -27,9 +28,10 @@ graphqlRouter.use(
                 param: {
                     data: SavedDataContainerT
                 },
-                req: Request,
+                req: any,
             ) => {
                 if (
+                    !isDev &&
                     req.session.user?.toString() !== '639c38cfa532bf7fed2fbca1'
                 ) {
                     throw new Error('Only Sujin can edit this.')
@@ -40,9 +42,10 @@ graphqlRouter.use(
                 param: {
                     _id: string
                 },
-                req: Request,
+                req: any,
             ) => {
                 if (
+                    !isDev &&
                     req.session.user?.toString() !== '639c38cfa532bf7fed2fbca1'
                 ) {
                     throw new Error('Only Sujin can edit this.')

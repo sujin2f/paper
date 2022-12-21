@@ -1,12 +1,12 @@
 // Tags
 html {
     scroll-behavior: smooth;
+    font-size: 12pt;
 }
 
 html[lang='en-US'],
 body {
     font-family: $body-font-family;
-    font-size: 100%;
     font-weight: 300;
     margin: 0 !important;
 }
@@ -20,7 +20,8 @@ strong {
     font-weight: 700;
 }
 
-a {
+a,
+.anchor {
     color: map-get($foundation-palette, 'primary');
 }
 
@@ -35,18 +36,20 @@ p {
 h1 {
     font-family: $body-font-family;
     font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0;
 }
 
 h2 {
     font-family: $body-font-family;
-    font-size: 20pt;
+    font-size: 1.7rem;
     font-weight: 500;
-    letter-spacing: -1.3px;
+    letter-spacing: -0.1rem;
 }
 
 h3 {
     font-family: $body-font-family;
-    font-size: 15pt;
+    font-size: 1.3rem;
     font-weight: 400;
     letter-spacing: -0.4px;
 }
@@ -88,4 +91,16 @@ dd {
 
 .align__center {
     text-align: center !important;
+}
+
+.strike_through {
+    text-decoration: line-through;
+}
+
+.mfrac {
+    background: transparent url('../images/dot.png') repeat-x 0 center;
+}
+
+.position__fixed {
+    position: fixed;
 }
