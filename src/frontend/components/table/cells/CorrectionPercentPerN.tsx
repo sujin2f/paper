@@ -14,7 +14,7 @@ export const CorrectionPercentPerN = (props: Props): JSX.Element => {
     return (
         <tr className="border__bottom">
             <th className="align__right">%P</th>
-            {cols.map((_, index) => {
+            {/*cols.map((_, index) => {
                 const correctionPercent = row.items[index] ? 100 : NaN
                 return (
                     <td
@@ -25,7 +25,7 @@ export const CorrectionPercentPerN = (props: Props): JSX.Element => {
                             correctionPercent.toFixed(digit)}
                     </td>
                 )
-            })}
+            })*/}
         </tr>
     )
 }

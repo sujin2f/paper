@@ -3,9 +3,9 @@ import { RawDataContainerT, Param } from 'src/types/raw-data'
 import { crawl } from 'src/utils/crawler'
 import { query } from 'src/utils/mongo/raw-data'
 import { addOne, getOne } from 'src/utils/mongo/crawler'
-import { RawDataContainer } from 'src/model/RawDataContainer'
+import { OrbitalContainer } from 'src/model/OrbitalContainer'
 
-export const rawData = async (param: Param): Promise<RawDataContainerT> => {
+export const orbital = async (param: Param): Promise<RawDataContainerT> => {
     const crawled = await getOne(param).catch(() => false)
     if (!crawled) {
         const result = await crawl(
@@ -22,7 +22,7 @@ export const rawData = async (param: Param): Promise<RawDataContainerT> => {
         number: param.number,
         ion: param.ion,
     })
-    const container = new RawDataContainer(rawData)
+    const container = new OrbitalContainer(rawData, param.term)
 
     return container.toObject('')
 }

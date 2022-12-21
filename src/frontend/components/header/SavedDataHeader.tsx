@@ -5,10 +5,11 @@ import { HeaderRight } from './HeaderRight'
 import { SavedDataChartDropdown } from './SavedDataChartDropdown'
 
 export const SavedDataHeader = (): JSX.Element => {
-    const [{ data }] = useContext(Context) as ContextType
+    // const [{ data }] = useContext(Context) as ContextType
     const { removeData } = useSavedDataMutation()
     return (
         <Fragment>
+            {/*
             <div>
                 <button
                     className="button"
@@ -30,6 +31,7 @@ export const SavedDataHeader = (): JSX.Element => {
                 </nav>
                 <HeaderRight />
             </div>
+            */}
         </Fragment>
     )
 }

@@ -10,7 +10,7 @@ import { useSavedData } from '../hooks/useSavedData'
 export const SavedDataWrapper = (): JSX.Element => {
     const { _id, isGraph } = useSavedDataParam()
 
-    const [{ data }] = useContext(Context) as ContextType
+    // const [{ data }] = useContext(Context) as ContextType
 
     const { loading, error } = useSavedData({
         _id: _id || '',
@@ -24,18 +24,19 @@ export const SavedDataWrapper = (): JSX.Element => {
         return <Fragment>Loading</Fragment>
     }
 
-    if (!data) {
-        return <Fragment>Processing</Fragment>
-    }
+    // if (!data) {
+    //     return <Fragment>Processing</Fragment>
+    // }
 
-    if (isGraph) {
-        return (
-            <Fragment>
-                <Chart />
-                <Table />
-            </Fragment>
-        )
-    }
+    return <Fragment>Loading</Fragment>
+    // if (isGraph) {
+    //     return (
+    //         <Fragment>
+    //             <Chart />
+    //             <Table />
+    //         </Fragment>
+    //     )
+    // }
 
-    return <Table />
+    // return <Table />
 }

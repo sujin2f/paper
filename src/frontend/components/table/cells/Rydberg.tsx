@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
 import { RowAbstract } from 'src/model/RowAbstract'
+import { getRydberg } from 'src/utils/model'
 
 type Props = {
     row: RowAbstract
@@ -15,13 +16,13 @@ export const Rydberg = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">Rydberg</th>
             {cols.map((_, index) => {
-                const rydberg = row.items[index] ? row.items[index]!.rydberg : 0
+                const rydberg = getRydberg(row.items[index])
                 return (
                     <td
                         key={`${row.label}-rydberg-${index}`}
                         className="align__right"
                     >
-                        {rydberg && rydberg.toFixed(digit)}
+                        {!isNaN(rydberg) && rydberg.toFixed(digit)}
                     </td>
                 )
             })}

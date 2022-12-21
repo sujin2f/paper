@@ -9,11 +9,8 @@ import {
     SET_PERCENT,
     SET_COLLECTION,
     SET_SHIFT,
-    SET_DATA,
-    SET_LOCATION,
     ADD_CART,
     REMOVE_CART,
-    SET_FORCE_UPDATE,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -28,9 +25,7 @@ export const initialState: State = {
     percent: true,
     correction: true,
     shift: 0,
-    location: '',
     cart: [],
-    forceUpdate: undefined,
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
@@ -98,18 +93,6 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 shift: action.shift!,
             }
         }
-        case SET_DATA: {
-            return {
-                ...state,
-                data: action.data!,
-            }
-        }
-        case SET_LOCATION: {
-            return {
-                ...state,
-                location: action.location!,
-            }
-        }
         case ADD_CART: {
             return {
                 ...state,
@@ -122,12 +105,6 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 cart: state.cart.filter(
                     (item) => action.cart!.indexOf(item) === -1,
                 ),
-            }
-        }
-        case SET_FORCE_UPDATE: {
-            return {
-                ...state,
-                forceUpdate: action.forceUpdate!,
             }
         }
         default: {

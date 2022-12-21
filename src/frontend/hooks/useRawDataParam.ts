@@ -2,16 +2,21 @@ import { useLocation, useParams } from 'react-router-dom'
 import { GraphType, LinkBaseType, URLParam } from 'src/types/raw-data'
 import { getAtom } from 'src/utils/atom'
 
-export const useTableParam = () => {
+export const useRawDataParam = () => {
     const location = useLocation()
-    const { linkBase, atom, graphType: graphTypeParam } = useParams<URLParam>()
+    const { atom, graphType: graphTypeParam } = useParams<URLParam>()
     const [numberParam, ionParam, termParam] = atom ? atom.split('+') : []
+    let linkBase = ''
 
     const atomNumber = parseInt(numberParam || '1', 10)
     const ion = parseInt(ionParam || '1', 10)
     const term = termParam || ''
     const graphType = graphTypeParam || 'percent'
     const isGraph = location.pathname.indexOf('/graph') !== -1
+    linkBase =
+        location.pathname.indexOf('/raw-data') !== -1 ? 'raw-data' : linkBase
+    linkBase =
+        location.pathname.indexOf('/orbital') !== -1 ? 'orbital' : linkBase
 
     const getAddress = (param: {
         linkBase?: LinkBaseType
@@ -40,11 +45,11 @@ export const useTableParam = () => {
     return {
         atomNumber,
         ion,
+        term: encodeURIComponent(term),
         atom: getAtom(atomNumber),
-        linkBase,
-        term,
         graphType,
         isGraph,
+        linkBase,
         getAddress,
     }
 }

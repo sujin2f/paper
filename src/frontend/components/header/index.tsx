@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { romanize } from 'src/common/utils/number'
-import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
+import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
 import { getAtom } from 'src/utils/atom'
 import { ChartDropdown } from './ChartDropdown'
 import { HeaderRight } from './HeaderRight'
@@ -10,9 +10,14 @@ import { IonDropdown } from './IonDropdown'
 import { OptionDropdown } from './OptionDropdown'
 import { PeriodicTable } from './modal/PeriodicTable'
 import { TermDropdown } from './TermDropdown'
+import { DataHook } from 'src/types/raw-data'
 
-export const Header = (): JSX.Element => {
-    const { atom, atomNumber, ion, linkBase, getAddress } = useTableParam()
+type Props = {
+    dataHook: DataHook
+}
+
+export const Header = (props: Props): JSX.Element => {
+    const { atom, atomNumber, ion, linkBase, getAddress } = useRawDataParam()
 
     if (!atom) {
         return <Fragment></Fragment>
@@ -68,7 +73,7 @@ export const Header = (): JSX.Element => {
                     <ul className="dropdown menu">
                         <OptionDropdown />
                         <IonDropdown />
-                        <TermDropdown />
+                        <TermDropdown dataHook={props.dataHook} />
 
                         <li className="divider">|</li>
 

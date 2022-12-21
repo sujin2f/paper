@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
 import { RowAbstract } from 'src/model/RowAbstract'
+import { getDiff } from 'src/utils/model'
 
 type Props = {
     row: RowAbstract
@@ -15,13 +16,13 @@ export const Diff = (props: Props): JSX.Element => {
         <tr className="border__bottom">
             <th className="align__right">Diff</th>
             {cols.map((_, index) => {
-                const diff = row.items[index] ? row.items[index]!.diff : NaN
+                const diff = getDiff(row.items[index])
                 return (
                     <td
                         className="align__right"
                         key={`${row.label}-diff-${index}`}
                     >
-                        {!isNaN(diff) && diff && diff.toFixed(digit)}
+                        {!isNaN(diff) && diff.toFixed(digit)}
                     </td>
                 )
             })}

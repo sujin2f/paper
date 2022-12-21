@@ -2,9 +2,9 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/Public'
-import { Data } from 'src/frontend/scenes/data/Data'
-import { Cart } from './scenes/data/Cart'
-import { SavedData } from './scenes/data/SavedData'
+import { RawData } from 'src/frontend/scenes/data/RawData'
+// import { Cart } from './scenes/data/Cart'
+// import { SavedData } from './scenes/data/SavedData'
 
 import { Intro } from './scenes/doc/Intro'
 import { Hypothesis } from './scenes/doc/Hypothesis'
@@ -19,6 +19,7 @@ import { ClassicPhysics as ClassicPhysicsKor } from './scenes/doc-kor/ClassicPhy
 import { MultiElectronAtoms as MultiElectronAtomsKor } from './scenes/doc-kor/MultiElectronAtoms'
 import { SchrodingerEquation as SchrodingerEquationKor } from './scenes/doc-kor/SchrodingerEquation'
 import { Conclusion as ConclusionKor } from './scenes/doc-kor/Conclusion'
+import { Orbital } from './scenes/data/Orbital'
 
 export const Router = (): JSX.Element => {
     return (
@@ -53,28 +54,25 @@ export const Router = (): JSX.Element => {
                 />
                 <Route path="/kor/conclusion" element={<ConclusionKor />} />
 
-                <Route path="/saved-data" element={<SavedData />}>
-                    <Route path=":_id" element={<SavedData />}>
-                        <Route path="graph" element={<SavedData />}>
-                            <Route path=":graphType" element={<SavedData />} />
+                <Route path="/raw-data/:atom" element={<RawData />}>
+                    <Route path=":term" element={<RawData />}>
+                        <Route path="graph" element={<RawData />}>
+                            <Route path=":graphType" element={<RawData />} />
                         </Route>
+                    </Route>
+                    <Route path="graph" element={<RawData />}>
+                        <Route path=":graphType" element={<RawData />} />
                     </Route>
                 </Route>
 
-                <Route path="/cart" element={<Cart />}>
-                    <Route path="graph" element={<Cart />}>
-                        <Route path=":graphType" element={<Data />} />
-                    </Route>
-                </Route>
-
-                <Route path="/:linkBase/:atom" element={<Data />}>
-                    <Route path=":term" element={<Data />}>
-                        <Route path="graph" element={<Data />}>
-                            <Route path=":graphType" element={<Data />} />
+                <Route path="/orbital/:atom" element={<Orbital />}>
+                    <Route path=":term" element={<Orbital />}>
+                        <Route path="graph" element={<Orbital />}>
+                            <Route path=":graphType" element={<Orbital />} />
                         </Route>
                     </Route>
-                    <Route path="graph" element={<Data />}>
-                        <Route path=":graphType" element={<Data />} />
+                    <Route path="graph" element={<Orbital />}>
+                        <Route path=":graphType" element={<Orbital />} />
                     </Route>
                 </Route>
 

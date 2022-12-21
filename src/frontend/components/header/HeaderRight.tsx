@@ -3,13 +3,12 @@ import { Context, ContextType } from 'src/frontend/store'
 import { setDigit, setShift } from 'src/frontend/store/actions'
 
 export const HeaderRight = (): JSX.Element => {
-    const [{ digit, shift, data, forceUpdate }, dispatch] = useContext(
-        Context,
-    ) as ContextType
+    const [{ digit, shift }, dispatch] = useContext(Context) as ContextType
     const startRef = useRef<HTMLInputElement>(null)
 
     return (
         <div className="top-bar-right">
+            {/*
             <ul className="menu">
                 <li>
                     <input
@@ -83,6 +82,7 @@ export const HeaderRight = (): JSX.Element => {
                     </button>
                 </li>
             </ul>
+            */}
         </div>
     )
 }

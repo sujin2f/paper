@@ -5,7 +5,7 @@ import { CartChartDropdown } from './CartChartDropdown'
 import { HeaderRight } from './HeaderRight'
 
 export const CartHeader = (): JSX.Element => {
-    const [{ data }] = useContext(Context) as ContextType
+    // const [{ data }] = useContext(Context) as ContextType
     const titleRef = useRef<HTMLInputElement>(null)
     const { saveData, saved } = useSavedDataMutation()
 
@@ -15,7 +15,7 @@ export const CartHeader = (): JSX.Element => {
 
     return (
         <Fragment>
-            <div>
+            {/* <div>
                 <input type="text" ref={titleRef} />
                 <button
                     className="button"
@@ -36,7 +36,7 @@ export const CartHeader = (): JSX.Element => {
                     </ul>
                 </nav>
                 <HeaderRight />
-            </div>
+            </div> */}
         </Fragment>
     )
 }

@@ -1,4 +1,5 @@
 import { RawDataT } from 'src/types/raw-data'
+import { orbitalKeys } from 'src/constants/orbital'
 
 export class RawData {
     public _id?: string
@@ -10,28 +11,23 @@ export class RawData {
     public conf: string
     public termNumber: number
     public jNumber: number
-    public jWeight: number
+    // public jWeight: number
     public position: number
     public orbital: string
     public confPrefix: string
-    public shift = 0
 
-    private _correction = NaN
     protected _diff = NaN
-
-    public static orbitalKeys = ['s', 'p', 'd', 'f', 'g', 'h', 'i', 'k']
-    private static baseState = [1, 1, 2, 2]
 
     public get diff() {
         return this._diff
     }
-    public set diff(rydberg: number) {
+
+    public setDiff(rydberg: number, base: number) {
         const prevValue = rydberg || 0
-        const baseState = RawData.baseState[this.number - 1] + 1
         if (prevValue) {
             this._diff = this.rydberg - prevValue
             return
-        } else if (this.position === baseState) {
+        } else if (this.position === base) {
             this._diff = this.rydberg
             return
         }
@@ -39,7 +35,7 @@ export class RawData {
     }
 
     public get ether() {
-        const linear = RawData.orbitalKeys.indexOf(this.orbital)
+        const linear = orbitalKeys.indexOf(this.orbital)
         const radial = this.position - linear - 1
 
         if (linear + radial > 4) {
@@ -58,32 +54,17 @@ export class RawData {
             .join('')
     }
 
-    public get percent() {
+    public getPercent(shift = 0) {
         if (!this._diff) {
             return NaN
         }
-        return ((this._diff / this.getNth()) * 100) / this.z
+        return (this._diff / this.getNth(shift)) * 100
     }
 
-    public get nth() {
-        return this.getNth()
-    }
-
-    public get correction() {
-        return !isNaN(this._correction)
-            ? this._correction
-            : this.getCorrection()
-    }
-
-    public set correction(correction: number) {
-        this._correction = correction
-    }
-
-    public get z() {
-        if (this.ion === this.number) {
-            return Math.pow(this.number, 2)
-        }
-        return 1
+    public get encodeURI() {
+        return encodeURIComponent(
+            `${this.confPrefix}-${this.orbital}-${this.term}-${this.j}`,
+        )
     }
 
     public constructor(data: RawDataT) {
@@ -94,28 +75,43 @@ export class RawData {
         this.j = data.j
         this.conf = data.conf
         this.termNumber = this.getNumber(data.term)
+        if (data.j) {
+            if (data.j.indexOf('/') === -1) {
+                this.jNumber = this.getNumber(data.j)
+            } else {
+            }
+        }
         this.jNumber = this.getNumber(data.j)
-        this.jWeight = data.j.indexOf('/') === -1 ? 1 : 2
+        // this.jWeight = data.j ? (data.j.indexOf('/') === -1 ? 1 : 2) : 1
 
         const { position, orbital, confPrefix } = this.getConfObject(data.conf)
         this.position = position
         this.orbital = orbital
         this.confPrefix = confPrefix
+
+        if (data.diff) {
+            this._diff = data.diff
+        }
     }
 
-    private getCorrection(maxProp = 0, minProp = 0, attempt = 1): number {
+    public getCorrection(
+        shift = 0,
+        maxProp = 0,
+        minProp = 0,
+        attempt = 1,
+    ): number {
         if (!this._diff || this._diff <= 0) {
-            return 0
+            return NaN
         }
         const error = 0.0000005
-        const newN = this.position - this.shift - 1
+        const newN = this.position - shift - 1
         const infinity = -newN
 
         let max = maxProp || infinity + error
         let min = minProp || infinity + error + 5
 
-        let maxVal = this.getNth(max)
-        let minVal = this.getNth(min)
+        let maxVal = this.getNth(shift, max)
+        let minVal = this.getNth(shift, min)
 
         // Invalid range
         if (maxVal < this._diff) {
@@ -129,14 +125,14 @@ export class RawData {
 
         // Adjust range
         if (minVal > this._diff) {
-            return this.getCorrection(min, min + 5, attempt + 1)
+            return this.getCorrection(shift, min, min + 5, attempt + 1)
         }
 
         let oneThird = 0
 
         for (let i = 0; i < 50; i++) {
-            maxVal = this.getNth(max)
-            minVal = this.getNth(min)
+            maxVal = this.getNth(shift, max)
+            minVal = this.getNth(shift, min)
 
             const diffMax = Math.abs(maxVal - this._diff)
             const diffMin = Math.abs(minVal - this._diff)
@@ -176,24 +172,29 @@ export class RawData {
         return (max - min) / 2
     }
 
-    public getNth(correction = 0) {
-        const rydberg = this.position - 1 + correction - this.shift
+    public getNth(shift = 0, correction = 0) {
+        const rydberg = this.position - 1 + correction - shift
         const leftHand = 1 / Math.pow(rydberg, 2)
         const rightHand = 1 / Math.pow(rydberg + 1, 2)
         return leftHand - rightHand
     }
 
-    public getNthPerN(correction = 0) {
-        const rydberg =
-            this.position - 1 + correction / this.position - this.shift
+    public getNthPerN(shift = 0, correction = 0) {
+        const rydberg = this.position - 1 + correction / this.position - shift
         const leftHand = 1 / Math.pow(rydberg, 2)
         const rightHand = 1 / Math.pow(rydberg + 1, 2)
         return leftHand - rightHand
     }
 
     private getNumber(value: string): number {
-        const regex = /([0-9]+)/.exec(value)
-        return parseInt(regex ? regex[1] : '', 10)
+        const regexInt = /([0-9]+)/.exec(value)
+        const regexFrac = /([0-9]+)\/([0-9]+)/.exec(value)
+        if (regexFrac) {
+            const one = parseInt(regexFrac[1], 10)
+            const two = parseInt(regexFrac[2], 10)
+            return one / two
+        }
+        return parseInt(regexInt ? regexInt[1] : '', 10)
     }
 
     private getConfArray = (conf: string): string[] => {
@@ -220,7 +221,7 @@ export class RawData {
             confArray.shift()
         }
         const last = confArray.shift()
-        const orbital = new RegExp(`(${RawData.orbitalKeys.join('|')})`).exec(
+        const orbital = new RegExp(`(${orbitalKeys.join('|')})`).exec(
             last || '',
         )
         const position = /([0-9]+)/.exec(last || '')
@@ -232,21 +233,16 @@ export class RawData {
         }
     }
 
-    public getTermKey() {
-        return `${this.confPrefix}-${this.orbital}-${this.term}-${this.j}`.replace(
-            '/',
-            '.',
-        )
-    }
-
-    public toSavedData() {
+    public toObject() {
         return {
             rydberg: this.rydberg,
             conf: this.conf,
             position: this.position,
-            diff: this.diff,
+            diff: isNaN(this.diff) ? null : this.diff,
             ion: this.ion,
             number: this.number,
+            j: this.j,
+            term: this.term,
         }
     }
 }

@@ -1,4 +1,19 @@
+import { ApolloError } from '@apollo/client'
 import { Schema } from 'mongoose'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
+import { Nullable } from './common'
+
+export type RawDataContainerT = {
+    label: string
+    entries: RawDataRowT[]
+    items: RawDataRowT[]
+}
+
+export type RawDataRowT = {
+    label: string
+    color: string
+    items: Nullable<RawDataT>[]
+}
 
 export type RawDataT = {
     _id?: string
@@ -8,6 +23,7 @@ export type RawDataT = {
     term: string
     j: string
     conf: string
+    diff: number
 }
 
 export const mongoSchema = new Schema({
@@ -21,39 +37,90 @@ export const mongoSchema = new Schema({
 
 export const graphQL = {
     query: `
-        rawData(number: Int!, ion: Int!, term: String): [RawData]
+    rawData(number: Int!, ion: Int!, term: String): RawDataContainer
+    orbital(number: Int!, ion: Int!, term: String): RawDataContainer
     `,
-    request: `
-        query rawData($number: Int!, $ion: Int!, $term: String) {
-            rawData(number: $number, ion: $ion, term: $term) {
-                _id
-                number
-                ion
-                rydberg
-                term
-                j
-                conf
+    request: {
+        rawData: `
+            query rawData($number: Int!, $ion: Int!, $term: String) {
+                rawData(number: $number, ion: $ion, term: $term) {
+                    label
+                    entries {
+                        label
+                    }
+                    items {
+                        label
+                        color
+                        items {
+                            rydberg
+                            conf
+                            diff
+                        }
+                    }
+                }
             }
-        }
-    `,
+        `,
+        orbital: `
+            query orbital($number: Int!, $ion: Int!, $term: String) {
+                orbital(number: $number, ion: $ion, term: $term) {
+                    label
+                    entries {
+                        label
+                        color
+                        items {
+                            rydberg
+                            conf
+                            diff
+                            term
+                            j
+                        }
+                    }
+                    items {
+                        label
+                        color
+                        items {
+                            rydberg
+                            conf
+                            diff
+                        }
+                    }
+                }
+            }
+        `,
+    },
     type: `
+        type RawDataContainer {
+            label: String
+            entries: [RawDataRow]
+            items: [RawDataRow]
+        }
+        type RawDataRow {
+            label: String
+            color: String
+            items: [RawData]
+        }
         type RawData {
             _id: String
             number: Int
             ion: Int
             rydberg: Float
+            conf: String
+            diff: Float
             term: String
             j: String
-            conf: String
         }
     `,
 }
 
-export type ReturnType = {
-    rawData: RawDataT[]
+export type ReturnTypeRawData = {
+    rawData: RawDataContainerT
 }
 
-export type Param = { number: number; ion: number }
+export type ReturnTypeOrbital = {
+    orbital: RawDataContainerT
+}
+
+export type Param = { number: number; ion: number; term?: string }
 
 export type GraphType = 'diff' | 'correction' | 'percent'
 export type LinkBaseType = 'raw-data' | 'orbital' | 'ether'
@@ -62,4 +129,10 @@ export type URLParam = {
     linkBase: LinkBaseType
     atom: string
     graphType: GraphType
+}
+
+export type DataHook = (variables: Param) => {
+    data: ContainerAbstract | null
+    loading: boolean
+    error: ApolloError | undefined
 }

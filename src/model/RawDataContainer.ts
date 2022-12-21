@@ -1,26 +1,22 @@
 import { chartColors } from 'src/constants/chart'
-import { Nullable } from 'src/types/common'
+import { RawDataT } from 'src/types/raw-data'
 import { ContainerAbstract } from './ContainerAbstract'
-import { RawData } from './RawData'
 import { RawDataRow } from './RawDataRow'
 
 export class RawDataContainer extends ContainerAbstract {
-    term: Nullable<RawData>
+    public createRow() {
+        return new RawDataRow()
+    }
 
-    protected generate(groups: RawData[][]): void {
-        this.items = groups
-            .map((row) => new RawDataRow(row.slice(1)))
-            .sort((rowA, rowB) => {
-                const indexA = RawData.orbitalKeys.indexOf(rowA.orbital || '')
-                const indexB = RawData.orbitalKeys.indexOf(rowB.orbital || '')
-                if (indexA === indexB) {
-                    return (rowA.rydberg || 0) - (rowB.rydberg || 0)
-                }
-                return indexA - indexB
-            })
-        this.items.forEach(
-            (row, index) =>
-                (row.color = chartColors[index] || 'rgb(200, 200, 200)'),
-        )
+    protected setItems(rawData: RawDataT[]) {
+        super.setItems(rawData)
+
+        const basePosition = this.getBasePosition()
+        this.items.forEach((row, index) => {
+            if (basePosition) {
+                row.generate(basePosition)
+            }
+            row.color = chartColors[index] || 'rgb(200, 200, 200)'
+        })
     }
 }

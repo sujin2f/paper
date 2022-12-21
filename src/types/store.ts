@@ -1,4 +1,3 @@
-import { ContainerAbstract } from 'src/model/ContainerAbstract'
 import { RowAbstract } from 'src/model/RowAbstract'
 import { Nullable } from './common'
 
@@ -17,10 +16,7 @@ export type State = {
     percent: boolean
     correction: boolean
     shift: number
-    data?: ContainerAbstract
-    location: string
     cart: RowAbstract[]
-    forceUpdate: Nullable<React.DispatchWithoutAction>
 }
 
 export type Action = Partial<State> & Type

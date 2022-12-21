@@ -14,7 +14,7 @@ export const Percent = (props: Props): JSX.Element => {
     return (
         <tr className="border__bottom">
             <th className="align__right">%</th>
-            {cols.map((_, index) => {
+{/*            {cols.map((_, index) => {
                 const percent = row.items[index] ? row.items[index]!.percent : 0
                 return (
                     <td
@@ -25,6 +25,6 @@ export const Percent = (props: Props): JSX.Element => {
                     </td>
                 )
             })}
-        </tr>
+*/}        </tr>
     )
 }

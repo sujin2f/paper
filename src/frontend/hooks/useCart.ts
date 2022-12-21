@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
-import { CartContainer } from 'src/model/CartContainer'
+// import { CartContainer } from 'src/model/CartContainer'
 import { Context, ContextType } from '../store'
-import { setData } from '../store/actions'
+// import { setData } from '../store/actions'
 
 export const useCart = () => {
     const [{ cart }, dispatch] = useContext(Context) as ContextType
@@ -11,6 +11,6 @@ export const useCart = () => {
             return
         }
 
-        dispatch(setData(new CartContainer(cart)))
+        // dispatch(setData(new CartContainer(cart)))
     }, [cart, dispatch])
 }

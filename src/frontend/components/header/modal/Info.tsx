@@ -2,10 +2,10 @@ import React, { Fragment, useState } from 'react'
 import { Modal } from 'src/common/components/containers/Modal'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
+import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
 
 export const Info = (): JSX.Element => {
-    const { atom } = useTableParam()
+    const { atom } = useRawDataParam()
     const [showModal, setShowModal] = useState<boolean>(false)
 
     if (!atom) {

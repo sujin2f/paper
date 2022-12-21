@@ -51,12 +51,12 @@ export const Row = (props: Props): JSX.Element => {
                 {correctionVisible && (
                     <Fragment>
                         <Correction cols={cols} row={row} />
-                        {!isNaN(row.correction) && (
+                        {/*!isNaN(row.correction) && (
                             <Fragment>
                                 <CorrectionPercent cols={cols} row={row} />
                                 <CorrectionPercentPerN cols={cols} row={row} />
                             </Fragment>
-                        )}
+                        )*/}
                     </Fragment>
                 )}
                 {nth && <Nth cols={cols} row={row} />}

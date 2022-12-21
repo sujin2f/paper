@@ -1,11 +1,20 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment } from 'react'
+import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
+import { Row } from 'src/frontend/components/table/Row'
+import { DataHook } from 'src/types/raw-data'
 
-import { Context, ContextType } from 'src/frontend/store'
+type Props = {
+    dataHook: DataHook
+}
 
-import { Row } from './Row'
-
-export const Table = (): JSX.Element => {
-    const [{ data }] = useContext(Context) as ContextType
+export const Table = (props: Props): JSX.Element => {
+    const { atomNumber, ion, term } = useRawDataParam()
+    const { dataHook } = props
+    const { data } = dataHook({
+        number: atomNumber,
+        ion,
+        term,
+    })
 
     if (!data) {
         return <Fragment></Fragment>

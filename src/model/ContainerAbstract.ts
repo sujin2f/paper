@@ -1,62 +1,38 @@
 import { ChartDataset, DefaultDataPoint } from 'chart.js'
 import { chartColors } from 'src/constants/chart'
-import { RawData } from './RawData'
-import { Nullable } from 'src/types/common'
-import { GraphType, RawDataT } from 'src/types/raw-data'
-import { RowAbstract } from './RowAbstract'
-import { EtherRow } from './EtherRow'
-import { OrbitalRow } from './OrbitalRow'
+import { orbitalKeys } from 'src/constants/orbital'
+import { GraphType, RawDataContainerT, RawDataT } from 'src/types/raw-data'
+import { RawData } from 'src/model/RawData'
+import { RowAbstract } from 'src/model/RowAbstract'
+import { getCorrection, getDiff, getPercent } from 'src/utils/model'
 
 type ChartData = {
     labels: number[]
     datasets: ChartDataset<'line', DefaultDataPoint<'line'>>[]
 }
 
-export type ContainerInterface = new (
-    rawData: RawDataT[],
-    _term?: string,
-) => ContainerAbstract
-
 export abstract class ContainerAbstract {
-    public _id = ''
-    public entries: RawData[] = []
+    public entries: RowAbstract[] = []
     protected items: RowAbstract[] = []
-    abstract term: Nullable<RawData>
+    abstract createRow(): RowAbstract
 
     public get columns() {
-        const length = this.items
-            .map((item) => {
-                return item ? item.length : 0
-            })
-            .filter((v) => v)
+        const length = this.items.map((item) => item.length)
         return Array(Math.max(...length))
             .fill(0)
             .map((_, index) => index + 1)
     }
 
-    public set shift(shift: number) {
-        this.forEach((item) => {
-            if (item) {
-                item.shift = shift
-            }
-        })
-    }
-
-    public set correction(correction: number) {
-        this.forEach((item) => (item.correction = correction))
-    }
-
-    public set start(start: number) {
-        this.forEach((row) => (row.start = start))
-    }
-
-    public constructor(rawData: RawDataT[], protected _term?: string) {
-        const groups = this.setEntries(rawData)
-        this.generate(groups)
+    public constructor(rawData: RawDataT[]) {
+        this.setItems(rawData)
     }
 
     public map(callback: (item: RowAbstract, index: number) => any) {
         return this.items.map((item, index) => callback(item, index))
+    }
+
+    public filter(callback: (item: RowAbstract, index: number) => any) {
+        return [...this.items].filter((item, index) => callback(item, index))
     }
 
     public forEach(callback: (item: RowAbstract, index: number) => any) {
@@ -65,24 +41,95 @@ export abstract class ContainerAbstract {
         })
     }
 
+    public push(item: RowAbstract) {
+        this.items.push(item)
+    }
+
+    protected getItem(uri: string) {
+        for (const item of this.items) {
+            if (uri === item.encodeURI) {
+                return item
+            }
+        }
+    }
+
+    protected setItems(rawData: RawDataT[]) {
+        rawData.forEach((item) => {
+            const object = new RawData(item)
+            const key = object.encodeURI
+            let row = this.getItem(key)
+
+            if (!row) {
+                row = this.createRow()
+                this.items.push(row)
+            }
+
+            row.push(object)
+        })
+
+        this.items = this.items
+            .filter((row) => row.length !== 0)
+            .sort((rowA, rowB) => {
+                const indexA = orbitalKeys.indexOf(rowA.orbital || '')
+                const indexB = orbitalKeys.indexOf(rowB.orbital || '')
+                if (indexA === indexB) {
+                    return (rowA.rydberg || 0) - (rowB.rydberg || 0)
+                }
+                return indexA - indexB
+            })
+
+        const basePosition = this.getBasePosition()
+
+        this.items.forEach((row, index) => {
+            if (basePosition) {
+                row.generate(basePosition)
+            }
+            row.color = chartColors[index] || 'rgb(200, 200, 200)'
+        })
+    }
+
+    protected getBasePosition() {
+        let positionZero: RawData | null = null
+        let positionLowest: RawData | null = null
+        this.forEach((row) =>
+            row.forEach((item) => {
+                if (!item) {
+                    return
+                }
+                if (item.rydberg === 0) {
+                    positionZero = item
+                }
+                if (!positionLowest) {
+                    positionLowest = item
+                }
+                if (positionLowest && positionLowest.rydberg > item.rydberg) {
+                    positionLowest = item
+                }
+            }),
+        )
+
+        if (!positionZero && positionLowest) {
+            return (positionLowest as RawData).position
+        }
+        if (positionZero) {
+            return (positionZero as RawData).position + 1
+        }
+    }
+
     public chart(valueKey: GraphType): ChartData {
         const datasets: ChartDataset<'line', DefaultDataPoint<'line'>>[] =
             this.map((row) => {
                 const data: number[] = row.map((item) => {
-                    if (!item) {
-                        return undefined
-                    }
-
                     let value
                     switch (valueKey) {
                         case 'diff':
-                            value = item.diff
+                            value = getDiff(item)
                             break
                         case 'correction':
-                            value = item.correction
+                            value = getCorrection(item)
                             break
                         default:
-                            value = item.percent
+                            value = getPercent(item)
                     }
                     return value
                 })
@@ -114,96 +161,11 @@ export abstract class ContainerAbstract {
         }
     }
 
-    protected getByTerm(groups: RawData[][], rowModel: string) {
-        if (this._term) {
-            this.term = this.entries.filter(
-                (row) => row.getTermKey() === this._term,
-            )[0]
-        } else {
-            this.term = this.entries[0]
-        }
-
-        if (!this.term) {
-            return
-        }
-
-        const items = groups.map((row) =>
-            rowModel === 'orbital'
-                ? new OrbitalRow(row.slice(1))
-                : new EtherRow(row.slice(1)),
-        )
-
-        let jNumber = this.term!.jNumber
-
-        // s, p, d, ...
-        RawData.orbitalKeys.forEach((orbital) => {
-            items.forEach((row) => {
-                if (
-                    row.jNumber === jNumber &&
-                    row.termNumber === this.term!.termNumber &&
-                    row.confPrefix === this.term!.confPrefix &&
-                    row.orbital === orbital
-                ) {
-                    this.items.push(row)
-                    return
-                }
-            })
-
-            jNumber += this.term!.jWeight
-        })
-
-        // Second row to Linear ether
-        if (rowModel === 'orbital') {
-            const linear: (RawData | undefined)[] = []
-            const radial = this.items.slice(0, 1)
-            const rest = this.items.slice(1)
-
-            rest.forEach((item, index) => {
-                linear[index + 1] = item.items[index + 1]
-            })
-            const l = new OrbitalRow(linear)
-            l.label = 'Linear'
-            this.items = radial.concat(l).concat(rest)
-        }
-
-        this.items.forEach(
-            (row, index) =>
-                (row.color = chartColors[index] || 'rgb(200, 200, 200)'),
-        )
-    }
-
-    private setEntries(rawData: RawDataT[]) {
-        const keys: string[] = []
-        const groups: RawData[][] = []
-
-        rawData.forEach((item) => {
-            const object = new RawData(item)
-            const key = object.getTermKey()
-
-            let position = keys.indexOf(key)
-            if (position === -1) {
-                position = keys.push(key) - 1
-            }
-
-            if (!groups[position]) {
-                groups[position] = []
-            }
-            groups[position][object.position] = object
-        })
-
-        this.entries = groups
-            .filter((row) => row.filter((v) => v)[0].orbital === 's')
-            .map((row) => row.filter((v) => v)[0])
-
-        return groups.filter((v) => v.length > 1)
-    }
-
-    public toSavedData(label: string) {
+    public toObject(label: string): RawDataContainerT {
         return {
             label,
-            items: this.map((item) => item.toSavedData()),
+            entries: this.entries.map((item) => item.toObject()),
+            items: this.map((item) => item.toObject()),
         }
     }
-
-    protected abstract generate(groups: RawData[][]): void
 }

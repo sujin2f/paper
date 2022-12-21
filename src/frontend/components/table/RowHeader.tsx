@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const RowHeader = (props: Props): JSX.Element => {
-    const [{ cart, shift: contextShift, forceUpdate }, dispatch] = useContext(
+    const [{ cart, shift: contextShift }, dispatch] = useContext(
         Context,
     ) as ContextType
     const { row } = props
@@ -23,6 +23,7 @@ export const RowHeader = (props: Props): JSX.Element => {
 
     return (
         <ul className="row-header__container">
+            {/*
             <li>
                 <input
                     type="color"
@@ -144,6 +145,7 @@ export const RowHeader = (props: Props): JSX.Element => {
                     />
                 </li>
             )}
+        */}
         </ul>
     )
 }

@@ -3,12 +3,12 @@ import { ContainerAbstract } from './ContainerAbstract'
 import { RawData } from './RawData'
 import { RowAbstract } from './RowAbstract'
 
-export class CartContainer extends ContainerAbstract {
+export class CartContainer {
     term: Nullable<RawData>
     /* tslint:disable-next-line no-empty */
     protected generate(groups: RawData[][]): void {}
     public constructor(rows: RowAbstract[]) {
-        super([])
-        this.items = rows
+        // super([])
+        // this.items = rows
     }
 }

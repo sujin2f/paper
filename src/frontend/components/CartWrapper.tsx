@@ -10,20 +10,22 @@ import { useCartParam } from '../hooks/useCartParam'
 export const CartWrapper = (): JSX.Element => {
     useCart()
     const { isGraph } = useCartParam()
-    const [{ data }] = useContext(Context) as ContextType
+    // const [{ data }] = useContext(Context) as ContextType
 
-    if (!data) {
-        return <Fragment>Something went wrong</Fragment>
-    }
+    // if (!data) {
+    //     return <Fragment>Something went wrong</Fragment>
+    // }
 
-    if (isGraph) {
-        return (
-            <Fragment>
-                <Chart />
-                <Table />
-            </Fragment>
-        )
-    }
+    return <Fragment />
 
-    return <Table />
+    // if (isGraph) {
+    //     return (
+    //         <Fragment>
+    //             <Chart />
+    //             <Table />
+    //         </Fragment>
+    //     )
+    // }
+
+    // return <Table />
 }
