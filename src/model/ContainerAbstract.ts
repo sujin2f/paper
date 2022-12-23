@@ -142,8 +142,6 @@ export abstract class ContainerAbstract {
                     return undefined
                 }
 
-                console.log(data)
-
                 const result = {
                     label: row.label,
                     data: data.slice(start),
@@ -153,16 +151,35 @@ export abstract class ContainerAbstract {
                 }
                 return result
             }).filter((v) => v)
+
         const length: number[] = datasets
             .map((v) => v.data.length)
             .filter((v) => v)
+        const columns = Array(Math.max(...length))
+            .fill(0)
+            .map((_, i) => i + 1 + start)
+
+        if (valueKey === 'diff') {
+            const data = columns.map((col) => {
+                const rydberg = col - 1
+                const leftHand = 1 / Math.pow(rydberg, 2)
+                const rightHand = 1 / Math.pow(rydberg + 1, 2)
+                return leftHand - rightHand
+            })
+
+            const result = {
+                label: 'Nth(n)',
+                data,
+                fill: false,
+                borderColor: '#888888',
+                tension: 0.1,
+            }
+
+            datasets.unshift(result)
+        }
 
         return {
-            labels: datasets.length
-                ? Array(Math.max(...length))
-                      .fill(0)
-                      .map((_, i) => i + 1)
-                : [],
+            labels: datasets.length ? columns : [],
             datasets,
         }
     }
