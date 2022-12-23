@@ -41,6 +41,14 @@ export abstract class RowAbstract {
         return this.first && this.first.jNumber
     }
 
+    public get jIncrement() {
+        return this.first && this.first.jIncrement
+    }
+
+    public get termIncrement() {
+        return this.first && this.first.termIncrement
+    }
+
     public get termNumber() {
         return this.first && this.first.termNumber
     }

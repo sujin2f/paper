@@ -14,6 +14,8 @@ import pic21 from 'src/assets/images/doc/pic21.png'
 import pic22 from 'src/assets/images/doc/pic22.png'
 import pic23 from 'src/assets/images/doc/pic23.png'
 import pic24 from 'src/assets/images/doc/pic24.png'
+import pic25 from 'src/assets/images/doc/pic25.png'
+import pic26 from 'src/assets/images/doc/pic26.png'
 
 export const MultiElectronAtoms = (): JSX.Element => (
     <Doc>
@@ -197,8 +199,6 @@ export const MultiElectronAtoms = (): JSX.Element => (
                         헬륨 원자
                     </a>
                 </strong>
-                <br />
-                예상과는 너무 다르다 / 폭망
             </p>
         </div>
 
@@ -213,6 +213,13 @@ export const MultiElectronAtoms = (): JSX.Element => (
             다른 경우와 다른지를 설명할 수 없기 때문에 위 표는 매우 불규칙한
             것으로 해석할 수 있다. 경향성을 발견할 수가 없다. 끝.
         </p>
+
+        <div className="align__center">
+            <img src={pic25} alt="원형 에테르의 변화" />
+            <p>
+                <strong>원형 에테르의 변화</strong> 예상과는 너무 다르다 / 폭망
+            </p>
+        </div>
 
         <p>혹시 우리가 생각하는 틀이 문제인 것은 아닐까?</p>
 
@@ -252,6 +259,13 @@ export const MultiElectronAtoms = (): JSX.Element => (
             그래프들의 경향성이 보여야 한다. 떨어졌다 올라오면서 N<sub>th</sub>
             (n)에 수렴하는 모습을 보인다.
         </p>
+
+        <div className="align__center">
+            <img src={pic26} alt="선형 에테르의 변화" />
+            <p>
+                <strong className="strike_through">피자를 자르는 방법</strong>
+            </p>
+        </div>
 
         <p>
             신이 좀 났으니 아직 안 보이는 휴먼들을 위해 대각선 방향을 정리한
