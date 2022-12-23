@@ -9,6 +9,7 @@ import {
     SET_PERCENT,
     SET_COLLECTION,
     SET_SHIFT,
+    SET_START,
     ADD_CART,
     REMOVE_CART,
     REFRESH,
@@ -17,17 +18,20 @@ import { Action, State } from 'src/types/store'
 
 export const initialState: State = {
     digit: 4,
-    orbital: true,
-    ether: true,
-    rydberg: true,
-    diff: true,
-    nth: true,
-    percentPoint: true,
-    percent: true,
-    correction: true,
     shift: 0,
-    cart: [],
     render: 0,
+    start: 0,
+    cart: [],
+    visible: {
+        orbital: true,
+        ether: true,
+        rydberg: true,
+        diff: true,
+        nth: true,
+        percentPoint: true,
+        percent: true,
+        correction: true,
+    },
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
@@ -44,55 +48,85 @@ export const reducer = (state: State = initialState, action: Action): State => {
         case SET_ORBITAL: {
             return {
                 ...state,
-                orbital: action.orbital!,
+                visible: {
+                    ...state.visible,
+                    orbital: action.orbital!,
+                },
             }
         }
         case SET_ETHER: {
             return {
                 ...state,
-                ether: action.ether!,
+                visible: {
+                    ...state.visible,
+                    ether: action.ether!,
+                },
             }
         }
         case SET_RYDBERG: {
             return {
                 ...state,
-                rydberg: action.rydberg!,
+                visible: {
+                    ...state.visible,
+                    rydberg: action.rydberg!,
+                },
             }
         }
         case SET_DIFF: {
             return {
                 ...state,
-                diff: action.diff!,
+                visible: {
+                    ...state.visible,
+                    diff: action.diff!,
+                },
             }
         }
         case SET_NTH: {
             return {
                 ...state,
-                nth: action.nth!,
+                visible: {
+                    ...state.visible,
+                    nth: action.nth!,
+                },
             }
         }
         case SET_PERCENT_POINT: {
             return {
                 ...state,
-                percentPoint: action.percentPoint!,
+                visible: {
+                    ...state.visible,
+                    percentPoint: action.percentPoint!,
+                },
             }
         }
         case SET_PERCENT: {
             return {
                 ...state,
-                percent: action.percent!,
+                visible: {
+                    ...state.visible,
+                    percent: action.percent!,
+                },
             }
         }
         case SET_COLLECTION: {
             return {
                 ...state,
-                correction: action.correction!,
+                visible: {
+                    ...state.visible,
+                    correction: action.correction!,
+                },
             }
         }
         case SET_SHIFT: {
             return {
                 ...state,
                 shift: action.shift!,
+            }
+        }
+        case SET_START: {
+            return {
+                ...state,
+                start: action.start!,
             }
         }
         case ADD_CART: {

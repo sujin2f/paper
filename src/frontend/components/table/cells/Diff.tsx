@@ -10,13 +10,13 @@ type Props = {
 
 export const Diff = (props: Props): JSX.Element => {
     const { row, cols } = props
-    const [{ digit }] = useContext(Context) as ContextType
+    const [{ digit, start }] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
             <th className="align__right">Diff</th>
             {cols.map((_, index) => {
-                const diff = getDiff(row.items[index])
+                const diff = getDiff(row.items[index + start])
                 return (
                     <td
                         className="align__right"

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext} from 'react'
+import React, { Fragment, useContext } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
 import { CartHeader } from 'src/frontend/components/header/CartHeader'

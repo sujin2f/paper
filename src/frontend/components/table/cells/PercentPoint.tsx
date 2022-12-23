@@ -10,13 +10,16 @@ type Props = {
 
 export const PercentPoint = (props: Props): JSX.Element => {
     const { row, cols } = props
-    const [{ digit }] = useContext(Context) as ContextType
+    const [{ digit, start, shift }] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
             <th className="align__right">%P</th>
             {cols.map((_, index) => {
-                const percentPoint = getPercentPoint(row.items[index])
+                const percentPoint = getPercentPoint(
+                    row.items[index + start],
+                    shift,
+                )
                 return (
                     <td
                         key={`${row.label}-percent-point-${index}`}

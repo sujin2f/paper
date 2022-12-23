@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState, useEffect } from 'react'
+import React, { Fragment, useContext } from 'react'
 
 import { Context, ContextType } from 'src/frontend/store'
 
@@ -9,6 +9,7 @@ import { Diff } from './cells/Diff'
 import { Nth } from './cells/Nth'
 import { Correction } from './cells/Correction'
 import { PercentPoint } from './cells/PercentPoint'
+import { Percent } from './cells/Percent'
 import { RowAbstract } from 'src/model/RowAbstract'
 import { RowHeader } from './RowHeader'
 
@@ -18,44 +19,43 @@ type Props = {
 }
 
 export const Row = (props: Props): JSX.Element => {
-    const [{ orbital, ether, rydberg, diff, nth, correction, shift, percent }] =
-        useContext(Context) as ContextType
-    const [correctionRow, setCollection] = useState<number>(0)
-    const [startRow, setStart] = useState<number>(0)
-    const [shiftRow, setShift] = useState<number>(shift)
+    const [
+        {
+            visible: {
+                orbital,
+                ether,
+                rydberg,
+                diff,
+                nth,
+                correction,
+                percent,
+                percentPoint,
+            },
+            start,
+        },
+    ] = useContext(Context) as ContextType
     const { cols, row } = props
-
-    // useEffect(() => {setCollection(correction)}, [correction, setCollection])
-    useEffect(() => {
-        setShift(shift)
-    }, [shift, setShift])
+    const colsAdjust = cols.slice(start)
 
     return (
         <Fragment>
             <thead>
                 <tr className="table__header">
                     <th className="align__right">{row.label}</th>
-                    <td colSpan={cols.length + 1}>
-                        <RowHeader
-                            row={row}
-                            correction={correctionRow}
-                            setCollection={setCollection}
-                            start={startRow}
-                            setStart={setStart}
-                            shift={shiftRow}
-                            setShift={setShift}
-                        />
+                    <td colSpan={colsAdjust.length + 1}>
+                        <RowHeader row={row} />
                     </td>
                 </tr>
-                {orbital && <Orbital cols={cols} row={row} />}
-                {ether && <Ether cols={cols} row={row} />}
+                {orbital && <Orbital cols={colsAdjust} row={row} />}
+                {ether && <Ether cols={colsAdjust} row={row} />}
             </thead>
             <tbody>
-                {rydberg && <Rydberg cols={cols} row={row} />}
-                {diff && <Diff cols={cols} row={row} />}
-                {correction && <Correction cols={cols} row={row} />}
-                {nth && <Nth cols={cols} row={row} />}
-                {percent && <PercentPoint cols={cols} row={row} />}
+                {rydberg && <Rydberg cols={colsAdjust} row={row} />}
+                {diff && <Diff cols={colsAdjust} row={row} />}
+                {correction && <Correction cols={colsAdjust} row={row} />}
+                {nth && <Nth cols={colsAdjust} row={row} />}
+                {percentPoint && <PercentPoint cols={colsAdjust} row={row} />}
+                {percent && <Percent cols={colsAdjust} row={row} />}
             </tbody>
         </Fragment>
     )

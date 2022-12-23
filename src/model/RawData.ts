@@ -11,7 +11,6 @@ export class RawData {
     public conf: string
     public termNumber: number
     public jNumber: number
-    // public jWeight: number
     public position: number
     public orbital: string
     public confPrefix: string
@@ -68,7 +67,6 @@ export class RawData {
     }
 
     public constructor(data: RawDataT) {
-        console.log(data)
         this.number = data.number
         this.ion = data.ion
         this.rydberg = data.rydberg
@@ -76,12 +74,6 @@ export class RawData {
         this.j = data.j
         this.conf = data.conf
         this.termNumber = this.getNumber(data.term)
-        if (data.j) {
-            if (data.j.indexOf('/') === -1) {
-                this.jNumber = this.getNumber(data.j)
-            } else {
-            }
-        }
         this.jNumber = this.getNumber(data.j)
 
         const { position, orbital, confPrefix } = this.getConfObject(data.conf)

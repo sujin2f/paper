@@ -86,6 +86,10 @@ export abstract class RowAbstract {
         })
     }
 
+    public filter(callback: (item: Nullable<RawData>, index: number) => any) {
+        return this.items.filter((item, index) => callback(item, index))
+    }
+
     public push(item: RawData) {
         if (item.position) {
             this.items[item.position - 1] = item

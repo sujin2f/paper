@@ -29,7 +29,7 @@ type Props = {
 export const Chart = (props: Props): JSX.Element => {
     const { graphType, isGraph } = useRawDataParam()
     const { data } = props
-    const [{ render }] = useContext(Context) as ContextType
+    const [{ render, start, shift }] = useContext(Context) as ContextType
     useEffect(() => {}, [render])
 
     if (!data || !isGraph) {
@@ -45,7 +45,7 @@ export const Chart = (props: Props): JSX.Element => {
         },
     }
 
-    const chartData = data.chart(graphType)
+    const chartData = data.chart(graphType, start, shift)
 
     return (
         <Fragment>

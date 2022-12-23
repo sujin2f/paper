@@ -120,7 +120,7 @@ export abstract class ContainerAbstract {
         }
     }
 
-    public chart(valueKey: GraphType, render?: number): ChartData {
+    public chart(valueKey: GraphType, start: number, shift: number): ChartData {
         const datasets: ChartDataset<'line', DefaultDataPoint<'line'>>[] =
             this.map((row) => {
                 const data: number[] = row.map((item) => {
@@ -130,10 +130,10 @@ export abstract class ContainerAbstract {
                             value = getDiff(item)
                             break
                         case 'correction':
-                            value = getCorrection(item)
+                            value = getCorrection(item, shift)
                             break
                         default:
-                            value = getPercent(item)
+                            value = getPercent(item, shift)
                     }
                     return value
                 })
@@ -142,9 +142,11 @@ export abstract class ContainerAbstract {
                     return undefined
                 }
 
+                console.log(data)
+
                 const result = {
                     label: row.label,
-                    data,
+                    data: data.slice(start),
                     fill: false,
                     borderColor: row.color,
                     tension: 0.1,
