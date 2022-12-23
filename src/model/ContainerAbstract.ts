@@ -155,9 +155,12 @@ export abstract class ContainerAbstract {
         const length: number[] = datasets
             .map((v) => v.data.length)
             .filter((v) => v)
-        const columns = Array(Math.max(...length))
-            .fill(0)
-            .map((_, i) => i + 1 + start)
+
+        const columns = length.length
+            ? Array(Math.max(...length))
+                  .fill(0)
+                  .map((_, i) => i + 1 + start)
+            : []
 
         if (valueKey === 'diff') {
             const data = columns.map((col) => {
