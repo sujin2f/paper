@@ -52,7 +52,7 @@ export class OrbitalContainer extends ContainerAbstract {
             }
 
             return (
-                row.jNumber === jNumber + oIndex * row.jIncrement &&
+                row.jNumber === jNumber + oIndex &&
                 row.confPrefix === s.confPrefix
             )
         })
