@@ -19,6 +19,7 @@ export class OrbitalContainer extends ContainerAbstract {
             return
         }
 
+        // TODO the starting point is always s?
         this.entries = this.filter((row) => row.orbital === 's')
 
         const s = this.term
@@ -34,16 +35,24 @@ export class OrbitalContainer extends ContainerAbstract {
         }
 
         this.items = this.filter((row) => {
-            if (row.termNumber !== s.termNumber) {
+            if (
+                !row.orbital ||
+                row.jNumber === undefined ||
+                row.jIncrement === undefined ||
+                row.termIncrement === undefined ||
+                s.termNumber === undefined
+            ) {
                 return false
             }
 
-            if (!row.orbital || row.jNumber === undefined) {
+            const oIndex = orbitalKeys.indexOf(row.orbital)
+
+            if (row.termNumber !== s.termNumber + oIndex * row.termIncrement) {
                 return false
             }
-            const oIndex = orbitalKeys.indexOf(row.orbital)
+
             return (
-                row.jNumber === jNumber + oIndex &&
+                row.jNumber === jNumber + oIndex * row.jIncrement &&
                 row.confPrefix === s.confPrefix
             )
         })

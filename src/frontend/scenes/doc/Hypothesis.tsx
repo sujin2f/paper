@@ -100,13 +100,11 @@ export const Hypothesis = (): JSX.Element => (
         <div className="align__center">
             <img
                 src={pic8}
-                alt="The differences between the sparkle and electron"
+                alt="The differences between the photon and electron"
             />
 
             <p>
-                <strong>
-                    The differences between the sparkle and electron
-                </strong>
+                <strong>The differences between the photon and electron</strong>
             </p>
         </div>
 

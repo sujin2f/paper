@@ -14,6 +14,8 @@ import pic21 from 'src/assets/images/doc/pic21.png'
 import pic22 from 'src/assets/images/doc/pic22.png'
 import pic23 from 'src/assets/images/doc/pic23.png'
 import pic24 from 'src/assets/images/doc/pic24.png'
+import pic25 from 'src/assets/images/doc/pic25.png'
+import pic26 from 'src/assets/images/doc/pic26.png'
 
 export const MultiElectronAtoms = (): JSX.Element => (
     <Doc>
@@ -195,8 +197,6 @@ export const MultiElectronAtoms = (): JSX.Element => (
                         Helium Atom
                     </a>
                 </strong>
-                <br />
-                Too irregular & huge failure
             </p>
         </div>
 
@@ -210,6 +210,13 @@ export const MultiElectronAtoms = (): JSX.Element => (
             other changes. The table is too irregular. There is no tendency. End
             of the story. Bye.
         </p>
+
+        <div className="align__center">
+            <img src={pic25} alt="Radial Change" />
+            <p>
+                <strong>Radial Change</strong> Too irregular & huge failure
+            </p>
+        </div>
 
         <p>What if the way we think is wrong?</p>
 
@@ -249,6 +256,15 @@ export const MultiElectronAtoms = (): JSX.Element => (
             linear ether. They go down and close to the N<sub>th</sub>
             (n).
         </p>
+
+        <div className="align__center">
+            <img src={pic26} alt="Linear Change" />
+            <p>
+                <strong className="strike_through">
+                    How to divide a pizza
+                </strong>
+            </p>
+        </div>
 
         <p>My excitement makes me draw the diagonal table for you.</p>
 

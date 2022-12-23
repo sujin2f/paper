@@ -11,6 +11,8 @@ export class RawData {
     public conf: string
     public termNumber: number
     public jNumber: number
+    public jIncrement: number
+    public termIncrement: number
     public position: number
     public orbital: string
     public confPrefix: string
@@ -75,6 +77,8 @@ export class RawData {
         this.conf = data.conf
         this.termNumber = this.getNumber(data.term)
         this.jNumber = this.getNumber(data.j)
+        this.jIncrement = data.j && data.j.indexOf('/') !== -1 ? 2 : 1
+        this.termIncrement = data.term && data.term.indexOf('/') !== -1 ? 1 : 0
 
         const { position, orbital, confPrefix } = this.getConfObject(data.conf)
         this.position = position
