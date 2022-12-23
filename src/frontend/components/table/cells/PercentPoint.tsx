@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
 import { RowAbstract } from 'src/model/RowAbstract'
+import { getPercentPoint } from 'src/utils/model'
 
 type Props = {
     row: RowAbstract
@@ -9,16 +10,16 @@ type Props = {
 
 export const PercentPoint = (props: Props): JSX.Element => {
     const { row, cols } = props
-    const [{ digit }] = useContext(Context) as ContextType
+    const [{ digit, start, shift }] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
             <th className="align__right">%P</th>
             {cols.map((_, index) => {
-                const percent = row.items[index]
-                    ? row.items[index]!.percent
-                    : NaN
-                const percentPoint = !isNaN(percent) ? percent - 100 : NaN
+                const percentPoint = getPercentPoint(
+                    row.items[index + start],
+                    shift,
+                )
                 return (
                     <td
                         key={`${row.label}-percent-point-${index}`}

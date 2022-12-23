@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
+import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
 
 export const ChartDropdown = (): JSX.Element => {
-    const { isGraph, graphType, getAddress } = useTableParam()
+    const { isGraph, graphType, getAddress } = useRawDataParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
 

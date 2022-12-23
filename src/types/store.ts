@@ -1,6 +1,4 @@
-import { ContainerAbstract } from 'src/model/ContainerAbstract'
 import { RowAbstract } from 'src/model/RowAbstract'
-import { Nullable } from './common'
 
 type Type = {
     type: string
@@ -8,19 +6,34 @@ type Type = {
 
 export type State = {
     digit: number
-    orbital: boolean
-    ether: boolean
-    rydberg: boolean
-    diff: boolean
-    nth: boolean
-    percentPoint: boolean
-    percent: boolean
-    correction: boolean
     shift: number
-    data?: ContainerAbstract
-    location: string
+    render: number
+    start: number
     cart: RowAbstract[]
-    forceUpdate: Nullable<React.DispatchWithoutAction>
+    visible: {
+        orbital: boolean
+        ether: boolean
+        rydberg: boolean
+        diff: boolean
+        nth: boolean
+        percentPoint: boolean
+        percent: boolean
+        correction: boolean
+    }
 }
 
-export type Action = Partial<State> & Type
+export type Action = {
+    digit?: number
+    shift?: number
+    render?: number
+    start?: number
+    cart?: RowAbstract[]
+    orbital?: boolean
+    ether?: boolean
+    rydberg?: boolean
+    diff?: boolean
+    nth?: boolean
+    percentPoint?: boolean
+    percent?: boolean
+    correction?: boolean
+} & Type

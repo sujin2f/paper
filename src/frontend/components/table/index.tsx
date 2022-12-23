@@ -1,11 +1,13 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment } from 'react'
+import { Row } from 'src/frontend/components/table/Row'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
 
-import { Context, ContextType } from 'src/frontend/store'
+type Props = {
+    data: ContainerAbstract
+}
 
-import { Row } from './Row'
-
-export const Table = (): JSX.Element => {
-    const [{ data }] = useContext(Context) as ContextType
+export const Table = (props: Props): JSX.Element => {
+    const { data } = props
 
     if (!data) {
         return <Fragment></Fragment>

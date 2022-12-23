@@ -1,18 +1,25 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { romanize } from 'src/common/utils/number'
-import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
+import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
 import { getAtom } from 'src/utils/atom'
-import { ChartDropdown } from './ChartDropdown'
-import { HeaderRight } from './HeaderRight'
-import { Info } from './modal/Info'
-import { IonDropdown } from './IonDropdown'
-import { OptionDropdown } from './OptionDropdown'
-import { PeriodicTable } from './modal/PeriodicTable'
-import { TermDropdown } from './TermDropdown'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
 
-export const Header = (): JSX.Element => {
-    const { atom, atomNumber, ion, linkBase, getAddress } = useTableParam()
+import { Info } from 'src/frontend/components/modal/Info'
+import { PeriodicTable } from 'src/frontend/components/modal/PeriodicTable'
+
+import { ChartDropdown } from 'src/frontend/components/dropdown/ChartDropdown'
+import { HeaderRight } from './HeaderRight'
+import { IonDropdown } from 'src/frontend/components/dropdown/IonDropdown'
+import { OptionDropdown } from 'src/frontend/components/dropdown/OptionDropdown'
+import { TermDropdown } from 'src/frontend/components/dropdown/TermDropdown'
+
+type Props = {
+    data: ContainerAbstract
+}
+
+export const Header = (props: Props): JSX.Element => {
+    const { atom, atomNumber, ion, linkBase, getAddress } = useRawDataParam()
 
     if (!atom) {
         return <Fragment></Fragment>
@@ -68,7 +75,7 @@ export const Header = (): JSX.Element => {
                     <ul className="dropdown menu">
                         <OptionDropdown />
                         <IonDropdown />
-                        <TermDropdown />
+                        <TermDropdown data={props.data} />
 
                         <li className="divider">|</li>
 

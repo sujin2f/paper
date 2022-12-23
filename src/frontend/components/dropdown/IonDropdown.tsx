@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { romanize } from 'src/common/utils/number'
-import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
+import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
 
 export const IonDropdown = (): JSX.Element => {
-    const { atomNumber, getAddress, ion: current } = useTableParam()
+    const { atomNumber, getAddress, ion: current } = useRawDataParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
     const ions = Array(atomNumber)
@@ -38,6 +38,7 @@ export const IonDropdown = (): JSX.Element => {
                             <Link
                                 to={getAddress({
                                     ion,
+                                    term: '',
                                 })}
                                 type="button"
                             >

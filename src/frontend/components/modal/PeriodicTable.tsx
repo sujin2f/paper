@@ -2,11 +2,11 @@ import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Modal } from 'src/common/components/containers/Modal'
 import { periodicTable } from 'src/constants/periodic-table'
-import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
+import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
 import { Atom } from 'src/types/atom'
 
 export const PeriodicTable = (): JSX.Element => {
-    const { atom, getAddress } = useTableParam()
+    const { atom, getAddress } = useRawDataParam()
     const [showModal, setShowModal] = useState<boolean>(false)
 
     const table: Atom[][] = periodicTable.elements.reduce<Atom[][]>(

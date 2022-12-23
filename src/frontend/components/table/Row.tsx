@@ -9,9 +9,8 @@ import { Diff } from './cells/Diff'
 import { Nth } from './cells/Nth'
 import { Correction } from './cells/Correction'
 import { PercentPoint } from './cells/PercentPoint'
+import { Percent } from './cells/Percent'
 import { RowAbstract } from 'src/model/RowAbstract'
-import { CorrectionPercent } from './cells/CorrectionPercent'
-import { CorrectionPercentPerN } from './cells/CorrectionPercentPerN'
 import { RowHeader } from './RowHeader'
 
 type Props = {
@@ -22,45 +21,41 @@ type Props = {
 export const Row = (props: Props): JSX.Element => {
     const [
         {
-            orbital,
-            ether,
-            rydberg,
-            diff,
-            nth,
-            correction: correctionVisible,
-            percent,
+            visible: {
+                orbital,
+                ether,
+                rydberg,
+                diff,
+                nth,
+                correction,
+                percent,
+                percentPoint,
+            },
+            start,
         },
     ] = useContext(Context) as ContextType
     const { cols, row } = props
+    const colsAdjust = cols.slice(start)
 
     return (
         <Fragment>
             <thead>
                 <tr className="table__header">
                     <th className="align__right">{row.label}</th>
-                    <td colSpan={cols.length + 1}>
+                    <td colSpan={colsAdjust.length + 1}>
                         <RowHeader row={row} />
                     </td>
                 </tr>
-                {orbital && <Orbital cols={cols} row={row} />}
-                {ether && <Ether cols={cols} row={row} />}
+                {orbital && <Orbital cols={colsAdjust} row={row} />}
+                {ether && <Ether cols={colsAdjust} row={row} />}
             </thead>
             <tbody>
-                {rydberg && <Rydberg cols={cols} row={row} />}
-                {diff && <Diff cols={cols} row={row} />}
-                {correctionVisible && (
-                    <Fragment>
-                        <Correction cols={cols} row={row} />
-                        {!isNaN(row.correction) && (
-                            <Fragment>
-                                <CorrectionPercent cols={cols} row={row} />
-                                <CorrectionPercentPerN cols={cols} row={row} />
-                            </Fragment>
-                        )}
-                    </Fragment>
-                )}
-                {nth && <Nth cols={cols} row={row} />}
-                {percent && <PercentPoint cols={cols} row={row} />}
+                {rydberg && <Rydberg cols={colsAdjust} row={row} />}
+                {diff && <Diff cols={colsAdjust} row={row} />}
+                {correction && <Correction cols={colsAdjust} row={row} />}
+                {nth && <Nth cols={colsAdjust} row={row} />}
+                {percentPoint && <PercentPoint cols={colsAdjust} row={row} />}
+                {percent && <Percent cols={colsAdjust} row={row} />}
             </tbody>
         </Fragment>
     )

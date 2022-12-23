@@ -2,27 +2,35 @@ import { Nullable } from 'src/types/common'
 import { RawData } from './RawData'
 
 export abstract class RowAbstract {
-    public start = 0
     public color = ''
+    public setColor?: React.Dispatch<React.SetStateAction<string>>
     private _first?: Nullable<RawData>
-    private _shift = 0
-    private _correction = 0
-    protected _label = ''
+    public items: Nullable<RawData>[] = []
+    public _label = ''
 
     protected get first() {
-        return this._first || [...this._items].filter((v) => v)[0]
-    }
+        if (this._first) {
+            return this._first
+        }
 
-    public get items() {
-        return [...this._items].slice(this.start)
+        this._first = [...this.items].filter((v) => v)[0]
+        return this._first
     }
 
     public get length() {
-        return this._items.length
+        return this.items.length
     }
 
     public get orbital() {
         return this.first && this.first.orbital
+    }
+
+    public get term() {
+        return this.first && this.first.term
+    }
+
+    public get j() {
+        return this.first && this.first.j
     }
 
     public get rydberg() {
@@ -41,22 +49,8 @@ export abstract class RowAbstract {
         return this.first && this.first.confPrefix
     }
 
-    public set shift(shift: number) {
-        this._shift = shift
-        this.forEach((item) => {
-            if (item) {
-                item.shift = shift
-            }
-        })
-    }
-
-    public set correction(correction: number) {
-        this._correction = correction
-        this.forEach((item) => {
-            if (item) {
-                item.correction = correction
-            }
-        })
+    public get encodeURI() {
+        return this.first && this.first.encodeURI
     }
 
     public set label(label: string) {
@@ -67,24 +61,18 @@ export abstract class RowAbstract {
         return this._label
     }
 
-    public constructor(protected _items: Nullable<RawData>[]) {
-        this.generate()
-    }
-
-    private generate(): void {
-        this._items.forEach((item, index) => {
+    public generate(base: number): void {
+        this.items.forEach((item, index) => {
             if (index === 0) {
-                return
-            }
-            if (!this.items) {
                 return
             }
             if (!item) {
                 return
             }
-            item.diff = this.items[index - 1]
+            const diff = this.items[index - 1]
                 ? this.items[index - 1]!.rydberg
                 : 0
+            item.setDiff(diff, base)
         })
     }
 
@@ -98,18 +86,21 @@ export abstract class RowAbstract {
         })
     }
 
-    public getTermKey() {
-        return this.first?.getTermKey()
+    public filter(callback: (item: Nullable<RawData>, index: number) => any) {
+        return this.items.filter((item, index) => callback(item, index))
     }
 
-    public toSavedData() {
+    public push(item: RawData) {
+        if (item.position) {
+            this.items[item.position - 1] = item
+        }
+    }
+
+    public toObject() {
         return {
             label: this.label,
-            start: this.start,
-            shift: this._shift,
-            correction: this._correction,
             color: this.color,
-            items: this.map((item) => (item ? item.toSavedData() : null)),
+            items: this.map((item) => (item ? item.toObject() : null)),
         }
     }
 }

@@ -1,4 +1,5 @@
 import { SavedDataContainerT } from 'src/types/saved-data'
+
 import {
     addSavedData,
     addSavedDataContainer,
@@ -10,10 +11,7 @@ import {
 
 export const savedData = async (param: {
     _id: string
-}): Promise<SavedDataContainerT> => {
-    const result = await getOne(param._id)
-    return result
-}
+}): Promise<SavedDataContainerT> => await getOne(param._id)
 
 export const savedDataList = async (): Promise<SavedDataContainerT[]> =>
     await getAllId()

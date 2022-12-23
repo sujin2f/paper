@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
 import { RowAbstract } from 'src/model/RowAbstract'
+import { getNth } from 'src/utils/model'
 
 type Props = {
     row: RowAbstract
@@ -9,7 +10,7 @@ type Props = {
 
 export const Nth = (props: Props): JSX.Element => {
     const { row, cols } = props
-    const [{ digit }] = useContext(Context) as ContextType
+    const [{ digit, start, shift }] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
@@ -17,13 +18,13 @@ export const Nth = (props: Props): JSX.Element => {
                 N<sub>th</sub>(n)
             </th>
             {cols.map((_, index) => {
-                const nth = row.items[index] ? row.items[index]!.nth : 0
+                const nth = getNth(row.items[index + start], shift)
                 return (
                     <td
                         key={`${row.label}-nth-${index}`}
                         className="align__right"
                     >
-                        {nth && nth.toFixed(digit)}
+                        {!isNaN(nth) && nth.toFixed(digit)}
                     </td>
                 )
             })}

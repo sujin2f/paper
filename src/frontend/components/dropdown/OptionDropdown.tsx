@@ -7,13 +7,28 @@ import {
     setNth,
     setOrbital,
     setPercent,
+    setPercentPoint,
     setRydberg,
     setCorrection,
 } from 'src/frontend/store/actions'
 
 export const OptionDropdown = (): JSX.Element => {
     const [showOptions, setShowOptions] = useState<boolean>(false)
-    const [options, dispatch] = useContext(Context) as ContextType
+    const [
+        {
+            visible: {
+                orbital,
+                ether,
+                rydberg,
+                diff,
+                nth,
+                percentPoint,
+                percent,
+                correction,
+            },
+        },
+        dispatch,
+    ] = useContext(Context) as ContextType
     const dropdown = useRef<HTMLUListElement>(null)
 
     document.addEventListener('click', () => {
@@ -39,11 +54,9 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setOrbital(!options.orbital))
+                                dispatch(setOrbital(!orbital))
                             }}
-                            className={
-                                options.orbital ? '' : 'view-option__unselected'
-                            }
+                            className={orbital ? '' : 'view-option__unselected'}
                         >
                             ✔ Orbital
                         </Link>
@@ -54,11 +67,9 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setEther(!options.ether))
+                                dispatch(setEther(!ether))
                             }}
-                            className={
-                                options.ether ? '' : 'view-option__unselected'
-                            }
+                            className={ether ? '' : 'view-option__unselected'}
                         >
                             ✔ Ether
                         </Link>
@@ -69,11 +80,9 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setRydberg(!options.rydberg))
+                                dispatch(setRydberg(!rydberg))
                             }}
-                            className={
-                                options.rydberg ? '' : 'view-option__unselected'
-                            }
+                            className={rydberg ? '' : 'view-option__unselected'}
                         >
                             ✔ Rydberg
                         </Link>
@@ -84,11 +93,9 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setDiff(!options.diff))
+                                dispatch(setDiff(!diff))
                             }}
-                            className={
-                                options.diff ? '' : 'view-option__unselected'
-                            }
+                            className={diff ? '' : 'view-option__unselected'}
                         >
                             ✔ Diff
                         </Link>
@@ -99,12 +106,10 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setCorrection(!options.correction))
+                                dispatch(setCorrection(!correction))
                             }}
                             className={
-                                options.correction
-                                    ? ''
-                                    : 'view-option__unselected'
+                                correction ? '' : 'view-option__unselected'
                             }
                         >
                             ✔ Weight
@@ -116,11 +121,9 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setNth(!options.nth))
+                                dispatch(setNth(!nth))
                             }}
-                            className={
-                                options.nth ? '' : 'view-option__unselected'
-                            }
+                            className={nth ? '' : 'view-option__unselected'}
                         >
                             ✔ N<sub>th</sub>(n)
                         </Link>
@@ -131,13 +134,26 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setPercent(!options.percent))
+                                dispatch(setPercent(!percent))
+                            }}
+                            className={percent ? '' : 'view-option__unselected'}
+                        >
+                            ✔ %p
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="#"
+                            type="button"
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                dispatch(setPercentPoint(!percentPoint))
                             }}
                             className={
-                                options.percent ? '' : 'view-option__unselected'
+                                percentPoint ? '' : 'view-option__unselected'
                             }
                         >
-                            ✔ %
+                            ✔ %p
                         </Link>
                     </li>
                 </ul>

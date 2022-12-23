@@ -1,11 +1,15 @@
-import React, { Fragment, useContext, useRef } from 'react'
+import React, { Fragment, useRef } from 'react'
 import { useSavedDataMutation } from 'src/frontend/hooks/useSavedDataMutation'
-import { Context, ContextType } from 'src/frontend/store'
-import { CartChartDropdown } from './CartChartDropdown'
-import { HeaderRight } from './HeaderRight'
+import { CartChartDropdown } from 'src/frontend/components/dropdown/CartChartDropdown'
+import { HeaderRight } from './data/HeaderRight'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
 
-export const CartHeader = (): JSX.Element => {
-    const [{ data }] = useContext(Context) as ContextType
+type Props = {
+    data: ContainerAbstract
+}
+
+export const CartHeader = (props: Props): JSX.Element => {
+    const { data } = props
     const titleRef = useRef<HTMLInputElement>(null)
     const { saveData, saved } = useSavedDataMutation()
 

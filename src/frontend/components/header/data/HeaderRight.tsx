@@ -1,9 +1,9 @@
 import React, { useContext, useRef } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
-import { setDigit, setShift } from 'src/frontend/store/actions'
+import { setDigit, setShift, setStart } from 'src/frontend/store/actions'
 
 export const HeaderRight = (): JSX.Element => {
-    const [{ digit, shift, data, forceUpdate }, dispatch] = useContext(
+    const [{ digit, shift, start }, dispatch] = useContext(
         Context,
     ) as ContextType
     const startRef = useRef<HTMLInputElement>(null)
@@ -19,12 +19,11 @@ export const HeaderRight = (): JSX.Element => {
                         placeholder="Start"
                         onChange={() => {
                             const value = !startRef.current?.value
-                                ? NaN
+                                ? 0
                                 : parseInt(startRef.current?.value, 10)
-                            data!.start = value
-                            forceUpdate!()
+                            dispatch(setStart(value))
                         }}
-                        defaultValue={0}
+                        defaultValue={start}
                         min={0}
                     />
                 </li>
@@ -33,7 +32,6 @@ export const HeaderRight = (): JSX.Element => {
                         type="button"
                         className="button small"
                         onClick={() => {
-                            data!.shift = shift - 1
                             dispatch(setShift(shift - 1))
                         }}
                     >
@@ -45,7 +43,6 @@ export const HeaderRight = (): JSX.Element => {
                         type="button"
                         className="button small"
                         onClick={() => {
-                            data!.shift = 0
                             dispatch(setShift(0))
                         }}
                     >
@@ -57,7 +54,6 @@ export const HeaderRight = (): JSX.Element => {
                         type="button"
                         className="button small"
                         onClick={() => {
-                            data!.shift = shift + 1
                             dispatch(setShift(shift + 1))
                         }}
                     >

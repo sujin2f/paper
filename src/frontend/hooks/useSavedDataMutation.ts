@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
-import { ContainerAbstract } from 'src/model/ContainerAbstract'
+// import { ContainerAbstract } from 'src/model/ContainerAbstract'
 import { graphQL } from 'src/types/saved-data'
 
 export const useSavedDataMutation = () => {
@@ -12,7 +12,7 @@ export const useSavedDataMutation = () => {
     )
     const navigate = useNavigate()
 
-    const saveData = (container: ContainerAbstract, title: string) => {
+    const saveData = (container: any, title: string) => {
         addSavedData({
             variables: {
                 data: container.toSavedData(title),

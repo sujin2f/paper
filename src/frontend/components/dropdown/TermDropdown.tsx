@@ -1,14 +1,18 @@
-import React, { Fragment, useContext, useRef, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useTableParam } from 'src/frontend/hooks/useRawDataParam'
-import { Context, ContextType } from 'src/frontend/store'
+import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
 
-export const TermDropdown = (): JSX.Element => {
-    const { linkBase, term: current, getAddress } = useTableParam()
+type Props = {
+    data: ContainerAbstract
+}
+
+export const TermDropdown = (props: Props): JSX.Element => {
+    const { linkBase, term, getAddress } = useRawDataParam()
+    const { data } = props
+
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
-
-    const [{ data }] = useContext(Context) as ContextType
 
     document.addEventListener('click', () => {
         setShowOptions(false)
@@ -30,19 +34,18 @@ export const TermDropdown = (): JSX.Element => {
                     {showOptions && (
                         <ul className="menu vertical" ref={dropdown}>
                             {data.entries.map((entry) => {
-                                const term = entry.getTermKey()
                                 return (
                                     <li
-                                        key={`term-selector-${term}-${entry._id}`}
+                                        key={`term-selector-${entry.encodeURI}`}
                                         className={
-                                            current === entry.term
+                                            term === entry.encodeURI
                                                 ? 'link-base current'
                                                 : ''
                                         }
                                     >
                                         <Link
                                             to={getAddress({
-                                                term: `${term}`,
+                                                term: `${entry.encodeURI}`,
                                             })}
                                             type="button"
                                         >

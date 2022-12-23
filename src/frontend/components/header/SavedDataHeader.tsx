@@ -1,11 +1,15 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment } from 'react'
 import { useSavedDataMutation } from 'src/frontend/hooks/useSavedDataMutation'
-import { Context, ContextType } from 'src/frontend/store'
-import { HeaderRight } from './HeaderRight'
-import { SavedDataChartDropdown } from './SavedDataChartDropdown'
+import { HeaderRight } from './data/HeaderRight'
+import { SavedDataChartDropdown } from 'src/frontend/components/dropdown/SavedDataChartDropdown'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
 
-export const SavedDataHeader = (): JSX.Element => {
-    const [{ data }] = useContext(Context) as ContextType
+type Props = {
+    data: ContainerAbstract
+}
+
+export const SavedDataHeader = (props: Props): JSX.Element => {
+    const { data } = props
     const { removeData } = useSavedDataMutation()
     return (
         <Fragment>
