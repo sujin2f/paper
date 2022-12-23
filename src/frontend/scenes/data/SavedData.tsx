@@ -1,33 +1,41 @@
-import React, { Fragment, useContext, useEffect, useReducer } from 'react'
+import React, { Fragment } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { SavedDataWrapper } from 'src/frontend/components/SavedDataWrapper'
-// import { setForceUpdate } from 'src/frontend/store/actions'
-import { Context, ContextType } from 'src/frontend/store'
 import { SavedDataHeader } from 'src/frontend/components/header/SavedDataHeader'
+import { Chart } from 'src/frontend/components/Chart'
+import { Table } from 'src/frontend/components/table'
+import { useSavedDataParam } from 'src/frontend/hooks/useSavedDataParam'
+import { useSavedData } from 'src/frontend/hooks/useSavedData'
 
 export const SavedData = (): JSX.Element => {
-    const [, forceUpdate] = useReducer((x) => x + 1, 0)
-    // const [{ forceUpdate: update }, dispatch] = useContext(
-    //     Context,
-    // ) as ContextType
+    const { _id } = useSavedDataParam()
+    const { data, loading, error } = useSavedData({
+        _id: _id || '',
+    })
 
-    // useEffect(() => {
-    //     if (!update) {
-    //         dispatch(setForceUpdate(forceUpdate))
-    //     }
-    // }, [update, dispatch])
+    if (error) {
+        return <Fragment>404</Fragment>
+    }
+
+    if (loading) {
+        return <Fragment>Loading</Fragment>
+    }
+
+    if (!data) {
+        return <Fragment>Processing</Fragment>
+    }
 
     return (
         <Fragment>
             <Row>
                 <Column>
-                    <SavedDataHeader />
+                    <SavedDataHeader data={data} />
                 </Column>
             </Row>
             <Row>
                 <Column>
-                    <SavedDataWrapper />
+                    <Chart data={data} />
+                    <Table data={data} />
                 </Column>
             </Row>
         </Fragment>

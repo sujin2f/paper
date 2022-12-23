@@ -3,17 +3,19 @@ import { Link } from 'react-router-dom'
 import { romanize } from 'src/common/utils/number'
 import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
 import { getAtom } from 'src/utils/atom'
-import { ChartDropdown } from './ChartDropdown'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
+
+import { Info } from 'src/frontend/components/modal/Info'
+import { PeriodicTable } from 'src/frontend/components/modal/PeriodicTable'
+
+import { ChartDropdown } from 'src/frontend/components/dropdown/ChartDropdown'
 import { HeaderRight } from './HeaderRight'
-import { Info } from './modal/Info'
-import { IonDropdown } from './IonDropdown'
-import { OptionDropdown } from './OptionDropdown'
-import { PeriodicTable } from './modal/PeriodicTable'
-import { TermDropdown } from './TermDropdown'
-import { DataHook } from 'src/types/raw-data'
+import { IonDropdown } from 'src/frontend/components/dropdown/IonDropdown'
+import { OptionDropdown } from 'src/frontend/components/dropdown/OptionDropdown'
+import { TermDropdown } from 'src/frontend/components/dropdown/TermDropdown'
 
 type Props = {
-    dataHook: DataHook
+    data: ContainerAbstract
 }
 
 export const Header = (props: Props): JSX.Element => {
@@ -73,7 +75,7 @@ export const Header = (props: Props): JSX.Element => {
                     <ul className="dropdown menu">
                         <OptionDropdown />
                         <IonDropdown />
-                        <TermDropdown dataHook={props.dataHook} />
+                        <TermDropdown data={props.data} />
 
                         <li className="divider">|</li>
 

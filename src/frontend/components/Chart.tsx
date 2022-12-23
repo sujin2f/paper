@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext, useEffect } from 'react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -10,7 +10,8 @@ import {
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
-import { DataHook } from 'src/types/raw-data'
+import { Context, ContextType } from '../store'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
 
 ChartJS.register(
     CategoryScale,
@@ -22,19 +23,16 @@ ChartJS.register(
 )
 
 type Props = {
-    dataHook: DataHook
+    data: ContainerAbstract
 }
 
 export const Chart = (props: Props): JSX.Element => {
-    const { atomNumber, ion, graphType, term } = useRawDataParam()
-    const { dataHook } = props
-    const { data } = dataHook({
-        number: atomNumber,
-        ion,
-        term,
-    })
+    const { graphType, isGraph } = useRawDataParam()
+    const { data } = props
+    const [{ render }] = useContext(Context) as ContextType
+    useEffect(() => {}, [render])
 
-    if (!data) {
+    if (!data || !isGraph) {
         return <Fragment></Fragment>
     }
 
@@ -47,5 +45,11 @@ export const Chart = (props: Props): JSX.Element => {
         },
     }
 
-    return <Line options={options} data={data.chart(graphType)} />
+    const chartData = data.chart(graphType)
+
+    return (
+        <Fragment>
+            <Line options={options} data={chartData} />
+        </Fragment>
+    )
 }

@@ -17,6 +17,7 @@ export const useRawDataParam = () => {
         location.pathname.indexOf('/raw-data') !== -1 ? 'raw-data' : linkBase
     linkBase =
         location.pathname.indexOf('/orbital') !== -1 ? 'orbital' : linkBase
+    linkBase = location.pathname.indexOf('/ether') !== -1 ? 'ether' : linkBase
 
     const getAddress = (param: {
         linkBase?: LinkBaseType

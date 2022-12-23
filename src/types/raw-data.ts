@@ -39,6 +39,7 @@ export const graphQL = {
     query: `
     rawData(number: Int!, ion: Int!, term: String): RawDataContainer
     orbital(number: Int!, ion: Int!, term: String): RawDataContainer
+    ether(number: Int!, ion: Int!, term: String): RawDataContainer
     `,
     request: {
         rawData: `
@@ -63,6 +64,33 @@ export const graphQL = {
         orbital: `
             query orbital($number: Int!, $ion: Int!, $term: String) {
                 orbital(number: $number, ion: $ion, term: $term) {
+                    label
+                    entries {
+                        label
+                        color
+                        items {
+                            rydberg
+                            conf
+                            diff
+                            term
+                            j
+                        }
+                    }
+                    items {
+                        label
+                        color
+                        items {
+                            rydberg
+                            conf
+                            diff
+                        }
+                    }
+                }
+            }
+        `,
+        ether: `
+            query ether($number: Int!, $ion: Int!, $term: String) {
+                ether(number: $number, ion: $ion, term: $term) {
                     label
                     entries {
                         label
@@ -118,6 +146,10 @@ export type ReturnTypeRawData = {
 
 export type ReturnTypeOrbital = {
     orbital: RawDataContainerT
+}
+
+export type ReturnTypeEther = {
+    ether: RawDataContainerT
 }
 
 export type Param = { number: number; ion: number; term?: string }

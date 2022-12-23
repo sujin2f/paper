@@ -3,23 +3,25 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/Public'
 import { RawData } from 'src/frontend/scenes/data/RawData'
-// import { Cart } from './scenes/data/Cart'
-// import { SavedData } from './scenes/data/SavedData'
 
-import { Intro } from './scenes/doc/Intro'
-import { Hypothesis } from './scenes/doc/Hypothesis'
-import { ClassicPhysics } from './scenes/doc/ClassicPhysics'
-import { MultiElectronAtoms } from './scenes/doc/MultiElectronAtoms'
-import { SchrodingerEquation } from './scenes/doc/SchrodingerEquation'
-import { Conclusion } from './scenes/doc/Conclusion'
+import { Intro } from 'src/frontend/scenes/doc/Intro'
+import { Hypothesis } from 'src/frontend/scenes/doc/Hypothesis'
+import { ClassicPhysics } from 'src/frontend/scenes/doc/ClassicPhysics'
+import { MultiElectronAtoms } from 'src/frontend/scenes/doc/MultiElectronAtoms'
+import { SchrodingerEquation } from 'src/frontend/scenes/doc/SchrodingerEquation'
+import { Conclusion } from 'src/frontend/scenes/doc/Conclusion'
 
-import { Intro as IntroKor } from './scenes/doc-kor/Intro'
-import { Hypothesis as HypothesisKor } from './scenes/doc-kor/Hypothesis'
-import { ClassicPhysics as ClassicPhysicsKor } from './scenes/doc-kor/ClassicPhysics'
-import { MultiElectronAtoms as MultiElectronAtomsKor } from './scenes/doc-kor/MultiElectronAtoms'
-import { SchrodingerEquation as SchrodingerEquationKor } from './scenes/doc-kor/SchrodingerEquation'
-import { Conclusion as ConclusionKor } from './scenes/doc-kor/Conclusion'
-import { Orbital } from './scenes/data/Orbital'
+import { Intro as IntroKor } from 'src/frontend/scenes/doc-kor/Intro'
+import { Hypothesis as HypothesisKor } from 'src/frontend/scenes/doc-kor/Hypothesis'
+import { ClassicPhysics as ClassicPhysicsKor } from 'src/frontend/scenes/doc-kor/ClassicPhysics'
+import { MultiElectronAtoms as MultiElectronAtomsKor } from 'src/frontend/scenes/doc-kor/MultiElectronAtoms'
+import { SchrodingerEquation as SchrodingerEquationKor } from 'src/frontend/scenes/doc-kor/SchrodingerEquation'
+import { Conclusion as ConclusionKor } from 'src/frontend/scenes/doc-kor/Conclusion'
+
+import { Orbital } from 'src/frontend/scenes/data/Orbital'
+import { Ether } from 'src/frontend/scenes/data/Ether'
+import { Cart } from 'src/frontend/scenes/data/Cart'
+import { SavedData } from 'src/frontend/scenes/data/SavedData'
 
 export const Router = (): JSX.Element => {
     return (
@@ -73,6 +75,29 @@ export const Router = (): JSX.Element => {
                     </Route>
                     <Route path="graph" element={<Orbital />}>
                         <Route path=":graphType" element={<Orbital />} />
+                    </Route>
+                </Route>
+
+                <Route path="/ether/:atom" element={<Ether />}>
+                    <Route path=":term" element={<Ether />}>
+                        <Route path="graph" element={<Ether />}>
+                            <Route path=":graphType" element={<Ether />} />
+                        </Route>
+                    </Route>
+                    <Route path="graph" element={<Ether />}>
+                        <Route path=":graphType" element={<Ether />} />
+                    </Route>
+                </Route>
+
+                <Route path="/cart" element={<Cart />}>
+                    <Route path="graph" element={<Cart />}>
+                        <Route path=":graphType" element={<Cart />} />
+                    </Route>
+                </Route>
+
+                <Route path="/saved-data/:_id" element={<SavedData />}>
+                    <Route path="graph" element={<SavedData />}>
+                        <Route path=":graphType" element={<SavedData />} />
                     </Route>
                 </Route>
 

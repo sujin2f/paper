@@ -13,6 +13,7 @@ export const SET_COLLECTION = 'ether/v1/SET_COLLECTION'
 export const SET_SHIFT = 'ether/v1/SET_SHIFT'
 export const ADD_CART = 'ether/v1/ADD_CART'
 export const REMOVE_CART = 'ether/v1/REMOVE_CART'
+export const REFRESH = 'ether/v1/REFRESH'
 
 export const setDigit = (digit: number): Action => {
     return {
@@ -95,5 +96,11 @@ export const removeCart = (cart: RowAbstract[]): Action => {
     return {
         type: REMOVE_CART,
         cart,
+    }
+}
+
+export const refresh = (): Action => {
+    return {
+        type: REFRESH,
     }
 }

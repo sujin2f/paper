@@ -1,19 +1,15 @@
 import React, { Fragment, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
-import { DataHook } from 'src/types/raw-data'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
 
 type Props = {
-    dataHook: DataHook
+    data: ContainerAbstract
 }
 
 export const TermDropdown = (props: Props): JSX.Element => {
-    const { linkBase, atomNumber, ion, term, getAddress } = useRawDataParam()
-    const { data } = props.dataHook({
-        number: atomNumber,
-        ion,
-        term,
-    })
+    const { linkBase, term, getAddress } = useRawDataParam()
+    const { data } = props
 
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)

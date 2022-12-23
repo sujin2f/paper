@@ -68,6 +68,7 @@ export class RawData {
     }
 
     public constructor(data: RawDataT) {
+        console.log(data)
         this.number = data.number
         this.ion = data.ion
         this.rydberg = data.rydberg
@@ -82,7 +83,6 @@ export class RawData {
             }
         }
         this.jNumber = this.getNumber(data.j)
-        // this.jWeight = data.j ? (data.j.indexOf('/') === -1 ? 1 : 2) : 1
 
         const { position, orbital, confPrefix } = this.getConfObject(data.conf)
         this.position = position

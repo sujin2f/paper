@@ -1,14 +1,14 @@
-import { Nullable } from 'src/types/common'
-import { ContainerAbstract } from './ContainerAbstract'
-import { RawData } from './RawData'
-import { RowAbstract } from './RowAbstract'
+import { RowAbstract } from 'src/model/RowAbstract'
+import { EtherRow } from 'src/model/EtherRow'
+import { ContainerAbstract } from 'src/model/ContainerAbstract'
 
-export class CartContainer {
-    term: Nullable<RawData>
-    /* tslint:disable-next-line no-empty */
-    protected generate(groups: RawData[][]): void {}
-    public constructor(rows: RowAbstract[]) {
-        // super([])
-        // this.items = rows
+export class CartContainer extends ContainerAbstract {
+    public createRow() {
+        return new EtherRow()
+    }
+
+    public constructor(items: RowAbstract[]) {
+        super([])
+        this.items = items
     }
 }

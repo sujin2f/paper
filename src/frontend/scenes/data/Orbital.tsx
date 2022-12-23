@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { Header } from 'src/frontend/components/header'
+import { Header } from 'src/frontend/components/header/data'
 import { Link } from 'react-router-dom'
 import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
 import { Chart } from 'src/frontend/components/Chart'
@@ -47,13 +47,13 @@ export const Orbital = (): JSX.Element => {
         <Fragment>
             <Row>
                 <Column>
-                    <Header dataHook={useOrbital} />
+                    <Header data={data} />
                 </Column>
             </Row>
             <Row>
                 <Column>
-                    <Chart dataHook={useOrbital} />
-                    <Table dataHook={useOrbital} />
+                    <Chart data={data} />
+                    <Table data={data} />
                 </Column>
             </Row>
         </Fragment>

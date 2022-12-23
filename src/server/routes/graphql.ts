@@ -6,6 +6,7 @@ import { graphqlSchema } from 'src/constants/graphql'
 import { SavedDataContainerT } from 'src/types/saved-data'
 import { rawData } from 'src/utils/endpoints/raw-data'
 import { orbital } from 'src/utils/endpoints/orbital'
+import { ether } from 'src/utils/endpoints/ether'
 import {
     savedData,
     savedDataList,
@@ -24,6 +25,7 @@ graphqlRouter.use(
         rootValue: {
             rawData,
             orbital,
+            ether,
             savedData,
             savedDataList,
             savedDataMutation: (

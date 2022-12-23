@@ -2,7 +2,6 @@ import React, { Fragment, useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useSavedDataList } from 'src/frontend/hooks/useSavedDataList'
 import { Context, ContextType } from 'src/frontend/store'
-// import { setForceUpdate } from 'src/frontend/store/actions'
 import { EngDocDropdown } from './EngDocDropdown'
 import { KorDocDropdown } from './KorDocDropdown'
 
@@ -10,7 +9,7 @@ export const MainHeader = (): JSX.Element => {
     const location = useLocation()
     const navigate = useNavigate()
     const isCart = location.pathname.indexOf('/cart') !== -1
-    const [{ cart }, dispatch] = useContext(Context) as ContextType
+    const [{ cart }] = useContext(Context) as ContextType
     const { data } = useSavedDataList()
 
     return (
@@ -21,28 +20,16 @@ export const MainHeader = (): JSX.Element => {
                     <KorDocDropdown />
                 </ul>
             </nav>
-            {/* <div className="top-bar-right">
+            <div className="top-bar-right">
                 <ul className="menu">
                     <li>
-                        <Link
-                            to="/raw-data/1"
-                            onClick={() => dispatch(setForceUpdate(undefined))}
-                        >
-                            Raw Data
-                        </Link>
+                        <Link to="/raw-data/1">Raw Data</Link>
                     </li>
                     {!isCart && cart.length !== 0 && (
                         <Fragment>
                             <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
                             <li>
-                                <Link
-                                    to="/cart"
-                                    onClick={() =>
-                                        dispatch(setForceUpdate(undefined))
-                                    }
-                                >
-                                    Cart ({cart.length})
-                                </Link>
+                                <Link to="/cart">Cart ({cart.length})</Link>
                             </li>
                         </Fragment>
                     )}
@@ -74,7 +61,7 @@ export const MainHeader = (): JSX.Element => {
                         </Fragment>
                     )}
                 </ul>
-            </div> */}
+            </div>
         </div>
     )
 }

@@ -4,11 +4,14 @@ import { RawData } from './RawData'
 export class SavedData extends RawData {
     public constructor(data: SavedDataT) {
         super({
+            _id: data._id,
+            rydberg: data.rydberg,
+            conf: data.conf,
+            ion: data.ion,
+            number: data.number,
+            diff: data.diff,
             term: '',
             j: '',
-            ...data,
         })
-
-        this._diff = data.diff
     }
 }

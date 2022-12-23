@@ -3,6 +3,7 @@ import { RawData } from './RawData'
 
 export abstract class RowAbstract {
     public color = ''
+    public setColor?: React.Dispatch<React.SetStateAction<string>>
     private _first?: Nullable<RawData>
     public items: Nullable<RawData>[] = []
     public _label = ''

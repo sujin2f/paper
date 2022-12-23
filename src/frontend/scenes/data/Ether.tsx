@@ -4,13 +4,13 @@ import { Row } from 'src/common/components/layout/Row'
 import { Header } from 'src/frontend/components/header/data'
 import { Link } from 'react-router-dom'
 import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
-import { useRawData } from 'src/frontend/hooks/useRawData'
 import { Chart } from 'src/frontend/components/Chart'
 import { Table } from 'src/frontend/components/table'
+import { useEther } from 'src/frontend/hooks/useEther'
 
-export const RawData = (): JSX.Element => {
+export const Ether = (): JSX.Element => {
     const { atom, atomNumber, ion, term } = useRawDataParam()
-    const { data, loading, error } = useRawData({
+    const { data, loading, error } = useEther({
         number: atomNumber,
         ion,
         term,

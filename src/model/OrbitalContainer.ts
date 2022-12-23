@@ -9,7 +9,7 @@ export class OrbitalContainer extends ContainerAbstract {
         return new OrbitalRow()
     }
 
-    public constructor(rawData: RawDataT[], private term?: string) {
+    public constructor(rawData: RawDataT[], protected term?: string) {
         super(rawData)
         this.setOrbital()
     }

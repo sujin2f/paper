@@ -1,29 +1,32 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useRef } from 'react'
 
 import { Context, ContextType } from 'src/frontend/store'
 
 import { RowAbstract } from 'src/model/RowAbstract'
 import { Button } from 'src/common/components/forms/Button'
-import { addCart, removeCart } from 'src/frontend/store/actions'
+import { addCart, refresh, removeCart } from 'src/frontend/store/actions'
 
 type Props = {
     row: RowAbstract
+    correction: number
+    setCollection: React.Dispatch<React.SetStateAction<number>>
+    start: number
+    setStart: React.Dispatch<React.SetStateAction<number>>
+    shift: number
+    setShift: React.Dispatch<React.SetStateAction<number>>
 }
 
 export const RowHeader = (props: Props): JSX.Element => {
-    const [{ cart, shift: contextShift }, dispatch] = useContext(
-        Context,
-    ) as ContextType
-    const { row } = props
+    const [{ cart }, dispatch] = useContext(Context) as ContextType
+    const { row, setCollection, correction, start, setStart, shift, setShift } =
+        props
     const correctionRef = useRef<HTMLInputElement>(null)
     const labelRef = useRef<HTMLInputElement>(null)
     const startRef = useRef<HTMLInputElement>(null)
     const colorRef = useRef<HTMLInputElement>(null)
-    const [shift, setShift] = useState<number>(contextShift)
 
     return (
         <ul className="row-header__container">
-            {/*
             <li>
                 <input
                     type="color"
@@ -35,7 +38,7 @@ export const RowHeader = (props: Props): JSX.Element => {
                             ? row.color
                             : colorRef.current?.value
                         row.color = value
-                        forceUpdate!()
+                        dispatch(refresh())
                     }}
                 />
             </li>
@@ -50,9 +53,9 @@ export const RowHeader = (props: Props): JSX.Element => {
                         const value = !correctionRef.current?.value
                             ? NaN
                             : parseFloat(correctionRef.current?.value)
-                        row.correction = value
-                        forceUpdate!()
+                        setCollection(value)
                     }}
+                    defaultValue={correction}
                 />
             </li>
 
@@ -66,10 +69,9 @@ export const RowHeader = (props: Props): JSX.Element => {
                         const value = !startRef.current?.value
                             ? NaN
                             : parseInt(startRef.current?.value, 10)
-                        row.start = value
-                        forceUpdate!()
+                        setStart(value)
                     }}
-                    defaultValue={row.start}
+                    defaultValue={start}
                     min={0}
                 />
             </li>
@@ -79,9 +81,7 @@ export const RowHeader = (props: Props): JSX.Element => {
                     type="button"
                     className="button small"
                     onClick={() => {
-                        row.shift = shift - 1
                         setShift(shift - 1)
-                        forceUpdate!()
                     }}
                 >
                     &lt;
@@ -92,9 +92,7 @@ export const RowHeader = (props: Props): JSX.Element => {
                     type="button"
                     className="button small"
                     onClick={() => {
-                        row.shift = 0
                         setShift(0)
-                        forceUpdate!()
                     }}
                 >
                     0
@@ -105,9 +103,7 @@ export const RowHeader = (props: Props): JSX.Element => {
                     type="button"
                     className="button small"
                     onClick={() => {
-                        row.shift = shift + 1
                         setShift(shift + 1)
-                        forceUpdate!()
                     }}
                 >
                     &gt;
@@ -121,7 +117,6 @@ export const RowHeader = (props: Props): JSX.Element => {
                     placeholder="Label"
                     onChange={() => {
                         row.label = labelRef.current?.value || ''
-                        forceUpdate!()
                     }}
                 />
             </li>
@@ -145,7 +140,6 @@ export const RowHeader = (props: Props): JSX.Element => {
                     />
                 </li>
             )}
-        */}
         </ul>
     )
 }

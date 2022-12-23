@@ -11,6 +11,7 @@ import {
     SET_SHIFT,
     ADD_CART,
     REMOVE_CART,
+    REFRESH,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -26,6 +27,7 @@ export const initialState: State = {
     correction: true,
     shift: 0,
     cart: [],
+    render: 0,
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
@@ -105,6 +107,12 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 cart: state.cart.filter(
                     (item) => action.cart!.indexOf(item) === -1,
                 ),
+            }
+        }
+        case REFRESH: {
+            return {
+                ...state,
+                render: state.render + 1,
             }
         }
         default: {

@@ -1,16 +1,15 @@
-import { Nullable } from 'src/types/common'
 import { SavedDataContainerT } from 'src/types/saved-data'
 import { ContainerAbstract } from './ContainerAbstract'
-import { RawData } from './RawData'
 import { SavedDataRow } from './SavedDataRow'
 
-export class SavedDataContainer {
-    term: Nullable<RawData>
-    /* tslint:disable-next-line no-empty */
-    protected generate(groups: RawData[][]): void {}
+export class SavedDataContainer extends ContainerAbstract {
+    public createRow() {
+        return new SavedDataRow()
+    }
+
     public constructor(data: SavedDataContainerT) {
-        // super([])
-        // this._id = data._id || ''
-        // this.items = data.items.map((row) => new SavedDataRow(row))
+        super([])
+        this._id = data._id || ''
+        this.items = data.items.map((row) => new SavedDataRow(row))
     }
 }

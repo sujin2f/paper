@@ -12,12 +12,16 @@ type ChartData = {
 }
 
 export abstract class ContainerAbstract {
+    public _id = ''
     public entries: RowAbstract[] = []
     protected items: RowAbstract[] = []
     abstract createRow(): RowAbstract
 
     public get columns() {
-        const length = this.items.map((item) => item.length)
+        const length = this.items.map((item) => item.length).filter((v) => v)
+        if (length.length === 0) {
+            return []
+        }
         return Array(Math.max(...length))
             .fill(0)
             .map((_, index) => index + 1)
@@ -116,7 +120,7 @@ export abstract class ContainerAbstract {
         }
     }
 
-    public chart(valueKey: GraphType): ChartData {
+    public chart(valueKey: GraphType, render?: number): ChartData {
         const datasets: ChartDataset<'line', DefaultDataPoint<'line'>>[] =
             this.map((row) => {
                 const data: number[] = row.map((item) => {

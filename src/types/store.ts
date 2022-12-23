@@ -1,5 +1,4 @@
 import { RowAbstract } from 'src/model/RowAbstract'
-import { Nullable } from './common'
 
 type Type = {
     type: string
@@ -17,6 +16,7 @@ export type State = {
     correction: boolean
     shift: number
     cart: RowAbstract[]
+    render: number
 }
 
 export type Action = Partial<State> & Type
