@@ -56,6 +56,8 @@ export const graphQL = {
                             rydberg
                             conf
                             diff
+                            number
+                            ion
                         }
                     }
                 }
@@ -83,6 +85,8 @@ export const graphQL = {
                             rydberg
                             conf
                             diff
+                            number
+                            ion
                         }
                     }
                 }
@@ -110,6 +114,8 @@ export const graphQL = {
                             rydberg
                             conf
                             diff
+                            number
+                            ion
                         }
                     }
                 }
@@ -154,7 +160,7 @@ export type ReturnTypeEther = {
 
 export type Param = { number: number; ion: number; term?: string }
 
-export type GraphType = 'diff' | 'correction' | 'percent'
+export type GraphType = 'diff' | 'correction' | 'multi-correction' | 'percent'
 export type LinkBaseType = 'raw-data' | 'orbital' | 'ether'
 
 export type URLParam = {

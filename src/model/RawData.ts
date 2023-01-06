@@ -59,7 +59,11 @@ export class RawData {
         if (!this._diff) {
             return NaN
         }
-        return (this._diff / this.getNth(shift)) * 100
+        let diff = this._diff
+        if (this.ion === this.number) {
+            diff = diff / Math.pow(this.number, 2)
+        }
+        return (diff / this.getNth(shift)) * 100
     }
 
     public get encodeURI() {
@@ -90,13 +94,28 @@ export class RawData {
         }
     }
 
+    public getMultiCorrection(shift = 0) {
+        let diff = this._diff
+        if (this.ion === this.number && diff) {
+            diff = diff / Math.pow(this.number, 2)
+        }
+        const nth = this.getNth(shift)
+
+        return diff / nth
+    }
+
     public getCorrection(
         shift = 0,
         maxProp = 0,
         minProp = 0,
         attempt = 1,
     ): number {
-        if (!this._diff || this._diff <= 0) {
+        let diff = this._diff
+        if (this.ion === this.number && diff) {
+            diff = diff / Math.pow(this.number, 2)
+        }
+
+        if (!diff || diff <= 0) {
             return NaN
         }
         const error = 0.0000005
@@ -110,7 +129,7 @@ export class RawData {
         let minVal = this.getNth(shift, min)
 
         // Invalid range
-        if (maxVal < this._diff) {
+        if (maxVal < diff) {
             return 0
         }
 
@@ -120,7 +139,7 @@ export class RawData {
         }
 
         // Adjust range
-        if (minVal > this._diff) {
+        if (minVal > diff) {
             return this.getCorrection(shift, min, min + 5, attempt + 1)
         }
 
@@ -130,30 +149,30 @@ export class RawData {
             maxVal = this.getNth(shift, max)
             minVal = this.getNth(shift, min)
 
-            const diffMax = Math.abs(maxVal - this._diff)
-            const diffMin = Math.abs(minVal - this._diff)
+            const diffMax = Math.abs(maxVal - diff)
+            const diffMin = Math.abs(minVal - diff)
 
             // Matched!
-            if (maxVal === this._diff || diffMax < error) {
+            if (maxVal === diff || diffMax < error) {
                 return max
             }
-            if (minVal === this._diff || diffMin < error) {
+            if (minVal === diff || diffMin < error) {
                 return min
             }
 
             // In between
-            if (maxVal > this._diff && this._diff > minVal) {
+            if (maxVal > diff && diff > minVal) {
                 oneThird = (min - max) / 3
                 max += oneThird
                 min -= oneThird
             }
 
-            if (this._diff > maxVal) {
+            if (diff > maxVal) {
                 min = max
                 max -= oneThird
             }
 
-            if (minVal > this._diff) {
+            if (minVal > diff) {
                 max = min
                 min += oneThird
             }
