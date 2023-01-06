@@ -4,7 +4,12 @@ import { orbitalKeys } from 'src/constants/orbital'
 import { GraphType, RawDataContainerT, RawDataT } from 'src/types/raw-data'
 import { RawData } from 'src/model/RawData'
 import { RowAbstract } from 'src/model/RowAbstract'
-import { getCorrection, getDiff, getPercent } from 'src/utils/model'
+import {
+    getCorrection,
+    getDiff,
+    getMultiCorrection,
+    getPercent,
+} from 'src/utils/model'
 
 type ChartData = {
     labels: number[]
@@ -131,6 +136,9 @@ export abstract class ContainerAbstract {
                             break
                         case 'correction':
                             value = getCorrection(item, shift)
+                            break
+                        case 'multi-correction':
+                            value = getMultiCorrection(item, shift)
                             break
                         default:
                             value = getPercent(item, shift)

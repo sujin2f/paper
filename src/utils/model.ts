@@ -6,6 +6,9 @@ import { RawDataContainerT, RawDataT } from 'src/types/raw-data'
 export const getCorrection = (item: Nullable<RawData>, shift: number) =>
     item ? item.getCorrection(shift) : NaN
 
+export const getMultiCorrection = (item: Nullable<RawData>, shift: number) =>
+    item ? item.getMultiCorrection(shift) : NaN
+
 export const getNth = (item: Nullable<RawData>, shift: number) => {
     const nth = item ? item.getNth(shift) : NaN
     const diff = item ? item.diff : NaN

@@ -7,7 +7,8 @@ import { Orbital } from './cells/Orbital'
 import { Rydberg } from './cells/Rydberg'
 import { Diff } from './cells/Diff'
 import { Nth } from './cells/Nth'
-import { Correction } from './cells/Correction'
+import { PlusCorrection } from './cells/PlusCorrection'
+import { MultiCorrection } from './cells/MultiCorrection'
 import { PercentPoint } from './cells/PercentPoint'
 import { Percent } from './cells/Percent'
 import { RowAbstract } from 'src/model/RowAbstract'
@@ -52,7 +53,12 @@ export const Row = (props: Props): JSX.Element => {
             <tbody>
                 {rydberg && <Rydberg cols={colsAdjust} row={row} />}
                 {diff && <Diff cols={colsAdjust} row={row} />}
-                {correction && <Correction cols={colsAdjust} row={row} />}
+                {correction && (
+                    <Fragment>
+                        <PlusCorrection cols={colsAdjust} row={row} />
+                        <MultiCorrection cols={colsAdjust} row={row} />
+                    </Fragment>
+                )}
                 {nth && <Nth cols={colsAdjust} row={row} />}
                 {percentPoint && <PercentPoint cols={colsAdjust} row={row} />}
                 {percent && <Percent cols={colsAdjust} row={row} />}

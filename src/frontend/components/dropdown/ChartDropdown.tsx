@@ -77,7 +77,24 @@ export const ChartDropdown = (): JSX.Element => {
                             })}
                             type="button"
                         >
-                            Correction
+                            +Correction
+                        </Link>
+                    </li>
+                    <li
+                        className={
+                            isGraph && graphType === 'correction'
+                                ? 'link-base current'
+                                : ''
+                        }
+                    >
+                        <Link
+                            to={getAddress({
+                                isGraph: true,
+                                graphType: 'multi-correction',
+                            })}
+                            type="button"
+                        >
+                            *Correction
                         </Link>
                     </li>
                 </ul>
