@@ -13,9 +13,13 @@ export const useSavedDataMutation = () => {
     const navigate = useNavigate()
 
     const saveData = (container: any, title: string) => {
+        const data = container.toObject(title)
         addSavedData({
             variables: {
-                data: container.toSavedData(title),
+                data: {
+                    label: data.label,
+                    items: data.items,
+                },
             },
         })
     }

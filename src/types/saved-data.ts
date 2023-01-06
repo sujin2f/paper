@@ -111,9 +111,6 @@ export const graphQL = {
         }
         input SavedDataRowM {
             label: String
-            correction: Float
-            shift: Int
-            start: Int
             color: String
             items: [SavedDataM]
         }
