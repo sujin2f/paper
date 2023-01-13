@@ -25,5 +25,10 @@ export const TOCKor = (): JSX.Element => (
         <li>
             <Link to="/kor/conclusion">결론</Link>
         </li>
+        <li>
+            <Link to="/kor/appendix1">
+                부록1: 우주에 시간은 존재하지 않는다
+            </Link>
+        </li>
     </Fragment>
 )

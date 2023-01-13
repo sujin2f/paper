@@ -17,6 +17,7 @@ import { ClassicPhysics as ClassicPhysicsKor } from 'src/frontend/scenes/doc-kor
 import { MultiElectronAtoms as MultiElectronAtomsKor } from 'src/frontend/scenes/doc-kor/MultiElectronAtoms'
 import { SchrodingerEquation as SchrodingerEquationKor } from 'src/frontend/scenes/doc-kor/SchrodingerEquation'
 import { Conclusion as ConclusionKor } from 'src/frontend/scenes/doc-kor/Conclusion'
+import { Appendix1 as Appendix1Kor } from 'src/frontend/scenes/doc-kor/Appendix1'
 
 import { Orbital } from 'src/frontend/scenes/data/Orbital'
 import { Ether } from 'src/frontend/scenes/data/Ether'
@@ -55,6 +56,7 @@ export const Router = (): JSX.Element => {
                     element={<SchrodingerEquationKor />}
                 />
                 <Route path="/kor/conclusion" element={<ConclusionKor />} />
+                <Route path="/kor/appendix1" element={<Appendix1Kor />} />
 
                 <Route path="/raw-data/:atom" element={<RawData />}>
                     <Route path=":term" element={<RawData />}>
