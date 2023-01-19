@@ -55,14 +55,21 @@ export class RawData {
             .join('')
     }
 
+    private getAdjustedDiff() {
+        let diff = this._diff
+        if (this.ion === this.number) {
+            diff = diff / Math.pow(this.number, 2)
+        } else if (this.ion !== this.number && diff) {
+            diff = diff / (this.ion * this.number)
+        }
+        return diff
+    }
+
     public getPercent(shift = 0) {
         if (!this._diff) {
             return NaN
         }
-        let diff = this._diff
-        if (this.ion === this.number) {
-            diff = diff / Math.pow(this.number, 2)
-        }
+        const diff = this.getAdjustedDiff()
         return (diff / this.getNth(shift)) * 100
     }
 
@@ -95,10 +102,7 @@ export class RawData {
     }
 
     public getMultiCorrection(shift = 0) {
-        let diff = this._diff
-        if (this.ion === this.number && diff) {
-            diff = diff / Math.pow(this.number, 2)
-        }
+        const diff = this.getAdjustedDiff()
         const nth = this.getNth(shift)
 
         return diff / nth
@@ -110,10 +114,7 @@ export class RawData {
         minProp = 0,
         attempt = 1,
     ): number {
-        let diff = this._diff
-        if (this.ion === this.number && diff) {
-            diff = diff / Math.pow(this.number, 2)
-        }
+        const diff = this.getAdjustedDiff()
 
         if (!diff || diff <= 0) {
             return NaN
