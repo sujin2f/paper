@@ -18,6 +18,11 @@ export const TOCKor = (): JSX.Element => (
             </Link>
         </li>
         <li>
+            <Link to="/kor/orbital-equation">
+                가설의 검증(2-1): 오비탈 방정식
+            </Link>
+        </li>
+        <li>
             <Link to="/kor/schrodinger-equation">
                 가설의 검증(3): 슈뢰딩거 방정식
             </Link>
