@@ -7,9 +7,7 @@ export const SET_ETHER = 'ether/v1/SET_ETHER'
 export const SET_RYDBERG = 'ether/v1/SET_RYDBERG'
 export const SET_DIFF = 'ether/v1/SET_DIFF'
 export const SET_NTH = 'ether/v1/SET_NTH'
-export const SET_PERCENT_POINT = 'ether/v1/SET_PERCENT_POINT'
 export const SET_PERCENT = 'ether/v1/SET_PERCENT'
-export const SET_COLLECTION = 'ether/v1/SET_COLLECTION'
 export const SET_SHIFT = 'ether/v1/SET_SHIFT'
 export const SET_START = 'ether/v1/SET_START'
 export const ADD_CART = 'ether/v1/ADD_CART'
@@ -65,24 +63,10 @@ export const setNth = (nth: boolean): Action => {
     }
 }
 
-export const setPercentPoint = (percentPoint: boolean): Action => {
-    return {
-        type: SET_PERCENT_POINT,
-        percentPoint,
-    }
-}
-
 export const setPercent = (percent: boolean): Action => {
     return {
         type: SET_PERCENT,
         percent,
-    }
-}
-
-export const setCorrection = (correction: boolean): Action => {
-    return {
-        type: SET_COLLECTION,
-        correction,
     }
 }
 

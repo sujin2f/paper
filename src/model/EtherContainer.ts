@@ -7,7 +7,9 @@ import { RawData } from './RawData'
 
 export class EtherContainer extends OrbitalContainer {
     public createRow() {
-        return new EtherRow()
+        const row = new EtherRow()
+        row.parent = this
+        return row
     }
 
     public constructor(rawData: RawDataT[], protected term?: string) {
@@ -50,19 +52,19 @@ export class EtherContainer extends OrbitalContainer {
             })
         })
 
-        // Push S orbitals into items
-        if (items[0]) {
-            items[0].forEach((item, index) => {
-                if (item && items[index + 1]) {
-                    items[index + 1].push(
-                        new RawData({
-                            ...item.toObject(),
-                            diff: item.diff ? item.diff : NaN,
-                        }),
-                    )
-                }
-            })
-        }
+        // // Push S orbitals into items
+        // if (items[0]) {
+        //     items[0].forEach((item, index) => {
+        //         if (item && items[index + 1]) {
+        //             items[index + 1].push(
+        //                 new RawData({
+        //                     ...item.toObject(),
+        //                     diff: item.diff ? item.diff : NaN,
+        //                 }),
+        //             )
+        //         }
+        //     })
+        // }
 
         this.items = items
 
@@ -81,19 +83,19 @@ export class EtherContainer extends OrbitalContainer {
             row.color = chartColors[index] || 'rgb(200, 200, 200)'
         })
 
-        // Push S orbitals into items again :(
-        if (this.items[0]) {
-            this.items[0].forEach((item, index) => {
-                if (item && this.items[index + 1]) {
-                    this.items[index + 1].push(
-                        new RawData({
-                            ...item.toObject(),
-                            diff: item.diff ? item.diff : NaN,
-                        }),
-                    )
-                }
-            })
-        }
+        // // Push S orbitals into items again :(
+        // if (this.items[0]) {
+        //     this.items[0].forEach((item, index) => {
+        //         if (item && this.items[index + 1]) {
+        //             this.items[index + 1].push(
+        //                 new RawData({
+        //                     ...item.toObject(),
+        //                     diff: item.diff ? item.diff : NaN,
+        //                 }),
+        //             )
+        //         }
+        //     })
+        // }
         this.items = this.items.filter((row) => row)
     }
 }

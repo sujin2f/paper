@@ -5,9 +5,7 @@ import {
     SET_RYDBERG,
     SET_DIFF,
     SET_NTH,
-    SET_PERCENT_POINT,
     SET_PERCENT,
-    SET_COLLECTION,
     SET_SHIFT,
     SET_START,
     ADD_CART,
@@ -28,9 +26,7 @@ export const initialState: State = {
         rydberg: true,
         diff: true,
         nth: true,
-        percentPoint: true,
         percent: true,
-        correction: true,
     },
 }
 
@@ -90,30 +86,12 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 },
             }
         }
-        case SET_PERCENT_POINT: {
-            return {
-                ...state,
-                visible: {
-                    ...state.visible,
-                    percentPoint: action.percentPoint!,
-                },
-            }
-        }
         case SET_PERCENT: {
             return {
                 ...state,
                 visible: {
                     ...state.visible,
                     percent: action.percent!,
-                },
-            }
-        }
-        case SET_COLLECTION: {
-            return {
-                ...state,
-                visible: {
-                    ...state.visible,
-                    correction: action.correction!,
                 },
             }
         }

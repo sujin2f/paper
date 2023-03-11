@@ -31,7 +31,7 @@ export const CartChartDropdown = (): JSX.Element => {
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'percent'
+                            isGraph && graphType === '%'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -39,7 +39,7 @@ export const CartChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'percent',
+                                graphType: '%',
                             })}
                             type="button"
                         >
@@ -61,23 +61,6 @@ export const CartChartDropdown = (): JSX.Element => {
                             type="button"
                         >
                             Diff
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'correction'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={getAddress({
-                                isGraph: true,
-                                graphType: 'correction',
-                            })}
-                            type="button"
-                        >
-                            Correction
                         </Link>
                     </li>
                 </ul>

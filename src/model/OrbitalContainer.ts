@@ -3,10 +3,13 @@ import { orbitalKeys } from 'src/constants/orbital'
 import { RawDataT } from 'src/types/raw-data'
 import { ContainerAbstract } from 'src/model/ContainerAbstract'
 import { OrbitalRow } from 'src/model/OrbitalRow'
+import { RawData } from './RawData'
 
 export class OrbitalContainer extends ContainerAbstract {
     public createRow() {
-        return new OrbitalRow()
+        const row = new OrbitalRow()
+        row.parent = this
+        return row
     }
 
     public constructor(rawData: RawDataT[], protected term?: string) {
@@ -19,20 +22,28 @@ export class OrbitalContainer extends ContainerAbstract {
             return
         }
 
-        // TODO the starting point is always s?
-        this.entries = this.filter((row) => row.orbital === 's')
+        this.entries = this.filter((row) => row.orbital === 's').sort(
+            (rowA, rowB) => {
+                const rydbergA = rowA.first?.rydberg || 100
+                const rydbergB = rowB.first?.rydberg || 100
+                return rydbergB - rydbergA
+            },
+        )
 
-        const s = this.term
+        const base = this.term
             ? this.entries.filter((row) => row.encodeURI === this.term)[0]
             : this.entries[0]
 
-        const jNumber = s && s.jNumber
+        const baseJ = base && base.jNumber
 
-        if (!s || jNumber === undefined) {
+        if (!base || baseJ === undefined || !base.orbital) {
             this.items = []
             this.entries = []
             return
         }
+
+        const baseOIndex = orbitalKeys.indexOf(base.orbital)
+        const orbitals: number[] = []
 
         this.items = this.filter((row) => {
             if (
@@ -40,21 +51,28 @@ export class OrbitalContainer extends ContainerAbstract {
                 row.jNumber === undefined ||
                 row.jIncrement === undefined ||
                 row.termIncrement === undefined ||
-                s.termNumber === undefined
+                base.termNumber === undefined
             ) {
                 return false
             }
 
-            const oIndex = orbitalKeys.indexOf(row.orbital)
+            const oIndex = orbitalKeys.indexOf(row.orbital) - baseOIndex
 
-            if (row.termNumber !== s.termNumber + oIndex * row.termIncrement) {
+            if (
+                row.termNumber !==
+                base.termNumber + oIndex * row.termIncrement
+            ) {
                 return false
             }
 
-            return (
-                row.jNumber === jNumber + oIndex &&
-                row.confPrefix === s.confPrefix
-            )
+            const result =
+                row.jNumber === baseJ + oIndex &&
+                row.confPrefix === base.confPrefix
+            if (result && orbitals.indexOf(oIndex) === -1) {
+                orbitals.push(oIndex)
+                return true
+            }
+            return false
         })
 
         const basePosition = this.getBasePosition()

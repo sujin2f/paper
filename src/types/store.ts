@@ -16,9 +16,7 @@ export type State = {
         rydberg: boolean
         diff: boolean
         nth: boolean
-        percentPoint: boolean
         percent: boolean
-        correction: boolean
     }
 }
 
@@ -33,7 +31,5 @@ export type Action = {
     rydberg?: boolean
     diff?: boolean
     nth?: boolean
-    percentPoint?: boolean
     percent?: boolean
-    correction?: boolean
 } & Type

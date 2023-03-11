@@ -57,20 +57,6 @@ export const SavedDataChartDropdown = (): JSX.Element => {
                             Diff
                         </Link>
                     </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'correction'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={`/saved-data/${_id}/graph/correction`}
-                            type="button"
-                        >
-                            Correction
-                        </Link>
-                    </li>
                 </ul>
             )}
         </li>

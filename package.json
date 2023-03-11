@@ -25,7 +25,9 @@
         "lint": "eslint './src/**/*.ts' './src/**/*.tsx'",
         "pretty": "yarn prettier -w ./src"
     },
-    "dependencies": {},
+    "dependencies": {
+        "https": "^1.0.0"
+    },
     "devDependencies": {
         "@apollo/client": "^3.7.1",
         "@testing-library/jest-dom": "^5.16.5",

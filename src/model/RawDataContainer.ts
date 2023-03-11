@@ -1,11 +1,14 @@
 import { chartColors } from 'src/constants/chart'
 import { RawDataT } from 'src/types/raw-data'
 import { ContainerAbstract } from './ContainerAbstract'
+import { RawData } from './RawData'
 import { RawDataRow } from './RawDataRow'
 
 export class RawDataContainer extends ContainerAbstract {
     public createRow() {
-        return new RawDataRow()
+        const row = new RawDataRow()
+        row.parent = this
+        return row
     }
 
     protected setItems(rawData: RawDataT[]) {

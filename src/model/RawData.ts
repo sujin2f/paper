@@ -1,5 +1,8 @@
 import { RawDataT } from 'src/types/raw-data'
 import { orbitalKeys } from 'src/constants/orbital'
+import { RowAbstract } from './RowAbstract'
+import { Nullable } from 'src/types/common'
+import { isCompositeType } from 'graphql'
 
 export class RawData {
     public _id?: string
@@ -9,6 +12,7 @@ export class RawData {
     public term: string
     public j: string
     public conf: string
+    public confArr: string[] = []
     public termNumber: number
     public jNumber: number
     public jIncrement: number
@@ -16,11 +20,80 @@ export class RawData {
     public position: number
     public orbital: string
     public confPrefix: string
+    public parent: Nullable<RowAbstract>
 
     protected _diff = NaN
 
     public get diff() {
         return this._diff
+    }
+
+    public get weight() {
+        return this.number * this.ion
+    }
+
+    public get rydbergAdjusted() {
+        if (this.number - this.ion === 2) {
+            return this.rydberg + 0.75 * 3
+        }
+        return this.rydberg
+    }
+
+    public get equation() {
+        if (!this.rydberg || !this.parent || !this.parent.firstAvailable) {
+            return NaN
+        }
+
+        // const scale = this.parent?.parent?.scale || [0, 0, 0]
+
+        const l: number =
+            1 / Math.sqrt(this.peak - this.parent.firstAvailable.rydberg) -
+            this.parent.firstAvailable.position
+
+        const equation = this.peak - 1 / Math.pow(this.position + l, 2)
+        const value = this.rydbergAdjusted - equation
+
+        return value
+    }
+
+    private get firstEther() {
+        return 0.75 * this.number * this.ion
+    }
+
+    private peak1(value: number) {
+        return 0.7518 * value + 0.0544
+    }
+
+    private peak2(value: number) {
+        return 0.9416 * value + 0.1042
+    }
+
+    private peak3(value: number) {
+        return (
+            (this.ion - value) * (this.peak1(value) - this.peak2(value - 1)) +
+            this.peak1(value)
+        )
+    }
+
+    private get peak() {
+        let sum = 0
+        for (let k = this.ion; k <= this.number - 1; k++) {
+            sum += this.peak3(k)
+        }
+        return Math.pow(this.ion, 2) + sum
+    }
+
+    public nth() {
+        return (
+            this.peak -
+            Math.pow(
+                this.ion /
+                    (this.position +
+                        this.ion / Math.sqrt(this.peak - this.firstEther) -
+                        2),
+                2,
+            )
+        )
     }
 
     public setDiff(rydberg: number, base: number) {
@@ -55,27 +128,17 @@ export class RawData {
             .join('')
     }
 
-    private getAdjustedDiff() {
-        let diff = this._diff
-        if (this.ion === this.number) {
-            diff = diff / Math.pow(this.number, 2)
-        } else if (this.ion !== this.number && diff) {
-            diff = diff / (this.ion * this.number)
-        }
-        return diff
-    }
-
-    public getPercent(shift = 0) {
-        if (!this._diff) {
+    public get percent() {
+        if (!this.rydberg) {
             return NaN
         }
-        const diff = this.getAdjustedDiff()
-        return (diff / this.getNth(shift)) * 100
+
+        return (this.rydbergAdjusted / this.nth()) * 100
     }
 
     public get encodeURI() {
         return encodeURIComponent(
-            `${this.confPrefix}-${this.orbital}-${this.term}-${this.j}`,
+            `${this.confPrefix}-${this.orbital}-${this.term}-${this.jNumber}`,
         )
     }
 
@@ -83,15 +146,16 @@ export class RawData {
         this.number = data.number
         this.ion = data.ion
         this.rydberg = data.rydberg
-        this.term = data.term
+        const term = data.term ? data.term.split(' ') : null
+        this.term = term && term[1] ? term[1] : data.term
         this.j = data.j
         this.conf = data.conf
-        this.termNumber = this.getNumber(data.term)
+        this.termNumber = this.getNumber(this.term)
         this.jNumber = this.getNumber(data.j)
         this.jIncrement = data.j && data.j.indexOf('/') !== -1 ? 2 : 1
         this.termIncrement = data.term && data.term.indexOf('/') !== -1 ? 1 : 0
 
-        const { position, orbital, confPrefix } = this.getConfObject(data.conf)
+        const { position, orbital, confPrefix } = this.getConfObject()
         this.position = position
         this.orbital = orbital
         this.confPrefix = confPrefix
@@ -99,107 +163,6 @@ export class RawData {
         if (data.diff) {
             this._diff = data.diff
         }
-    }
-
-    public getMultiCorrection(shift = 0) {
-        const diff = this.getAdjustedDiff()
-        const nth = this.getNth(shift)
-
-        return diff / nth
-    }
-
-    public getCorrection(
-        shift = 0,
-        maxProp = 0,
-        minProp = 0,
-        attempt = 1,
-    ): number {
-        const diff = this.getAdjustedDiff()
-
-        if (!diff || diff <= 0) {
-            return NaN
-        }
-        const error = 0.0000005
-        const newN = this.position - shift - 1
-        const infinity = -newN
-
-        let max = maxProp || infinity + error
-        let min = minProp || infinity + error + 5
-
-        let maxVal = this.getNth(shift, max)
-        let minVal = this.getNth(shift, min)
-
-        // Invalid range
-        if (maxVal < diff) {
-            return 0
-        }
-
-        // Too many loops
-        if (attempt > 10) {
-            return 0
-        }
-
-        // Adjust range
-        if (minVal > diff) {
-            return this.getCorrection(shift, min, min + 5, attempt + 1)
-        }
-
-        let oneThird = 0
-
-        for (let i = 0; i < 50; i++) {
-            maxVal = this.getNth(shift, max)
-            minVal = this.getNth(shift, min)
-
-            const diffMax = Math.abs(maxVal - diff)
-            const diffMin = Math.abs(minVal - diff)
-
-            // Matched!
-            if (maxVal === diff || diffMax < error) {
-                return max
-            }
-            if (minVal === diff || diffMin < error) {
-                return min
-            }
-
-            // In between
-            if (maxVal > diff && diff > minVal) {
-                oneThird = (min - max) / 3
-                max += oneThird
-                min -= oneThird
-            }
-
-            if (diff > maxVal) {
-                min = max
-                max -= oneThird
-            }
-
-            if (minVal > diff) {
-                max = min
-                min += oneThird
-            }
-
-            continue
-        }
-
-        if (min > max) {
-            return (min - max) / 2
-        }
-
-        return (max - min) / 2
-    }
-
-    public getNth(shift = 0, correction = 0) {
-        const rydberg = this.position - 1 + correction - shift
-        const leftHand = 1 / Math.pow(rydberg, 2)
-        const rightHand = 1 / Math.pow(rydberg + 1, 2)
-        return leftHand - rightHand
-    }
-
-    public getNthPerN(shift = 0, correction = 0) {
-        const rydberg = this.position - 1 + correction / this.position - shift
-        const leftHand = 1 / Math.pow(rydberg, 2)
-        const rightHand = 1 / Math.pow(rydberg + 1, 2)
-        return leftHand - rightHand
     }
 
     private getNumber(value: string): number {
@@ -213,9 +176,9 @@ export class RawData {
         return parseInt(regexInt ? regexInt[1] : '', 10)
     }
 
-    private getConfArray = (conf: string): string[] => {
+    public getConfArray = (): string[] => {
         const result: string[] = []
-        const div = conf.split('.')
+        const div = this.conf.split('.')
         div.forEach((el) => {
             const hasMultiple = /([0-9]+)([a-z]+)([0-9]+)/.exec(el)
             if (!hasMultiple) {
@@ -231,8 +194,8 @@ export class RawData {
         return result
     }
 
-    private getConfObject(conf: string) {
-        const confArray = this.getConfArray(conf).reverse()
+    private getConfObject() {
+        const confArray = this.getConfArray().reverse()
         if (confArray[0].indexOf('(') !== -1) {
             confArray.shift()
         }

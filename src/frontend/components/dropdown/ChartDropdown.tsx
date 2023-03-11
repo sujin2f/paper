@@ -26,12 +26,12 @@ export const ChartDropdown = (): JSX.Element => {
                 <ul className="menu vertical" ref={dropdown}>
                     <li className={!isGraph ? 'link-base current' : ''}>
                         <Link to={getAddress({ isGraph: false })} type="button">
-                            None
+                            X
                         </Link>
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'percent'
+                            isGraph && graphType === '%'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -39,11 +39,28 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'percent',
+                                graphType: '%',
                             })}
                             type="button"
                         >
-                            Percent
+                            %
+                        </Link>
+                    </li>
+                    <li
+                        className={
+                            isGraph && graphType === 'f'
+                                ? 'link-base current'
+                                : ''
+                        }
+                    >
+                        <Link
+                            to={getAddress({
+                                isGraph: true,
+                                graphType: 'f',
+                            })}
+                            type="button"
+                        >
+                            f(x)
                         </Link>
                     </li>
                     <li
@@ -61,40 +78,6 @@ export const ChartDropdown = (): JSX.Element => {
                             type="button"
                         >
                             Diff
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'correction'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={getAddress({
-                                isGraph: true,
-                                graphType: 'correction',
-                            })}
-                            type="button"
-                        >
-                            +Correction
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'correction'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={getAddress({
-                                isGraph: true,
-                                graphType: 'multi-correction',
-                            })}
-                            type="button"
-                        >
-                            *Correction
                         </Link>
                     </li>
                 </ul>

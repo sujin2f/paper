@@ -1,20 +1,45 @@
 import { Nullable } from 'src/types/common'
+import { ContainerAbstract } from './ContainerAbstract'
 import { RawData } from './RawData'
 
 export abstract class RowAbstract {
     public color = ''
     public setColor?: React.Dispatch<React.SetStateAction<string>>
-    private _first?: Nullable<RawData>
     public items: Nullable<RawData>[] = []
     public _label = ''
+    public parent?: ContainerAbstract
 
-    protected get first() {
+    private _first?: Nullable<RawData>
+    public get first(): Nullable<RawData> {
         if (this._first) {
             return this._first
         }
-
         this._first = [...this.items].filter((v) => v)[0]
         return this._first
+    }
+
+    private _firstAvailable?: Nullable<RawData>
+    public get firstAvailable(): Nullable<RawData> {
+        if (this._firstAvailable) {
+            return this._firstAvailable
+        }
+        this._firstAvailable = [...this.items].filter((item) => {
+            if (item && item.rydberg) {
+                return true
+            }
+            return false
+        })[0]
+        return this._firstAvailable
+    }
+
+    public get numOfEther() {
+        if (!this.firstAvailable) {
+            return 0
+        }
+
+        return this.firstAvailable
+            .getConfArray()
+            .filter((item) => item !== '1s').length
     }
 
     public get length() {
@@ -100,6 +125,7 @@ export abstract class RowAbstract {
 
     public push(item: RawData) {
         if (item.position) {
+            item.parent = this
             this.items[item.position - 1] = item
         }
     }

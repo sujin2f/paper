@@ -4,12 +4,6 @@ import { orbitalKeys } from 'src/constants/orbital'
 import { GraphType, RawDataContainerT, RawDataT } from 'src/types/raw-data'
 import { RawData } from 'src/model/RawData'
 import { RowAbstract } from 'src/model/RowAbstract'
-import {
-    getCorrection,
-    getDiff,
-    getMultiCorrection,
-    getPercent,
-} from 'src/utils/model'
 
 type ChartData = {
     labels: number[]
@@ -30,6 +24,29 @@ export abstract class ContainerAbstract {
         return Array(Math.max(...length))
             .fill(0)
             .map((_, index) => index + 1)
+    }
+
+    private _base?: RowAbstract
+    public get base() {
+        this._base =
+            this._base || this.filter((row) => row.first?.rydberg === 0)[0]
+        return this._base
+    }
+
+    public get scale() {
+        const left = this.base?.firstAvailable?.position || 0
+        const items = this.filter(
+            (row) => row.numOfEther === this.base.numOfEther,
+        )
+            .map((row) => row.items[left - 1]?.rydberg)
+            .filter((v) => v) as number[]
+        const right = Math.max(...items)
+
+        return [
+            this.base?.firstAvailable?.position || 0,
+            this.base?.firstAvailable?.rydberg || 0,
+            right || 0,
+        ]
     }
 
     public constructor(rawData: RawDataT[]) {
@@ -132,16 +149,13 @@ export abstract class ContainerAbstract {
                     let value
                     switch (valueKey) {
                         case 'diff':
-                            value = getDiff(item)
+                            value = item ? item.diff : NaN
                             break
-                        case 'correction':
-                            value = getCorrection(item, shift)
-                            break
-                        case 'multi-correction':
-                            value = getMultiCorrection(item, shift)
+                        case 'f':
+                            value = item ? item.equation : NaN
                             break
                         default:
-                            value = getPercent(item, shift)
+                            value = item ? item.percent : NaN
                     }
                     return value
                 })

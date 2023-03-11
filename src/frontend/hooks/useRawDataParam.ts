@@ -11,13 +11,15 @@ export const useRawDataParam = () => {
     const atomNumber = parseInt(numberParam || '1', 10)
     const ion = parseInt(ionParam || '1', 10)
     const term = termParam || ''
-    const graphType = graphTypeParam || 'percent'
+    const graphType = graphTypeParam || '%'
     const isGraph = location.pathname.indexOf('/graph') !== -1
     linkBase =
         location.pathname.indexOf('/raw-data') !== -1 ? 'raw-data' : linkBase
     linkBase =
         location.pathname.indexOf('/orbital') !== -1 ? 'orbital' : linkBase
     linkBase = location.pathname.indexOf('/ether') !== -1 ? 'ether' : linkBase
+    const mode =
+        location.pathname.indexOf('/equation') !== -1 ? '/equation' : ''
 
     const getAddress = (param: {
         linkBase?: LinkBaseType
@@ -26,6 +28,7 @@ export const useRawDataParam = () => {
         term?: string
         isGraph?: boolean
         graphType?: GraphType
+        mode?: string
     }): string => {
         const linkBaseEntry = param.linkBase || linkBase
         const numberEntry = param.number || atomNumber
@@ -39,8 +42,9 @@ export const useRawDataParam = () => {
             .filter((v) => v)
             .join('+')
         const graph = isGraphEntry ? `/graph/${graphTypeEntry}` : ''
+        const modeEntry = param.mode || mode
 
-        return `/${linkBaseEntry}/${atomParam}${graph}`
+        return `${modeEntry}/${linkBaseEntry}/${atomParam}${graph}`
     }
 
     return {
@@ -51,6 +55,7 @@ export const useRawDataParam = () => {
         graphType,
         isGraph,
         linkBase,
+        mode,
         getAddress,
     }
 }

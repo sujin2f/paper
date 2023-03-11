@@ -160,7 +160,7 @@ export type ReturnTypeEther = {
 
 export type Param = { number: number; ion: number; term?: string }
 
-export type GraphType = 'diff' | 'correction' | 'multi-correction' | 'percent'
+export type GraphType = 'rydberg' | 'diff' | 'Nth' | '%' | 'f'
 export type LinkBaseType = 'raw-data' | 'orbital' | 'ether'
 
 export type URLParam = {
