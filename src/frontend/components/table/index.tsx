@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react'
 import { RowGroup } from 'src/frontend/components/table/RowGroup'
-import { ContainerAbstract } from 'src/model/ContainerAbstract'
+import { Container } from 'src/model/Container'
 
 type Props = {
-    data: ContainerAbstract
+    data: Container
 }
 
 export const Table = (props: Props): JSX.Element => {
@@ -12,13 +12,16 @@ export const Table = (props: Props): JSX.Element => {
     if (!data) {
         return <Fragment></Fragment>
     }
-    const cols = data.columns
 
     return (
         <div className="table-scroll">
             <table className="unstriped">
-                {data.map((row, rowIndex) => (
-                    <RowGroup key={`${rowIndex}-thead`} row={row} cols={cols} />
+                {data.items.map((row, rowIndex) => (
+                    <RowGroup
+                        key={`${rowIndex}-thead`}
+                        row={row}
+                        cols={data.length}
+                    />
                 ))}
             </table>
         </div>

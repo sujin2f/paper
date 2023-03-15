@@ -1,15 +1,9 @@
-import { RowAbstract } from 'src/model/RowAbstract'
-
 type Type = {
     type: string
 }
 
 export type State = {
     digit: number
-    shift: number
-    render: number
-    start: number
-    cart: RowAbstract[]
     visible: {
         orbital: boolean
         ether: boolean
@@ -22,10 +16,6 @@ export type State = {
 
 export type Action = {
     digit?: number
-    shift?: number
-    render?: number
-    start?: number
-    cart?: RowAbstract[]
     orbital?: boolean
     ether?: boolean
     rydberg?: boolean

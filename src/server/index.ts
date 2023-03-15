@@ -22,7 +22,6 @@ if (['production', 'stage'].includes(nodeEnv)) {
 import { mongoConnect } from 'src/utils/mongo/connect'
 import { staticRouter } from 'src/server/routes/static'
 import { graphqlRouter } from 'src/server/routes/graphql'
-import { isDev } from 'src/utils/environment'
 /* eslint-enable import/first */
 
 /**
@@ -40,43 +39,11 @@ const server = http.createServer(app)
 let port: number = 8080
 switch (nodeEnv) {
     case 'development':
-        port = 8080
+        port = 80
         break
     default:
         port = 80
         break
-}
-
-if (!isDev) {
-    const ConnectMongoDBSession = require('connect-mongodb-session')
-    const session = require('express-session')
-    const authRouter = require('src/server/routes/auth').authRouter
-    /**
-     * Session
-     */
-    const MongoDBStore = ConnectMongoDBSession(session)
-    const store = new MongoDBStore({
-        uri: process.env.MONGO_URI || '',
-        collection: 'sessions',
-    })
-    store.on('error', (e: Error) => {
-        console.log(e)
-    })
-
-    const sessionMiddleware = session({
-        secret: process.env.SESSION_SECRET || '',
-        cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 365 * 100, // 100 years
-        },
-        store,
-        // Boilerplate options, see:
-        // * https://www.npmjs.com/package/express-session#resave
-        // * https://www.npmjs.com/package/express-session#saveuninitialized
-        resave: true,
-        saveUninitialized: true,
-    })
-    app.use(sessionMiddleware)
-    app.use('/auth', authRouter)
 }
 
 app.use('/graphql', graphqlRouter)

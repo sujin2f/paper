@@ -6,20 +6,11 @@ import {
     SET_DIFF,
     SET_NTH,
     SET_PERCENT,
-    SET_SHIFT,
-    SET_START,
-    ADD_CART,
-    REMOVE_CART,
-    REFRESH,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
 export const initialState: State = {
     digit: 4,
-    shift: 0,
-    render: 0,
-    start: 0,
-    cart: [],
     visible: {
         orbital: true,
         ether: true,
@@ -93,38 +84,6 @@ export const reducer = (state: State = initialState, action: Action): State => {
                     ...state.visible,
                     percent: action.percent!,
                 },
-            }
-        }
-        case SET_SHIFT: {
-            return {
-                ...state,
-                shift: action.shift!,
-            }
-        }
-        case SET_START: {
-            return {
-                ...state,
-                start: action.start!,
-            }
-        }
-        case ADD_CART: {
-            return {
-                ...state,
-                cart: [...state.cart, ...action.cart!],
-            }
-        }
-        case REMOVE_CART: {
-            return {
-                ...state,
-                cart: state.cart.filter(
-                    (item) => action.cart!.indexOf(item) === -1,
-                ),
-            }
-        }
-        case REFRESH: {
-            return {
-                ...state,
-                render: state.render + 1,
             }
         }
         default: {

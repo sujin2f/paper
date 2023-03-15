@@ -1,28 +1,22 @@
 import { useLocation, useParams } from 'react-router-dom'
-import { GraphType, LinkBaseType, URLParam } from 'src/types/raw-data'
+import { GraphType, DataType, URLParam } from 'src/types/data'
 import { getAtom } from 'src/utils/atom'
 
-export const useRawDataParam = () => {
+export const useURLParam = () => {
     const location = useLocation()
-    const { atom, graphType: graphTypeParam } = useParams<URLParam>()
+    const { dataType, atom, graphType: graphTypeParam } = useParams<URLParam>()
     const [numberParam, ionParam, termParam] = atom ? atom.split('+') : []
-    let linkBase = ''
 
     const atomNumber = parseInt(numberParam || '1', 10)
     const ion = parseInt(ionParam || '1', 10)
     const term = termParam || ''
     const graphType = graphTypeParam || '%'
     const isGraph = location.pathname.indexOf('/graph') !== -1
-    linkBase =
-        location.pathname.indexOf('/raw-data') !== -1 ? 'raw-data' : linkBase
-    linkBase =
-        location.pathname.indexOf('/orbital') !== -1 ? 'orbital' : linkBase
-    linkBase = location.pathname.indexOf('/ether') !== -1 ? 'ether' : linkBase
     const mode =
         location.pathname.indexOf('/equation') !== -1 ? '/equation' : ''
 
     const getAddress = (param: {
-        linkBase?: LinkBaseType
+        dataType?: DataType
         number?: number
         ion?: number
         term?: string
@@ -30,7 +24,7 @@ export const useRawDataParam = () => {
         graphType?: GraphType
         mode?: string
     }): string => {
-        const linkBaseEntry = param.linkBase || linkBase
+        const linkBaseEntry = param.dataType || dataType
         const numberEntry = param.number || atomNumber
         const ionEntry = param.ion !== undefined ? param.ion : ion
         const termEntry = param.term !== undefined ? param.term : term
@@ -48,13 +42,13 @@ export const useRawDataParam = () => {
     }
 
     return {
+        dataType: dataType as DataType,
+        graphType: graphType as GraphType,
         atomNumber,
         ion,
         term: encodeURIComponent(term),
         atom: getAtom(atomNumber),
-        graphType,
         isGraph,
-        linkBase,
         mode,
         getAddress,
     }

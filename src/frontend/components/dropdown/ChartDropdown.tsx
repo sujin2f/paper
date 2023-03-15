@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
+import { useURLParam } from 'src/frontend/hooks/useURLParam'
 
 export const ChartDropdown = (): JSX.Element => {
-    const { isGraph, graphType, getAddress } = useRawDataParam()
+    const { isGraph, graphType, getAddress } = useURLParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
 
@@ -44,40 +44,6 @@ export const ChartDropdown = (): JSX.Element => {
                             type="button"
                         >
                             %
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'f'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={getAddress({
-                                isGraph: true,
-                                graphType: 'f',
-                            })}
-                            type="button"
-                        >
-                            f(x)
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'diff'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={getAddress({
-                                isGraph: true,
-                                graphType: 'diff',
-                            })}
-                            type="button"
-                        >
-                            Diff
                         </Link>
                     </li>
                 </ul>

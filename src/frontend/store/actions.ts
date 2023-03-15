@@ -1,4 +1,3 @@
-import { RowAbstract } from 'src/model/RowAbstract'
 import { Action } from 'src/types/store'
 
 export const SET_DIGIT = 'ether/v1/SET_DIGIT'
@@ -8,23 +7,11 @@ export const SET_RYDBERG = 'ether/v1/SET_RYDBERG'
 export const SET_DIFF = 'ether/v1/SET_DIFF'
 export const SET_NTH = 'ether/v1/SET_NTH'
 export const SET_PERCENT = 'ether/v1/SET_PERCENT'
-export const SET_SHIFT = 'ether/v1/SET_SHIFT'
-export const SET_START = 'ether/v1/SET_START'
-export const ADD_CART = 'ether/v1/ADD_CART'
-export const REMOVE_CART = 'ether/v1/REMOVE_CART'
-export const REFRESH = 'ether/v1/REFRESH'
 
 export const setDigit = (digit: number): Action => {
     return {
         type: SET_DIGIT,
         digit,
-    }
-}
-
-export const setStart = (start: number): Action => {
-    return {
-        type: SET_START,
-        start,
     }
 }
 
@@ -67,32 +54,5 @@ export const setPercent = (percent: boolean): Action => {
     return {
         type: SET_PERCENT,
         percent,
-    }
-}
-
-export const setShift = (shift: number): Action => {
-    return {
-        type: SET_SHIFT,
-        shift,
-    }
-}
-
-export const addCart = (cart: RowAbstract[]): Action => {
-    return {
-        type: ADD_CART,
-        cart,
-    }
-}
-
-export const removeCart = (cart: RowAbstract[]): Action => {
-    return {
-        type: REMOVE_CART,
-        cart,
-    }
-}
-
-export const refresh = (): Action => {
-    return {
-        type: REFRESH,
     }
 }

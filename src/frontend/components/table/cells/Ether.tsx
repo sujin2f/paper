@@ -1,33 +1,33 @@
-import React, { useContext } from 'react'
-import { RowAbstract } from 'src/model/RowAbstract'
-import { Context, ContextType } from 'src/frontend/store'
+import React from 'react'
+import { Row } from 'src/model/Row'
 
 type Props = {
-    row: RowAbstract
-    cols: number[]
+    row: Row
+    cols: number
 }
 
 export const Ether = (props: Props): JSX.Element => {
     const { row, cols } = props
-    const [{ start }] = useContext(Context) as ContextType
 
     return (
         <tr className="border__bottom">
             <th className="align__right">Ether</th>
-            {cols.map((_, index) => {
-                const ether = row.items[index + start]
-                    ? row.items[index + start]!.ether
-                    : ''
+            {Array(cols)
+                .fill('')
+                .map((_, index) => {
+                    const ether = row.items[index]
+                        ? row.items[index]!.ether
+                        : ''
 
-                return (
-                    <th
-                        key={`${row.label}-ether-${index}`}
-                        className="align__center"
-                    >
-                        {ether}
-                    </th>
-                )
-            })}
+                    return (
+                        <th
+                            key={`${row.label}-ether-${index}`}
+                            className="align__center"
+                        >
+                            {ether}
+                        </th>
+                    )
+                })}
         </tr>
     )
 }

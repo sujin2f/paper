@@ -3,14 +3,15 @@ import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
 import { Header } from 'src/frontend/components/header/data'
 import { Link } from 'react-router-dom'
-import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
-import { useRawData } from 'src/frontend/hooks/useRawData'
+import { useURLParam } from 'src/frontend/hooks/useURLParam'
+import { useData } from 'src/frontend/hooks/useData'
 import { Chart } from 'src/frontend/components/Chart'
 import { Table } from 'src/frontend/components/table'
 
-export const RawData = (): JSX.Element => {
-    const { atom, atomNumber, ion, term } = useRawDataParam()
-    const { data, loading, error } = useRawData({
+export const Data = (): JSX.Element => {
+    const { dataType, atom, atomNumber, ion, term } = useURLParam()
+    const { data, loading, error } = useData({
+        dataType,
         number: atomNumber,
         ion,
         term,
@@ -31,10 +32,6 @@ export const RawData = (): JSX.Element => {
         )
     }
 
-    if (error) {
-        return <Fragment>404</Fragment>
-    }
-
     if (loading) {
         return <Fragment>Loading</Fragment>
     }
@@ -51,10 +48,13 @@ export const RawData = (): JSX.Element => {
                 </Column>
             </Row>
             <Row>
-                <Column>
-                    <Chart data={data} />
-                    <Table data={data} />
-                </Column>
+                {error && <Fragment>404</Fragment>}
+                {!error && (
+                    <Column>
+                        <Chart data={data} />
+                        <Table data={data} />
+                    </Column>
+                )}
             </Row>
         </Fragment>
     )
