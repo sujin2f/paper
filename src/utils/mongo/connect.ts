@@ -13,7 +13,7 @@ export const mongoConnect = async (): Promise<typeof mongoose> => {
         .then((db) => {
             return db
         })
-        .catch(() => {
-            throw new Error('')
+        .catch((e) => {
+            throw new Error(e)
         })
 }

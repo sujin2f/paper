@@ -48,6 +48,23 @@ export class Item {
         return this.rydberg - (this.prev?.rydberg || 0)
     }
 
+    public get weightRydberg() {
+        let weight = 0
+        if (this.number - this.ion === 2) {
+            weight =
+                0.0001525 * Math.pow(this.ion, 4) -
+                0.000821666833333 * Math.pow(this.ion, 3) +
+                0.74802250025 * Math.pow(this.ion, 2) +
+                1.32093876558 * this.ion +
+                0.150144001
+        }
+        return this.rydberg + weight
+    }
+
+    public get weightDiff() {
+        return this.weightRydberg - (this.prev?.weightRydberg || 0)
+    }
+
     public get ether() {
         const linear = orbitalKeys.indexOf(this.orbital)
         const radial = this.position - linear - 1
@@ -69,11 +86,41 @@ export class Item {
     }
 
     public get percent() {
-        return this.parent!.parent!.getPercent(this)
+        return (this.weightDiff / this.nth) * 100
+    }
+
+    // public get nth() {
+    //     return this.parent!.parent!.getNthDiff(this)
+    // }
+
+    private get i() {
+        return (
+            0.0000833333333333 * Math.pow(this.ion, 3) -
+            0.000625 * Math.pow(this.ion, 2) +
+            1.00180566667 * this.ion -
+            0.0013971
+        )
+    }
+
+    private get x() {
+        return 0.7515 * this.ion + 0.056
     }
 
     public get nth() {
-        return this.parent!.parent!.getNthDiff(this)
+        if (!this.weightRydberg) {
+            return NaN
+        }
+        if (this.prev?.weightRydberg) {
+            return this.getNth(this.position) - this.getNth(this.position - 1)
+        }
+        return this.getNth(this.position)
+    }
+
+    private getNth(position: number) {
+        return (
+            Math.pow(this.i, 2) * (1 - 1 / Math.pow(position, 2)) +
+            (this.number - this.ion) * this.x
+        )
     }
 
     public get conf() {

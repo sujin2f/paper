@@ -4,16 +4,12 @@ import path from 'path'
 import moduleAlias from 'module-alias'
 import http from 'http'
 
-const nodeEnv = process.env.NODE_ENV || ''
-const rootDir =
-    nodeEnv === 'development'
-        ? path.resolve(__dirname, '../../../')
-        : path.resolve(__dirname, '../../../')
-
-export const baseDir = path.resolve(rootDir, '.build', nodeEnv)
+const nodeEnv = process.env.NODE_ENV as string
+const rootDir = path.resolve(__dirname, '../../../')
+const baseDir = path.resolve(rootDir, '.build', nodeEnv)
 
 // Alias
-if (['production', 'stage'].includes(nodeEnv)) {
+if (['production'].includes(nodeEnv)) {
     moduleAlias.addAlias('src', baseDir)
     moduleAlias()
 }
@@ -29,7 +25,9 @@ import { graphqlRouter } from 'src/server/routes/graphql'
  */
 const envPath =
     nodeEnv === 'development'
-        ? undefined
+        ? path.resolve(__dirname, '../', '../', `.env`)
+        : nodeEnv === 'stage'
+        ? path.resolve(__dirname, '../', '../', `.env.${nodeEnv}`)
         : path.resolve(__dirname, '../', '../', '../', `.env.${nodeEnv}`)
 dotEnvConfig({ path: envPath })
 
@@ -39,7 +37,7 @@ const server = http.createServer(app)
 let port: number = 8080
 switch (nodeEnv) {
     case 'development':
-        port = 80
+        port = 8080
         break
     default:
         port = 80
@@ -52,5 +50,7 @@ app.use('/', staticRouter)
 // Go!
 server.listen(port, () => {
     console.log(`🤩 Server started at http://localhost:${port}`)
-    mongoConnect().then(() => console.log('🤩 Mongo DB connected'))
+    mongoConnect()
+        .then(() => console.log('🤩 Mongo DB connected'))
+        .catch(() => true)
 })
