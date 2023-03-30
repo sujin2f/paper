@@ -25,6 +25,7 @@
         "pretty": "yarn prettier -w ./src"
     },
     "dependencies": {
+        "connect-timeout": "^1.9.0",
         "https": "^1.0.0"
     },
     "devDependencies": {
