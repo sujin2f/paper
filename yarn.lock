@@ -2898,6 +2898,13 @@
     "@types/express-serve-static-core" "*"
     "@types/node" "*"
 
+"@types/connect-timeout@^0.0.36":
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/@types/connect-timeout/-/connect-timeout-0.0.36.tgz#24948cd6df330f41c6e1be031ead92c785a6c5e0"
+  integrity sha512-rfw+RJU9gd0JeOJSkfRVixCETnw1ezx6Uo3exetKBeIKY4GaL/MVb4XCjmB4dgeZQ5vkcLlpYLVSbYIeqDu25g==
+  dependencies:
+    "@types/express" "*"
+
 "@types/connect@*":
   version "3.4.35"
   resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.35.tgz#5fcf6ae445e4021d1fc2219a4873cc73a3bb2ad1"
