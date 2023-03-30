@@ -1,64 +1,45 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
-import { setDigit, setShift, setStart } from 'src/frontend/store/actions'
+import { setDigit, setI, setX } from 'src/frontend/store/actions'
+import { Container } from 'src/model/Container'
 
-export const HeaderRight = (): JSX.Element => {
-    const [{ digit, shift, start }, dispatch] = useContext(
-        Context,
-    ) as ContextType
-    const startRef = useRef<HTMLInputElement>(null)
+type Props = {
+    data: Container
+}
+
+export const HeaderRight = (props: Props): JSX.Element => {
+    const [{ digit, i, x }, dispatch] = useContext(Context) as ContextType
 
     return (
         <div className="top-bar-right">
             <ul className="menu">
                 <li>
                     <input
-                        className="row-header__start"
                         type="number"
-                        ref={startRef}
-                        placeholder="Start"
-                        onChange={() => {
-                            const value = !startRef.current?.value
-                                ? 0
-                                : parseInt(startRef.current?.value, 10)
-                            dispatch(setStart(value))
+                        className=""
+                        onChange={(e) => {
+                            let value = parseFloat(e.target.value)
+                            if (!value) {
+                                value = NaN
+                            }
+                            dispatch(setI(value))
                         }}
-                        defaultValue={start}
-                        min={0}
+                        defaultValue={isNaN(i) ? props.data.i : i}
                     />
                 </li>
                 <li>
-                    <button
-                        type="button"
-                        className="button small"
-                        onClick={() => {
-                            dispatch(setShift(shift - 1))
+                    <input
+                        type="number"
+                        className=""
+                        onChange={(e) => {
+                            let value = parseFloat(e.target.value)
+                            if (!value) {
+                                value = NaN
+                            }
+                            dispatch(setX(value))
                         }}
-                    >
-                        &lt;
-                    </button>
-                </li>
-                <li>
-                    <button
-                        type="button"
-                        className="button small"
-                        onClick={() => {
-                            dispatch(setShift(0))
-                        }}
-                    >
-                        0
-                    </button>
-                </li>
-                <li>
-                    <button
-                        type="button"
-                        className="button small"
-                        onClick={() => {
-                            dispatch(setShift(shift + 1))
-                        }}
-                    >
-                        &gt;
-                    </button>
+                        defaultValue={isNaN(x) ? props.data.x : x}
+                    />
                 </li>
                 <li>
                     <button

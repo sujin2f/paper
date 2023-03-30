@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
+import { useURLParam } from 'src/frontend/hooks/useURLParam'
 
 export const ChartDropdown = (): JSX.Element => {
-    const { isGraph, graphType, getAddress } = useRawDataParam()
+    const { isGraph, graphType, getAddress } = useURLParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
 
@@ -26,12 +26,12 @@ export const ChartDropdown = (): JSX.Element => {
                 <ul className="menu vertical" ref={dropdown}>
                     <li className={!isGraph ? 'link-base current' : ''}>
                         <Link to={getAddress({ isGraph: false })} type="button">
-                            None
+                            X
                         </Link>
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'percent'
+                            isGraph && graphType === '%'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -39,16 +39,16 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'percent',
+                                graphType: '%',
                             })}
                             type="button"
                         >
-                            Percent
+                            %
                         </Link>
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'diff'
+                            isGraph && graphType === '%float'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -56,16 +56,16 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'diff',
+                                graphType: '%float',
                             })}
                             type="button"
                         >
-                            Diff
+                            % Float
                         </Link>
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'correction'
+                            isGraph && graphType === '%base'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -73,16 +73,16 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'correction',
+                                graphType: '%base',
                             })}
                             type="button"
                         >
-                            +Correction
+                            % Base
                         </Link>
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'correction'
+                            isGraph && graphType === 'coordinate'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -90,11 +90,11 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'multi-correction',
+                                graphType: 'coordinate',
                             })}
                             type="button"
                         >
-                            *Correction
+                            Coordinate
                         </Link>
                     </li>
                 </ul>

@@ -1,14 +1,14 @@
 import React, { Fragment, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
-import { ContainerAbstract } from 'src/model/ContainerAbstract'
+import { useURLParam } from 'src/frontend/hooks/useURLParam'
+import { Container } from 'src/model/Container'
 
 type Props = {
-    data: ContainerAbstract
+    data: Container
 }
 
 export const TermDropdown = (props: Props): JSX.Element => {
-    const { linkBase, term, getAddress } = useRawDataParam()
+    const { dataType, term, getAddress } = useURLParam()
     const { data } = props
 
     const [showOptions, setShowOptions] = useState<boolean>(false)
@@ -20,7 +20,7 @@ export const TermDropdown = (props: Props): JSX.Element => {
 
     return (
         <Fragment>
-            {linkBase !== 'raw-data' && data && (
+            {dataType !== 'raw-data' && data && (
                 <li>
                     <Link
                         to="#"
@@ -33,7 +33,7 @@ export const TermDropdown = (props: Props): JSX.Element => {
                     </Link>
                     {showOptions && (
                         <ul className="menu vertical" ref={dropdown}>
-                            {data.entries.map((entry) => {
+                            {/* {data.entries.map((entry) => {
                                 return (
                                     <li
                                         key={`term-selector-${entry.encodeURI}`}
@@ -53,7 +53,7 @@ export const TermDropdown = (props: Props): JSX.Element => {
                                         </Link>
                                     </li>
                                 )
-                            })}
+                            })} */}
                         </ul>
                     )}
                 </li>

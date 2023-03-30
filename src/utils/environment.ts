@@ -5,12 +5,16 @@
 import path from 'path'
 import fs from 'fs'
 
-export const isDev = process.env.NODE_ENV === 'development'
+export const isDev =
+    process.env.NODE_ENV === 'development' ||
+    (process.env.NODE_ENV as string) === 'stage'
 
 export const rootDir = isDev
     ? path.resolve(__dirname, '../../')
     : path.resolve(__dirname, '../../../')
 export const publicDir = path.resolve(rootDir, 'public')
+
+console.log(rootDir)
 
 export const baseDir = path.resolve(
     rootDir,

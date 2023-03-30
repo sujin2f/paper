@@ -5,32 +5,23 @@ import {
     SET_RYDBERG,
     SET_DIFF,
     SET_NTH,
-    SET_PERCENT_POINT,
     SET_PERCENT,
-    SET_COLLECTION,
-    SET_SHIFT,
-    SET_START,
-    ADD_CART,
-    REMOVE_CART,
-    REFRESH,
+    SET_I,
+    SET_X,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
 export const initialState: State = {
+    i: NaN,
+    x: NaN,
     digit: 4,
-    shift: 0,
-    render: 0,
-    start: 0,
-    cart: [],
     visible: {
         orbital: true,
         ether: true,
         rydberg: true,
         diff: true,
         nth: true,
-        percentPoint: true,
         percent: true,
-        correction: true,
     },
 }
 
@@ -90,15 +81,6 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 },
             }
         }
-        case SET_PERCENT_POINT: {
-            return {
-                ...state,
-                visible: {
-                    ...state.visible,
-                    percentPoint: action.percentPoint!,
-                },
-            }
-        }
         case SET_PERCENT: {
             return {
                 ...state,
@@ -108,45 +90,16 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 },
             }
         }
-        case SET_COLLECTION: {
+        case SET_I: {
             return {
                 ...state,
-                visible: {
-                    ...state.visible,
-                    correction: action.correction!,
-                },
+                i: action.i || NaN,
             }
         }
-        case SET_SHIFT: {
+        case SET_X: {
             return {
                 ...state,
-                shift: action.shift!,
-            }
-        }
-        case SET_START: {
-            return {
-                ...state,
-                start: action.start!,
-            }
-        }
-        case ADD_CART: {
-            return {
-                ...state,
-                cart: [...state.cart, ...action.cart!],
-            }
-        }
-        case REMOVE_CART: {
-            return {
-                ...state,
-                cart: state.cart.filter(
-                    (item) => action.cart!.indexOf(item) === -1,
-                ),
-            }
-        }
-        case REFRESH: {
-            return {
-                ...state,
-                render: state.render + 1,
+                x: action.x || NaN,
             }
         }
         default: {

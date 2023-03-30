@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { romanize } from 'src/common/utils/number'
-import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
+import { useURLParam } from 'src/frontend/hooks/useURLParam'
 import { getAtom } from 'src/utils/atom'
-import { ContainerAbstract } from 'src/model/ContainerAbstract'
+import { Container } from 'src/model/Container'
 
 import { Info } from 'src/frontend/components/modal/Info'
 import { PeriodicTable } from 'src/frontend/components/modal/PeriodicTable'
@@ -15,11 +15,11 @@ import { OptionDropdown } from 'src/frontend/components/dropdown/OptionDropdown'
 import { TermDropdown } from 'src/frontend/components/dropdown/TermDropdown'
 
 type Props = {
-    data: ContainerAbstract
+    data: Container
 }
 
 export const Header = (props: Props): JSX.Element => {
-    const { atom, atomNumber, ion, linkBase, getAddress } = useRawDataParam()
+    const { atom, atomNumber, ion, dataType, getAddress } = useURLParam()
 
     if (!atom) {
         return <Fragment></Fragment>
@@ -81,12 +81,12 @@ export const Header = (props: Props): JSX.Element => {
 
                         <li
                             className={`link-base ${
-                                linkBase === 'raw-data' ? 'current' : ''
+                                dataType === 'raw-data' ? 'current' : ''
                             }`}
                         >
                             <Link
                                 to={getAddress({
-                                    linkBase: 'raw-data',
+                                    dataType: 'raw-data',
                                     term: '',
                                 })}
                             >
@@ -95,12 +95,12 @@ export const Header = (props: Props): JSX.Element => {
                         </li>
                         <li
                             className={`link-base ${
-                                linkBase === 'orbital' ? 'current' : ''
+                                dataType === 'orbital' ? 'current' : ''
                             }`}
                         >
                             <Link
                                 to={getAddress({
-                                    linkBase: 'orbital',
+                                    dataType: 'orbital',
                                 })}
                             >
                                 Orbital
@@ -108,12 +108,12 @@ export const Header = (props: Props): JSX.Element => {
                         </li>
                         <li
                             className={`link-base ${
-                                linkBase === 'ether' ? 'current' : ''
+                                dataType === 'ether' ? 'current' : ''
                             }`}
                         >
                             <Link
                                 to={getAddress({
-                                    linkBase: 'ether',
+                                    dataType: 'ether',
                                 })}
                             >
                                 Ether
@@ -125,7 +125,7 @@ export const Header = (props: Props): JSX.Element => {
                         <ChartDropdown />
                     </ul>
                 </nav>
-                <HeaderRight />
+                <HeaderRight data={props.data} />
             </div>
         </Fragment>
     )

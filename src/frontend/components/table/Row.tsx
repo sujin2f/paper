@@ -1,68 +1,56 @@
-import React, { Fragment, useContext } from 'react'
-
+import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
-
-import { Ether } from './cells/Ether'
-import { Orbital } from './cells/Orbital'
-import { Rydberg } from './cells/Rydberg'
-import { Diff } from './cells/Diff'
-import { Nth } from './cells/Nth'
-import { PlusCorrection } from './cells/PlusCorrection'
-import { MultiCorrection } from './cells/MultiCorrection'
-import { PercentPoint } from './cells/PercentPoint'
-import { Percent } from './cells/Percent'
-import { RowAbstract } from 'src/model/RowAbstract'
-import { RowHeader } from './RowHeader'
+import { Row as RowModel } from 'src/model/Row'
 
 type Props = {
-    cols: number[]
-    row: RowAbstract
+    cell: 'rydberg' | 'diff' | 'Nth' | '%' | '% Float' | '% Base'
+    row: RowModel
+    cols: number
 }
 
 export const Row = (props: Props): JSX.Element => {
-    const [
-        {
-            visible: {
-                orbital,
-                ether,
-                rydberg,
-                diff,
-                nth,
-                correction,
-                percent,
-                percentPoint,
-            },
-            start,
-        },
-    ] = useContext(Context) as ContextType
-    const { cols, row } = props
-    const colsAdjust = cols.slice(start)
+    const { row, cols, cell } = props
+    const [{ digit }] = useContext(Context) as ContextType
 
     return (
-        <Fragment>
-            <thead>
-                <tr className="table__header">
-                    <th className="align__right">{row.label}</th>
-                    <td colSpan={colsAdjust.length + 1}>
-                        <RowHeader row={row} />
-                    </td>
-                </tr>
-                {orbital && <Orbital cols={colsAdjust} row={row} />}
-                {ether && <Ether cols={colsAdjust} row={row} />}
-            </thead>
-            <tbody>
-                {rydberg && <Rydberg cols={colsAdjust} row={row} />}
-                {diff && <Diff cols={colsAdjust} row={row} />}
-                {correction && (
-                    <Fragment>
-                        <PlusCorrection cols={colsAdjust} row={row} />
-                        <MultiCorrection cols={colsAdjust} row={row} />
-                    </Fragment>
-                )}
-                {nth && <Nth cols={colsAdjust} row={row} />}
-                {percentPoint && <PercentPoint cols={colsAdjust} row={row} />}
-                {percent && <Percent cols={colsAdjust} row={row} />}
-            </tbody>
-        </Fragment>
+        <tr className="border__bottom">
+            <th className="align__right">{cell}</th>
+            {Array(cols)
+                .fill('')
+                .map((_, index) => {
+                    const item = row.items[index]
+                    let value = NaN
+                    if (item) {
+                        switch (cell) {
+                            case 'rydberg':
+                                value = item.rydberg
+                                break
+                            case 'diff':
+                                value = item.diff
+                                break
+                            case 'Nth':
+                                value = item.nth
+                                break
+                            case '%':
+                                value = item.percent
+                                break
+                            case '% Float':
+                                value = item.percentFloat
+                                break
+                            case '% Base':
+                                value = item.percentBase
+                                break
+                        }
+                    }
+                    return (
+                        <td
+                            key={`${row.label}-${cell}-${index}`}
+                            className="align__right"
+                        >
+                            {!isNaN(value) && value.toFixed(digit)}
+                        </td>
+                    )
+                })}
+        </tr>
     )
 }

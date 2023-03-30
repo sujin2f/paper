@@ -7,25 +7,14 @@ import {
     setNth,
     setOrbital,
     setPercent,
-    setPercentPoint,
     setRydberg,
-    setCorrection,
 } from 'src/frontend/store/actions'
 
 export const OptionDropdown = (): JSX.Element => {
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const [
         {
-            visible: {
-                orbital,
-                ether,
-                rydberg,
-                diff,
-                nth,
-                percentPoint,
-                percent,
-                correction,
-            },
+            visible: { orbital, ether, rydberg, diff, nth, percent },
         },
         dispatch,
     ] = useContext(Context) as ContextType
@@ -106,21 +95,6 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setCorrection(!correction))
-                            }}
-                            className={
-                                correction ? '' : 'view-option__unselected'
-                            }
-                        >
-                            ✔ Weight
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="#"
-                            type="button"
-                            onClick={(e) => {
-                                e.stopPropagation()
                                 dispatch(setNth(!nth))
                             }}
                             className={nth ? '' : 'view-option__unselected'}
@@ -138,22 +112,7 @@ export const OptionDropdown = (): JSX.Element => {
                             }}
                             className={percent ? '' : 'view-option__unselected'}
                         >
-                            ✔ %p
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="#"
-                            type="button"
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                dispatch(setPercentPoint(!percentPoint))
-                            }}
-                            className={
-                                percentPoint ? '' : 'view-option__unselected'
-                            }
-                        >
-                            ✔ %p
+                            ✔ %
                         </Link>
                     </li>
                 </ul>
