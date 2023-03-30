@@ -7,6 +7,8 @@ export const SET_RYDBERG = 'ether/v1/SET_RYDBERG'
 export const SET_DIFF = 'ether/v1/SET_DIFF'
 export const SET_NTH = 'ether/v1/SET_NTH'
 export const SET_PERCENT = 'ether/v1/SET_PERCENT'
+export const SET_I = 'ether/v1/SET_I'
+export const SET_X = 'ether/v1/SET_X'
 
 export const setDigit = (digit: number): Action => {
     return {
@@ -54,5 +56,19 @@ export const setPercent = (percent: boolean): Action => {
     return {
         type: SET_PERCENT,
         percent,
+    }
+}
+
+export const setI = (i: number): Action => {
+    return {
+        type: SET_I,
+        i,
+    }
+}
+
+export const setX = (x: number): Action => {
+    return {
+        type: SET_X,
+        x,
     }
 }

@@ -5,6 +5,7 @@ import { Row } from 'src/model/Row'
 import { Item } from './Item'
 import { orbitalKeys } from 'src/constants/orbital'
 import { Nullable } from 'src/types/common'
+import { periodicTable } from 'src/constants/periodic-table'
 
 type ChartData = {
     labels: number[]
@@ -14,8 +15,8 @@ type ChartData = {
 export class Container {
     public length: number = 0
     public items: Row[] = []
-    private baseRadial: Nullable<Row>
-    private baseLinear: Nullable<Row>
+    public baseRadial: Nullable<Row>
+    public baseLinear: Nullable<Row>
     private baseZero: Nullable<Row>
     private ion: number = 0
     private number: number = 0
@@ -183,18 +184,29 @@ export class Container {
         this.baseZero = this.items.filter((item) => item.first.rydberg === 0)[0]
     }
 
-    public chart(graphType: GraphType): ChartData {
+    public chart(graphType: GraphType, i: number, x: number): ChartData {
+        this.i = i
+        this.x = x
         const datasets = this.items.map((row, index) => {
             const data: number[] = row.items.map((item) => {
                 let value
                 switch (graphType) {
+                    case '%float':
+                        value = item ? item.percentFloat : NaN
+                        break
+                    case '%base':
+                        value = item ? item.percentBase : NaN
+                        break
+                    case 'coordinate':
+                        value = item ? item.coordinate : NaN
+                        break
                     default:
                         value = item ? item.percent : NaN
                 }
                 return value
             })
 
-            const result = {
+            const result: ChartDataset<'line', DefaultDataPoint<'line'>> = {
                 label: row.label,
                 data,
                 fill: false,
@@ -218,105 +230,26 @@ export class Container {
         }
     }
 
-    public getPercent(item: Item) {
-        const nthDiff = this.getNthDiff(item)
-        if (isNaN(nthDiff)) {
-            return NaN
-        }
-        const percent = (item.diff / nthDiff) * 100
-        if (!percent || !isFinite(percent)) {
-            return NaN
-        }
-        return percent
+    private _i: number = NaN
+    public get i() {
+        const i = periodicTable.elements[this.number - 1].i || []
+        return this._i || i[this.ion - 1] || 0
+    }
+    public set i(i: number) {
+        this._i = i
     }
 
-    private getNth(item: Item) {
-        if (!item || !this.baseZero?.first.position) {
-            return NaN
-        }
-
-        let firstItem: Nullable<Item> = item.parent?.first
-
-        if (item.parent === this.baseZero) {
-            firstItem = item.parent.first.next
-        } else {
-            firstItem = item.parent?.first
-        }
-
-        if (this.baseZero.first.position >= (firstItem?.position || 0)) {
-            firstItem = firstItem?.next
-        }
-
-        if (!firstItem) {
-            return item.diff
-        }
-
-        // let base: Row = this.baseRadial!
-
-        // if (item.orbital === 's' && !this.baseRadial) {
-        //     return 0
-        // } else if (item.orbital !== 's' && !this.baseLinear) {
-        //     return 0
-        // } else if (item.orbital === 's') {
-        //     base = this.baseRadial!
-        // } else if (item.orbital !== 's') {
-        //     base = this.baseLinear!
-        // }
-
-        const position = item.position
-        const zeroPosition = this.baseZero!.first.position
-
-        if (position === zeroPosition) {
-            return item.diff
-        }
-
-        const shift = this.baseZero?.first.position > 1 ? this.firstPoint : 0
-
-        return (
-            this.peakPoint -
-            Math.pow(
-                item.ion /
-                    (position -
-                        1 +
-                        item.ion /
-                            Math.sqrt(
-                                this.peakPoint - (firstItem.rydberg + shift),
-                            ) -
-                        (firstItem.position - 1)),
-                2,
-            ) -
-            shift
-        )
+    private _x: number = NaN
+    public get x() {
+        const x = periodicTable.elements[this.number - 1].x || []
+        return this._x || x[this.ion - 1] || 0
     }
-
-    public getNthDiff(item: Item) {
-        if (item.prev) {
-            return this.getNth(item) - this.getNth(item.prev)
-        }
-        return this.getNth(item)
-    }
-
-    private get peakPoint() {
-        const ion = this.ion
-        const z = this.number
-        return (
-            -0.000399760975 * Math.pow(ion, 3) +
-            (0.235627110955 + 0.000399760975 * z) * Math.pow(ion, 2) +
-            (0.766870826545 * z - 0.049828209935) * ion +
-            0.042330397435 * z +
-            0.004439875
-        )
-    }
-
-    private get firstPoint() {
-        const ion = this.ion
-        const z = this.number
-        return (
-            0.000113677685 * Math.pow(ion, 3) +
-            (0.079662445659 + 0.000113677685 * z) * Math.pow(ion, 2) +
-            (0.672102345996 * z - 0.0695721690208) * ion +
-            0.0643857576048 * z +
-            0.0030203673552
-        )
+    // 1.5598
+    // 2.311
+    // 3.0615
+    // 3.807
+    // 4.56
+    public set x(x: number) {
+        this._x = x
     }
 }

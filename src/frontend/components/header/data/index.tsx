@@ -125,7 +125,7 @@ export const Header = (props: Props): JSX.Element => {
                         <ChartDropdown />
                     </ul>
                 </nav>
-                <HeaderRight />
+                <HeaderRight data={props.data} />
             </div>
         </Fragment>
     )

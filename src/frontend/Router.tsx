@@ -8,7 +8,6 @@ import { Intro } from 'src/frontend/scenes/doc/Intro'
 import { Hypothesis } from 'src/frontend/scenes/doc/Hypothesis'
 import { ClassicPhysics } from 'src/frontend/scenes/doc/ClassicPhysics'
 import { MultiElectronAtoms } from 'src/frontend/scenes/doc/MultiElectronAtoms'
-import { SchrodingerEquation } from 'src/frontend/scenes/doc/SchrodingerEquation'
 import { Conclusion } from 'src/frontend/scenes/doc/Conclusion'
 
 import { Intro as IntroKor } from 'src/frontend/scenes/doc-kor/Intro'
@@ -16,8 +15,7 @@ import { Hypothesis as HypothesisKor } from 'src/frontend/scenes/doc-kor/Hypothe
 import { ClassicPhysics as ClassicPhysicsKor } from 'src/frontend/scenes/doc-kor/ClassicPhysics'
 import { MultiElectronAtoms as MultiElectronAtomsKor } from 'src/frontend/scenes/doc-kor/MultiElectronAtoms'
 import { OrbitalEquation as OrbitalEquationKor } from 'src/frontend/scenes/doc-kor/OrbitalEquation'
-
-import { SchrodingerEquation as SchrodingerEquationKor } from 'src/frontend/scenes/doc-kor/SchrodingerEquation'
+import { Comparison as ComparisonKor } from 'src/frontend/scenes/doc-kor/Comparison'
 import { Conclusion as ConclusionKor } from 'src/frontend/scenes/doc-kor/Conclusion'
 
 export const Router = (): JSX.Element => {
@@ -31,10 +29,6 @@ export const Router = (): JSX.Element => {
                 <Route
                     path="/multi-electron-atoms"
                     element={<MultiElectronAtoms />}
-                />
-                <Route
-                    path="/schrodinger-equation"
-                    element={<SchrodingerEquation />}
                 />
                 <Route path="/conclusion" element={<Conclusion />} />
 
@@ -52,10 +46,7 @@ export const Router = (): JSX.Element => {
                     path="/kor/orbital-equation"
                     element={<OrbitalEquationKor />}
                 />
-                <Route
-                    path="/kor/schrodinger-equation"
-                    element={<SchrodingerEquationKor />}
-                />
+                <Route path="/kor/comparison" element={<ComparisonKor />} />
                 <Route path="/kor/conclusion" element={<ConclusionKor />} />
 
                 <Route path="/:dataType/:atom" element={<Data />}>

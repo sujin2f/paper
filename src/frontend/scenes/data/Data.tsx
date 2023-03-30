@@ -37,7 +37,7 @@ export const Data = (): JSX.Element => {
     }
 
     if (!data) {
-        return <Fragment>Processing</Fragment>
+        return <Fragment>No Data</Fragment>
     }
 
     return (

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,6 +11,7 @@ import {
 import { Line } from 'react-chartjs-2'
 import { useURLParam } from 'src/frontend/hooks/useURLParam'
 import { Container } from 'src/model/Container'
+import { Context, ContextType } from '../store'
 
 ChartJS.register(
     CategoryScale,
@@ -27,6 +28,7 @@ type Props = {
 
 export const Chart = (props: Props): JSX.Element => {
     const { graphType, isGraph } = useURLParam()
+    const [{ i, x }] = useContext(Context) as ContextType
     const { data } = props
 
     if (!data || !isGraph) {
@@ -42,7 +44,7 @@ export const Chart = (props: Props): JSX.Element => {
         },
     }
 
-    const chartData = data.chart(graphType)
+    const chartData = data.chart(graphType, i, x)
 
     return (
         <Fragment>

@@ -6,10 +6,14 @@ import {
     SET_DIFF,
     SET_NTH,
     SET_PERCENT,
+    SET_I,
+    SET_X,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
 export const initialState: State = {
+    i: NaN,
+    x: NaN,
     digit: 4,
     visible: {
         orbital: true,
@@ -84,6 +88,18 @@ export const reducer = (state: State = initialState, action: Action): State => {
                     ...state.visible,
                     percent: action.percent!,
                 },
+            }
+        }
+        case SET_I: {
+            return {
+                ...state,
+                i: action.i || NaN,
+            }
+        }
+        case SET_X: {
+            return {
+                ...state,
+                x: action.x || NaN,
             }
         }
         default: {

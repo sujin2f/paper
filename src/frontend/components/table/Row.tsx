@@ -3,7 +3,7 @@ import { Context, ContextType } from 'src/frontend/store'
 import { Row as RowModel } from 'src/model/Row'
 
 type Props = {
-    cell: 'rydberg' | 'diff' | 'Nth' | '%' | 'f(x)'
+    cell: 'rydberg' | 'diff' | 'Nth' | '%' | '% Float' | '% Base'
     row: RowModel
     cols: number
 }
@@ -33,6 +33,12 @@ export const Row = (props: Props): JSX.Element => {
                                 break
                             case '%':
                                 value = item.percent
+                                break
+                            case '% Float':
+                                value = item.percentFloat
+                                break
+                            case '% Base':
+                                value = item.percentBase
                                 break
                         }
                     }

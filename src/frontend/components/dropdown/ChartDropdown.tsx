@@ -46,6 +46,57 @@ export const ChartDropdown = (): JSX.Element => {
                             %
                         </Link>
                     </li>
+                    <li
+                        className={
+                            isGraph && graphType === '%float'
+                                ? 'link-base current'
+                                : ''
+                        }
+                    >
+                        <Link
+                            to={getAddress({
+                                isGraph: true,
+                                graphType: '%float',
+                            })}
+                            type="button"
+                        >
+                            % Float
+                        </Link>
+                    </li>
+                    <li
+                        className={
+                            isGraph && graphType === '%base'
+                                ? 'link-base current'
+                                : ''
+                        }
+                    >
+                        <Link
+                            to={getAddress({
+                                isGraph: true,
+                                graphType: '%base',
+                            })}
+                            type="button"
+                        >
+                            % Base
+                        </Link>
+                    </li>
+                    <li
+                        className={
+                            isGraph && graphType === 'coordinate'
+                                ? 'link-base current'
+                                : ''
+                        }
+                    >
+                        <Link
+                            to={getAddress({
+                                isGraph: true,
+                                graphType: 'coordinate',
+                            })}
+                            type="button"
+                        >
+                            Coordinate
+                        </Link>
+                    </li>
                 </ul>
             )}
         </li>
