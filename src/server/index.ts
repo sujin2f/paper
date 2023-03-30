@@ -14,12 +14,6 @@ if (['production'].includes(nodeEnv)) {
     moduleAlias()
 }
 
-/* eslint-disable import/first */
-import { mongoConnect } from 'src/utils/mongo/connect'
-import { staticRouter } from 'src/server/routes/static'
-import { graphqlRouter } from 'src/server/routes/graphql'
-/* eslint-enable import/first */
-
 /**
  * .env
  */
@@ -30,6 +24,13 @@ const envPath =
         ? path.resolve(__dirname, '../', '../', `.env.${nodeEnv}`)
         : path.resolve(__dirname, '../', '../', '../', `.env.${nodeEnv}`)
 dotEnvConfig({ path: envPath })
+
+/* eslint-disable import/first */
+import { mongoConnect } from 'src/utils/mongo/connect'
+import { staticRouter } from 'src/server/routes/static'
+import { graphqlRouter } from 'src/server/routes/graphql'
+import { managementRouter } from 'src/server/routes/management'
+/* eslint-enable import/first */
 
 // Create a new express application instance
 const app: express.Application = express()
@@ -45,6 +46,7 @@ switch (nodeEnv) {
 }
 
 app.use('/graphql', graphqlRouter)
+app.use('/management', managementRouter)
 app.use('/', staticRouter)
 
 // Go!
