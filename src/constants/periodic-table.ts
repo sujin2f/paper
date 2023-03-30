@@ -653,6 +653,8 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/phosphorus.php',
             },
+            i: [0.999733242],
+            x: [-0.397],
         },
         {
             name: 'Sulfur',
@@ -696,6 +698,8 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'James St. John, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons',
             },
+            i: [0.999733242],
+            x: [-0.238],
         },
         {
             name: 'Chlorine',
@@ -739,6 +743,8 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Benjah-bmm27, Public domain, via Wikimedia Commons',
             },
+            i: [0.999733242],
+            x: [-0.0435],
         },
         {
             name: 'Argon',
@@ -783,6 +789,8 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/argon.php',
             },
+            i: [0.999733242],
+            x: [0.159],
         },
         {
             name: 'Potassium',
@@ -827,6 +835,8 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Dnn87, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons',
             },
+            i: [0.999733242],
+            x: [-0.6804],
         },
         {
             name: 'Calcium',

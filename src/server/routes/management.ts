@@ -43,5 +43,5 @@ managementRouter.get('/update', (req, res) => {
     res.send('404')
 })
 
-managementRouter.use(timeout(120000));
+managementRouter.use(timeout('2m'));
 export { managementRouter }
