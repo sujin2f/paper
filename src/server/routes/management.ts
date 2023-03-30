@@ -12,7 +12,7 @@ const managementRouter = express.Router()
 /**
  * Static Dir
  */
-staticRouter.get('/update', (req, res) => {
+managementRouter.get('/update', (req, res) => {
     if (process.env.MANAGEMENT) {
         exec('git pull', () => {
             exec('yarn prod')
