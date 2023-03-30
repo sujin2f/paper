@@ -20,4 +20,4 @@ staticRouter.get('/update', (req, res) => {
     }
 })
 
-export { staticRouter }
+export { managementRouter }
