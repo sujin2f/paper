@@ -35,9 +35,12 @@ managementRouter.get('/update', (req, res) => {
                     return;
                 }
                 console.log(`stdout: ${stdout}`);
+
+                res.send('done')
             })
         })
     }
+    res.send('404')
 })
 
 export { managementRouter }
