@@ -48,27 +48,6 @@ export class Item {
         return this.rydberg - (this.prev?.rydberg || 0)
     }
 
-    public get weight() {
-        let weight = 0
-        if (this.number - this.ion === 2) {
-            weight =
-                0.00001 * Math.pow(this.ion, 4) -
-                0.000037 * Math.pow(this.ion, 3) +
-                0.7464495 * Math.pow(this.ion, 2) +
-                1.3217856 * this.ion +
-                0.150154
-        }
-        return weight
-    }
-
-    public get weightRydberg() {
-        return this.rydberg + this.weight
-    }
-
-    public get weightDiff() {
-        return this.weightRydberg - (this.prev?.weightRydberg || 0)
-    }
-
     public get ether() {
         const linear = orbitalKeys.indexOf(this.orbital)
         const radial = this.position - linear - 1
@@ -94,7 +73,7 @@ export class Item {
     }
 
     public get percent() {
-        const percent = (this.weightDiff / this.nth) * 100
+        const percent = (this.diff / this.nth) * 100
         if (!percent) {
             return NaN
         }
@@ -113,13 +92,13 @@ export class Item {
         let nth = 0
         if (this.prev) {
             nth =
-                this.getShiftedNth(first.position, first.weightRydberg) -
-                this.prev.getShiftedNth(first.position, first.weightRydberg)
+                this.getShiftedNth(first.position, first.rydberg) -
+                this.prev.getShiftedNth(first.position, first.rydberg)
         } else {
-            nth = this.getShiftedNth(first.position, first.weightRydberg)
+            nth = this.getShiftedNth(first.position, first.rydberg)
         }
 
-        const percent = (this.weightDiff / nth) * 100
+        const percent = (this.diff / nth) * 100
         if (!percent) {
             return NaN
         }
@@ -149,13 +128,13 @@ export class Item {
         let nth = 0
         if (this.prev) {
             nth =
-                this.getShiftedNth(first.position, first.weightRydberg) -
-                this.prev.getShiftedNth(first.position, first.weightRydberg)
+                this.getShiftedNth(first.position, first.rydberg) -
+                this.prev.getShiftedNth(first.position, first.rydberg)
         } else {
-            nth = this.getShiftedNth(first.position, first.weightRydberg)
+            nth = this.getShiftedNth(first.position, first.rydberg)
         }
 
-        const percent = (this.weightDiff / nth) * 100
+        const percent = (this.diff / nth) * 100
         if (!percent) {
             return NaN
         }
@@ -164,13 +143,13 @@ export class Item {
     }
 
     public get coordinate() {
-        if (!this.weightRydberg) {
+        if (!this.rydberg) {
             return NaN
         }
         const radial = this.radialBase
         const linear = this.linearBase
         const grid = Math.abs(linear - radial) / 100
-        return (this.weightRydberg - Math.min(radial, linear)) / grid
+        return (this.rydberg - Math.min(radial, linear)) / grid
     }
 
     private get radialBase() {
@@ -178,13 +157,13 @@ export class Item {
         if (!first) {
             return NaN
         }
-        if (!first.weightRydberg) {
+        if (!first.rydberg) {
             first = first.next
         }
         if (!first) {
             return NaN
         }
-        return this.getShiftedNth(first.position, first.weightRydberg)
+        return this.getShiftedNth(first.position, first.rydberg)
     }
 
     private get linearBase() {
@@ -192,7 +171,7 @@ export class Item {
         if (!first) {
             return NaN
         }
-        return this.getShiftedNth(first.position, first.weightRydberg)
+        return this.getShiftedNth(first.position, first.rydberg)
     }
 
     public get nth() {

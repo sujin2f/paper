@@ -241,8 +241,9 @@ export class Container {
 
     private _x: number = NaN
     public get x() {
-        const x = periodicTable.elements[this.number - 1].x || []
-        return this._x || x[this.ion - 1] || 0
+        const ionization = periodicTable.elements[this.number - 1].ionization_energies[this.ion - 1] || 1
+        return ionization/1312 - 1
+
     }
     // 1.5598
     // 2.311

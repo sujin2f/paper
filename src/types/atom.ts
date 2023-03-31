@@ -11,4 +11,5 @@ export type Atom = {
     electron_configuration: string
     i?: number[]
     x?: number[]
+    ionization_energies: number[]
 } & Record<string, any>
