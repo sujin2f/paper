@@ -184,9 +184,7 @@ export class Container {
         this.baseZero = this.items.filter((item) => item.first.rydberg === 0)[0]
     }
 
-    public chart(graphType: GraphType, i: number, x: number): ChartData {
-        this.i = i
-        this.x = x
+    public chart(graphType: GraphType): ChartData {
         const datasets = this.items.map((row, index) => {
             const data: number[] = row.items.map((item) => {
                 let value
@@ -230,16 +228,10 @@ export class Container {
         }
     }
 
-    private _i: number = NaN
     public get i() {
-        const i = periodicTable.elements[this.number - 1].i || []
-        return this._i || i[this.ion - 1] || 0
-    }
-    public set i(i: number) {
-        this._i = i
+        return 0.999733242
     }
 
-    private _x: number = NaN
     public get x() {
         const ionization = periodicTable.elements[this.number - 1].ionization_energies[this.ion - 1] || 1
         return ionization/1312 - 1
@@ -250,7 +242,4 @@ export class Container {
     // 3.0615
     // 3.807
     // 4.56
-    public set x(x: number) {
-        this._x = x
-    }
 }

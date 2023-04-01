@@ -18,30 +18,34 @@ managementRouter.get('/update', (req, res) => {
         exec('git pull', (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
+                res.send(`error: ${error.message}`)
                 return;
             }
             if (stderr) {
                 console.log(`stderr: ${stderr}`);
+                res.send(`stderr: ${stderr}`)
                 return;
             }
             console.log(`stdout: ${stdout}`);
+            res.send(`stdout: ${stdout}`)
         })
         exec('yarn prod', (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
+                res.send(`error: ${error.message}`)
                 return;
             }
             if (stderr) {
                 console.log(`stderr: ${stderr}`);
+                res.send(`stderr: ${stderr}`)
                 return;
             }
             console.log(`stdout: ${stdout}`);
-
-            res.send('done')
+            res.send(`stdout: ${stdout}`)
         })
     }
     res.send('404')
 })
 
-managementRouter.use(timeout('2m'));
+managementRouter.use(timeout('3m'));
 export { managementRouter }

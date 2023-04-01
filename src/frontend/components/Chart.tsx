@@ -28,7 +28,6 @@ type Props = {
 
 export const Chart = (props: Props): JSX.Element => {
     const { graphType, isGraph } = useURLParam()
-    const [{ i, x }] = useContext(Context) as ContextType
     const { data } = props
 
     if (!data || !isGraph) {
@@ -44,7 +43,7 @@ export const Chart = (props: Props): JSX.Element => {
         },
     }
 
-    const chartData = data.chart(graphType, i, x)
+    const chartData = data.chart(graphType)
 
     return (
         <Fragment>
