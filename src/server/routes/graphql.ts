@@ -1,5 +1,5 @@
 import express from 'express'
-import { graphqlHTTP } from 'express-graphql'
+import { createHandler } from 'graphql-http/lib/use/http'
 import { buildSchema } from 'graphql'
 
 import { graphqlSchema } from 'src/constants/graphql'
@@ -10,12 +10,11 @@ const schema = buildSchema(graphqlSchema)
 
 graphqlRouter.use(
     '/',
-    graphqlHTTP({
+    createHandler({
         schema,
         rootValue: {
             items,
         },
-        graphiql: true,
     }),
 )
 
