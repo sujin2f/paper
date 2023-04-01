@@ -19,7 +19,7 @@ export class Container {
     public items: Row[] = []
     public baseRadial: Nullable<Row>
     public baseLinear: Nullable<Row>
-    private baseZero: Nullable<Row>
+    public baseZero: Nullable<Row>
     private ion: number = 0
     private number: number = 0
     private atom: Atom = periodicTable.elements[0]
@@ -63,11 +63,12 @@ export class Container {
         const items: Record<string, Item[]> = {}
 
         rawData.forEach((raw) => {
-            const rawConf = getConfArray(raw.conf).slice(0, -1)
-            const confCompare = this.conf.slice(
-                this.conf.length - rawConf.length,
-            )
-            if (rawConf !== confCompare) {
+            const rawConf = getConfArray(raw.conf)
+                .filter((conf) => !conf.startsWith('('))
+                .slice(0, -1)
+            const length = this.conf.length - rawConf.length - 1
+            const confCompare = this.conf.slice(0, -1).slice(length)
+            if (rawConf.join('') !== confCompare.join('')) {
                 return
             }
 

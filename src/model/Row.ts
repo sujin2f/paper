@@ -25,4 +25,10 @@ export class Row {
             }
         })
     }
+
+    public getItem(position: number): Nullable<Item> {
+        return this.items.filter(
+            (item) => item && item.position === position,
+        )[0]
+    }
 }

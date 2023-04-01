@@ -29,7 +29,6 @@ dotEnvConfig({ path: envPath })
 import { mongoConnect } from 'src/utils/mongo/connect'
 import { staticRouter } from 'src/server/routes/static'
 import { graphqlRouter } from 'src/server/routes/graphql'
-import { managementRouter } from 'src/server/routes/management'
 /* eslint-enable import/first */
 
 // Create a new express application instance
@@ -46,7 +45,6 @@ switch (nodeEnv) {
 }
 
 app.use('/graphql', graphqlRouter)
-app.use('/management', managementRouter)
 app.use('/', staticRouter)
 
 // Go!
