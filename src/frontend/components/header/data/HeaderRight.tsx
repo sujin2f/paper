@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const HeaderRight = (props: Props): JSX.Element => {
-    const [{ digit, i, x }, dispatch] = useContext(Context) as ContextType
+    const [{ digit }, dispatch] = useContext(Context) as ContextType
 
     return (
         <div className="top-bar-right">
