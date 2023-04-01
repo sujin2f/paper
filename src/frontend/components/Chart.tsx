@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment } from 'react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,7 +11,6 @@ import {
 import { Line } from 'react-chartjs-2'
 import { useURLParam } from 'src/frontend/hooks/useURLParam'
 import { Container } from 'src/model/Container'
-import { Context, ContextType } from '../store'
 
 ChartJS.register(
     CategoryScale,

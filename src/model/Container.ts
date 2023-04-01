@@ -6,6 +6,8 @@ import { Item } from './Item'
 import { orbitalKeys } from 'src/constants/orbital'
 import { Nullable } from 'src/types/common'
 import { periodicTable } from 'src/constants/periodic-table'
+import { Atom } from 'src/types/atom'
+import { getAtom, getConfArray } from 'src/utils/atom'
 
 type ChartData = {
     labels: number[]
@@ -20,6 +22,8 @@ export class Container {
     private baseZero: Nullable<Row>
     private ion: number = 0
     private number: number = 0
+    private atom: Atom = periodicTable.elements[0]
+    private conf: string[] = []
 
     public constructor(rawData: RawData[], dataType: DataType) {
         if (!rawData.length) {
@@ -27,6 +31,8 @@ export class Container {
         }
         this.ion = rawData[0].ion
         this.number = rawData[0].number
+        this.atom = getAtom(this.number)
+        this.conf = getConfArray(this.atom.electron_configuration)
 
         this.setRawData(rawData)
 
@@ -57,6 +63,14 @@ export class Container {
         const items: Record<string, Item[]> = {}
 
         rawData.forEach((raw) => {
+            const rawConf = getConfArray(raw.conf).slice(0, -1)
+            const confCompare = this.conf.slice(
+                this.conf.length - rawConf.length,
+            )
+            if (rawConf !== confCompare) {
+                return
+            }
+
             const item = new Item(raw)
             const key = item.encodeURI
 
@@ -233,9 +247,8 @@ export class Container {
     }
 
     public get x() {
-        const ionization = periodicTable.elements[this.number - 1].ionization_energies[this.ion - 1] || 1
-        return ionization/1312 - 1
-
+        const ionization = this.atom.ionization_energies[this.ion - 1] || 1
+        return ionization / 1312 - 1
     }
     // 1.5598
     // 2.311

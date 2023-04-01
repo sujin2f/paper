@@ -44,8 +44,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'User:Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/hydrogen.php',
             },
-            i: [0.999733242],
-            x: [0],
         },
         {
             name: 'Helium',
@@ -87,8 +85,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/helium.php',
             },
-            i: [0.999733242],
-            x: [0.80768],
         },
         {
             name: 'Lithium',
@@ -128,8 +124,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/lithium.php',
             },
-            i: [0.999733242],
-            x: [1.61518],
         },
         {
             name: 'Beryllium',
@@ -169,8 +163,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/beryllium.php',
             },
-            i: [0.999733242],
-            x: [-0.3142],
         },
         {
             name: 'Boron',
@@ -210,8 +202,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/boron.php',
             },
-            i: [0.999733242],
-            x: [-0.389],
         },
         {
             name: 'Carbon',
@@ -252,8 +242,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Texas Lane, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons',
             },
-            i: [0.999733242],
-            x: [-0.171],
         },
         {
             name: 'Nitrogen',
@@ -296,8 +284,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/nitrogen.php',
             },
-            i: [0.999733242],
-            x: [0.069],
         },
         {
             name: 'Oxygen',
@@ -340,8 +326,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Staff Sgt. Nika Glover, U.S. Air Force, Public domain, via Wikimedia Commons',
             },
-            i: [0.999733242],
-            x: [0.002],
         },
         {
             name: 'Fluorine',
@@ -384,8 +368,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Fulvio314, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons',
             },
-            i: [0.999733242],
-            x: [0.284],
         },
         {
             name: 'Neon',
@@ -429,8 +411,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/neon.php',
             },
-            i: [0.999733242],
-            x: [0.5855],
         },
         {
             name: 'Sodium',
@@ -474,8 +454,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'The original uploader was Dnn87 at English Wikipedia., CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons',
             },
-            i: [0.999733242],
-            x: [-0.62175],
         },
         {
             name: 'Magnesium',
@@ -519,8 +497,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Warut Roonguthai, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons',
             },
-            i: [0.999733242],
-            x: [-0.5595],
         },
         {
             name: 'Aluminium',
@@ -563,8 +539,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/aluminium.php ',
             },
-            i: [0.999733242],
-            x: [-0.5595],
         },
         {
             name: 'Silicon',
@@ -608,8 +582,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/silicon.php',
             },
-            i: [0.999733242],
-            x: [-0.397],
         },
         {
             name: 'Phosphorus',
@@ -653,8 +625,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/phosphorus.php',
             },
-            i: [0.999733242],
-            x: [-0.397],
         },
         {
             name: 'Sulfur',
@@ -698,8 +668,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'James St. John, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons',
             },
-            i: [0.999733242],
-            x: [-0.238],
         },
         {
             name: 'Chlorine',
@@ -743,8 +711,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Benjah-bmm27, Public domain, via Wikimedia Commons',
             },
-            i: [0.999733242],
-            x: [-0.0435],
         },
         {
             name: 'Argon',
@@ -789,8 +755,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/argon.php',
             },
-            i: [0.999733242],
-            x: [0.159],
         },
         {
             name: 'Potassium',
@@ -835,8 +799,6 @@ export const periodicTable: { elements: Atom[] } = {
                 attribution:
                     'Dnn87, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons',
             },
-            i: [0.999733242],
-            x: [-0.6804],
         },
         {
             name: 'Calcium',

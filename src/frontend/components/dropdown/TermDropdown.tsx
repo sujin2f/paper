@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const TermDropdown = (props: Props): JSX.Element => {
-    const { dataType, term, getAddress } = useURLParam()
+    const { dataType } = useURLParam()
     const { data } = props
 
     const [showOptions, setShowOptions] = useState<boolean>(false)

@@ -2,6 +2,7 @@ import { RawData } from 'src/types/data'
 import { orbitalKeys } from 'src/constants/orbital'
 import { Row } from './Row'
 import { Nullable } from 'src/types/common'
+import { getConfArray } from 'src/utils/atom'
 
 export class Item {
     public _id?: string
@@ -230,26 +231,8 @@ export class Item {
         return parseInt(regexInt ? regexInt[1] : '', 10)
     }
 
-    public getConfArray = (): string[] => {
-        const result: string[] = []
-        const div = this.data.conf.split('.')
-        div.forEach((el) => {
-            const hasMultiple = /([0-9]+)([a-z]+)([0-9]+)/.exec(el)
-            if (!hasMultiple) {
-                result.push(el)
-                return
-            }
-            Array(parseInt(hasMultiple[3], 10))
-                .fill('')
-                .forEach(() =>
-                    result.push(`${hasMultiple[1]}${hasMultiple[2]}`),
-                )
-        })
-        return result
-    }
-
     private getConfObject() {
-        const confArray = this.getConfArray().reverse()
+        const confArray = getConfArray(this.data.conf).reverse()
         if (confArray[0].indexOf('(') !== -1) {
             confArray.shift()
         }
