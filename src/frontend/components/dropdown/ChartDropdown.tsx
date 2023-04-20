@@ -31,7 +31,7 @@ export const ChartDropdown = (): JSX.Element => {
                     </li>
                     <li
                         className={
-                            isGraph && graphType === '%'
+                            isGraph && graphType === 'percent'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -39,7 +39,7 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: '%',
+                                graphType: 'percent',
                             })}
                             type="button"
                         >
@@ -48,7 +48,7 @@ export const ChartDropdown = (): JSX.Element => {
                     </li>
                     <li
                         className={
-                            isGraph && graphType === '%float'
+                            isGraph && graphType === 'percent-float'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -56,7 +56,7 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: '%float',
+                                graphType: 'percent-float',
                             })}
                             type="button"
                         >
@@ -65,7 +65,7 @@ export const ChartDropdown = (): JSX.Element => {
                     </li>
                     <li
                         className={
-                            isGraph && graphType === '%base'
+                            isGraph && graphType === 'percent-base'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -73,7 +73,7 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: '%base',
+                                graphType: 'percent-base',
                             })}
                             type="button"
                         >

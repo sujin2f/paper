@@ -204,10 +204,10 @@ export class Container {
             const data: number[] = row.items.map((item) => {
                 let value
                 switch (graphType) {
-                    case '%float':
+                    case 'percent-float':
                         value = item ? item.percentFloat : NaN
                         break
-                    case '%base':
+                    case 'percent-base':
                         value = item ? item.percentBase : NaN
                         break
                     case 'coordinate':

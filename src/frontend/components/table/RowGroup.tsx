@@ -23,7 +23,13 @@ export const RowGroup = (props: Props): JSX.Element => {
             <thead>
                 <tr className="table__header">
                     <th className="align__right">{row.label}</th>
-                    <td colSpan={cols + 1}></td>
+                    <td colSpan={cols + 1}>
+                        {row.first.getShift(
+                            row.parent!,
+                            row.valuedFirst!.position,
+                            row.valuedFirst!.rydberg,
+                        )}
+                    </td>
                 </tr>
                 {orbital && <Orbital cols={cols} row={row} />}
                 {ether && <Ether cols={cols} row={row} />}

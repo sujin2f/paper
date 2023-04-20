@@ -3,6 +3,7 @@ import { orbitalKeys } from 'src/constants/orbital'
 import { Row } from './Row'
 import { Nullable } from 'src/types/common'
 import { getConfArray } from 'src/utils/atom'
+import { Container } from './Container'
 
 export class Item {
     public _id?: string
@@ -154,13 +155,7 @@ export class Item {
     }
 
     private get radialBase() {
-        let first = this.parent?.parent.baseRadial?.first
-        if (!first) {
-            return NaN
-        }
-        if (!first.rydberg) {
-            first = first.next
-        }
+        let first = this.parent?.parent.baseRadial?.valuedFirst
         if (!first) {
             return NaN
         }
@@ -168,7 +163,7 @@ export class Item {
     }
 
     private get linearBase() {
-        const first = this.parent?.parent.baseLinear?.first
+        const first = this.parent?.parent.baseLinear?.valuedFirst
         if (!first) {
             return NaN
         }
@@ -193,16 +188,23 @@ export class Item {
         )
     }
 
-    public getShiftedNth(x: number, y: number) {
+    public getShiftedNth(position: number, rydberg: number) {
         const ancestor = this.parent?.parent
         if (!ancestor) {
             return NaN
         }
-        const v = 1 / Math.sqrt(1 - (y - ancestor.x) / Math.pow(ancestor.i, 2))
+        const shift = this.getShift(ancestor, position, rydberg)
         return (
             Math.pow(ancestor.i, 2) *
-                (1 - 1 / Math.pow(this.position - x + v, 2)) +
+                (1 - 1 / Math.pow(this.position + shift, 2)) +
             ancestor.x
+        )
+    }
+
+    public getShift(ancestor: Container, position: number, rydberg: number) {
+        return (
+            -position +
+            1 / Math.sqrt(1 - (rydberg - ancestor.x) / Math.pow(ancestor.i, 2))
         )
     }
 

@@ -7,6 +7,7 @@ export const mongoConnect = async (): Promise<typeof mongoose> => {
     const dbName = process.env.MONGO_DATABASE || 'ether'
 
     return mongoose
+        .set('strictQuery', true)
         .connect(uri || '', {
             dbName,
         })

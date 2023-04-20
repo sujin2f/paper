@@ -31,4 +31,16 @@ export class Row {
             (item) => item && item.position === position,
         )[0]
     }
+
+    public get valuedFirst(): Nullable<Item> {
+        let first: Nullable<Item> = this.first
+        if (!first.rydberg) {
+            first = first.next
+        }
+        return first
+    }
+
+    public isBase(): boolean {
+        return this.first.rydberg === 0
+    }
 }
