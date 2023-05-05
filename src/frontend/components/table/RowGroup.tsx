@@ -13,7 +13,7 @@ type Props = {
 export const RowGroup = (props: Props): JSX.Element => {
     const [
         {
-            visible: { orbital, ether, rydberg, diff, nth, percent },
+            visible: { orbital, ether, rydberg, nth, percent },
         },
     ] = useContext(Context) as ContextType
     const { cols, row } = props
@@ -24,12 +24,14 @@ export const RowGroup = (props: Props): JSX.Element => {
                 <tr className="table__header">
                     <th className="align__right">{row.label}</th>
                     <td colSpan={cols + 1}>
-                        {1 -
-                            row.first.getShift(
-                                row.parent!,
-                                row.valuedFirst!.position,
-                                row.valuedFirst!.rydberg,
-                            )}
+                        {row.second
+                            ? 1 -
+                              row.first.getShift(
+                                  row.parent!,
+                                  row.second.position,
+                                  row.second.rydberg,
+                              )
+                            : 0}
                     </td>
                 </tr>
                 {orbital && <Orbital cols={cols} row={row} />}

@@ -94,7 +94,7 @@ export class Item {
         if (!parent) {
             return NaN
         }
-        const first = parent.first.next
+        const first = parent.second
         if (!first) {
             return NaN
         }
@@ -122,7 +122,7 @@ export class Item {
         } else {
             base = ancestor.baseLinear
         }
-        const first = base?.first.next
+        const first = base?.second
         if (!first) {
             return NaN
         }
@@ -146,7 +146,7 @@ export class Item {
     }
 
     private get radialBase() {
-        let first = this.parent?.parent.baseRadial?.valuedFirst
+        let first = this.parent?.parent.baseRadial?.second
         if (!first) {
             return NaN
         }
@@ -154,7 +154,7 @@ export class Item {
     }
 
     private get linearBase() {
-        const first = this.parent?.parent.baseLinear?.valuedFirst
+        const first = this.parent?.parent.baseLinear?.second
         if (!first) {
             return NaN
         }

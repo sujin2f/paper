@@ -5,6 +5,7 @@ import { Item } from './Item'
 export class Row {
     public label = ''
     public first: Item
+    public second: Nullable<Item>
 
     public constructor(
         public items: Nullable<Item>[],
@@ -12,6 +13,7 @@ export class Row {
     ) {
         const filtered = items.filter((item) => item) as Item[]
         this.first = filtered[0]
+        this.second = filtered[1]
 
         filtered.forEach((item, index) => {
             item.prev = undefined
@@ -30,14 +32,6 @@ export class Row {
         return this.items.filter(
             (item) => item && item.position === position,
         )[0]
-    }
-
-    public get valuedFirst(): Nullable<Item> {
-        let first: Nullable<Item> = this.first
-        if (!first.rydberg) {
-            first = first.next
-        }
-        return first
     }
 
     public isBase(): boolean {

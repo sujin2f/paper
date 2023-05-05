@@ -32,7 +32,8 @@ export class Container {
         this.ion = rawData[0].ion
         this.number = rawData[0].number
         this.atom = getAtom(this.number)
-        this.conf = getConfArray(this.atom.electron_configuration)
+        const baseAtom = getAtom(this.number - this.ion + 1)
+        this.conf = getConfArray(baseAtom.electron_configuration)
 
         this.setRawData(rawData)
 
@@ -267,13 +268,16 @@ export class Container {
         return Container.hydrogen_ionization
     }
 
+    static hydrogen_i = 0.99946656
     private _i = NaN
     public get i() {
         if (!isNaN(this._i)) {
             return this._i
         }
         const base = getAtom(this.ion).ionization_energies[this.ion - 1]
-        const i = Math.sqrt((0.999733242 * base) / this.hydrogen_ionization)
+        const i = Math.sqrt(
+            (Container.hydrogen_i * base) / this.hydrogen_ionization,
+        )
         this._i = i
         return i
     }
@@ -287,7 +291,7 @@ export class Container {
         const base = ionization - this.base_ionization
         const plus = base > 0 ? 1 : -1
         const x =
-            ((Math.pow(0.999733242, 2) * Math.abs(base)) /
+            ((Math.pow(Container.hydrogen_i, 2) * Math.abs(base)) /
                 this.hydrogen_ionization) *
             plus
         this._x = x
