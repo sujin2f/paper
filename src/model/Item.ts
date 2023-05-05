@@ -2,7 +2,7 @@ import { RawData } from 'src/types/data'
 import { orbitalKeys } from 'src/constants/orbital'
 import { Row } from './Row'
 import { Nullable } from 'src/types/common'
-import { getConfArray } from 'src/utils/atom'
+import { getConfArray, getNth } from 'src/utils/atom'
 import { Container } from './Container'
 
 export class Item {
@@ -47,6 +47,13 @@ export class Item {
     }
 
     public get diff() {
+        const first = this.parent?.parent.baseMinimum?.first.position
+        if (!first) {
+            return NaN
+        }
+        // if (!this.prev && this.position > first + 1) {
+        //     return NaN
+        // }
         return this.rydberg - (this.prev?.rydberg || 0)
     }
 
@@ -75,7 +82,7 @@ export class Item {
     }
 
     public get percent() {
-        const percent = (this.diff / this.nth) * 100
+        const percent = (this.rydberg / this.nth) * 100
         if (!percent) {
             return NaN
         }
@@ -87,20 +94,12 @@ export class Item {
         if (!parent) {
             return NaN
         }
-        const first = parent.first
+        const first = parent.first.next
         if (!first) {
             return NaN
         }
-        let nth = 0
-        if (this.prev) {
-            nth =
-                this.getShiftedNth(first.position, first.rydberg) -
-                this.prev.getShiftedNth(first.position, first.rydberg)
-        } else {
-            nth = this.getShiftedNth(first.position, first.rydberg)
-        }
-
-        const percent = (this.diff / nth) * 100
+        const nth = this.getShiftedNth(first.position, first.rydberg)
+        const percent = (this.rydberg / nth) * 100
         if (!percent) {
             return NaN
         }
@@ -123,20 +122,12 @@ export class Item {
         } else {
             base = ancestor.baseLinear
         }
-        const first = base?.first
+        const first = base?.first.next
         if (!first) {
             return NaN
         }
-        let nth = 0
-        if (this.prev) {
-            nth =
-                this.getShiftedNth(first.position, first.rydberg) -
-                this.prev.getShiftedNth(first.position, first.rydberg)
-        } else {
-            nth = this.getShiftedNth(first.position, first.rydberg)
-        }
-
-        const percent = (this.diff / nth) * 100
+        const nth = this.getShiftedNth(first.position, first.rydberg)
+        const percent = (this.rydberg / nth) * 100
         if (!percent) {
             return NaN
         }
@@ -171,21 +162,17 @@ export class Item {
     }
 
     public get nth() {
-        if (this.prev) {
-            return this.getNth() - this.prev.getNth()
-        }
-        return this.getNth()
-    }
-
-    public getNth() {
         const ancestor = this.parent?.parent
         if (!ancestor) {
             return NaN
         }
-        return (
-            Math.pow(ancestor.i, 2) * (1 - 1 / Math.pow(this.position, 2)) +
-            ancestor.x
-        )
+
+        return getNth(ancestor.i, ancestor.x, this.position)
+
+        // return (
+        //     getNth(ancestor.i, ancestor.x, this.position) -
+        //     getNth(ancestor.i, ancestor.x, this.position - 1)
+        // )
     }
 
     public getShiftedNth(position: number, rydberg: number) {

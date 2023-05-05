@@ -24,11 +24,12 @@ export const RowGroup = (props: Props): JSX.Element => {
                 <tr className="table__header">
                     <th className="align__right">{row.label}</th>
                     <td colSpan={cols + 1}>
-                        {row.first.getShift(
-                            row.parent!,
-                            row.valuedFirst!.position,
-                            row.valuedFirst!.rydberg,
-                        )}
+                        {1 -
+                            row.first.getShift(
+                                row.parent!,
+                                row.valuedFirst!.position,
+                                row.valuedFirst!.rydberg,
+                            )}
                     </td>
                 </tr>
                 {orbital && <Orbital cols={cols} row={row} />}
@@ -36,7 +37,7 @@ export const RowGroup = (props: Props): JSX.Element => {
             </thead>
             <tbody>
                 {rydberg && <Row cols={cols} row={row} cell="rydberg" />}
-                {diff && <Row cols={cols} row={row} cell="diff" />}
+                {/* {diff && <Row cols={cols} row={row} cell="diff" />} */}
                 {nth && <Row cols={cols} row={row} cell="Nth" />}
                 {percent && <Row cols={cols} row={row} cell="%" />}
                 {percent && <Row cols={cols} row={row} cell="% Float" />}

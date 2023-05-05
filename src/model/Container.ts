@@ -19,7 +19,7 @@ export class Container {
     public items: Row[] = []
     public baseRadial: Nullable<Row>
     public baseLinear: Nullable<Row>
-    public baseZero: Nullable<Row>
+    public baseMinimum: Nullable<Row>
     private ion: number = 0
     private number: number = 0
     private atom: Atom = periodicTable.elements[0]
@@ -196,7 +196,13 @@ export class Container {
             .sort((rowA, rowB) => {
                 return (rowA.first.rydberg || 0) - (rowB.first.rydberg || 0)
             })[0]
-        this.baseZero = this.items.filter((item) => item.first.rydberg === 0)[0]
+        let minimum = 10000000000000000
+        this.items.forEach((item) => {
+            if (item.first.rydberg < minimum) {
+                minimum = item.first.rydberg
+                this.baseMinimum = item
+            }
+        })
     }
 
     public chart(graphType: GraphType): ChartData {
@@ -243,17 +249,48 @@ export class Container {
         }
     }
 
-    public get i() {
-        return 0.999733242
+    private _base_ionization = NaN
+    private get base_ionization() {
+        if (isNaN(this._base_ionization)) {
+            this._base_ionization = getAtom(this.ion).ionization_energies[
+                this.ion - 1
+            ]
+        }
+        return this._base_ionization
     }
 
-    public get x() {
-        const ionization = this.atom.ionization_energies[this.ion - 1] || 1
-        return ionization / 1312 - 1
+    static hydrogen_ionization = NaN
+    private get hydrogen_ionization() {
+        if (isNaN(Container.hydrogen_ionization)) {
+            Container.hydrogen_ionization = getAtom(1).ionization_energies[0]
+        }
+        return Container.hydrogen_ionization
     }
-    // 1.5598
-    // 2.311
-    // 3.0615
-    // 3.807
-    // 4.56
+
+    private _i = NaN
+    public get i() {
+        if (!isNaN(this._i)) {
+            return this._i
+        }
+        const base = getAtom(this.ion).ionization_energies[this.ion - 1]
+        const i = Math.sqrt((0.999733242 * base) / this.hydrogen_ionization)
+        this._i = i
+        return i
+    }
+
+    private _x = NaN
+    public get x() {
+        if (!isNaN(this._x)) {
+            return this._x
+        }
+        const ionization = this.atom.ionization_energies[this.ion - 1] || 1
+        const base = ionization - this.base_ionization
+        const plus = base > 0 ? 1 : -1
+        const x =
+            ((Math.pow(0.999733242, 2) * Math.abs(base)) /
+                this.hydrogen_ionization) *
+            plus
+        this._x = x
+        return x
+    }
 }
