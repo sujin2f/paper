@@ -33,6 +33,6 @@ export const getConfArray = (conf: string): string[] => {
     return result
 }
 
-export const getNth = (i: number, x: number, position: number) => {
-    return Math.pow(i, 2) * (1 - 1 / Math.pow(position, 2)) + x
+export const getNth = (ratio: number, shift: number, position: number) => {
+    return ratio * (1 - 1 / Math.pow(position, 2)) + shift
 }

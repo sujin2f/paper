@@ -82,6 +82,9 @@ export class Item {
     }
 
     public get percent() {
+        if (this.rydberg === this.nth) {
+            return 100
+        }
         const percent = (this.rydberg / this.nth) * 100
         if (!percent) {
             return NaN
@@ -94,11 +97,14 @@ export class Item {
         if (!parent) {
             return NaN
         }
-        const first = parent.second
+        const first = parent.first
         if (!first) {
             return NaN
         }
         const nth = this.getShiftedNth(first.position, first.rydberg)
+        if (this.rydberg === nth) {
+            return 100
+        }
         const percent = (this.rydberg / nth) * 100
         if (!percent) {
             return NaN
@@ -122,11 +128,14 @@ export class Item {
         } else {
             base = ancestor.baseLinear
         }
-        const first = base?.second
+        const first = base?.first
         if (!first) {
             return NaN
         }
         const nth = this.getShiftedNth(first.position, first.rydberg)
+        if (this.rydberg === nth) {
+            return 100
+        }
         const percent = (this.rydberg / nth) * 100
         if (!percent) {
             return NaN
@@ -139,6 +148,10 @@ export class Item {
         if (!this.rydberg) {
             return NaN
         }
+        // const radialCopy = this.parent?.parent.baseRadial?.items[this.position]
+        // if (radialCopy && radialCopy.rydberg === 0) {
+        //     return NaN
+        // }
         const radial = this.radialBase
         const linear = this.linearBase
         const grid = Math.abs(linear - radial) / 100
@@ -146,7 +159,7 @@ export class Item {
     }
 
     private get radialBase() {
-        let first = this.parent?.parent.baseRadial?.second
+        let first = this.parent?.parent.baseRadial?.first
         if (!first) {
             return NaN
         }
@@ -154,7 +167,7 @@ export class Item {
     }
 
     private get linearBase() {
-        const first = this.parent?.parent.baseLinear?.second
+        const first = this.parent?.parent.baseLinear?.first
         if (!first) {
             return NaN
         }
@@ -167,12 +180,7 @@ export class Item {
             return NaN
         }
 
-        return getNth(ancestor.i, ancestor.x, this.position)
-
-        // return (
-        //     getNth(ancestor.i, ancestor.x, this.position) -
-        //     getNth(ancestor.i, ancestor.x, this.position - 1)
-        // )
+        return getNth(ancestor.ratio, ancestor.shift, this.position)
     }
 
     public getShiftedNth(position: number, rydberg: number) {
@@ -182,16 +190,15 @@ export class Item {
         }
         const shift = this.getShift(ancestor, position, rydberg)
         return (
-            Math.pow(ancestor.i, 2) *
-                (1 - 1 / Math.pow(this.position + shift, 2)) +
-            ancestor.x
+            ancestor.ratio * (1 - 1 / Math.pow(this.position + shift, 2)) +
+            ancestor.shift
         )
     }
 
     public getShift(ancestor: Container, position: number, rydberg: number) {
         return (
             -position +
-            1 / Math.sqrt(1 - (rydberg - ancestor.x) / Math.pow(ancestor.i, 2))
+            1 / Math.sqrt(1 - (rydberg - ancestor.shift) / ancestor.ratio)
         )
     }
 

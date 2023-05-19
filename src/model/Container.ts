@@ -250,51 +250,25 @@ export class Container {
         }
     }
 
-    private _base_ionization = NaN
-    private get base_ionization() {
-        if (isNaN(this._base_ionization)) {
-            this._base_ionization = getAtom(this.ion).ionization_energies[
-                this.ion - 1
-            ]
+    // 1 KiloJoule Per Mole = 0.0103636 Electron Volt Per Particle
+    private evConv = 0.0103636
+    private _ratio = NaN
+    public get ratio() {
+        if (isNaN(this._ratio)) {
+            this._ratio =
+                getAtom(this.ion).ionization_energies[this.ion - 1] *
+                this.evConv
         }
-        return this._base_ionization
+        return this._ratio
     }
 
-    static hydrogen_ionization = NaN
-    private get hydrogen_ionization() {
-        if (isNaN(Container.hydrogen_ionization)) {
-            Container.hydrogen_ionization = getAtom(1).ionization_energies[0]
+    private _shift = NaN
+    public get shift() {
+        if (isNaN(this._shift)) {
+            const ionization =
+                (this.atom.ionization_energies[this.ion - 1] || 1) * this.evConv
+            this._shift = ionization - this.ratio
         }
-        return Container.hydrogen_ionization
-    }
-
-    static hydrogen_i = 0.99946656
-    private _i = NaN
-    public get i() {
-        if (!isNaN(this._i)) {
-            return this._i
-        }
-        const base = getAtom(this.ion).ionization_energies[this.ion - 1]
-        const i = Math.sqrt(
-            (Container.hydrogen_i * base) / this.hydrogen_ionization,
-        )
-        this._i = i
-        return i
-    }
-
-    private _x = NaN
-    public get x() {
-        if (!isNaN(this._x)) {
-            return this._x
-        }
-        const ionization = this.atom.ionization_energies[this.ion - 1] || 1
-        const base = ionization - this.base_ionization
-        const plus = base > 0 ? 1 : -1
-        const x =
-            ((Math.pow(Container.hydrogen_i, 2) * Math.abs(base)) /
-                this.hydrogen_ionization) *
-            plus
-        this._x = x
-        return x
+        return this._shift
     }
 }

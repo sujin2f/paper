@@ -8,7 +8,7 @@ import { romanize } from 'src/common/utils/number'
 
 export const crawl = async (atom: Atom, ion: number) => {
     const ionRoman = romanize(ion)
-    const nistUrl = `https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=${atom.symbol}+${ionRoman}&limits_type=0&low_w=&upp_w=&unit=1&de=0&I_scale_type=1&format=2&line_out=0&remove_js=on&en_unit=2&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on&submit=Retrieve+Data`
+    const nistUrl = `https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=${atom.symbol}+${ionRoman}&limits_type=0&low_w=&upp_w=&unit=1&de=0&I_scale_type=1&format=2&line_out=0&remove_js=on&en_unit=1&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on&submit=Retrieve+Data`
 
     const result = await axios
         .get(nistUrl, {
@@ -31,11 +31,11 @@ export const crawl = async (atom: Atom, ion: number) => {
 
 const csvParser = async (atom: Atom, ion: number, csv: string) => {
     const columns: Record<string, number> = {
-        'Ei(Ry)': 0,
+        'Ei(eV)': 0,
         conf_i: 0,
         term_i: 0,
         J_i: 0,
-        'Ek(Ry)': 0,
+        'Ek(eV)': 0,
         conf_k: 0,
         term_k: 0,
         J_k: 0,
@@ -53,7 +53,7 @@ const csvParser = async (atom: Atom, ion: number, csv: string) => {
             let rawData = createRawData({
                 number: atom.number,
                 ion,
-                rydberg: record.record[columns['Ei(Ry)']],
+                rydberg: record.record[columns['Ei(eV)']],
                 conf: record.record[columns['conf_i']],
                 j: record.record[columns['J_i']],
                 term: record.record[columns['term_i']],
@@ -65,7 +65,7 @@ const csvParser = async (atom: Atom, ion: number, csv: string) => {
             rawData = createRawData({
                 number: atom.number,
                 ion,
-                rydberg: record.record[columns['Ek(Ry)']],
+                rydberg: record.record[columns['Ek(eV)']],
                 conf: record.record[columns['conf_k']],
                 j: record.record[columns['J_k']],
                 term: record.record[columns['term_k']],
