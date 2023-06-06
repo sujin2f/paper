@@ -3,31 +3,35 @@ import { Doc } from 'src/frontend/scenes/doc'
 
 export const Intro = (): JSX.Element => (
     <Doc>
-        <h1 id="intro">The Space and Time of the Matter</h1>
+        <h1 id="intro">
+            Hypothesis on the Spatiality and Temporality of Matter
+        </h1>
         <p>
-            A matter is a composition of mass and electromagnetic, a photon is
-            mass-independent electromagnetic, and mass is an
-            electromagnetic-independent matter.
+            A Matter as a Composite of Mass-Electromagnetic Waves, Photons as
+            Mass-Independent Electromagnetic Waves, and Electromagnetic
+            Wave-Independent Mass
         </p>
         <p>2022 Sujin</p>
 
         <h2>Abstract</h2>
         <p>
-            This document introduces a new hypothesis about the structure of a
-            matter. According to this hypothesis, the matter can be divided into
-            the ether, which is the space of mass, and the sparkle, the
-            electromagnetic-like object. And ether and a sparkle even can be
-            swapped as a different form of energy. A particle, like an electron,
-            is a compound of ether and a sparkle, and a photon is an independent
-            sparkle. I call this hypothesis the ether-sparkle theory.
+            This document aims to propose a new hypothesis regarding the
+            structure of matter. According to this hypothesis, matter can be
+            divided into two entities: the ether, which constitutes the
+            spatiality of mass, and sparkles, which possess the properties of
+            electromagnetic waves. These two entities can interact with each
+            other. If particles such as electrons are considered as composites
+            of ether and sparkles, photons can be seen as sparkles without
+            ether. Let's refer to this hypothesis as the Ether-Sparkle
+            Hypothesis.
         </p>
         <p>
-            To prove it, I will try to reveal what the independent ether is,
-            which is a space with mass. In the classic physics, energy from a
-            hydrogen-like atom is concrete. It is a simple equation. What if it
-            would seem to be able to calculate in multi-electron atom along with
-            my theory? This document will follow the step to open the
-            possibilities.
+            To demonstrate this, this document will explore the existence of
+            independent ether. In order to do so, we will reinterpret the Bohr
+            model and orbitals. If we can provide a simpler explanation for
+            phenomena observed in matter from the perspective of the
+            Ether-Sparkle framework, it may present a small possibility in
+            support of the hypothesis.
         </p>
     </Doc>
 )

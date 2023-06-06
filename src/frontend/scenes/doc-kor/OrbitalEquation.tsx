@@ -14,6 +14,10 @@ import pic45 from 'src/assets/images/doc/pic45.png'
 import pic46 from 'src/assets/images/doc/pic46.png'
 import pic47 from 'src/assets/images/doc/pic47.png'
 import pic48 from 'src/assets/images/doc/pic48.png'
+import pic50 from 'src/assets/images/doc/pic50.png'
+import pic51 from 'src/assets/images/doc/pic51.png'
+import pic52 from 'src/assets/images/doc/pic52.png'
+import pic53 from 'src/assets/images/doc/pic53.png'
 
 export const OrbitalEquation = (): JSX.Element => (
     <Doc>
@@ -22,12 +26,12 @@ export const OrbitalEquation = (): JSX.Element => (
         <p>
             앞서 진행한 뤼드베리 값의 비교는 완전하지 않다. 왜냐하면 뤼드베리
             방정식은 수소꼴 원자 이외에는 들어맞지 않기 때문이다. 오차가
-            어마무지 하다는 이야기이다.이제 올바른 방정식을 찾도록 하자. 수소
-            원자의 뤼드베리 값들을 보자. 대략 0.75에서 시작해서 1로 수렴하게
-            된다. 그것은 뤼드베리 방정식의 구조와도 일치한다. n에 2를 넣었을
-            때의 값은 0.75이며 함수의 극한은 1로 수렴되기 때문이다. 그러니
-            수소꼴 원자들이 방정식에 맞지 않으면 서운할 지경이다. 그런데 매우
-            서운하다. 안 맞기 때문이다.
+            어마무지 하다는 이야기이다.이제 올바른 방정식을 찾도록 하자.
+            Nth(n)에서 수소 원자의 뤼드베리 값들을 보자. 대략 0.75에서 시작해서
+            1로 수렴하게 된다. 그것은 뤼드베리 방정식의 구조와도 일치한다. n에
+            1를 넣었을 때의 값은 0.75이며 함수의 극한은 1로 수렴되기 때문이다.
+            그러니 수소꼴 원자들이 방정식에 맞지 않으면 서운할 지경이다. 그런데
+            매우 서운하다. 안 맞기 때문이다.
         </p>
         <div className="align__center">
             <img src={pic27} alt="수소(H)의 뤼드베리 값" />
@@ -303,246 +307,117 @@ export const OrbitalEquation = (): JSX.Element => (
             대략적인 그래프의 형태를 더 구체화 시켜 보겠다.
         </p>
 
-        <h3>수소꼴의 고점 공식</h3>
+        <h3>수소꼴의 방정식: 비율</h3>
 
         <p>
-            고점 공식을 유도하는 방법도 기본적으로는 똑같다. 그러나 고점은
-            첫점과는 달리 명확한 값이 존재하지 않는다. 예측을 해야한다. 그런데
-            그 예측이 쉽지 않다. 뒤쪽의 에테르로 갈 수록 작은 오차에도 큰 차이가
-            발생하기 때문이다. 고점을 구하는 방법은 다음과 같이 하겠다. 먼저
-            작은 이온 번호에서 기준이 되는 방정식을 정한다. 그리고 각 점의 실제
-            값과 방정식의 값의 차이를 그래프로 나타낸다. 이것을 수소 자리, 헬륨
-            자리, 리튬 자리라고 하자. 이 별자리가 일정한 규칙을 가질 수 있는
-            고점을 구한다. 그리고 같은 꼴의 원소들을 같은 방식으로 처리했을 때
-            비슷한 별자리가 그려지는 고점들을 구하는 것이다. 뭔 소리인지
-            모르겠다. 백문이 불허일견이다.
+            수소꼴의 경우 고점은 Z<sup>2</sup>로 볼 수 있다. 그러나 스트론튬의
+            예에서 보았듯, 첫점과 마찬가지로 오차가 생긴다. 하지만 걱정 마시라.
+            고점의 경우에는 이온화 에너지라는 관측 값이 있다. 이제 부터의 단위는
+            eV로 통일하도록 한다.
         </p>
 
-        <p>
-            방정식은 가로축 이동이 일어날 수 있다. 우리는 수소의 에테르가 그리는
-            선이 어디에서 시작하는지 칼슘 XX는 어디에서 시작하는지 알고 있다.
-            가로축 방향 이동을 포함하는 방정식을 만들어보자.
-        </p>
+        <p>수소의 이온화 에너지 13.5970432eV로 관측값과 비교해보자.</p>
 
         <div className="align__center">
+            <img src={pic50} alt="수소 방정식" />
             <Latex
                 displayMode={true}
-            >{`$$y_{1} = i^2 - \\dfrac{i^2}{(2 + v)^2}$$`}</Latex>
-            <Latex
-                displayMode={true}
-            >{`$$y = i^2 - \\dfrac{i^2}{(x + 1 + v)^2}$$`}</Latex>
+            >{`$$y = 13.5970432 (1 - \\dfrac{1}{(x + 1)^2})$$`}</Latex>
         </div>
 
         <p>
-            v는 가로축 방향으로의 이동이며 i는 고점의 위치이다. v를 없애면 i를
-            대입할 수 있는 방정식을 만들 수 있다.
+            이번에는 내가 가진 데이터 중 가장 큰 번호인 29번 구리를 보자. 이온화
+            에너지는 11566.865778eV이다.
+        </p>
+
+        <div className="align__center">
+            <img src={pic51} alt="구리 방정식" />
+            <Latex
+                displayMode={true}
+            >{`$$y = 11566.865778 (1 - \\dfrac{1}{(x + 1)^2})$$`}</Latex>
+        </div>
+
+        <p>
+            수소꼴의 방정식은 이온화 에너지를 이용하면 간단하게 구해진다는 것을
+            보았다. Nth(n)에 영향을 미치는 비율은 해당 원소의 이온화 에너지이다.
+        </p>
+
+        <h3>헬륨I의 방정식: 좌우 이동</h3>
+
+        <p>
+            헬륨I을 보도록 하자. 그래프의 비율은 수소I의 13.5970432eV를
+            사용한다. 그리고 고점을 맞춰주기 위해 헬륨I의 이온화 에너지
+            24.58556828eV를 더하고 수소I의 13.5970432eV를 빼준다.
+        </p>
+
+        <div className="align__center">
+            <img src={pic52} alt="헬륨I의 방정식" />
+            <Latex
+                displayMode={true}
+            >{`$$y = 13.5970432 (1 - \\dfrac{1}{(x + 1)^2}) + 24.58556828 - 13.5970432$$`}</Latex>
+        </div>
+
+        <p>
+            이 그래프는 실제 값들과 차이가 존재한다. 앞서 전제했듯 그래프를
+            좌우로 이동시켜 보자. 이는 훈트의 규칙과 같은 것들에 의해 움직일
+            테지만 지금은 움직이는 것에만 집중해 보자.
         </p>
 
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$\\to y_{1} - i^2 = - \\dfrac{i^2}{(2 + v)^2}$$`}</Latex>
+            >{`$$y = r (1 - \\dfrac{1}{(x + 1 + k)^2}) + S$$`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to i^2 - y_{1} = \\dfrac{i^2}{(2 + v)^2}$$`}</Latex>
+            >{`$$\\to r (1 - \\dfrac{1}{(x + 1 + k)^2}) = y - S$$`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to \\dfrac{i^2}{i^2 - y_{1}} = (2 + v)^2$$`}</Latex>
+            >{`$$\\to 1 - \\dfrac{1}{(x + 1 + k)^2} = \\dfrac{y - S}{r}$$`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to \\dfrac{i}{\\sqrt{i^2 - y_{1}}} - 2 = v$$`}</Latex>
+            >{`$$\\to \\dfrac{1}{(x + 1 + k)^2} = 1 - \\dfrac{y - S}{r}$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to (x + 1 + k)^2 = \\dfrac{1}{1 - \\dfrac{y - S}{r}}$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to x + 1 + k = \\sqrt{\\dfrac{1}{1 - \\dfrac{y - S}{r}}}$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to k = \\sqrt{\\dfrac{1}{1 - \\dfrac{y - S}{r}}} - x- 1$$`}</Latex>
         </div>
 
-        <p>이것을 y 공식의 v에 대입하면</p>
+        <p>
+            k는 특정한 x, y 값이 주어졌을 때 그래프를 이동해 준다. 즉, s2 [O]
+            상태가 19라면 1, 19를 넣으면 된다. 이를 정리하면 아래와 같다.
+        </p>
 
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$y = i^2 - \\dfrac{i^2}{\\bigg(x + 1 + \\dfrac{i}{\\sqrt{i^2 - y_{1}}} - 2\\bigg)^2}$$`}</Latex>
-            <Latex
-                displayMode={true}
-            >{`$$y = i^2 - \\dfrac{i^2}{\\bigg(x + \\dfrac{i}{\\sqrt{i^2 - y_{1}}} - 1\\bigg)^2}$$`}</Latex>
+            >{`$$y = r (1 - \\dfrac{1}{(x + \\sqrt{\\dfrac{1}{1 - \\dfrac{y_1 - S}{r}}} - x_1)^2}) + S$$`}</Latex>
+        </div>
+
+        <div className="align__center">
+            <img src={pic53} alt="헬륨I의 그래프 좌우 이동" />
             <p>
-                <strong>1번의 값이 y1일 때 함수</strong>
+                <strong>헬륨I의 그래프 좌우 이동</strong>
             </p>
         </div>
 
         <p>
-            여기에서 i를 조절하여 실제 값과 최대한 유사한 i를 찾는 것이다.
-            아래는 i를 0.999867로 했을 때 수소의 각 점의 차이와 방정식의 차이의
-            비율을 나타내는 수소자리이다.
+            여기서 가장 큰 오차가 발생하는 것은 바닥 상태의 값이다. 다른
+            원소들의 이온에서도 역시 바닥 상태가 가장 큰 오차를 보인다. 이는
+            역시 다른 전자들의 개입일 것이며, 이는 다음 과제로 삼기로 한다.
         </p>
 
-        <div className="align__center">
-            <img src={pic43} alt="수소자리" />
-            <p>
-                <strong>수소자리</strong>
-            </p>
-        </div>
-
-        <p>이제는 수소꼴 원소들을 같은 방식으로 대입해 규칙을 찾아보자</p>
-
-        <div className="align__center">
-            <img src={pic44} alt="수소자리들" />
-            <p>
-                <strong>수소자리들</strong>
-            </p>
-        </div>
-
-        <p>이렇게 유추한 i 값들을 보자</p>
-
-        <div className="align__center">
-            <img src={pic45} alt="i 값들" />
-            <p>
-                <strong>i 값들</strong>
-            </p>
-        </div>
-
-        <p>역시 살짝 휘는 모습이다. i 값의 변화를 보자.</p>
-
-        <div className="align__center">
-            <img src={pic46} alt="i의 변화" />
-            <p>
-                <strong>i의 변화</strong>
-            </p>
-        </div>
+        <h3>정리</h3>
 
         <p>
-            한결 2차 함수에 가까워진 모습이다. 이와 근사하는 함수를 만들면
-            아래와 같다. 이것은 고점이자 비율이 된다. 마지막 방정식은
-            수소꼴에서의 뤼드베리 방정식이 된다. 여기까지의 값들은 이곳에
-            정리되어 있다.{' '}
-            <a
-                href="https://www.desmos.com/calculator/h8nkm2q5g1"
-                target="_blank"
-                rel="noreferrer"
-            >
-                https://www.desmos.com/calculator/h8nkm2q5g1
-            </a>
+            바닥 상태의 오차가 존재하지만 뤼드베리 방정식으로 다전자 원자의
+            오비탈의 변화를 비교적 잘 설명할 수 있게 되었다. 다음 장에서는
+            오비탈 분류와 에테르 분류 중 어떤 것이 현상을 잘 설명하는 지를
+            살펴볼 것이다.
         </p>
-
-        <div className="align__center">
-            <Latex
-                displayMode={true}
-            >{`$$I_{1}(x) = 0.0000004x + 0.000044$$`}</Latex>
-            <Latex
-                displayMode={true}
-            >{`$$I_{2}(x) = \\sum_{n=1}^{x-1} I_{1}(x)$$`}</Latex>
-            <Latex
-                displayMode={true}
-            >{`$$I_{3}(x) = 1.0003 + \\sum_{n=1}^{x-1} I_{2}(x)$$`}</Latex>
-            <Latex
-                displayMode={true}
-            >{`$$I(i) = 0.9998669 + \\sum_{n=1}^{i-1} I_{3}(i)$$`}</Latex>
-            <Latex
-                displayMode={true}
-            >{`$$R_{H}(i, x) = I(i)^2\\bigg(1 - \\dfrac{1}{(x+1)^2}\\bigg)$$`}</Latex>
-        </div>
-
-        <h3>헬륨꼴의 고점 공식</h3>
-
-        <p>
-            같은 방식으로 헬륨꼴의 고점 공식을 만들어보자. 그래프의 비율인 i는
-            수소꼴과 동일하게 설정하고 전체 값에 일정 량 <code>[X]</code>를
-            더해서 만든다. 이렇게 구한 X의 변화량은 1차 함수를 그리는 것을 알 수
-            있다.
-        </p>
-
-        <div className="align__center">
-            <img src={pic47} alt="X의 변화" />
-            <p>
-                <strong>X의 변화</strong>
-            </p>
-        </div>
-
-        <div className="align__center">
-            <Latex displayMode={true}>{`$$X(x) = 0.7515x + 0.056$$`}</Latex>
-            <Latex
-                displayMode={true}
-            >{`$$R_{He}(i, x) = I(i)^2\\bigg(1 - \\dfrac{1}{(x+1)^2}\\bigg)+X(i)$$`}</Latex>
-        </div>
-
-        <p>
-            이렇다면 리튬의 방정식도 쉽게 유추할 수 있다. X(i)를 두 배 해주면 될
-            것이다. 이렇게 구한 최종 공식은 아래와 같다.
-        </p>
-
-        <div className="align__center">
-            <Latex
-                displayMode={true}
-            >{`$$R(Z, i, x) = I(i)^2\\bigg(1 - \\dfrac{1}{(x + 1)^2}\\bigg)+(Z-i)X(i)$$`}</Latex>
-            <p>
-                <strong>새로운 뤼드베리 방정식 (최종)</strong>
-            </p>
-        </div>
-
-        <p>
-            이것을 뤼드베리-수진 방정식이라고 부르고 싶은 마음은 간절하지만,
-            그런 이름은 남들이 붙이는 거다.
-        </p>
-
-        <p>
-            이렇게 만든 방정식에 첫점 공식 까지 대입해서 그래프를 그려보면....
-            안 맞는다. 우리는 첫점 공식을 만들 때 헬륨의 첫점을 대략적으로
-            유추하고 이를 수소의 첫점과 연결한 선이 연장되는 곳을 리튬의
-            첫점으로 보았다. 이는 리튬의 원래 위치를 유추하는데에는 유용했지만
-            정확한 첫점이라고는 볼 수 없다. 리튬의 첫점만을 다시 더 정확하게
-            전개하면 아래와 같다.
-        </p>
-
-        <div className="align__center">
-            <Latex
-                displayMode={true}
-            >{`$$F_{Li1}(x) = 0.000248x + 0.000592633333333$$`}</Latex>
-            <Latex
-                displayMode={true}
-            >{`$$F_{Li2}(x) = 1.4938568 + \\sum_{n=1}^{x-1}F_{Li1}(x)$$`}</Latex>
-            <Latex
-                displayMode={true}
-            >{`$$F_{Li3}(x) = 3.5615489 + \\sum_{n=1}^{x-1}F_{Li2}(x)$$`}</Latex>
-            <Latex
-                displayMode={true}
-            >{`$$F_{Li}(x) = 2.2184361 + \\sum_{n=1}^{x-1}F_{Li3}(x)$$`}</Latex>
-            <p>
-                <strong>리튬의 고점 공식 (최최최종)</strong>
-            </p>
-        </div>
-
-        <p>
-            이 방정식과 실제 값과의 비교는 이곳에서 볼 수 있다.{' '}
-            <a
-                href="https://www.desmos.com/calculator/0xzijj0ymg"
-                target="_blank"
-                rel="noreferrer"
-            >
-                https://www.desmos.com/calculator/0xzijj0ymg
-            </a>
-            실제 값인 점과 방정식이 근사하게 근사하는 것을 볼 수 있다.
-        </p>
-        <p>
-            이 방정식의 문제점은 4번 베릴륨 부터는 다른 방정식이 필요하다는
-            것이다. 이 방정식은 에테르를 가진 전자가 하나일 경우만을 설명한다.
-            베릴륨의 바닥 상태는 1s<sup>2</sup> 2s<sup>2</sup>{' '}
-            <code>[X, X, O, O]</code>이기 때문에 이에 적합하지 않다. 이를 알기
-            위해서는 헬륨, 리튬에서의 <code>[O, -]</code>, <code>[-, -]</code>,{' '}
-            <code>[X, O, -]</code>, <code>[X, -, -]</code>와 같이 에테르를 가진
-            전자가 두 개 존재할 때의 변화에서 새로운 방정식을 만들어야 한다.
-            이는 역시 뤼드베리 방정식의 형태일 것으로 예상된다.
-        </p>
-        <p>
-            우리가 방정식을 만든 이유는 완벽한 방정식을 만들기 위함이 아니라,
-            오비탈과 에테르의 비교를 하기 위함이다. 뤼드베리 공식 보다 더 실제
-            값에 근접한 것이 필요했기 때문이었다. 따라서 더 발전된 방정식을
-            만드는 것은 다음 과제로 삼기로 하자.
-        </p>
-
-        <h3>베릴륨의 힌트</h3>
-
-        <div className="align__center">
-            <img src={pic48} alt="베릴륨의 힌트" />
-            <p>
-                <strong>베릴륨의 힌트</strong>
-            </p>
-        </div>
     </Doc>
 )

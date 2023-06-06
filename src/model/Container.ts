@@ -271,4 +271,30 @@ export class Container {
         }
         return this._shift
     }
+
+    private _dominantRadial: Nullable<Row>
+    public get dominantRadial(): Row {
+        if (this._dominantRadial) {
+            return this._dominantRadial
+        }
+        let startPosition = 100
+        this._dominantRadial = this.items
+            .filter((row) => {
+                if (
+                    row.first.orbital === 's' &&
+                    startPosition > row.first.position
+                ) {
+                    startPosition = row.first.position
+                }
+                return row.first.orbital == 's'
+            })
+            .filter((row) => row.first.position === startPosition)
+            .sort((a, b) =>
+                a.items.filter((item) => item).length <
+                b.items.filter((item) => item).length
+                    ? 1
+                    : -1,
+            )[0]
+        return this._dominantRadial
+    }
 }

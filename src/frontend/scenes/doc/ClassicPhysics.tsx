@@ -7,14 +7,18 @@ import pic5 from 'src/assets/images/doc/pic5_eng.png'
 export const ClassicPhysics = (): JSX.Element => (
     <Doc>
         <h2 id="classic-physics">Proof(1): Classic Physics</h2>
-        <h3>The Emission Wavelength of Photon-Ether from the Bohr Model</h3>
+        <h3>
+            The emitted wavelengths of the Photon-Ether based on Bohr's atomic
+            model
+        </h3>
 
         <p>
-            Rydberg formula is the solution to calculate the wavelength from an
-            electron. The next ones are the Rydberg formula and tables of the
-            Lyman series, emission wavelengths from <Latex>$n \geq 2$</Latex> to{' '}
-            <Latex>$n = 1$</Latex>, and the Paschen series, emission wavelengths
-            from <Latex>$n \geq 4$</Latex> to <Latex>$n = 3$</Latex>.
+            The wavelengths emitted by the electron can be determined using the
+            Rydberg formula. Below is a summary of the Rydberg formula and the
+            emitted wavelengths in the Lyman series, where n decreases from{' '}
+            <Latex>$n \geq 2$</Latex> to <Latex>$n = 1$</Latex>, and the Paschen
+            series, where the transition changes from <Latex>$n \geq 4$</Latex>{' '}
+            to <Latex>$n = 3$</Latex>.
         </p>
 
         <div className="align__center">
@@ -88,11 +92,14 @@ export const ClassicPhysics = (): JSX.Element => (
         </p>
 
         <p>
-            It tends to have rules, but there is no rule between series. For
-            example, the emissions from four to three are different. What I
-            assume is there is a certain amount of energy between the same
-            orbit, so these tables are not matched my assumption. Here's the
-            reciprocal of a fraction, a wave number.
+            At first glance, it may seem that there is a decreasing pattern
+            within the same series, but it is difficult to determine how the
+            values change between different series. It is challenging to infer
+            the transition from 4 to 3 using only the values in the Lyman
+            series. We desire a consistent value for the spacing between n
+            shells, so wavelengths are not suitable. However, if we express the
+            wavelengths in terms of their reciprocals, called wave numbers, it
+            can be represented as follows:
         </p>
 
         <div className="table-scroll">
@@ -130,8 +137,9 @@ export const ClassicPhysics = (): JSX.Element => (
         </p>
 
         <p>
-            The following tables are differences between the orbit number, which
-            means from two to one, from three to two, etc.
+            Let's focus on the gaps between the wave numbers. In other words, we
+            will examine the values when transitioning from 2 to 1 and from 4 to
+            3.
         </p>
 
         <div className="table-scroll">
@@ -215,21 +223,29 @@ export const ClassicPhysics = (): JSX.Element => (
         </p>
 
         <p>
-            They match together. This result supports the exact amount of energy
-            stored in between the orbits. Now, the calculation of electron
-            energy is just an adding equation.
+            The difference in wave numbers is the same for both series. This
+            supports the hypothesis that a specific energy is conserved in the
+            space between the n shells in the form of Ether. Each corresponding
+            Photon-Ether between the shells has a constant energy, and it can be
+            interpreted as being converted into exactly that amount of
+            Photon-Sparkle and emitted. Now, the absorption and emission of
+            energy have been combined as additions.
         </p>
 
-        <h3>Energy of Photon-Ether</h3>
+        <h3>Emmision Energy of Photon-Ether</h3>
 
         <p>
-            If the wavelength between the orbit is always the same, we can
-            calculate its energy. <Latex>$E = hc / λ$</Latex> is an energy
-            formula, and λ is a wavelength. The resulting unit is J, and
-            converting to eV is in the table below. I declare a function
-            <Latex>{`$\\dfrac{1}{n - 1}^2 - \\dfrac{1}{n}^2$`}</Latex>
-            as <Latex>{`$N_{th}(n)$`}</Latex>, and this function will be used in
-            this document again and again.
+            If the Photon-Ether has a constant wavelength, its energy can be
+            determined. The energy of light can be calculated using the equation
+            <Latex>$E = hc / λ$</Latex>, where λ represents the previously
+            calculated wave number. Here, λ refers to the wave number obtained
+            earlier, and the resulting value is in units of joules (J). The
+            energy values, measured in electron volts (eV), can be expressed
+            using the following formula, and when organized, they correspond to
+            the table below. Let's denote{' '}
+            <Latex>{`$\\dfrac{1}{n - 1}^2 - \\dfrac{1}{n}^2$`}</Latex> as the
+            function <Latex>{`$N_{th}(n)$`}</Latex>. This function will be used
+            continuously in the future.
         </p>
 
         <div className="align__center">
@@ -296,8 +312,9 @@ export const ClassicPhysics = (): JSX.Element => (
         </p>
 
         <p>
-            From the Bohr model and Schrödinger equation, the energy of n shell
-            is:
+            In the Bohr atomic model and the Schrödinger equation for the
+            hydrogen atom, the energy of the nth shell satisfies the following
+            equation:
         </p>
 
         <Latex
@@ -305,9 +322,9 @@ export const ClassicPhysics = (): JSX.Element => (
         >{`$$E_n = -\\frac{ℏ^2}{2 \\mu a_0 ^ 2} \\frac{1}{n^2}$$`}</Latex>
 
         <p>
-            I swap <Latex>{`$\\dfrac{1}{n^2}$`}</Latex> to{' '}
-            <Latex>{`$N_{th}(n)$`}</Latex> and convert J to eV. The values are
-            similar to the table above.
+            By substituting <Latex>{`$\\dfrac{1}{n^2}$`}</Latex> with{' '}
+            <Latex>{`$N_{th}(n)$`}</Latex> and J with eV, we can observe that
+            the obtained expression closely matches the one derived earlier.
         </p>
 
         <Latex
@@ -376,43 +393,43 @@ export const ClassicPhysics = (): JSX.Element => (
         </div>
 
         <p>
-            As you can see, we can get the energy of ether by the plus
-            calculation. Also, wavelength and mass would be able to calculate.
-        </p>
-        <p>
-            Two formulas has N<sub>th</sub>(n) as only variable. Therefore the
-            value is changed by the part of N<sub>th</sub>(n). It is called{' '}
-            <strong>Rydberg</strong> as a unit.
+            As seen in the diagram, we can now easily determine the energy
+            possessed by the ether through addition. We are now able to
+            calculate energy, wavelength, and even mass.
         </p>
 
-        <h3>Recap</h3>
+        <h3>Summary</h3>
+
         <p>
-            So far, it is obvious. It is all from a classic physics textbook. It
-            is right in the hydrogen-like atom in the Bohr era, a century ago.
-            However, it does not match multi-electron atoms. I made y'all fool.
+            Everything discussed here is quite obvious. It's basic knowledge
+            that can be found in any classical physics textbook. These concepts
+            were already well-established during Niels Bohr's time, specifically
+            in the context of hydrogen atoms. However, they do not hold true for
+            multi-electron atoms. You have been deceived. Haha!
         </p>
         <p>
-            I want to suggest conditions that make the ether-sparkle hypothesis
-            would be right.
+            What I am looking for here is to present the conditions under which
+            the ether-spark hypothesis can be convincing.
         </p>
 
         <ul>
             <li>
-                First, the ether energy should be{' '}
-                <strong>possible to guess</strong>
+                Firstly, the energy possessed by the ether should be{' '}
+                <strong>predictable</strong>.
             </li>
             <li>
-                Second, the ether energy should be <strong>summed</strong>
+                Secondly, the energy possessed by the ether should be obtainable
+                through <strong>addition</strong>.
             </li>
             <li>
-                Third, the two conditions above should be established in{' '}
-                <strong>multi-electron atoms</strong>
+                Thirdly, these conditions should hold true even for{' '}
+                <strong>multi-electron atoms</strong>.
             </li>
         </ul>
         <p>
-            If it passes the conditions, I may prove the electron energy is
-            stored as a form of ether. The next chapter is about multi-electron
-            atoms.
+            If these conditions are satisfied, it would be possible to
+            demonstrate that energy is stored in the form of ether. In the next
+            section, we will delve into multi-electron atoms.
         </p>
     </Doc>
 )

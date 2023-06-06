@@ -19,7 +19,7 @@ import pic26 from 'src/assets/images/doc/pic26.png'
 
 export const MultiElectronAtoms = (): JSX.Element => (
     <Doc>
-        <h2 id="multi-electron-atoms">가설의 검증(2): 다 전자 원자</h2>
+        <h2 id="multi-electron-atoms">가설의 검증(2): 다 전자 원자 - 오비탈</h2>
 
         <p>
             지금까지는 보어의 원자모형을 기준으로 가설을 검증했었다. 그러나 보어
