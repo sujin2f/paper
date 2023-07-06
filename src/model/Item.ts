@@ -93,13 +93,17 @@ export class Item {
     }
 
     public get percentFloat() {
+        const basePosition = this.parent?.parent.baseMinimum?.first.position
         const parent = this.parent
         if (!parent) {
             return NaN
         }
-        const first = parent.first
+        let first = parent.first
         if (!first) {
             return NaN
+        }
+        if (!first.rydberg && first.next) {
+            first = first.next
         }
         const nth = this.getShiftedNth(first.position, first.rydberg)
         if (this.rydberg === nth) {
@@ -128,9 +132,12 @@ export class Item {
         } else {
             base = ancestor.baseLinear
         }
-        const first = base?.first
+        let first = base?.first
         if (!first) {
             return NaN
+        }
+        if (!first.rydberg && first.next) {
+            first = first.next
         }
         const nth = this.getShiftedNth(first.position, first.rydberg)
         if (this.rydberg === nth) {

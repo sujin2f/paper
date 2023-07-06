@@ -286,7 +286,7 @@ export class Container {
                 ) {
                     startPosition = row.first.position
                 }
-                return row.first.orbital == 's'
+                return row.first.orbital === 's'
             })
             .filter((row) => row.first.position === startPosition)
             .sort((a, b) =>
