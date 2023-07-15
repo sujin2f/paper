@@ -1,4 +1,4 @@
--import React from 'react'
+import React from 'react'
 import { Doc } from 'src/frontend/scenes/doc'
 
 import pic1 from 'src/assets/images/doc/pic1_eng.png'

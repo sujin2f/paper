@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+console.log(process.env.MONGO_URI)
 export const mongoConnect = async (): Promise<typeof mongoose> => {
     const uri =
         process.env.MONGO_URI ||
@@ -15,6 +16,7 @@ export const mongoConnect = async (): Promise<typeof mongoose> => {
             return db
         })
         .catch((e) => {
+            console.log(e)
             throw new Error(e)
         })
 }

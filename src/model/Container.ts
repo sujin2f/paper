@@ -211,6 +211,9 @@ export class Container {
             const data: number[] = row.items.map((item) => {
                 let value
                 switch (graphType) {
+                    case 'diff-float':
+                        value = item ? item.diffFloat : NaN
+                        break
                     case 'percent-float':
                         value = item ? item.percentFloat : NaN
                         break

@@ -62,6 +62,7 @@ export type GraphQLParam = {
 
 export type GraphType =
     | 'percent'
+    | 'diff-float'
     | 'percent-float'
     | 'percent-base'
     | 'coordinate'

@@ -92,6 +92,22 @@ export class Item {
         return percent
     }
 
+    public get diffFloat() {
+        const parent = this.parent
+        if (!parent) {
+            return NaN
+        }
+        let first = parent.first
+        if (!first) {
+            return NaN
+        }
+        if (!first.rydberg && first.next) {
+            first = first.next
+        }
+        const nth = this.getShiftedNth(first.position, first.rydberg)
+        return nth - this.rydberg
+    }
+
     public get percentFloat() {
         const basePosition = this.parent?.parent.baseMinimum?.first.position
         const parent = this.parent

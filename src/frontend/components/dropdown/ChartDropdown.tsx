@@ -65,6 +65,23 @@ export const ChartDropdown = (): JSX.Element => {
                     </li>
                     <li
                         className={
+                            isGraph && graphType === 'diff-float'
+                                ? 'link-base current'
+                                : ''
+                        }
+                    >
+                        <Link
+                            to={getAddress({
+                                isGraph: true,
+                                graphType: 'diff-float',
+                            })}
+                            type="button"
+                        >
+                            Diff Float
+                        </Link>
+                    </li>
+                    <li
+                        className={
                             isGraph && graphType === 'percent-base'
                                 ? 'link-base current'
                                 : ''

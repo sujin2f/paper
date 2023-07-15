@@ -43,6 +43,7 @@ export const RowGroup = (props: Props): JSX.Element => {
                 {nth && <Row cols={cols} row={row} cell="Nth" />}
                 {percent && <Row cols={cols} row={row} cell="%" />}
                 {percent && <Row cols={cols} row={row} cell="% Float" />}
+                <Row cols={cols} row={row} cell="Diff Float" />
                 {percent && <Row cols={cols} row={row} cell="% Base" />}
             </tbody>
         </Fragment>
