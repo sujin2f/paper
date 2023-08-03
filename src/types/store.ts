@@ -8,9 +8,9 @@ export type State = {
         orbital: boolean
         ether: boolean
         rydberg: boolean
-        diff: boolean
-        nth: boolean
-        percent: boolean
+        fixed: boolean
+        float: boolean
+        base: boolean
     }
 }
 
@@ -19,7 +19,7 @@ export type Action = {
     orbital?: boolean
     ether?: boolean
     rydberg?: boolean
-    diff?: boolean
-    nth?: boolean
-    percent?: boolean
+    fixed?: boolean
+    float?: boolean
+    base?: boolean
 } & Type

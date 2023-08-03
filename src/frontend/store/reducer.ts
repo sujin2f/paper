@@ -3,9 +3,9 @@ import {
     SET_ORBITAL,
     SET_ETHER,
     SET_RYDBERG,
-    SET_DIFF,
-    SET_NTH,
-    SET_PERCENT,
+    SET_FIXED,
+    SET_FLOAT,
+    SET_BASE,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -15,9 +15,9 @@ export const initialState: State = {
         orbital: true,
         ether: true,
         rydberg: true,
-        diff: true,
-        nth: true,
-        percent: true,
+        fixed: true,
+        float: true,
+        base: true,
     },
 }
 
@@ -59,30 +59,30 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 },
             }
         }
-        case SET_DIFF: {
+        case SET_FIXED: {
             return {
                 ...state,
                 visible: {
                     ...state.visible,
-                    diff: action.diff!,
+                    fixed: action.fixed!,
                 },
             }
         }
-        case SET_NTH: {
+        case SET_FLOAT: {
             return {
                 ...state,
                 visible: {
                     ...state.visible,
-                    nth: action.nth!,
+                    float: action.float!,
                 },
             }
         }
-        case SET_PERCENT: {
+        case SET_BASE: {
             return {
                 ...state,
                 visible: {
                     ...state.visible,
-                    percent: action.percent!,
+                    base: action.base!,
                 },
             }
         }

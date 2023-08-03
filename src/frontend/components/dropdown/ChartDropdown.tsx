@@ -26,12 +26,12 @@ export const ChartDropdown = (): JSX.Element => {
                 <ul className="menu vertical" ref={dropdown}>
                     <li className={!isGraph ? 'link-base current' : ''}>
                         <Link to={getAddress({ isGraph: false })} type="button">
-                            X
+                            Close
                         </Link>
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'percent'
+                            isGraph && graphType === 'fixed'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -39,16 +39,16 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'percent',
+                                graphType: 'fixed',
                             })}
                             type="button"
                         >
-                            %
+                            Fixed
                         </Link>
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'percent-float'
+                            isGraph && graphType === 'float'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -56,16 +56,16 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'percent-float',
+                                graphType: 'float',
                             })}
                             type="button"
                         >
-                            % Float
+                            Float
                         </Link>
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'diff-float'
+                            isGraph && graphType === 'base'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -73,45 +73,11 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'diff-float',
+                                graphType: 'base',
                             })}
                             type="button"
                         >
-                            Diff Float
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'percent-base'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={getAddress({
-                                isGraph: true,
-                                graphType: 'percent-base',
-                            })}
-                            type="button"
-                        >
-                            % Base
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'coordinate'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={getAddress({
-                                isGraph: true,
-                                graphType: 'coordinate',
-                            })}
-                            type="button"
-                        >
-                            Coordinate
+                            Base
                         </Link>
                     </li>
                 </ul>

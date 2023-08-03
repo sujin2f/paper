@@ -4,9 +4,9 @@ export const SET_DIGIT = 'ether/v1/SET_DIGIT'
 export const SET_ORBITAL = 'ether/v1/SET_ORBITAL'
 export const SET_ETHER = 'ether/v1/SET_ETHER'
 export const SET_RYDBERG = 'ether/v1/SET_RYDBERG'
-export const SET_DIFF = 'ether/v1/SET_DIFF'
-export const SET_NTH = 'ether/v1/SET_NTH'
-export const SET_PERCENT = 'ether/v1/SET_PERCENT'
+export const SET_FIXED = 'ether/v1/SET_FIXED'
+export const SET_FLOAT = 'ether/v1/SET_FLOAT'
+export const SET_BASE = 'ether/v1/SET_BASE'
 
 export const setDigit = (digit: number): Action => {
     return {
@@ -36,23 +36,23 @@ export const setRydberg = (rydberg: boolean): Action => {
     }
 }
 
-export const setDiff = (diff: boolean): Action => {
+export const setFixed = (fixed: boolean): Action => {
     return {
-        type: SET_DIFF,
-        diff,
+        type: SET_FIXED,
+        fixed,
     }
 }
 
-export const setNth = (nth: boolean): Action => {
+export const setFloat = (float: boolean): Action => {
     return {
-        type: SET_NTH,
-        nth,
+        type: SET_FLOAT,
+        float,
     }
 }
 
-export const setPercent = (percent: boolean): Action => {
+export const setBase = (base: boolean): Action => {
     return {
-        type: SET_PERCENT,
-        percent,
+        type: SET_BASE,
+        base,
     }
 }

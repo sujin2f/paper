@@ -60,12 +60,7 @@ export type GraphQLParam = {
     term: string
 }
 
-export type GraphType =
-    | 'percent'
-    | 'diff-float'
-    | 'percent-float'
-    | 'percent-base'
-    | 'coordinate'
+export type GraphType = 'fixed' | 'float' | 'base'
 export type DataType = 'raw-data' | 'orbital' | 'ether'
 
 export type URLParam = {

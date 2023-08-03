@@ -3,7 +3,18 @@ import { Context, ContextType } from 'src/frontend/store'
 import { Row as RowModel } from 'src/model/Row'
 
 type Props = {
-    cell: 'rydberg' | 'diff' | 'Nth' | '%' | '% Float' | 'Diff Float' | '% Base'
+    cell:
+        | 'Rydberg'
+        | 'R Diff'
+        | 'Fixed'
+        | 'Fixed Diff'
+        | 'Fixed %'
+        | 'Float'
+        | 'Float Diff'
+        | 'Float %'
+        | 'Base'
+        | 'Base Diff'
+        | 'Base %'
     row: RowModel
     cols: number
 }
@@ -22,26 +33,38 @@ export const Row = (props: Props): JSX.Element => {
                     let value = NaN
                     if (item) {
                         switch (cell) {
-                            case 'rydberg':
+                            case 'Rydberg':
                                 value = item.rydberg
                                 break
-                            case 'diff':
+                            case 'R Diff':
                                 value = item.diff
                                 break
-                            case 'Nth':
+                            case 'Fixed':
                                 value = item.nth
                                 break
-                            case '%':
+                            case 'Fixed Diff':
+                                value = item.nthDiff
+                                break
+                            case 'Fixed %':
                                 value = item.percent
                                 break
-                            case '% Float':
-                                value = item.percentFloat
+                            case 'Float':
+                                value = item.float
                                 break
-                            case 'Diff Float':
+                            case 'Float Diff':
                                 value = item.diffFloat
                                 break
-                            case '% Base':
-                                value = item.percentBase
+                            case 'Float %':
+                                value = item.percentFloat
+                                break
+                            case 'Base':
+                                value = item.base
+                                break
+                            case 'Base Diff':
+                                value = item.baseDiff
+                                break
+                            case 'Base %':
+                                value = item.basePercent
                                 break
                         }
                     }

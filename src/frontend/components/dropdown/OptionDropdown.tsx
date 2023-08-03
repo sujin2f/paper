@@ -2,19 +2,19 @@ import React, { useContext, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Context, ContextType } from 'src/frontend/store'
 import {
-    setDiff,
     setEther,
-    setNth,
     setOrbital,
-    setPercent,
     setRydberg,
+    setFixed,
+    setFloat,
+    setBase,
 } from 'src/frontend/store/actions'
 
 export const OptionDropdown = (): JSX.Element => {
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const [
         {
-            visible: { orbital, ether, rydberg, diff, nth, percent },
+            visible: { orbital, ether, rydberg, fixed, float, base },
         },
         dispatch,
     ] = useContext(Context) as ContextType
@@ -82,11 +82,11 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setDiff(!diff))
+                                dispatch(setFixed(!fixed))
                             }}
-                            className={diff ? '' : 'view-option__unselected'}
+                            className={fixed ? '' : 'view-option__unselected'}
                         >
-                            ✔ Diff
+                            ✔ Fixed
                         </Link>
                     </li>
                     <li>
@@ -95,11 +95,11 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setNth(!nth))
+                                dispatch(setFloat(!float))
                             }}
-                            className={nth ? '' : 'view-option__unselected'}
+                            className={float ? '' : 'view-option__unselected'}
                         >
-                            ✔ N<sub>th</sub>(n)
+                            ✔ Float
                         </Link>
                     </li>
                     <li>
@@ -108,11 +108,11 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setPercent(!percent))
+                                dispatch(setBase(!base))
                             }}
-                            className={percent ? '' : 'view-option__unselected'}
+                            className={base ? '' : 'view-option__unselected'}
                         >
-                            ✔ %
+                            ✔ Base
                         </Link>
                     </li>
                 </ul>

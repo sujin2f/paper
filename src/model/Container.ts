@@ -211,17 +211,14 @@ export class Container {
             const data: number[] = row.items.map((item) => {
                 let value
                 switch (graphType) {
-                    case 'diff-float':
-                        value = item ? item.diffFloat : NaN
+                    case 'fixed':
+                        value = item ? item.percent : NaN
                         break
-                    case 'percent-float':
+                    case 'float':
                         value = item ? item.percentFloat : NaN
                         break
-                    case 'percent-base':
-                        value = item ? item.percentBase : NaN
-                        break
-                    case 'coordinate':
-                        value = item ? item.coordinate : NaN
+                    case 'base':
+                        value = item ? item.basePercent : NaN
                         break
                     default:
                         value = item ? item.percent : NaN

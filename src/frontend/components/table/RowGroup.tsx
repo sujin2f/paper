@@ -13,7 +13,7 @@ type Props = {
 export const RowGroup = (props: Props): JSX.Element => {
     const [
         {
-            visible: { orbital, ether, rydberg, nth, percent },
+            visible: { orbital, ether, rydberg, fixed, float, base },
         },
     ] = useContext(Context) as ContextType
     const { cols, row } = props
@@ -38,13 +38,17 @@ export const RowGroup = (props: Props): JSX.Element => {
                 {ether && <Ether cols={cols} row={row} />}
             </thead>
             <tbody>
-                {rydberg && <Row cols={cols} row={row} cell="rydberg" />}
-                {/* {diff && <Row cols={cols} row={row} cell="diff" />} */}
-                {nth && <Row cols={cols} row={row} cell="Nth" />}
-                {percent && <Row cols={cols} row={row} cell="%" />}
-                {percent && <Row cols={cols} row={row} cell="% Float" />}
-                <Row cols={cols} row={row} cell="Diff Float" />
-                {percent && <Row cols={cols} row={row} cell="% Base" />}
+                {rydberg && <Row cols={cols} row={row} cell="Rydberg" />}
+                {rydberg && <Row cols={cols} row={row} cell="R Diff" />}
+                {fixed && <Row cols={cols} row={row} cell="Fixed" />}
+                {fixed && <Row cols={cols} row={row} cell="Fixed Diff" />}
+                {fixed && <Row cols={cols} row={row} cell="Fixed %" />}
+                {float && <Row cols={cols} row={row} cell="Float" />}
+                {float && <Row cols={cols} row={row} cell="Float Diff" />}
+                {float && <Row cols={cols} row={row} cell="Float %" />}
+                {base && <Row cols={cols} row={row} cell="Base" />}
+                {base && <Row cols={cols} row={row} cell="Base Diff" />}
+                {base && <Row cols={cols} row={row} cell="Base %" />}
             </tbody>
         </Fragment>
     )

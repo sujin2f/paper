@@ -34,27 +34,109 @@ export class Item {
         this.confPrefix = confPrefix
     }
 
-    public get rydberg() {
+    private _isAvailable: Nullable<boolean> = undefined
+    public get isAvailable(): boolean {
+        if (this._isAvailable !== undefined) {
+            return this._isAvailable
+        }
+        this._isAvailable = true
+        const parent = this.parent
+        if (!parent) {
+            this._isAvailable = false
+            return this._isAvailable
+        }
+        let first = parent.first
+        if (!first) {
+            this._isAvailable = false
+        }
+        return this._isAvailable
+    }
+
+    private _isFirst: Nullable<boolean> = undefined
+    public get isFirst(): boolean {
+        if (this._isFirst !== undefined) {
+            return this._isFirst
+        }
+
+        if (!this.isAvailable) {
+            this._isFirst = false
+            return this._isFirst
+        }
+        const first = this.parent?.first
+        this._isFirst = this === first
+        return this._isFirst
+    }
+
+    public get rydberg(): number {
         return this.data.rydberg
     }
 
-    public get ion() {
+    public get ion(): number {
         return this.data.ion
     }
 
-    public get number() {
+    public get number(): number {
         return this.data.number
     }
 
-    public get diff() {
-        const first = this.parent?.parent.baseMinimum?.first.position
-        if (!first) {
+    private _diff: Nullable<number>
+    public get diff(): number {
+        if (this._diff) {
+            return this._diff
+        }
+
+        if (!this.isAvailable) {
+            this._diff = NaN
+            return this._diff
+        }
+
+        this._diff = this.rydberg - (this.prev?.rydberg || 0)
+        return this._diff
+    }
+
+    private _nth: Nullable<number>
+    public get nth() {
+        if (this._nth) {
+            return this._nth
+        }
+        const ancestor = this.parent?.parent
+        if (!ancestor) {
+            this._nth = NaN
+            return this._nth
+        }
+
+        this._nth = getNth(ancestor.ratio, ancestor.shift, this.position)
+        return this._nth
+    }
+
+    private _nthDiff: Nullable<number> = undefined
+    public get nthDiff(): number {
+        if (this._nthDiff !== undefined) {
+            return this._nthDiff
+        }
+        if (this.diff === 0) {
             return NaN
         }
-        // if (!this.prev && this.position > first + 1) {
-        //     return NaN
-        // }
-        return this.rydberg - (this.prev?.rydberg || 0)
+
+        const ancestor = this.parent?.parent
+        if (!ancestor) {
+            return NaN
+        }
+
+        if (!this.prev) {
+            this._nthDiff = this.nth
+            return this._nthDiff
+        }
+
+        if (this.prev.rydberg === 0) {
+            this._nthDiff = this.nth
+            return this._nthDiff
+        }
+
+        this._nthDiff =
+            this.nth -
+            getNth(ancestor.ratio, ancestor.shift, this.prev.position)
+        return this._nthDiff
     }
 
     public get ether() {
@@ -78,68 +160,97 @@ export class Item {
                 .join('')
         }
 
-        return ''
+        return Array(linear).fill('➖').join('')
     }
 
-    public get percent() {
-        if (this.rydberg === this.nth) {
-            return 100
+    private _percent: Nullable<number> = undefined
+    public get percent(): number {
+        if (this._percent !== undefined) {
+            return this._percent
         }
-        const percent = (this.rydberg / this.nth) * 100
-        if (!percent) {
+
+        if (isNaN(this.diff) || isNaN(this.nthDiff)) {
+            this._percent = NaN
+            return this._percent
+        }
+
+        return (this.nthDiff / this.diff) * 100
+    }
+
+    private _float: Nullable<number> = undefined
+    public get float() {
+        if (this._float !== undefined) {
+            return this._float
+        }
+
+        const parent = this.parent
+        if (!parent) {
+            this._float = NaN
             return NaN
         }
-        return percent
+        let first = parent.first
+        if (!first) {
+            this._float = NaN
+            return NaN
+        }
+        if (!first.rydberg && first.next) {
+            first = first.next
+        }
+        this._float = this.getShiftedNth(first.position, first.rydberg)
+        return this._float
     }
 
+    private _diffFloat: Nullable<number> = undefined
     public get diffFloat() {
-        const parent = this.parent
-        if (!parent) {
-            return NaN
+        if (this._diffFloat !== undefined) {
+            return this._diffFloat
         }
-        let first = parent.first
-        if (!first) {
-            return NaN
+
+        if (this.rydberg === 0) {
+            this._diffFloat = NaN
+            return this._diffFloat
         }
-        if (!first.rydberg && first.next) {
-            first = first.next
+
+        const current = this.float
+        const prev = this.prev?.float || 0
+
+        if (this.prev?.rydberg === 0) {
+            this._diffFloat = current
+            return this._diffFloat
         }
-        const nth = this.getShiftedNth(first.position, first.rydberg)
-        return nth - this.rydberg
+
+        this._diffFloat = current - prev
+        return this._diffFloat
     }
 
+    private _percentFloat: Nullable<number> = undefined
     public get percentFloat() {
-        const basePosition = this.parent?.parent.baseMinimum?.first.position
-        const parent = this.parent
-        if (!parent) {
-            return NaN
+        if (this._percentFloat !== undefined) {
+            return this._percentFloat
         }
-        let first = parent.first
-        if (!first) {
-            return NaN
+        const diff = this.diff
+        const diffFloat = this.diffFloat
+        if (isNaN(diff) || isNaN(diffFloat)) {
+            this._percentFloat = NaN
+            return this._percentFloat
         }
-        if (!first.rydberg && first.next) {
-            first = first.next
-        }
-        const nth = this.getShiftedNth(first.position, first.rydberg)
-        if (this.rydberg === nth) {
-            return 100
-        }
-        const percent = (this.rydberg / nth) * 100
-        if (!percent) {
-            return NaN
-        }
-
-        return percent
+        this._percentFloat = (diffFloat / diff) * 100
+        return this._percentFloat
     }
 
-    public get percentBase() {
+    private _base: Nullable<number> = undefined
+    public get base(): number {
+        if (this._base !== undefined) {
+            return this._base
+        }
         const parent = this.parent
         if (!parent) {
+            this._base = NaN
             return NaN
         }
         const ancestor = parent.parent
         if (!ancestor) {
+            this._base = NaN
             return NaN
         }
         let base: Nullable<Row> = undefined
@@ -148,23 +259,55 @@ export class Item {
         } else {
             base = ancestor.baseLinear
         }
+
         let first = base?.first
         if (!first) {
+            this._base = NaN
             return NaN
         }
         if (!first.rydberg && first.next) {
             first = first.next
         }
-        const nth = this.getShiftedNth(first.position, first.rydberg)
-        if (this.rydberg === nth) {
-            return 100
-        }
-        const percent = (this.rydberg / nth) * 100
-        if (!percent) {
-            return NaN
+        this._base = this.getShiftedNth(first.position, first.rydberg)
+        return this._base
+    }
+
+    private _baseDiff: Nullable<number> = undefined
+    public get baseDiff(): number {
+        if (this._baseDiff !== undefined) {
+            return this._baseDiff
         }
 
-        return percent
+        if (this.rydberg === 0) {
+            this._baseDiff = NaN
+            return this._baseDiff
+        }
+
+        const current = this.base
+        const prev = this.prev?.base || 0
+
+        if (this.prev?.rydberg === 0) {
+            this._baseDiff = current
+            return this._baseDiff
+        }
+
+        this._baseDiff = current - prev
+        return this._baseDiff
+    }
+
+    private _basePercent: Nullable<number> = undefined
+    public get basePercent() {
+        if (this._basePercent !== undefined) {
+            return this._basePercent
+        }
+        const diff = this.diff
+        const baseDiff = this.baseDiff
+        if (isNaN(diff) || isNaN(baseDiff)) {
+            this._basePercent = NaN
+            return this._basePercent
+        }
+        this._basePercent = (baseDiff / diff) * 100
+        return this._basePercent
     }
 
     public get coordinate() {
@@ -195,15 +338,6 @@ export class Item {
             return NaN
         }
         return this.getShiftedNth(first.position, first.rydberg)
-    }
-
-    public get nth() {
-        const ancestor = this.parent?.parent
-        if (!ancestor) {
-            return NaN
-        }
-
-        return getNth(ancestor.ratio, ancestor.shift, this.position)
     }
 
     public getShiftedNth(position: number, rydberg: number) {
