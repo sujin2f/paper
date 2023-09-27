@@ -23,6 +23,7 @@ export const Ether = (props: Props): JSX.Element => {
                         <th
                             key={`${row.label}-ether-${index}`}
                             className="align__center"
+                            data-id={row.items[index]?.data._id}
                         >
                             {ether}
                         </th>

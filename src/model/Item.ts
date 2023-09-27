@@ -18,6 +18,7 @@ export class Item {
     public termNumber: number
     public position: number
     public confPrefix: string
+    public isCombination = false
 
     public constructor(public data: RawData) {
         const term = data.term ? data.term.split(' ') : null
@@ -160,7 +161,8 @@ export class Item {
                 .join('')
         }
 
-        return Array(linear).fill('➖').join('')
+        const ether = Array(linear).fill('➖').join('')
+        return ether || '🆇'
     }
 
     private _percent: Nullable<number> = undefined

@@ -10,6 +10,10 @@ export type RawData = {
     term: string
     j: string
     conf: string
+    startEther: boolean
+    startOrbital: boolean
+    nextEther: string
+    nextOrbital: string
 }
 
 export const mongoSchema = new Schema({
@@ -19,6 +23,18 @@ export const mongoSchema = new Schema({
     term: String,
     j: String,
     conf: String,
+    startEther: Boolean,
+    startOrbital: Boolean,
+    nextEther: {
+        type: Schema.Types.ObjectId,
+        ref: 'rawData',
+        required: false,
+    },
+    nextOrbital: {
+        type: Schema.Types.ObjectId,
+        ref: 'rawData',
+        required: false,
+    },
 })
 
 export const graphQL = {
@@ -33,6 +49,10 @@ export const graphQL = {
                 term
                 j
                 conf
+                startEther
+                startOrbital
+                nextEther
+                nextOrbital
             }
         }
     `,
@@ -45,7 +65,11 @@ export const graphQL = {
             term: String
             j: String
             conf: String
-}
+            startEther: Boolean
+            startOrbital: Boolean
+            nextEther: String
+            nextOrbital: String
+        }
     `,
 }
 

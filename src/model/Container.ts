@@ -69,11 +69,11 @@ export class Container {
                 .slice(0, -1)
             const length = this.conf.length - rawConf.length - 1
             const confCompare = this.conf.slice(0, -1).slice(length)
-            if (rawConf.join('') !== confCompare.join('')) {
-                return
-            }
 
             const item = new Item(raw)
+            if (rawConf.join('') !== confCompare.join('')) {
+                item.isCombination = true
+            }
             const key = item.encodeURI
 
             if (Object.keys(items).indexOf(key) === -1) {
