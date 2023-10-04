@@ -16,8 +16,24 @@ export const useData: DataHook = (variables) => {
         },
     )
 
+    if (data) {
+        const container = Container.getOrCreateInstance(
+            variables.number,
+            variables.ion,
+            data.items,
+            variables.dataType,
+            variables.term,
+        )
+
+        return {
+            container,
+            loading,
+            error,
+        }
+    }
+
     return {
-        data: data ? new Container(data.items, variables.dataType) : null,
+        container: null,
         loading,
         error,
     }

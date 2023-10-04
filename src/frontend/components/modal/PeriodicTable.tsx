@@ -52,7 +52,7 @@ export const PeriodicTable = (): JSX.Element => {
                                                         to={getAddress({
                                                             number: current.number,
                                                             ion: 1,
-                                                            term: '',
+                                                            term: 0,
                                                         })}
                                                         onClick={() =>
                                                             setShowModal(false)

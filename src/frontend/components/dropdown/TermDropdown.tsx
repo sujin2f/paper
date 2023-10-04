@@ -3,61 +3,69 @@ import { Link } from 'react-router-dom'
 import { useURLParam } from 'src/frontend/hooks/useURLParam'
 import { Container } from 'src/model/Container'
 
-type Props = {
-    data: Container
-}
-
-export const TermDropdown = (props: Props): JSX.Element => {
-    const { dataType } = useURLParam()
-    const { data } = props
-
+export const TermDropdown = (): JSX.Element => {
+    const { term, getAddress } = useURLParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
+    const container = Container.getInstance()
 
     document.addEventListener('click', () => {
         setShowOptions(false)
     })
 
     return (
-        <Fragment>
-            {dataType !== 'raw-data' && data && (
-                <li>
-                    <Link
-                        to="#"
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            setShowOptions(!showOptions)
-                        }}
-                    >
-                        Terms ▾
-                    </Link>
-                    {showOptions && (
-                        <ul className="menu vertical" ref={dropdown}>
-                            {/* {data.entries.map((entry) => {
-                                return (
-                                    <li
-                                        key={`term-selector-${entry.encodeURI}`}
+        <li>
+            <Link
+                to="#"
+                onClick={(e) => {
+                    e.stopPropagation()
+                    setShowOptions(!showOptions)
+                }}
+            >
+                Term ▾
+            </Link>
+            {showOptions && container.roots.length > 0 && (
+                <ul className="menu vertical" ref={dropdown}>
+                    <li>
+                        <Link
+                            to={getAddress({
+                                term: 0,
+                            })}
+                            type="button"
+                            className={
+                                0 === term ? '' : 'view-option__unselected'
+                            }
+                        >
+                            ✔ All
+                        </Link>
+                    </li>
+                    {container.roots.map((root, index) => {
+                        if (!root.isCombination) {
+                            return (
+                                <li key={`term-${index}`}>
+                                    <Link
+                                        to={getAddress({
+                                            term: index + 1,
+                                        })}
+                                        type="button"
                                         className={
-                                            term === entry.encodeURI
-                                                ? 'link-base current'
-                                                : ''
+                                            index + 1 === term
+                                                ? ''
+                                                : 'view-option__unselected'
                                         }
                                     >
-                                        <Link
-                                            to={getAddress({
-                                                term: `${entry.encodeURI}`,
-                                            })}
-                                            type="button"
-                                        >
-                                            {entry.term}.{entry.j}
-                                        </Link>
-                                    </li>
-                                )
-                            })} */}
-                        </ul>
-                    )}
-                </li>
+                                        ✔ {root.term[0]}
+                                        {root.term[1]}
+                                        {root.j}
+                                    </Link>
+                                </li>
+                            )
+                        } else {
+                            return <Fragment key={`term-${index}`} />
+                        }
+                    })}
+                </ul>
             )}
-        </Fragment>
+        </li>
     )
 }

@@ -14,18 +14,14 @@ export const TOCKor = (): JSX.Element => (
         </li>
         <li>
             <Link to="/kor/multi-electron-atoms">
-                가설의 검증(2): 다 전자 원자
+                가설의 검증(2-1): 다 전자 원자 (뤼드베리 방정식)
             </Link>
         </li>
         <li>
-            <Link to="/kor/orbital-equation">
-                가설의 검증(3): 뤼드베리 방정식
+            <Link to="/kor/comparison">
+                가설의 검증(2-2): 다 전자 원자 (방출 에너지)
             </Link>
         </li>
-        <li>
-            <Link to="/kor/comparison">가설의 검증(4): 오비탈과 에테르</Link>
-        </li>
-
         <li>
             <Link to="/kor/conclusion">결론</Link>
         </li>

@@ -15,7 +15,7 @@ export const MainHeader = (): JSX.Element => {
             <div className="top-bar-right">
                 <ul className="menu">
                     <li>
-                        <Link to="/raw-data/1">Raw Data</Link>
+                        <Link to="/raw-data/1">Data</Link>
                     </li>
                 </ul>
             </div>

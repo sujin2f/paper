@@ -42,19 +42,10 @@ export const Router = (): JSX.Element => {
                     path="/kor/multi-electron-atoms"
                     element={<MultiElectronAtomsKor />}
                 />
-                <Route
-                    path="/kor/orbital-equation"
-                    element={<OrbitalEquationKor />}
-                />
                 <Route path="/kor/comparison" element={<ComparisonKor />} />
                 <Route path="/kor/conclusion" element={<ConclusionKor />} />
 
                 <Route path="/:dataType/:atom" element={<Data />}>
-                    <Route path=":term" element={<Data />}>
-                        <Route path="graph" element={<Data />}>
-                            <Route path=":graphType" element={<Data />} />
-                        </Route>
-                    </Route>
                     <Route path="graph" element={<Data />}>
                         <Route path=":graphType" element={<Data />} />
                     </Route>

@@ -9,7 +9,7 @@ export const useURLParam = () => {
 
     const atomNumber = parseInt(numberParam || '1', 10)
     const ion = parseInt(ionParam || '1', 10)
-    const term = termParam || ''
+    const term = parseInt(termParam || '0')
     const graphType = graphTypeParam || '%'
     const isGraph = location.pathname.indexOf('/graph') !== -1
     const mode =
@@ -19,7 +19,7 @@ export const useURLParam = () => {
         dataType?: DataType
         number?: number
         ion?: number
-        term?: string
+        term?: number
         isGraph?: boolean
         graphType?: GraphType
         mode?: string
@@ -46,7 +46,7 @@ export const useURLParam = () => {
         graphType: graphType as GraphType,
         atomNumber,
         ion,
-        term: encodeURIComponent(term),
+        term,
         atom: getAtom(atomNumber),
         isGraph,
         mode,

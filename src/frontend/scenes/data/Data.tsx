@@ -10,7 +10,7 @@ import { Table } from 'src/frontend/components/table'
 
 export const Data = (): JSX.Element => {
     const { dataType, atom, atomNumber, ion, term } = useURLParam()
-    const { data, loading, error } = useData({
+    const { container, loading, error } = useData({
         dataType,
         number: atomNumber,
         ion,
@@ -36,7 +36,7 @@ export const Data = (): JSX.Element => {
         return <Fragment>Loading</Fragment>
     }
 
-    if (!data) {
+    if (!container) {
         return <Fragment>No Data</Fragment>
     }
 
@@ -44,15 +44,15 @@ export const Data = (): JSX.Element => {
         <Fragment>
             <Row>
                 <Column>
-                    <Header data={data} />
+                    <Header />
                 </Column>
             </Row>
             <Row>
                 {error && <Fragment>404</Fragment>}
                 {!error && (
                     <Column>
-                        <Chart data={data} />
-                        <Table data={data} />
+                        <Chart />
+                        <Table />
                     </Column>
                 )}
             </Row>

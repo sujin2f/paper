@@ -12,6 +12,17 @@ table.unstriped {
         border-bottom: 1px solid
             smart-scale($table-background, $table-color-scale);
     }
+    tr.dashed {
+        border-bottom: 3px dashed $medium-gray;
+    }
+
+    .border__bottom {
+        border-bottom: 3px solid $medium-gray;
+    }
+
+    .border__top {
+        border-top: 3px solid $medium-gray;
+    }
 
     th {
         min-width: 6rem;
@@ -22,14 +33,6 @@ table.unstriped {
     td {
         border-right: 1px solid
             smart-scale($table-background, $table-color-scale);
-    }
-
-    .border__bottom {
-        border-bottom: 3px solid $medium-gray;
-    }
-
-    .border__top {
-        border-top: 3px solid $medium-gray;
     }
 }
 
@@ -58,4 +61,8 @@ table.unstriped {
 
 .row-header__start {
     width: 5rem;
+}
+
+.first-item {
+    background-color: yellow;
 }

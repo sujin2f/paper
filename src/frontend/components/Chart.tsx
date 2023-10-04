@@ -21,15 +21,11 @@ ChartJS.register(
     Legend,
 )
 
-type Props = {
-    data: Container
-}
-
-export const Chart = (props: Props): JSX.Element => {
+export const Chart = (): JSX.Element => {
     const { graphType, isGraph } = useURLParam()
-    const { data } = props
+    const container = Container.getInstance()
 
-    if (!data || !isGraph) {
+    if (!container || !isGraph) {
         return <Fragment></Fragment>
     }
 
@@ -42,11 +38,7 @@ export const Chart = (props: Props): JSX.Element => {
         },
     }
 
-    const chartData = data.chart(graphType)
+    const chartData = container.chart(graphType)
 
-    return (
-        <Fragment>
-            <Line options={options} data={chartData} />
-        </Fragment>
-    )
+    return <Line options={options} data={chartData} className="chart" />
 }

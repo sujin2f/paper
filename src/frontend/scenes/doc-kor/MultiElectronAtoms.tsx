@@ -4,21 +4,8 @@ import { Doc } from 'src/frontend/scenes/doc-kor'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
 import pic10 from 'src/assets/images/doc/pic10.png'
-import pic11 from 'src/assets/images/doc/pic11.png'
-import pic16 from 'src/assets/images/doc/pic16.png'
-import pic17 from 'src/assets/images/doc/pic17.png'
-import pic18 from 'src/assets/images/doc/pic18.png'
-import pic19 from 'src/assets/images/doc/pic19.png'
-import pic20 from 'src/assets/images/doc/pic20.png'
-import pic21 from 'src/assets/images/doc/pic21.png'
-import pic22 from 'src/assets/images/doc/pic22.png'
-import pic23 from 'src/assets/images/doc/pic23.png'
-import pic24 from 'src/assets/images/doc/pic24.png'
-import pic25 from 'src/assets/images/doc/pic25.png'
-import pic26 from 'src/assets/images/doc/pic26.png'
 import pic29 from 'src/assets/images/doc/pic29.png'
 import pic42 from 'src/assets/images/doc/pic42.png'
-import pic54 from 'src/assets/images/doc/pic54.png'
 import pic55 from 'src/assets/images/doc/pic55.png'
 import pic56 from 'src/assets/images/doc/pic56.png'
 import pic57 from 'src/assets/images/doc/pic57.png'
@@ -33,7 +20,9 @@ import pic65 from 'src/assets/images/doc/pic65.png'
 
 export const MultiElectronAtoms = (): JSX.Element => (
     <Doc>
-        <h2 id="multi-electron-atoms">가설의 검증(2): 다 전자 원자 - 오비탈</h2>
+        <h2 id="multi-electron-atoms">
+            가설의 검증(2-1): 다 전자 원자 (뤼드베리 방정식)
+        </h2>
 
         <p>
             지금까지는 보어의 원자모형을 기준으로 가설을 검증했었다. 그러나 보어
@@ -222,7 +211,7 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$R^{1.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2})$$`}</Latex>
+            >{`$$ R^{1.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) $$`}</Latex>
             <p>수소 I의 뤼드베리 방정식 (eV)</p>
             <Latex
                 displayMode={true}
@@ -704,7 +693,9 @@ export const MultiElectronAtoms = (): JSX.Element => (
             표현한 것은 <code>d(i)</code>이다. 따라서 이 가정에 따른 수소, 헬륨,
             리튬의 방정식은 아래와 같아진다. 그리고 리튬의 고점을 그래프의
             고점에 맞추어 주자. 첫점은 <code>(0, 0)</code>에 맞춘다. 값은 원형
-            에테르만을 표시하였다.
+            에테르만을 표시하였다. <code>r</code>과 <code>d</code>는 오차가
+            존재하는 예측치이다. 세 원소는 측정값이 존재하기 때문에 방정식은
+            알아보기 쉽게 썼지만, 실제 대입은 측정값을 사용했다.
         </p>
 
         <div className="align__center">

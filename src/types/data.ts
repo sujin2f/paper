@@ -10,10 +10,6 @@ export type RawData = {
     term: string
     j: string
     conf: string
-    startEther: boolean
-    startOrbital: boolean
-    nextEther: string
-    nextOrbital: string
 }
 
 export const mongoSchema = new Schema({
@@ -23,24 +19,12 @@ export const mongoSchema = new Schema({
     term: String,
     j: String,
     conf: String,
-    startEther: Boolean,
-    startOrbital: Boolean,
-    nextEther: {
-        type: Schema.Types.ObjectId,
-        ref: 'rawData',
-        required: false,
-    },
-    nextOrbital: {
-        type: Schema.Types.ObjectId,
-        ref: 'rawData',
-        required: false,
-    },
 })
 
 export const graphQL = {
-    query: `items(number: Int!, ion: Int!, term: String, dataType: String): [RawData]`,
+    query: `items(number: Int!, ion: Int!, term: Int, dataType: String): [RawData]`,
     request: `
-        query items($number: Int!, $ion: Int!, $term: String, $dataType: String) {
+        query items($number: Int!, $ion: Int!, $term: Int, $dataType: String) {
             items(number: $number, ion: $ion, term: $term, dataType: $dataType) {
                 _id
                 number
@@ -49,10 +33,6 @@ export const graphQL = {
                 term
                 j
                 conf
-                startEther
-                startOrbital
-                nextEther
-                nextOrbital
             }
         }
     `,
@@ -65,10 +45,6 @@ export const graphQL = {
             term: String
             j: String
             conf: String
-            startEther: Boolean
-            startOrbital: Boolean
-            nextEther: String
-            nextOrbital: String
         }
     `,
 }
@@ -81,11 +57,21 @@ export type GraphQLParam = {
     dataType: DataType
     number: number
     ion: number
-    term: string
+    term: number
 }
 
-export type GraphType = 'fixed' | 'float' | 'base'
+export type GraphType = 'ground-fixed' | 'float' | 'between'
 export type DataType = 'raw-data' | 'orbital' | 'ether'
+export type TableRowType =
+    | 'Energy'
+    | 'E Diff'
+    | 'G.Fixed'
+    | 'G.Fixed.D'
+    | 'G.Fixed.%'
+    | 'Float'
+    | 'Float Diff'
+    | 'Float %'
+    | 'Between'
 
 export type URLParam = {
     dataType: DataType
@@ -94,7 +80,7 @@ export type URLParam = {
 }
 
 export type DataHook = (variables: GraphQLParam) => {
-    data: Container | null
+    container: Container | null
     loading: boolean
     error: ApolloError | undefined
 }

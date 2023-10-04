@@ -12,13 +12,9 @@ import { ChartDropdown } from 'src/frontend/components/dropdown/ChartDropdown'
 import { HeaderRight } from './HeaderRight'
 import { IonDropdown } from 'src/frontend/components/dropdown/IonDropdown'
 import { OptionDropdown } from 'src/frontend/components/dropdown/OptionDropdown'
-import { TermDropdown } from 'src/frontend/components/dropdown/TermDropdown'
+import { TermDropdown } from '../../dropdown/TermDropdown'
 
-type Props = {
-    data: Container
-}
-
-export const Header = (props: Props): JSX.Element => {
+export const Header = (): JSX.Element => {
     const { atom, atomNumber, ion, dataType, getAddress } = useURLParam()
 
     if (!atom) {
@@ -33,15 +29,29 @@ export const Header = (props: Props): JSX.Element => {
             <div className="table-header">
                 <nav className="align__left">
                     {prev && (
-                        <Link
-                            to={getAddress({
-                                number: prev.number,
-                                term: '',
-                                ion: 1,
-                            })}
-                        >
-                            &lt; {prev.name}
-                        </Link>
+                        <Fragment>
+                            <Link
+                                to={getAddress({
+                                    number: prev.number,
+                                    term: 0,
+                                    ion: 1,
+                                })}
+                            >
+                                &lt; {prev.name}
+                            </Link>
+                            <br />
+                            {ion - 1 !== 0 && (
+                                <Link
+                                    to={getAddress({
+                                        number: prev.number,
+                                        term: 0,
+                                        ion: ion - 1,
+                                    })}
+                                >
+                                    &lt; {prev.name} {ion - 1}
+                                </Link>
+                            )}
+                        </Fragment>
                     )}
                 </nav>
                 <header className="align__center table-header__title">
@@ -58,15 +68,27 @@ export const Header = (props: Props): JSX.Element => {
 
                 <nav className="align__right">
                     {next && (
-                        <Link
-                            to={getAddress({
-                                number: next.number,
-                                term: '',
-                                ion: 1,
-                            })}
-                        >
-                            {next.name} &gt;
-                        </Link>
+                        <Fragment>
+                            <Link
+                                to={getAddress({
+                                    number: next.number,
+                                    term: 0,
+                                    ion: 1,
+                                })}
+                            >
+                                {next.name} &gt;
+                            </Link>
+                            <br />
+                            <Link
+                                to={getAddress({
+                                    number: next.number,
+                                    term: 0,
+                                    ion: ion + 1,
+                                })}
+                            >
+                                {next.name} {ion + 1} &gt;
+                            </Link>
+                        </Fragment>
                     )}
                 </nav>
             </div>
@@ -75,7 +97,7 @@ export const Header = (props: Props): JSX.Element => {
                     <ul className="dropdown menu">
                         <OptionDropdown />
                         <IonDropdown />
-                        <TermDropdown data={props.data} />
+                        <TermDropdown />
 
                         <li className="divider">|</li>
 
@@ -87,20 +109,7 @@ export const Header = (props: Props): JSX.Element => {
                             <Link
                                 to={getAddress({
                                     dataType: 'raw-data',
-                                    term: '',
-                                })}
-                            >
-                                Raw Data
-                            </Link>
-                        </li>
-                        <li
-                            className={`link-base ${
-                                dataType === 'orbital' ? 'current' : ''
-                            }`}
-                        >
-                            <Link
-                                to={getAddress({
-                                    dataType: 'orbital',
+                                    term: 0,
                                 })}
                             >
                                 Orbital
@@ -114,6 +123,7 @@ export const Header = (props: Props): JSX.Element => {
                             <Link
                                 to={getAddress({
                                     dataType: 'ether',
+                                    term: 0,
                                 })}
                             >
                                 Ether
@@ -125,7 +135,7 @@ export const Header = (props: Props): JSX.Element => {
                         <ChartDropdown />
                     </ul>
                 </nav>
-                <HeaderRight data={props.data} />
+                <HeaderRight />
             </div>
         </Fragment>
     )

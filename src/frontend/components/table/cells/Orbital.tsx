@@ -15,11 +15,11 @@ export const Orbital = (props: Props): JSX.Element => {
             {Array(cols)
                 .fill('')
                 .map((_, index) => {
-                    const conf = row.items[index] ? row.items[index]!.conf : ''
+                    const conf = row.get(index) ? row.get(index)!.conf : ''
 
                     return (
                         <th
-                            key={`${row.label}-orbital-${index}`}
+                            key={`${row.symbol}-orbital-${index}`}
                             className="align__center"
                         >
                             {conf}

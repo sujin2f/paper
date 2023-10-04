@@ -1,77 +1,67 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
+import { Container } from 'src/model/Container'
 import { Row as RowModel } from 'src/model/Row'
+import { TableRowType } from 'src/types/data'
 
 type Props = {
-    cell:
-        | 'Rydberg'
-        | 'R Diff'
-        | 'Fixed'
-        | 'Fixed Diff'
-        | 'Fixed %'
-        | 'Float'
-        | 'Float Diff'
-        | 'Float %'
-        | 'Base'
-        | 'Base Diff'
-        | 'Base %'
+    type: TableRowType
     row: RowModel
-    cols: number
+    css?: string
 }
 
 export const Row = (props: Props): JSX.Element => {
-    const { row, cols, cell } = props
+    const { row, type, css } = props
     const [{ digit }] = useContext(Context) as ContextType
 
+    const container = Container.getInstance()
+    const cols = container.maxLength || 0
+
     return (
-        <tr className="border__bottom">
-            <th className="align__right">{cell}</th>
+        <tr className={`border__bottom ${css}`}>
+            <th className="align__right ">{type}</th>
             {Array(cols)
                 .fill('')
-                .map((_, index) => {
-                    const item = row.items[index]
+                .map((_, position) => {
+                    const item = row.get(position)
                     let value = NaN
                     if (item) {
-                        switch (cell) {
-                            case 'Rydberg':
-                                value = item.rydberg
+                        switch (type) {
+                            case 'Energy':
+                                value = item.energy
                                 break
-                            case 'R Diff':
+                            case 'E Diff':
                                 value = item.diff
                                 break
-                            case 'Fixed':
-                                value = item.nth
+                            case 'G.Fixed':
+                                value = container.getFixed(item)
                                 break
-                            case 'Fixed Diff':
-                                value = item.nthDiff
+                            case 'G.Fixed.D':
+                                value = container.getFixedDiff(item)
                                 break
-                            case 'Fixed %':
-                                value = item.percent
+                            case 'G.Fixed.%':
+                                value = container.getFixedPercent(item, row)
                                 break
                             case 'Float':
-                                value = item.float
+                                value = row.getFloat(position)
                                 break
                             case 'Float Diff':
-                                value = item.diffFloat
+                                value = row.getFloatDiff(position)
                                 break
                             case 'Float %':
-                                value = item.percentFloat
+                                value = row.getFloatPercent(position)
                                 break
-                            case 'Base':
-                                value = item.base
-                                break
-                            case 'Base Diff':
-                                value = item.baseDiff
-                                break
-                            case 'Base %':
-                                value = item.basePercent
+                            case 'Between':
+                                value = container.getBetween(item)
                                 break
                         }
                     }
                     return (
                         <td
-                            key={`${row.label}-${cell}-${index}`}
-                            className="align__right"
+                            key={`${row.symbol}-${type}-${position}`}
+                            className={`align__right ${
+                                row.first === item ? 'first-item' : ''
+                            }`}
                         >
                             {!isNaN(value) && value.toFixed(digit)}
                         </td>

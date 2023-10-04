@@ -3,11 +3,7 @@ import { Context, ContextType } from 'src/frontend/store'
 import { setDigit } from 'src/frontend/store/actions'
 import { Container } from 'src/model/Container'
 
-type Props = {
-    data: Container
-}
-
-export const HeaderRight = (props: Props): JSX.Element => {
+export const HeaderRight = (): JSX.Element => {
     const [{ digit }, dispatch] = useContext(Context) as ContextType
 
     return (

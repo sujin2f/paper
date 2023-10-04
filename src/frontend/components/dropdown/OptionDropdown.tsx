@@ -4,17 +4,16 @@ import { Context, ContextType } from 'src/frontend/store'
 import {
     setEther,
     setOrbital,
-    setRydberg,
+    setEnergy,
     setFixed,
     setFloat,
-    setBase,
 } from 'src/frontend/store/actions'
 
 export const OptionDropdown = (): JSX.Element => {
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const [
         {
-            visible: { orbital, ether, rydberg, fixed, float, base },
+            visible: { orbital, ether, energy, fixed, float },
         },
         dispatch,
     ] = useContext(Context) as ContextType
@@ -69,11 +68,11 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setRydberg(!rydberg))
+                                dispatch(setEnergy(!energy))
                             }}
-                            className={rydberg ? '' : 'view-option__unselected'}
+                            className={energy ? '' : 'view-option__unselected'}
                         >
-                            ✔ Rydberg
+                            ✔ Energy
                         </Link>
                     </li>
                     <li>
@@ -100,19 +99,6 @@ export const OptionDropdown = (): JSX.Element => {
                             className={float ? '' : 'view-option__unselected'}
                         >
                             ✔ Float
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="#"
-                            type="button"
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                dispatch(setBase(!base))
-                            }}
-                            className={base ? '' : 'view-option__unselected'}
-                        >
-                            ✔ Base
                         </Link>
                     </li>
                 </ul>

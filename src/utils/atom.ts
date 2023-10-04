@@ -1,9 +1,16 @@
 import { periodicTable } from 'src/constants/periodic-table'
+import { Container } from 'src/model/Container'
+import { Item } from 'src/model/Item'
 
 /*
  * Get atom from atomNumber
  */
 export const getAtom = (atomNumber: number) => {
+    const atom = periodicTable.elements[atomNumber - 1]
+    if (atom && atom.number === atomNumber) {
+        return atom
+    }
+
     for (const element of periodicTable.elements) {
         if (element.number === atomNumber) {
             return element
@@ -31,8 +38,4 @@ export const getConfArray = (conf: string): string[] => {
             .forEach(() => result.push(`${hasMultiple[1]}${hasMultiple[2]}`))
     })
     return result
-}
-
-export const getNth = (ratio: number, shift: number, position: number) => {
-    return ratio * (1 - 1 / Math.pow(position, 2)) + shift
 }

@@ -2,10 +2,9 @@ import {
     SET_DIGIT,
     SET_ORBITAL,
     SET_ETHER,
-    SET_RYDBERG,
+    SET_ENERGY,
     SET_FIXED,
     SET_FLOAT,
-    SET_BASE,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -14,10 +13,9 @@ export const initialState: State = {
     visible: {
         orbital: true,
         ether: true,
-        rydberg: true,
+        energy: true,
         fixed: true,
-        float: true,
-        base: true,
+        float: false,
     },
 }
 
@@ -50,12 +48,12 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 },
             }
         }
-        case SET_RYDBERG: {
+        case SET_ENERGY: {
             return {
                 ...state,
                 visible: {
                     ...state.visible,
-                    rydberg: action.rydberg!,
+                    energy: action.energy!,
                 },
             }
         }
@@ -74,15 +72,6 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 visible: {
                     ...state.visible,
                     float: action.float!,
-                },
-            }
-        }
-        case SET_BASE: {
-            return {
-                ...state,
-                visible: {
-                    ...state.visible,
-                    base: action.base!,
                 },
             }
         }

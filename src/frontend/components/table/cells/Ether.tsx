@@ -15,15 +15,13 @@ export const Ether = (props: Props): JSX.Element => {
             {Array(cols)
                 .fill('')
                 .map((_, index) => {
-                    const ether = row.items[index]
-                        ? row.items[index]!.ether
-                        : ''
+                    const ether = row.get(index) ? row.get(index)!.ether : ''
 
                     return (
                         <th
-                            key={`${row.label}-ether-${index}`}
+                            key={`${row.symbol}-ether-${index}`}
                             className="align__center"
-                            data-id={row.items[index]?.data._id}
+                            data-id={row.get(index)?.data._id}
                         >
                             {ether}
                         </th>

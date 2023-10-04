@@ -38,7 +38,7 @@ export const IonDropdown = (): JSX.Element => {
                             <Link
                                 to={getAddress({
                                     ion,
-                                    term: '',
+                                    term: 0,
                                 })}
                                 type="button"
                             >

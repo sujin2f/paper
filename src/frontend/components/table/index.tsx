@@ -2,26 +2,17 @@ import React, { Fragment } from 'react'
 import { RowGroup } from 'src/frontend/components/table/RowGroup'
 import { Container } from 'src/model/Container'
 
-type Props = {
-    data: Container
-}
-
-export const Table = (props: Props): JSX.Element => {
-    const { data } = props
-
-    if (!data) {
+export const Table = (): JSX.Element => {
+    const container = Container.getInstance()
+    if (!container) {
         return <Fragment></Fragment>
     }
 
     return (
         <div className="table-scroll">
             <table className="unstriped">
-                {data.items.map((row, rowIndex) => (
-                    <RowGroup
-                        key={`${rowIndex}-thead`}
-                        row={row}
-                        cols={data.length}
-                    />
+                {container.map((row, rowIndex) => (
+                    <RowGroup key={`${rowIndex}-thead`} row={row} />
                 ))}
             </table>
         </div>

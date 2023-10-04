@@ -7,10 +7,9 @@ export type State = {
     visible: {
         orbital: boolean
         ether: boolean
-        rydberg: boolean
+        energy: boolean
         fixed: boolean
         float: boolean
-        base: boolean
     }
 }
 
@@ -18,8 +17,7 @@ export type Action = {
     digit?: number
     orbital?: boolean
     ether?: boolean
-    rydberg?: boolean
+    energy?: boolean
     fixed?: boolean
     float?: boolean
-    base?: boolean
 } & Type
