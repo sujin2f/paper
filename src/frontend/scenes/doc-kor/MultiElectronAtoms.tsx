@@ -1,6 +1,8 @@
 import React from 'react'
 import Latex from 'react-latex'
 import { Doc } from 'src/frontend/scenes/doc-kor'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
 import pic10 from 'src/assets/images/doc/pic10.png'
@@ -17,11 +19,16 @@ import pic62 from 'src/assets/images/doc/pic62.png'
 import pic63 from 'src/assets/images/doc/pic63.png'
 import pic64 from 'src/assets/images/doc/pic64.png'
 import pic65 from 'src/assets/images/doc/pic65.png'
+import pic86 from 'src/assets/images/doc/pic86.png'
+import pic92 from 'src/assets/images/doc/pic92.jpeg'
+import pic93 from 'src/assets/images/doc/pic93.jpeg'
+import pic94 from 'src/assets/images/doc/pic94.png'
+import pic95 from 'src/assets/images/doc/pic95.png'
 
 export const MultiElectronAtoms = (): JSX.Element => (
     <Doc>
         <h2 id="multi-electron-atoms">
-            가설의 검증(2-1): 다 전자 원자 (뤼드베리 방정식)
+            가설의 검증(2): 뤼드베리 방정식의 재정립
         </h2>
 
         <p>
@@ -89,8 +96,6 @@ export const MultiElectronAtoms = (): JSX.Element => (
             원형 하나와 선형 하나를 가진 상태를 가진다는 것이다.
         </p>
 
-        {/* 그림 */}
-
         <p>
             이는 전자의 모양이 변화되는 것으로 이해되고 있으나, 에테르의
             관점에서는 저 검은 마디가 에테르이며, 전자의 에테르는 구형 그대로를
@@ -101,7 +106,13 @@ export const MultiElectronAtoms = (): JSX.Element => (
             오비탈인 것이다.
         </p>
 
-        {/* 그림 */}
+        <div className="align__center">
+            <img src={pic92} alt="오비탈에서 마디의 모양" width="300" />
+            <p>
+                <strong>오비탈에서 마디의 모양</strong>
+                <br />저 마디가 광자-에테르라면?
+            </p>
+        </div>
 
         <p>
             에테르의 관점을 더 잘 나타내기 위해 원과 선으로 표기법을 정해보기로
@@ -115,12 +126,11 @@ export const MultiElectronAtoms = (): JSX.Element => (
             <code>
                 1s<sup>2</sup>
             </code>
-            는 <code>[X][X]</code>,
+            는 <code>[X]2</code>,
             <code>
                 2s<sup>2</sup>
             </code>
-            는 <code>[O][O]</code>와 같이 표기하도록 하자. 아래 사용되는
-            데이터는{' '}
+            는 <code>[O]2</code>와 같이 표기하도록 하자. 아래 사용되는 데이터는{' '}
             <a
                 href="https://physics.nist.gov/PhysRefData/ASD/lines_form.html"
                 target="_blank"
@@ -139,8 +149,6 @@ export const MultiElectronAtoms = (): JSX.Element => (
             표와 그래프로 시각화 하였다.
         </p>
 
-        {/* 에테르와 오비탈 비교 */}
-
         <p>
             이를 통해 증명하고 싶은 것은 원형과 선형에 따라 쌓이는 패턴이
             존재한다는 것이다. 다전자 원자에서 값이 변하는 추이가 마치 수소
@@ -158,17 +166,17 @@ export const MultiElectronAtoms = (): JSX.Element => (
             <img src={pic55} alt="수소와 헬륨의 원형 에테르" />
             <p>
                 <strong>수소와 헬륨의 원형 에테르</strong> 그래프는 뤼드베리
-                방정식 오른쪽 상단이 헬륨이다.
+                방정식, 오른쪽 상단이 헬륨이다.
             </p>
         </div>
 
         <p>
-            그래프를 상하좌우로 이동 시키면 마치 겹칠 것 같이 생겼다. 이에
-            착안하여 뤼드베리 방정식을 변형시키는 방식으로 기준값 방정식을
+            그래프를 상하좌우로 이동 시키면 마치 겹칠 것 같이 생겼다. 다전자
+            원자에서 뤼드베리 방정식을 쓰지 말라고 여기저기 씌여 있지만 유혹을
+            참을 수 없다. 뤼드베리 방정식을 변형시키는 방식으로 기준값 방정식을
             만들어보겠다. 이 과정에서 오차 없이 완벽한 방정식을 찾으면 훌륭한
-            성과이겠지만, 우리가 원하는 것은 기준이 되는 방정식과 실제 값과의
-            차이를 통해 수치의 변화가 일정한지 보는 것이다. 아주 크지만 않다면
-            오차가 있는 편이 더 나을 것이다.
+            성과이겠지만, 스포일러 경고!, 그 방법을 찾지는 못했다. 다만 최대한
+            근사하는 방정식을 찾아보고자 한다.
         </p>
 
         <h3>그래프의 이동</h3>
@@ -181,7 +189,8 @@ export const MultiElectronAtoms = (): JSX.Element => (
         </div>
 
         <p>
-            헬륨 원자의 오비탈의 변화를 통해 알아보겠다. 각각의 색상은{' '}
+            헬륨 원자의 오비탈의 변화를 통해 알아보겠다. 수소는 너무 오차가
+            작아서 적절하지 않다. 각각의 색상은{' '}
             <code>
                 <sup>1</sup>S<sub>0</sub>
             </code>
@@ -197,27 +206,26 @@ export const MultiElectronAtoms = (): JSX.Element => (
             와 같은 항기호(Term Symbol)가 같은 s, p 오비탈들이다. 이 값들이
             뤼드베리 방정식이 좌우로 이동을 한 값이라 생각해보자. 그렇다면
             뤼드베리 방정식을 변형하여 각각의 그래프를 만들 수 있을 것이다.
-            수렴값은 이온화 에너지 값을 이용하자. 헬륨 I의 이온화 에너지는
-            <code>24.58556828</code>이다. 그래프의 비율은 수소 I와 동일하다
-            가정한다. 오비탈이 아닌 에테르가 기준이기에 <code>1/(x + 1)^2</code>
-            로 표현한다. x가 1번 자리일 때, 즉 <code>[O]</code> 또는
-            <code>[-]</code>와 같이 에테르가 하나 존재할 때 1/4가 될 것이고, 두
-            개 존재할 때는 1/9가 될 것이다. 이를 식으로 표현하면 이와 같다.
-            앞으로 구하는 R방정식은 R위에 원소 번호와 이온 번호를 .으로 구분하여
-            아라비아 숫자로 표기하고, 에테르나 오비탈의 경우는 그 밑에
-            표기하도록 하겠다.
+            수렴값은 이온화 에너지 값을 이용하자. 수소의 이온화 에너지는{' '}
+            <code>13.60676328</code>이다. 이는 그래프의 비율이 된다. 헬륨의
+            이온화 에너지는 <code>24.58556828</code>이다. 그래프의 비율은 수소과
+            동일하다 가정한다. 이를 식으로 표현하면 이와 같다. 앞으로 구하는
+            R방정식은 R위에 원소 번호와 이온 번호를 쩜(.)으로 구분하여 아라비아
+            숫자로 표기하고, 에테르나 오비탈의 경우는 그 밑에 표기하도록 하겠다.
         </p>
 
         <div className="align__center">
             <Latex
                 displayMode={true}
             >{`$$ R^{1.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) $$`}</Latex>
-            <p>수소 I의 뤼드베리 방정식 (eV)</p>
+            <p>수소의 뤼드베리 방정식 (eV)</p>
             <Latex
                 displayMode={true}
             >{`$$R^{2.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) + 24.58556828 - 13.60676328$$`}</Latex>
-            <p>헬륨 I의 뤼드베리 방정식 (eV)</p>
+            <p>헬륨의 뤼드베리 방정식 (eV)</p>
         </div>
+
+        <p>헬륨의 높이에 맞추어 뤼드베리 방정식을 상하로 이동해준 것이다.</p>
 
         <div className="align__center">
             <img
@@ -232,13 +240,12 @@ export const MultiElectronAtoms = (): JSX.Element => (
         </div>
 
         <p>
-            뭔가 근사하게 맞아 떨어지는 듯 보인다. 바닥 상태인{' '}
-            <code>[X][X]</code>가 0에서 왼쪽으로 벗어난 자잘한 사실은
-            잊어버리자. 사실은 다음 단락에서 이를 다시 볼 것이다. 이제 각각의
-            항기호에 맞게 좌우 이동을 해보자. 그래프의 비율인{' '}
-            <code>13.60676328</code>는 <code>r</code>(radius)로, 상하 이동값인{' '}
-            <code>24.58556828 - 13.60676328</code>는 <code>s</code>(shift)로
-            좌우 이동값은 <code>k</code>로 치환한다.
+            뭔가 근사하게 맞아 떨어지는 듯 보인다. 이제 좌우 이동을 해보자.
+            그래프의 비율인 <code>13.60676328</code>는 <code>r</code>
+            (radius)로, 상하 이동값인 <code>
+                24.58556828 - 13.60676328
+            </code>는 <code>s</code>(shift)로 좌우 이동값은 <code>k</code>로
+            치환한다.
         </p>
 
         <div className="align__center">
@@ -248,9 +255,9 @@ export const MultiElectronAtoms = (): JSX.Element => (
         </div>
         <p>
             위 식에서 <code>w</code>를 <code>[O]</code>에테르의 에너지,{' '}
-            <code>v</code>에 에테르의 번호인 <code>1</code>을 대입하면 이동값
-            <code>k</code>를 구할 수 있다. 그럼 <code>k</code>에 관한 식으로
-            만들어 보자.
+            <code>v</code>에 에테르의 번호인 <code>1</code>을 대입하면, 첫번째
+            위치에 맞추어 그래프가 좌우 이동할 것이다. 그럼 좌우 이동값{' '}
+            <code>k</code>에 관한 식으로 만들어 보자.
         </p>
         <div className="align__center">
             <Latex
@@ -285,8 +292,8 @@ export const MultiElectronAtoms = (): JSX.Element => (
                 displayMode={true}
             >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{r - w + s}})^2}$$`}</Latex>
             <p>
-                여기서 <code>r+s</code>는 그래프의 고점이다. <code>r+s</code>를
-                <code>p</code>(peak)로 표기해 보자.
+                여기서 <code>r+s</code>는 이온화 에너지와 동일한 그래프의
+                고점이다. <code>r+s</code>를<code>p</code>(peak)로 표기해 보자.
             </p>
             <Latex
                 displayMode={true}
@@ -296,32 +303,32 @@ export const MultiElectronAtoms = (): JSX.Element => (
 
         <p>
             <code>r</code>은 그래프의 비율이며 같은 위상에 있는 수소꼴 원자의
-            고점이다. 즉, He I의 <code>r</code> 값은 H I과 같으며, Li II의{' '}
+            고점이다. 즉, 헬륨의 <code>r</code> 값은 수소와 같으며, Li II의{' '}
             <code>r</code> 값은 He II와 같은 값이다. <code>p</code>는 그래프의
             고점, 수렴값이며 이는 이온화 에너지와 동일하다. 값을 대입해서 헬륨
             I의 s, p 오비탈의 그래프를 그려보면 아래와 같다.
         </p>
 
         <div className="align__center">
-            <img src={pic58} alt="헬륨 I의 s, p 오비탈의 그래프" />
+            <img src={pic58} alt="헬륨의 s, p 오비탈의 그래프" />
             <p>
-                <strong>헬륨 I의 s, p 오비탈의 그래프</strong> 예쁘다
+                <strong>헬륨의 s, p 오비탈의 그래프</strong> 아름답지 아니한가?
             </p>
         </div>
 
         <p>
-            다른 예로 리튬 I의{' '}
+            다른 예로 리튬의{' '}
             <code>
                 <sup>2</sup>S<sub>1/2</sub>
             </code>
             을{' '}
             <code>
-                1s<sup>2</sup>
+                1s<sup>2</sup>3s
             </code>
-            , <code>3s</code>인<code>[X][X][OO]</code>에 맞추어 방정식을 만들면
-            아래와 같다. 수소 I의 <code>r</code>값<code>13.60676328</code>, 리튬
-            I의 이온화 에너지 <code>s</code>값 <code>5.39114472</code>, 2번
-            자리에서의 방출 에너지 <code>3.373129</code>를 대입하는 것이다.
+            인<code>[X]2[OO]</code>에 맞추어 방정식을 만들면 아래와 같다. 수소의{' '}
+            <code>r</code>값<code>13.60676328</code>, 리튬의 이온화 에너지{' '}
+            <code>s</code>값 <code>5.39114472</code>, 2번 자리에서의 방출 에너지{' '}
+            <code>3.373129</code>를 대입하는 것이다.
         </p>
 
         <div className="align__center">
@@ -333,16 +340,374 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <img src={pic59} alt="리툼 I의 s 오비탈의 그래프" />
             <p>
-                <strong>리툼 I의 s 오비탈의 그래프</strong> 얘도 예쁘다
+                <strong>리툼의 s 오비탈의 그래프</strong> 얘도 아름답다
             </p>
         </div>
 
-        <h3>수소꼴 원자의 r값</h3>
+        <h3>좌우 이동 방법</h3>
 
         <p>
-            수소 I는 전자가 하나이며, 뤼드베리 방정식에 잘 맞아 떨어진다.
-            뤼드베리 방정식에 따르면 전자를 하나 가진 수소꼴 원자, 즉 헬륨 II와
-            리튬 III와 같은 것들은 뤼드베리 방정식에 원자번호(Z)의 제곱을 곱하면
+            이제 좌우 이동을 어떻게 할지는 수식에 넣으면 된다. 그런데, 어떤 값을
+            어디를 기준으로 얼마나 이동해야 적절한 비교일까? 기준이 되는 수식은
+            동일해야 적절하기 때문에 그래프를 계속 이동시킬 수는 없다. 헬륨
+            오비탈의 값들을 보자.
+        </p>
+
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>S<sub>0</sub>
+                        </th>
+                        <th>[X][O]</th>
+                        <th>[X][OO]</th>
+                        <th>[X][OOO]</th>
+                        <th>[X][OOOO]</th>
+                        <th>[X][5O]</th>
+                        <th>[X][6O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>20.616</td>
+                        <td>22.920</td>
+                        <td>23.674</td>
+                        <td>24.011</td>
+                        <td>24.191</td>
+                        <td>24.298</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>P*<sub>1</sub>
+                        </th>
+                        <th>[X][-]</th>
+                        <th>[X][-O]</th>
+                        <th>[X][-OO]</th>
+                        <th>[X][-OOO]</th>
+                        <th>[X][1-4O]</th>
+                        <th>[X][1-5O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>21.218</td>
+                        <td>23.087</td>
+                        <td>23.742</td>
+                        <td>24.046</td>
+                        <td>24.211</td>
+                        <td>24.311</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>D<sub>2</sub>
+                        </th>
+                        <th></th>
+                        <th>[X][--]</th>
+                        <th>[X][--O]</th>
+                        <th>[X][--OO]</th>
+                        <th>[X][2-3O]</th>
+                        <th>[X][2-4O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td>23.087</td>
+                        <td>23.742</td>
+                        <td>24.046</td>
+                        <td>24.211</td>
+                        <td>24.311</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            비어있는 공간에는 무엇이 들어가야 적절할까? 표에서 좌우로는 원형
+            오비탈[O]의 개수가 변화한다. 그렇다면 <code>[X][-O]</code> 이전에는
+            원형 오비탈이 존재하지 않는 값인 <code>[X][-]</code>를 넣으면 될
+            것이다. 그렇다면 s오비탈은 기준 그래프 쪽으로 동일하게 좌우 이동을
+            시키고, 나머지는 p오비탈의 좌우 이동값 만큼 이동시키면 될 것이다.
+        </p>
+
+        <div className="align__center">
+            <img src={pic93} alt="값의 좌우 이동" />
+            <p>
+                <strong>값의 좌우 이동</strong>
+            </p>
+        </div>
+
+        <p>
+            이렇게 한다면 모든 점들을 기준 그래프 쪽으로 정렬 시킬 수 있다. 왜
+            값을 좌우 이동하는지 의아한 사람이 있을 것이다. 그러나 이는 방정식의
+            좌우 이동과 완전히 동일한 개념이다. 방정식을 이동 시킨 후에는
+            방정식과 점을 동시에 이동해서 하나의 기준 방정식으로 만들어야 하나의
+            기준으로 모든 값을 비교하는 것이 가능하기 때문이다. 이동 수식에
+            s오비탈을 대입해서 이동값을 구해보자.
+        </p>
+
+        <div className="align__center">
+            <Latex
+                displayMode={true}
+            >{`$$k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to k_{s} = \\dfrac{1}{\\sqrt{1 - \\dfrac{20.6157751334 - (24.58556828 - 13.60676328)}{13.60676328}}} - 1 - 1$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to k_{s} = −0.148628918071$$`}</Latex>
+        </div>
+
+        <p>
+            p오비탈을 <code>[X][-]</code> 방향으로 이동한 k<sub>p</sub>값은{' '}
+            <code>0.00897479319406</code>가 된다. 그럼 이들을 대입하여 표를 다시
+            그려보자. 이번에는 값 대신 좌표로 표시하겠다.
+        </p>
+
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>S<sub>0</sub>
+                        </th>
+                        <th>[X][O]</th>
+                        <th>[X][OO]</th>
+                        <th>[X][OOO]</th>
+                        <th>[X][OOOO]</th>
+                        <th>[X][5O]</th>
+                        <th>[X][6O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>
+                            (1+k<sub>s</sub>, 20.616)
+                        </td>
+                        <td>
+                            (2+k<sub>s</sub>, 22.920)
+                        </td>
+                        <td>
+                            (3+k<sub>s</sub>, 23.674)
+                        </td>
+                        <td>
+                            (4+k<sub>s</sub>, 24.011)
+                        </td>
+                        <td>
+                            (5+k<sub>s</sub>, 24.191)
+                        </td>
+                        <td>
+                            (5+k<sub>s</sub>, 24.298)
+                        </td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>P*<sub>1</sub>
+                        </th>
+                        <th>[X][-]</th>
+                        <th>[X][-O]</th>
+                        <th>[X][-OO]</th>
+                        <th>[X][-OOO]</th>
+                        <th>[X][1-4O]</th>
+                        <th>[X][1-5O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>
+                            (1+k<sub>p</sub>, 21.218)
+                        </td>
+                        <td>
+                            (2+k<sub>p</sub>, 23.087)
+                        </td>
+                        <td>
+                            (3+k<sub>p</sub>, 23.742)
+                        </td>
+                        <td>
+                            (4+k<sub>p</sub>, 24.046)
+                        </td>
+                        <td>
+                            (5+k<sub>p</sub>, 24.211)
+                        </td>
+                        <td>
+                            (6+k<sub>p</sub>, 24.311)
+                        </td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>D<sub>2</sub>
+                        </th>
+                        <th></th>
+                        <th>[X][--]</th>
+                        <th>[X][--O]</th>
+                        <th>[X][--OO]</th>
+                        <th>[X][2-3O]</th>
+                        <th>[X][2-4O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td>
+                            (1+k<sub>p</sub>, 23.087)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 23.742)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 24.046)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 24.211)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 24.311)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>이를 그래프에 얹으면 아래와 같다.</p>
+
+        <div className="align__center">
+            <img src={pic94} alt="값의 좌우 이동 (그래프)" />
+            <p>
+                <strong>값의 좌우 이동 (그래프)</strong>
+            </p>
+        </div>
+
+        <p>
+            이 문서의 목적은 에테르가 쌓이는 것을 증명하는 것이다. 따라서 전체
+            에너지 보다는 각 단계별로 변하는 에너지를 보아야 한다.{' '}
+            <code>[X][O]</code>에서 <code>[X][OO]</code>로의 에너지 증가는 두
+            값의 차이와 R(2+k<sub>s</sub>) - R(1+k<sub>s</sub>)를 비교해야 할
+            것이다.
+        </p>
+
+        <div className="align__center">
+            <Latex
+                displayMode={true}
+            >{`$$a = 22.920317682 - 20.6157751334 = 2.3045425486$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$b = R(2+k_{s}) - R(1+k_{s}) = 2.29784533694$$`}</Latex>
+            <Latex displayMode={true}>{`$$a - b = 0.00669721166409$$`}</Latex>
+        </div>
+
+        <p>같은 식으로 모든 값의 변화를 표로 나타내면 아래와 같다.</p>
+
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>S<sub>0</sub>
+                        </th>
+                        <th>[OO] - [O]</th>
+                        <th>[OOO] - [OO]</th>
+                        <th>[OOOO] - [OOO]</th>
+                        <th>[5O] - [OOOO]</th>
+                        <th>[6O] - [5O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>0.00669721166409</td>
+                        <td>−0.00322123849668</td>
+                        <td>−0.00157668275873</td>
+                        <td>−0.00076388060241</td>
+                        <td>−0.000401501193807</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>P*<sub>1</sub>
+                        </th>
+                        <th>[-O] - [-]</th>
+                        <th>[-OO] - [-O]</th>
+                        <th>[-OOO] - [-OO]</th>
+                        <th>[1-4O] - [-OOO]</th>
+                        <th>[1-5O] - [1-4O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>0.00163108806923</td>
+                        <td>−0.000784728358325</td>
+                        <td>-0.00038084816397</td>
+                        <td>−0.000180879400757</td>
+                        <td>−0.0000924805841381</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>D<sub>2</sub>
+                        </th>
+                        <th></th>
+                        <th>[--O] - [--]</th>
+                        <th>[--OO] - [--O]</th>
+                        <th>[2-3O] - [--OO]</th>
+                        <th>[2-4O] - [2-3O]</th>
+                        <th>[2-5O] - [2-4O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td>0.00642397109168</td>
+                        <td>0.00235719100603</td>
+                        <td>0.00106323196224</td>
+                        <td>0.000549605285862</td>
+                        <td>0.000312953223304</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>이를 그래프에 옮겨 보자.</p>
+
+        <div className="align__center">
+            <img src={pic95} alt="값의 변화" />
+            <p>
+                <strong>값의 변화</strong>
+            </p>
+        </div>
+
+        <p>
+            이렇게 하면 측정된 모든 값의 차이인 에너지 변화를 동일한 기준으로
+            비교할 수 있다. 값도 들쭉날쭉 하지 않아 하나의 그래프에 나타내기
+            매우 좋아 보인다. 다음 장에서는 실제 비교와 해석을 통하여 원자의
+            방출 에너지를 에테르가 쌓이는 것으로 볼 수 있을지 알아보고자 한다.
+        </p>
+
+        <div>
+            {/* <h3>수소꼴 원자의 r값</h3>
+
+        <p>
+            수소는 전자가 하나이며, 뤼드베리 방정식에 잘 맞아 떨어진다. 뤼드베리
+            방정식에 따르면 전자를 하나 가진 수소꼴 원자, 즉 헬륨 II와 리튬
+            III와 같은 것들은 뤼드베리 방정식에 원자번호(Z)의 제곱을 곱하면
             된다고 한다. 정말 그러할까?
         </p>
 
@@ -462,7 +827,7 @@ export const MultiElectronAtoms = (): JSX.Element => (
             />
             <p>
                 <strong>Z 제곱과 R 방정식의 수은 LXXX의 원형 에테르</strong>{' '}
-                많이 편안해졌다.
+                아래쪽은 이전 방정식. 많이 편안해졌다.
             </p>
         </div>
 
@@ -562,12 +927,11 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <p>
             여기까지 수소꼴과 헬륨꼴 원자의 방정식들을 만들 수 있는 방법을
             제시하였다. 그런데 문제는 그 다음 부터이다. 수소꼴의 바닥 상태는
-            <code>[X]</code>, 헬륨꼴의 바닥 상태는 <code>[X][X]</code>이다.
-            그런데 리튬꼴의 바닥 상태는 첫번째 껍질에 <code>[X]</code>가 두 개
-            까지만 들어갈 수 있기 때문에 <code>[X][X][O]</code>가 된다. 가상의{' '}
-            <code>[X][X][X]</code>와 <code>[X][X][O]</code>의 차이는 관측할 수
-            없다는 것이다. 이는 증명 불가능한 영역이지만 추론을 해 보도록
-            하겠다.
+            <code>[X]</code>, 헬륨꼴의 바닥 상태는 <code>[X]2</code>이다. 그런데
+            리튬꼴의 바닥 상태는 첫번째 껍질에 <code>[X]</code>가 두 개 까지만
+            들어갈 수 있기 때문에 <code>[X]2[O]</code>가 된다. 가상의{' '}
+            <code>[X]3</code>와 <code>[X]2[O]</code>의 차이는 관측할 수 없다는
+            것이다. 이는 증명 불가능한 영역이지만 추론을 해 보도록 하겠다.
         </p>
 
         <p>
@@ -728,20 +1092,41 @@ export const MultiElectronAtoms = (): JSX.Element => (
 
         <p>
             이러한 규칙이 베릴륨에도 적용될 수 있을까? 결론은 아니다. 베릴륨의
-            바닥 상태는 <code>[X][X][O][O]</code>이다. 리튬에서{' '}
-            <code>[X][O][O]</code>와 같이 두 개의 전자가 에테르를 가지고 있을
-            때의 값은 그렇지 않은 경우 보다 높으며 <code>[X][O][-]</code>와 같이
-            에테르를 가진 전자의 수가 같은 경우와 고점이 같아 보인다. 즉,
-            베릴륨의 실제 바닥 상태는 <code>d(i)</code> 만으로는 구할 수 없다.
-            두 개의 전자가 에테르를 가졌을 때의 값의 변화도 알아야 한다. 실제
-            값의 변화로 예상하는 것은 그래프의 비율인 <code>r</code> 값은 동일할
-            것이다. 따라서 베릴륨의 경우에도 비율은 동일한 것으로 가정할 수
-            있다.
+            바닥 상태는 <code>[X]2[O]2</code>이다. 리튬에서 <code>[X][O]2</code>
+            와 같이 두 개의 전자가 에테르를 가지고 있을 때의 값은 그렇지 않은
+            경우 보다 높으며 <code>[X][O][-]</code>와 같이 구성을 달리 했을 때
+            고점이 달라 보인다. 아래의 그림을 보라. 즉, 베릴륨의 실제 바닥
+            상태는 <code>d(i)</code> 만으로는 구할 수 없다. 두 개의 전자가
+            에테르를 가졌을 때의 값의 변화도 알아야 한다. 실제 값의 변화로
+            예상하는 것은 그래프의 비율인 <code>r</code> 값은 동일할 것이라는 것
+            뿐이다.
+        </p>
+
+        <Row>
+            <Column small={4}></Column>
+            <Column small={3}>
+                <div className="align__center">
+                    <img src={pic86} alt="리튬의 에테르들" />
+                </div>
+            </Column>
+        </Row>
+        <div className="align__center">
+            <p>
+                <strong>리튬의 에테르들</strong>
+            </p>
+        </div>
+
+        <p>
+            저 위에 있는 것들이 <code>[X][O][-]</code>과 같이 두 개의 에테르를
+            가진 그룹이다. 즉, 베릴륨의 실제 방정식은 저 위에 있는 놈들의 고점과
+            바닥점을 알아야 구할 수 있다.
         </p>
 
         <p>
             너무 멀리 와버렸다. 다시 강조하지만 본 장의 목적은 비교의 기준이
             되는 방정식을 구하는 것이기에 여기 까지 하도록 하겠다.
         </p>
+        */}{' '}
+        </div>
     </Doc>
 )

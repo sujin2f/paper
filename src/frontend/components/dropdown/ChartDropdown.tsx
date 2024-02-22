@@ -63,6 +63,23 @@ export const ChartDropdown = (): JSX.Element => {
                             Float
                         </Link>
                     </li>
+                    <li
+                        className={
+                            isGraph && graphType === 'between'
+                                ? 'link-base current'
+                                : ''
+                        }
+                    >
+                        <Link
+                            to={getAddress({
+                                isGraph: true,
+                                graphType: 'between',
+                            })}
+                            type="button"
+                        >
+                            Between
+                        </Link>
+                    </li>
                 </ul>
             )}
         </li>

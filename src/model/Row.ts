@@ -58,47 +58,6 @@ export class Row extends Iterator<Item> {
         return this.first.energy
     }
 
-    public k: number[] = []
-    private _midK = NaN
-    private get midK() {
-        if (isNaN(this._midK)) {
-            const max = Math.max(...this.k)
-            const min = Math.min(...this.k)
-            this._midK = max - (max - min) / 2
-        }
-        return this._midK
-    }
-
-    private assignK(position: number) {
-        const item = this.get(position)
-        const ratio = this.parent.ratio
-        const shift = this.parent.peak - ratio
-        return (
-            1 / Math.sqrt(1 - (item.energy - shift) / ratio) - item.position - 1
-        )
-    }
-
-    private setK() {
-        this.forEach((item) => {
-            if (
-                item &&
-                this.first.position <= item.position &&
-                this.parent.groundFixed.position !== item.position
-            ) {
-                const k = this.assignK(item.position)
-                this.k.push(k)
-            }
-        })
-        this.k = this.k.sort()
-    }
-
-    public getK() {
-        if (this.k.length === 0) {
-            this.setK()
-        }
-        return this.k
-    }
-
     public constructor(private parent: Container) {
         super()
     }
@@ -120,19 +79,57 @@ export class Row extends Iterator<Item> {
         }
     }
 
+    public k: [number, number] = [NaN, NaN]
+    private _midK = NaN
+    private get midK() {
+        if (isNaN(this._midK)) {
+            const max = this.k[1]
+            const min = this.k[0]
+            this._midK = max - (max - min) / 2
+        }
+        return this._midK
+    }
+
+    private calculateK(position: number) {
+        const item = this.get(position)
+        const ratio = this.parent.ratio
+        const shift = this.parent.peak - ratio
+        return (
+            1 / Math.sqrt(1 - (item.energy - shift) / ratio) - item.position - 1
+        )
+    }
+
+    public getK(): number[] {
+        if (isNaN(this.k[0]) && isNaN(this.k[1])) {
+            let allK: number[] = []
+            this.forEach((item) => {
+                if (
+                    item &&
+                    this.first.position <= item.position &&
+                    this.parent.groundFixed.position !== item.position
+                ) {
+                    const k = this.calculateK(item.position)
+                    allK.push(k)
+                }
+            })
+            allK = allK.sort()
+            this.k = [Math.min(...allK), Math.max(...allK)]
+        }
+        return this.k
+    }
+
     private _float: number[] = []
     public getFloat(position: number): number {
-        if (this.k.length === 0) {
-            this.getK()
-        }
         if (this._float[position]) {
             return this._float[position]
         }
 
-        if (this.parent.groundFixed.position === position) {
-            this._float[position] = NaN
-            return NaN
-        }
+        // if (this.parent.groundFixed.position === position) {
+        //     this._float[position] = NaN
+        //     return NaN
+        // }
+
+        this.getK()
 
         // Rydberg Equation
         const peak = this.parent.peak
@@ -172,10 +169,10 @@ export class Row extends Iterator<Item> {
             return this._diffFloat[position]
         }
 
-        if (this.parent.groundFixed.position === position - 1) {
-            this._diffFloat[position] = this.getFloat(position)
-            return this._diffFloat[position]
-        }
+        // if (this.parent.groundFixed.position === position - 1) {
+        //     this._diffFloat[position] = this.getFloat(position)
+        //     return this._diffFloat[position]
+        // }
 
         this._diffFloat[position] =
             this.getFloat(position) - this.getFloat(position - 1)

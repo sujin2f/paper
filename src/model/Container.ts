@@ -466,33 +466,25 @@ export class Container extends Iterator<Row> {
         return (this.getFixed(item) / item.energy) * 100
     }
 
-    private k: number[] = []
-    private _maxK = NaN
-    private _minK = NaN
-    private get maxK() {
-        if (isNaN(this._maxK)) {
-            this._maxK = Math.max(...this.k)
-        }
-        return this._maxK
-    }
-    private get minK() {
-        if (isNaN(this._minK)) {
-            this._minK = Math.min(...this.k)
-        }
-        return this._minK
-    }
-
-    private _maxRydberg: number[] = []
-    private getMaxRydberg(position: number) {
-        if (this.k.length === 0) {
-            this.forEach((row) => {
+    private k: [number, number] = [NaN, NaN]
+    public getK(): number[] {
+        if (isNaN(this.k[0]) && isNaN(this.k[1])) {
+            let allK: number[] = []
+            this.filter((row) => !row.isCombination).forEach((row) => {
                 const k = row.getK().filter((value) => !isNaN(value))
-                this.k.push(...k)
+                allK.push(...k)
             })
+            // console.log(allK)
+            allK = allK.sort()
+            this.k = [Math.min(...allK), Math.max(...allK)]
         }
+        return this.k
+    }
 
-        if (this._maxRydberg[position]) {
-            return this._maxRydberg[position]
+    private _betweenRydberg: [number[], number[]] = [[], []]
+    private getRydberg(position: number, kIndex: number) {
+        if (this._betweenRydberg[kIndex][position]) {
+            return this._betweenRydberg[kIndex][position]
         }
 
         // Rydberg Equation
@@ -500,49 +492,31 @@ export class Container extends Iterator<Row> {
         const ratio = this.ratio
 
         if (peak === 0 || ratio === 0) {
-            this._maxRydberg[position] = NaN
-            return this._maxRydberg[position]
+            this._betweenRydberg[kIndex][position] = NaN
+            return this._betweenRydberg[kIndex][position]
         }
 
+        this.getK()
         const shift = peak - ratio
-        this._maxRydberg[position] =
-            ratio * (1 - 1 / Math.pow(position + 1 + this.maxK, 2)) + shift
+        this._betweenRydberg[kIndex][position] =
+            ratio * (1 - 1 / Math.pow(position + 1 + this.k[kIndex], 2)) + shift
 
-        return this._maxRydberg[position]
-    }
-
-    private _minRydberg: number[] = []
-    private getMinRydberg(position: number) {
-        if (this.k.length === 0) {
-            this.forEach((row) => {
-                const k = row.getK().filter((value) => !isNaN(value))
-                this.k.push(...k)
-            })
-        }
-
-        if (this._minRydberg[position]) {
-            return this._minRydberg[position]
-        }
-
-        // Rydberg Equation
-        const peak = this.peak
-        const ratio = this.ratio
-
-        if (peak === 0 || ratio === 0) {
-            this._minRydberg[position] = NaN
-            return this._minRydberg[position]
-        }
-
-        const shift = peak - ratio
-        this._minRydberg[position] =
-            ratio * (1 - 1 / Math.pow(position + 1 + this.minK, 2)) + shift
-
-        return this._minRydberg[position]
+        return this._betweenRydberg[kIndex][position]
     }
 
     public getBetween(item: Item) {
-        const max = this.getMaxRydberg(item.position)
-        const min = this.getMinRydberg(item.position)
-        return (100 * (item.energy - min)) / (max - min)
+        const min =
+            this.getRydberg(item.position, 1) -
+            this.getRydberg(item.position - 1, 1)
+        const max =
+            this.getRydberg(item.position, 0) -
+            this.getRydberg(item.position - 1, 0)
+
+        if (!item.prev) {
+            return NaN
+        }
+        const energy = item.energy - item.prev.energy
+        console.log(max, min, energy)
+        return (100 * (energy - min)) / (max - min)
     }
 }
