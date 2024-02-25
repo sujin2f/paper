@@ -1,13 +1,10 @@
 import mongoose from 'mongoose'
 
-console.log(process.env.MONGO)
-console.log(process.env.MONGO_USER)
-console.log(process.env.MONGO_PASS)
-console.log(process.env.MONGO_DATABASE)
 export const mongoConnect = async (): Promise<typeof mongoose> => {
-    const uri =
-        process.env.MONGO_URI ||
-        'mongodb://MONGO_INITDB_ROOT_USERNAME:MONGO_INITDB_ROOT_PASSWORD@localhost:27017'
+    const host = process.env.MONGO || 'localhost:27017'
+    const user = process.env.MONGO_USER || 'MONGO_INITDB_ROOT_USERNAME'
+    const pass = process.env.MONGO_PASS || 'MONGO_INITDB_ROOT_PASSWORD'
+    const uri = `mongodb://${user}:${pass}@${host}`
     const dbName = process.env.MONGO_DATABASE || 'ether'
 
     return mongoose
