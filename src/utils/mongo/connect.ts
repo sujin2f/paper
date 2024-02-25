@@ -1,6 +1,9 @@
 import mongoose from 'mongoose'
 
-console.log(process.env.MONGO_URI)
+console.log(process.env.MONGO)
+console.log(process.env.MONGO_USER)
+console.log(process.env.MONGO_PASS)
+console.log(process.env.MONGO_DATABASE)
 export const mongoConnect = async (): Promise<typeof mongoose> => {
     const uri =
         process.env.MONGO_URI ||
