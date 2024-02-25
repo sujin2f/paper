@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
+import { useURLParam } from 'src/frontend/hooks/useURLParam'
 
 export const ChartDropdown = (): JSX.Element => {
-    const { isGraph, graphType, getAddress } = useRawDataParam()
+    const { isGraph, graphType, getAddress } = useURLParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
 
@@ -26,12 +26,12 @@ export const ChartDropdown = (): JSX.Element => {
                 <ul className="menu vertical" ref={dropdown}>
                     <li className={!isGraph ? 'link-base current' : ''}>
                         <Link to={getAddress({ isGraph: false })} type="button">
-                            None
+                            Close
                         </Link>
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'percent'
+                            isGraph && graphType === 'transform'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -39,16 +39,16 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'percent',
+                                graphType: 'transform',
                             })}
                             type="button"
                         >
-                            Percent
+                            Transform
                         </Link>
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'diff'
+                            isGraph && graphType === 'between'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -56,45 +56,11 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'diff',
+                                graphType: 'between',
                             })}
                             type="button"
                         >
-                            Diff
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'correction'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={getAddress({
-                                isGraph: true,
-                                graphType: 'correction',
-                            })}
-                            type="button"
-                        >
-                            +Correction
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'correction'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={getAddress({
-                                isGraph: true,
-                                graphType: 'multi-correction',
-                            })}
-                            type="button"
-                        >
-                            *Correction
+                            Between
                         </Link>
                     </li>
                 </ul>

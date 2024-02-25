@@ -1,68 +1,70 @@
 import React, { Fragment, useContext } from 'react'
-
 import { Context, ContextType } from 'src/frontend/store'
-
-import { Ether } from './cells/Ether'
-import { Orbital } from './cells/Orbital'
-import { Rydberg } from './cells/Rydberg'
-import { Diff } from './cells/Diff'
-import { Nth } from './cells/Nth'
-import { PlusCorrection } from './cells/PlusCorrection'
-import { MultiCorrection } from './cells/MultiCorrection'
-import { PercentPoint } from './cells/PercentPoint'
-import { Percent } from './cells/Percent'
-import { RowAbstract } from 'src/model/RowAbstract'
-import { RowHeader } from './RowHeader'
+import { Container } from 'src/model/Container'
+import { Row as RowModel } from 'src/model/Row'
+import { TermGroup as TermGroupModel } from 'src/model/TermGroup'
+import { TableRowType } from 'src/types/ui'
 
 type Props = {
-    cols: number[]
-    row: RowAbstract
+    type: TableRowType
+    row: RowModel
+    termGroup: TermGroupModel
+    css?: string
 }
 
 export const Row = (props: Props): JSX.Element => {
-    const [
-        {
-            visible: {
-                orbital,
-                ether,
-                rydberg,
-                diff,
-                nth,
-                correction,
-                percent,
-                percentPoint,
-            },
-            start,
-        },
-    ] = useContext(Context) as ContextType
-    const { cols, row } = props
-    const colsAdjust = cols.slice(start)
+    const { row, type, css, termGroup } = props
+    const [{ digit }] = useContext(Context) as ContextType
+
+    const container = Container.getInstance()
+    if (!container) {
+        return <Fragment></Fragment>
+    }
+    const cols = container.maxCols
 
     return (
-        <Fragment>
-            <thead>
-                <tr className="table__header">
-                    <th className="align__right">{row.label}</th>
-                    <td colSpan={colsAdjust.length + 1}>
-                        <RowHeader row={row} />
-                    </td>
-                </tr>
-                {orbital && <Orbital cols={colsAdjust} row={row} />}
-                {ether && <Ether cols={colsAdjust} row={row} />}
-            </thead>
-            <tbody>
-                {rydberg && <Rydberg cols={colsAdjust} row={row} />}
-                {diff && <Diff cols={colsAdjust} row={row} />}
-                {correction && (
-                    <Fragment>
-                        <PlusCorrection cols={colsAdjust} row={row} />
-                        <MultiCorrection cols={colsAdjust} row={row} />
-                    </Fragment>
-                )}
-                {nth && <Nth cols={colsAdjust} row={row} />}
-                {percentPoint && <PercentPoint cols={colsAdjust} row={row} />}
-                {percent && <Percent cols={colsAdjust} row={row} />}
-            </tbody>
-        </Fragment>
+        <tr className={`border__bottom ${css || ''}`}>
+            <th className="align__right ">{type}</th>
+            {Array(cols)
+                .fill('')
+                .map((_, position) => {
+                    const electron = row.get(position)
+                    let value = NaN
+                    if (electron) {
+                        switch (type) {
+                            case 'Energy':
+                                value = electron.energy
+                                break
+                            case 'E Diff':
+                                value = electron.diff
+                                break
+                            case 'Transform':
+                                value = container.getTransform(
+                                    termGroup,
+                                    row,
+                                    electron,
+                                )
+                                break
+                            case 'Between':
+                                value = container.getBetween(
+                                    termGroup,
+                                    row,
+                                    electron,
+                                )
+                                break
+                        }
+                    }
+                    return (
+                        <td
+                            key={`${row.symbol}-${type}-${position}`}
+                            className={`align__right ${
+                                row.first === electron ? 'first-item' : ''
+                            }`}
+                        >
+                            {!isNaN(value) && value.toFixed(digit)}
+                        </td>
+                    )
+                })}
+        </tr>
     )
 }

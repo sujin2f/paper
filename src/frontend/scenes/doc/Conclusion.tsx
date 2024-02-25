@@ -5,50 +5,205 @@ import pic13 from 'src/assets/images/doc/pic13_eng.png'
 import pic14 from 'src/assets/images/doc/pic14_eng.png'
 import pic15 from 'src/assets/images/doc/pic15.png'
 
+import pic124 from 'src/assets/images/doc/pic124.jpeg'
+
 export const Conclusion = (): JSX.Element => (
     <Doc>
         <h2 id="conclusion">Conclusion</h2>
+
+        <ul>
+            <li>Rydberg is magnificent, sir.</li>
+
+            <li>
+                The energy levels of multi-electron atoms can be explained by
+                the Rydberg formula through vertical and horizontal shifts.
+                Therefore, Rydberg is magnificent, sir.
+            </li>
+
+            <li>
+                Assuming that the nodes of the orbitals are photon-ether, there
+                is a high possibility that there are rules (patterns) governing
+                the energy at which photon-ether accumulate.
+            </li>
+
+            <li>
+                Placing the orbits in order of circular ether reveals distinct
+                patterns. Therefore, a reassessment of the orbital
+                classification method based on the linear ether counts of s, p,
+                d orbitals may be necessary.
+            </li>
+
+            <li>
+                Further exploration of horizontal movements may lead to the
+                creation of a new equation describing Hunt's rules.
+            </li>
+
+            <li>
+                In summary, there is a possibility that the energy levels of
+                electrons involve addition.
+            </li>
+        </ul>
+
         <p>
-            This document explains aggressive arguments, and there is a very
-            small possibility that the hypothesis would be right.
+            It is challenging to determine whether what has been described so
+            far provides sufficient evidence to prove the existence of ether.
+            Although it may be premature to call the nodes of the orbitals as
+            photon-ether, considering them as material with mass, I believe it
+            is still too early. However, I am confident that we can more clearly
+            explain the quantum nature of the energy levels of electrons with my
+            explanation. This is because a spark of light transitioning into
+            photon-ether in an instant is likely to possess the property of
+            quantity. In this concluding section, under the assumption that this
+            hypothesis is correct, I will organize other possibilities that can
+            be considered later. Of course, the notion that this could be purely
+            speculative is an underlying premise throughout this document.
         </p>
+
+        <h3>(1-1) Where is time?</h3>
+
         <p>
-            If the hypothesis is right, the particle is completely different
-            than what we know before. Mass becomes the space that we knew as a
-            probability cloud. The photon is a similar thing with a sparkle
-            inside the ether. Energy absorbed into an atom preserves the form of
-            the mass.
+            According to the theory of relativity, the speed of matter affects
+            its mass and time. If we consider the increase in mass as an
+            increase in the density of ether, then the spark within it will
+            naturally slow down. The slowing down of the speed of particles that
+            make up us could imply that time is flowing slowly for us. Could the
+            perceived time be related to the speed of the sparks that make us
+            up?
         </p>
+
         <p>
-            Therefore, what is the Photon-Ether, the independent ether, is
-            invisible, and has weight. One possibility is dark matter.
-            Otherwise, it would be a Higgs boson. Or it would be a Neutrino.
-            Possibly, none of them.{' '}
-            <span className="strike_through">
-                Personally, I prefer a new one, Ether, because I like the name
-            </span>
-            .
+            The assumption above illustrates the position of time. The universe
+            is spacetime. However, according to the assumption, time becomes a
+            property of matter. Each piece of matter becomes an entity with its
+            own time. The universe is an empty space without time, and matter
+            becomes spacetime.
         </p>
-        <h3>Suggesting an Experiment</h3>
+
+        <p>
+            If time does not exist in the universe, what changes might occur?
+            With my limited knowledge, nothing would happen. Let's assume a
+            universe with only one planet. This planet is moving at a constant
+            velocity. The particles that make up the planet each have their own
+            time, but their times would be the same because they are in the same
+            inertial frame. From this perspective, the velocity is constant.
+            It's not a relative concept. Relative velocity only arises when an
+            observer is present. Now let's assume an observer. Velocity, mass,
+            and time become relative concepts. "Oh, that planet is moving at n
+            km/s relative to me. Time dilation is occurring relative to me on
+            that planet. The relative mass of that planet is heavier than mine."
+            These are observed based on the properties the observer has.
+        </p>
+
+        <p>Time is the speed of sparks and a property of matter.</p>
+
+        <h3>(1-2) Time Dilation</h3>
+
+        <p>
+            If time is a property of matter, it is a force and energy. When the
+            property of speed increases, the property of mass (gravity) also
+            increases, and conversely, the property of time decreases. Thus, the
+            forces of gravity and time change oppositely based on the property
+            of velocity. This is similar to the relationship between electricity
+            and magnetism. If electricity is essentially magnetism, and
+            magnetism is essentially electricity, gravity and time might also
+            share the same essence. The fact that light has a constant speed
+            everywhere might be because it is not bound by ether. It's a free
+            sparkle without ether.
+        </p>
+
         <div className="align__center">
-            <img src={pic13} alt="Double Tunnel Experiment" />
+            <img
+                src={pic14}
+                alt="Time Dilation under Ether-Sparkle Perspective"
+            />
             <p>
-                <strong>Double Tunnel Experiment</strong>: Where it suppose to
-                go if it is divided into two pieces?
+                <strong>Time Dilation under Ether-Sparkle Perspective</strong>
+                <br />
+                Time is a property of matter, and it's changeable
             </p>
         </div>
+
         <p>
-            I imagine the experiment to prove the hypothesis, making a double
-            tunnel instead of the double slit. What would happen inside the
-            tunnel? Each tunnel contains the divided ethers, and the sparkle
-            would travel through the spaces. I expect one ether should be
-            disappeared. Otherwise, our world will be full of divided ether, and
-            it is not stable.
+            Applying this, we can explain time dilation more neatly. In
+            different inertial systems, in different gravities, the speed of
+            sparks changes, leading to a change in time. It's not that time
+            exists in our universe, but each piece of matter has its own time.
+            The time of the many pieces of matter that make us up would also
+            flow differently. Time would flow differently within the same
+            physical system, just as the mass difference between a proton and an
+            electron. And this could be the reason why atomic clocks are
+            precise. Matter possesses time.
         </p>
+
+        <h3>(1-3) Absolute Time and Absolute Velocity</h3>
+
         <p>
-            <strong>Added on 2022-11-15</strong> It happened. The experience is
-            changing the spin of a divided neutron, and the neutron was affected
-            by both tunnels.{' '}
+            If time is a property of matter, another property that changes it is
+            velocity. Then, what velocity and time do we possess? We orbit
+            around the Sun, and the solar system revolves around our galaxy. Our
+            galaxy? We exist in such an inertial system. In an inertial system
+            with a smaller velocity, the sparks will move faster, and the
+            magnitude of time will increase. So, could there be an inertial
+            frame with absolute time somewhere? The slowest place in the
+            universe, where time flows the fastest.
+        </p>
+
+        <div className="align__center">
+            <img src={pic124} alt="Finding Absolute Time" />
+            <p>
+                <strong>Finding Absolute Time</strong>
+            </p>
+        </div>
+
+        <p>
+            Let's conduct a thought experiment. Place two measuring devices on
+            an orbital path. Device 2 is stationary, and Device 1 is moving at
+            twice the speed of Earth's orbit. From the perspective of Earth,
+            both devices will be moving away relatively equally. Will their
+            times be the same? If we launch measuring devices in the direction
+            of the Sun's orbit around our galaxy, will their times be the same?
+            This is easily predictable. They would, of course, be different.
+        </p>
+
+        <p>
+            Expanding this further, if we launch measuring devices in various
+            directions from Earth, we might be able to understand in which
+            direction our galaxy is moving. Combining these, could we find
+            absolute time? The answer would be yes if our galaxy moves in a
+            specific direction, at a specific speed, reaching absolute time. Of
+            course, this thought assumes that our galaxy is not influenced by
+            external celestial bodies, and in reality, the influences of our
+            galactic neighborhood could be significant.
+        </p>
+
+        <h3>(2) Double-Tunnel Experiment</h3>
+
+        <div className="align__center">
+            <img src={pic13} alt="Double-Tunnel Experiment" />
+            <p>
+                <strong>Double-Tunnel Experiment</strong> Splitting ether, where
+                is sparkle at?
+            </p>
+        </div>
+
+        <p>
+            One such experiment involves creating a double tunnel instead of a
+            double slit. If we elongate the double slit to create a tunnel-like
+            structure and confine electrons within it, what would happen? Ether
+            divided into A and B sections would occupy each tunnel, and sparks
+            would travel between the two ethers. Observing this, electrons in
+            each tunnel would probabilistically exist, and when observed
+            simultaneously, they would appear in only one tunnel. One ether
+            could vanish, possibly being absorbed beyond space into the other
+            ether. If not, the universe would overflow with split ethers, making
+            it unstable.
+        </p>
+
+        <p>
+            Surprisingly, this scenario has been experimentally validated. In
+            the experiment, a neutron was passed through two channels, altering
+            its spin in each. The spin change was observed to influence both
+            sides.{' '}
             <a
                 href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.023075"
                 target="_blank"
@@ -58,63 +213,36 @@ export const Conclusion = (): JSX.Element => (
                 interferometer
             </a>
         </p>
-        <h3>
-            Hypothesis of the Hypothesis (1): Time does not exist in our
-            universe.
-        </h3>
-        <p>
-            What is a sparkle? Ether cannot travel more than the speed of light
-            because the mass will be increased and become like a black hole, and
-            the sparkle will be stopped eventually. Therefore, the independent
-            sparkle, the light, can fly at the speed of light. In the other
-            words, the sparkle has the property, named time. Time is not the
-            property of our universe. It is the property of the matter.
-            Logically speaking, there is no concrete reason the universe should
-            have time.
-        </p>
+
+        <h3>(3) Separated Ether is Quantum Entanglement?</h3>
         <div className="align__center">
-            <img src={pic14} alt="Time Dilation in Ether-Sparkle" />
+            <img
+                src={pic15}
+                alt="The Quantum Entanglement under Ether-Sparkle Perspective"
+            />
             <p>
-                <strong>Time Dilation in Ether-Sparkle</strong>
+                <strong>
+                    The Quantum Entanglement under Ether-Sparkle Perspective
+                </strong>
                 <br />
-                Time is a property of sparkle, and it can be changed by its
-                surrounding ether.
+                Sparks behave as if two ethers are one
             </p>
         </div>
+
         <p>
-            In this way, the time dilation can be explained more clearly. In a
-            different inertial frame, in different gravity, the speed of the
-            sparkle will be changed, and it is related to its time. Time is not
-            in our universe. We, the matter, have the time. Each sparkle might
-            have a different time due to the ether's weight. This may be the
-            reason that the atomic clock is so accurate. An atom has its own
-            time. Time is the part of an atom.
+            According to the hypothesis, the electron-ether demonstrated
+            division by the photon-ether. In the double-slit experiment, the
+            electron-ether also splits into two. Sparks within the divided
+            ethers freely traverse both sides. Even when one ether is separated
+            in the coordinate space as we perceive it, it functions as the same
+            ether. Quantum entanglement might arise from the properties of
+            ethers, cautiously suggesting such an opinion.
         </p>
-        <h3>
-            Hypothesis of the Hypothesis (2): Entanglement is divided ether?
-        </h3>
-        <div className="align__center">
-            <img src={pic15} alt="Entanglement of Ether-Sparkle" />
+
+        <div className="align__center" style={{ marginTop: '100px' }}>
             <p>
-                <strong>Entanglement of Ether-Sparkle</strong>
-                <br />
-                Sparkle can travel into two ethers
+                <strong>Fin</strong>
             </p>
         </div>
-        <p>
-            According to the hypothesis, the electron-ether can be divided by
-            the photon-ether. The electron-ether is also divided by the
-            double-slit. The sparkle inside it travel the divided ether freely.
-            One ether is divided from our dimension, but they are connected. I
-            suggest carefully the entanglement comes from the feature of the
-            ether.
-        </p>
-        <h3>Follow-Ups</h3>
-        <p>
-            In the multi-electron atom, the Rydberg tends to follow a certain
-            formula. If I found the exact formula to find Rydberg of radial and
-            linear, I would be able to calculate the overall value by adding.
-        </p>
-        [Fin]
     </Doc>
 )

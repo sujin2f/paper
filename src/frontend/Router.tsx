@@ -2,28 +2,23 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/Public'
-import { RawData } from 'src/frontend/scenes/data/RawData'
+import { Data } from 'src/frontend/scenes/data/Data'
 
 import { Intro } from 'src/frontend/scenes/doc/Intro'
 import { Hypothesis } from 'src/frontend/scenes/doc/Hypothesis'
 import { ClassicPhysics } from 'src/frontend/scenes/doc/ClassicPhysics'
 import { MultiElectronAtoms } from 'src/frontend/scenes/doc/MultiElectronAtoms'
-import { SchrodingerEquation } from 'src/frontend/scenes/doc/SchrodingerEquation'
+import { Comparison } from 'src/frontend/scenes/doc/Comparison'
+import { Between } from 'src/frontend/scenes/doc/Between'
 import { Conclusion } from 'src/frontend/scenes/doc/Conclusion'
 
 import { Intro as IntroKor } from 'src/frontend/scenes/doc-kor/Intro'
 import { Hypothesis as HypothesisKor } from 'src/frontend/scenes/doc-kor/Hypothesis'
 import { ClassicPhysics as ClassicPhysicsKor } from 'src/frontend/scenes/doc-kor/ClassicPhysics'
 import { MultiElectronAtoms as MultiElectronAtomsKor } from 'src/frontend/scenes/doc-kor/MultiElectronAtoms'
-import { OrbitalEquation as OrbitalEquationKor } from 'src/frontend/scenes/doc-kor/OrbitalEquation'
-
-import { SchrodingerEquation as SchrodingerEquationKor } from 'src/frontend/scenes/doc-kor/SchrodingerEquation'
+import { Comparison as ComparisonKor } from 'src/frontend/scenes/doc-kor/Comparison'
 import { Conclusion as ConclusionKor } from 'src/frontend/scenes/doc-kor/Conclusion'
-
-import { Orbital } from 'src/frontend/scenes/data/Orbital'
-import { Ether } from 'src/frontend/scenes/data/Ether'
-import { Cart } from 'src/frontend/scenes/data/Cart'
-import { SavedData } from 'src/frontend/scenes/data/SavedData'
+import { Between as BetweenKor } from 'src/frontend/scenes/doc-kor/Between'
 
 export const Router = (): JSX.Element => {
     return (
@@ -37,12 +32,11 @@ export const Router = (): JSX.Element => {
                     path="/multi-electron-atoms"
                     element={<MultiElectronAtoms />}
                 />
-                <Route
-                    path="/schrodinger-equation"
-                    element={<SchrodingerEquation />}
-                />
+                <Route path="/comparison" element={<Comparison />} />
+                <Route path="/between" element={<Between />} />
                 <Route path="/conclusion" element={<Conclusion />} />
 
+                {/* Document: Kor */}
                 <Route path="/kor" element={<IntroKor />} />
                 <Route path="/kor/hypothesis" element={<HypothesisKor />} />
                 <Route
@@ -53,100 +47,18 @@ export const Router = (): JSX.Element => {
                     path="/kor/multi-electron-atoms"
                     element={<MultiElectronAtomsKor />}
                 />
-                <Route
-                    path="/kor/orbital-equation"
-                    element={<OrbitalEquationKor />}
-                />
-                <Route
-                    path="/kor/schrodinger-equation"
-                    element={<SchrodingerEquationKor />}
-                />
+                <Route path="/kor/comparison" element={<ComparisonKor />} />
+                <Route path="/kor/between" element={<BetweenKor />} />
                 <Route path="/kor/conclusion" element={<ConclusionKor />} />
 
-                {/* Data: Raw Data */}
-                <Route path="/raw-data/:atom" element={<RawData />}>
-                    <Route path=":term" element={<RawData />}>
-                        <Route path="graph" element={<RawData />}>
-                            <Route path=":graphType" element={<RawData />} />
-                        </Route>
-                    </Route>
-                    <Route path="graph" element={<RawData />}>
-                        <Route path=":graphType" element={<RawData />} />
+                {/* Data */}
+                <Route path="/:dataType/:atom" element={<Data />}>
+                    <Route path="graph" element={<Data />}>
+                        <Route path=":graphType" element={<Data />} />
                     </Route>
                 </Route>
 
-                <Route path="/equation/raw-data/:atom" element={<RawData />}>
-                    <Route path=":term" element={<RawData />}>
-                        <Route path="graph" element={<RawData />}>
-                            <Route path=":graphType" element={<RawData />} />
-                        </Route>
-                    </Route>
-                    <Route path="graph" element={<RawData />}>
-                        <Route path=":graphType" element={<RawData />} />
-                    </Route>
-                </Route>
-
-                {/* Data: Orbital */}
-                <Route path="/orbital/:atom" element={<Orbital />}>
-                    <Route path=":term" element={<Orbital />}>
-                        <Route path="graph" element={<Orbital />}>
-                            <Route path=":graphType" element={<Orbital />} />
-                        </Route>
-                    </Route>
-                    <Route path="graph" element={<Orbital />}>
-                        <Route path=":graphType" element={<Orbital />} />
-                    </Route>
-                </Route>
-
-                <Route path="/equation/orbital/:atom" element={<Orbital />}>
-                    <Route path=":term" element={<Orbital />}>
-                        <Route path="graph" element={<Orbital />}>
-                            <Route path=":graphType" element={<Orbital />} />
-                        </Route>
-                    </Route>
-                    <Route path="graph" element={<Orbital />}>
-                        <Route path=":graphType" element={<Orbital />} />
-                    </Route>
-                </Route>
-
-                {/* Data: Ether */}
-                <Route path="/ether/:atom" element={<Ether />}>
-                    <Route path=":term" element={<Ether />}>
-                        <Route path="graph" element={<Ether />}>
-                            <Route path=":graphType" element={<Ether />} />
-                        </Route>
-                    </Route>
-                    <Route path="graph" element={<Ether />}>
-                        <Route path=":graphType" element={<Ether />} />
-                    </Route>
-                </Route>
-
-                <Route path="/equation/ether/:atom" element={<Ether />}>
-                    <Route path=":term" element={<Ether />}>
-                        <Route path="graph" element={<Ether />}>
-                            <Route path=":graphType" element={<Ether />} />
-                        </Route>
-                    </Route>
-                    <Route path="graph" element={<Ether />}>
-                        <Route path=":graphType" element={<Ether />} />
-                    </Route>
-                </Route>
-
-                {/* Data: Cart */}
-                <Route path="/cart" element={<Cart />}>
-                    <Route path="graph" element={<Cart />}>
-                        <Route path=":graphType" element={<Cart />} />
-                    </Route>
-                </Route>
-
-                {/* Data: Saved Data */}
-                <Route path="/saved-data/:_id" element={<SavedData />}>
-                    <Route path="graph" element={<SavedData />}>
-                        <Route path=":graphType" element={<SavedData />} />
-                    </Route>
-                </Route>
-
-                <Route path="*" element={<div>Broken Router</div>} />
+                <Route path="*" element={<div>Page Broken</div>} />
             </Routes>
         </Public>
     )

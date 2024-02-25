@@ -1,5 +1,7 @@
-import { Crawler } from 'src/types/crawler'
-import { model } from 'src/constants/crawler'
+import mongoose from 'mongoose'
+import { mongoSchema, Crawler } from 'src/types/crawler'
+
+export const model = mongoose.model('Crawler', mongoSchema)
 
 export const getOne = async (crawler: Partial<Crawler>): Promise<Crawler> =>
     await model

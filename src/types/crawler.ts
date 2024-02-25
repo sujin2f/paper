@@ -1,3 +1,5 @@
+import { Schema } from 'mongoose'
+
 export type Crawler = {
     _id?: string
     number: number
@@ -5,8 +7,8 @@ export type Crawler = {
     result: boolean
 }
 
-export const schema = {
+export const mongoSchema = new Schema({
     number: Number,
     ion: Number,
     result: Boolean,
-}
+})

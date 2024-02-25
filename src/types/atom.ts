@@ -9,4 +9,6 @@ export type Atom = {
     ypos: number
     shells: number[]
     electron_configuration: string
+    ionization_energies: number[]
+    ratios?: number[]
 } & Record<string, any>

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react'
+import React, { Fragment } from 'react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -9,9 +9,8 @@ import {
     Legend,
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
-import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
-import { Context, ContextType } from '../store'
-import { ContainerAbstract } from 'src/model/ContainerAbstract'
+import { useURLParam } from 'src/frontend/hooks/useURLParam'
+import { Container } from 'src/model/Container'
 
 ChartJS.register(
     CategoryScale,
@@ -22,17 +21,11 @@ ChartJS.register(
     Legend,
 )
 
-type Props = {
-    data: ContainerAbstract
-}
+export const Chart = (): JSX.Element => {
+    const { isGraph, graphType } = useURLParam()
+    const container = Container.getInstance()
 
-export const Chart = (props: Props): JSX.Element => {
-    const { graphType, isGraph } = useRawDataParam()
-    const { data } = props
-    const [{ render, start, shift }] = useContext(Context) as ContextType
-    useEffect(() => {}, [render])
-
-    if (!data || !isGraph) {
+    if (!container || !isGraph) {
         return <Fragment></Fragment>
     }
 
@@ -45,11 +38,7 @@ export const Chart = (props: Props): JSX.Element => {
         },
     }
 
-    const chartData = data.chart(graphType, start, shift)
+    const chartData = container.getChartData(graphType)
 
-    return (
-        <Fragment>
-            <Line options={options} data={chartData} />
-        </Fragment>
-    )
+    return <Line options={options} data={chartData} className="chart" />
 }

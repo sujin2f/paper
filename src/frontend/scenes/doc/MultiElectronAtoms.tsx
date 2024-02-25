@@ -4,91 +4,139 @@ import { Doc } from 'src/frontend/scenes/doc'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
 import pic10 from 'src/assets/images/doc/pic10.png'
-import pic11 from 'src/assets/images/doc/pic11_eng.png'
-import pic16 from 'src/assets/images/doc/pic16.png'
-import pic17 from 'src/assets/images/doc/pic17.png'
-import pic18 from 'src/assets/images/doc/pic18.png'
-import pic19 from 'src/assets/images/doc/pic19.png'
-import pic20 from 'src/assets/images/doc/pic20.png'
-import pic21 from 'src/assets/images/doc/pic21.png'
-import pic22 from 'src/assets/images/doc/pic22.png'
-import pic23 from 'src/assets/images/doc/pic23.png'
-import pic24 from 'src/assets/images/doc/pic24.png'
-import pic25 from 'src/assets/images/doc/pic25.png'
-import pic26 from 'src/assets/images/doc/pic26.png'
+import pic55 from 'src/assets/images/doc/pic55.png'
+import pic56 from 'src/assets/images/doc/pic56.png'
+import pic57 from 'src/assets/images/doc/pic57.png'
+import pic58 from 'src/assets/images/doc/pic58.png'
+import pic59 from 'src/assets/images/doc/pic59.png'
+import pic92 from 'src/assets/images/doc/pic92.jpeg'
+import pic93 from 'src/assets/images/doc/pic93.jpeg'
+import pic94 from 'src/assets/images/doc/pic94.png'
+import pic95 from 'src/assets/images/doc/pic95.png'
+import pic113 from 'src/assets/images/doc/pic113.png'
 
 export const MultiElectronAtoms = (): JSX.Element => (
     <Doc>
-        <h2 id="multi-electron-atoms">Proof(2): Multi-Electron Atoms</h2>
+        <h2 id="multi-electron-atoms">
+            Proof(2): Reinterpretation of Rydberg Formula
+        </h2>
 
         <p>
-            So far, I tried to prove the hypothesis from the Bohr model.
-            However, the Bohr model is not accurate anymore. In quantum physics,
-            an electron creates an orbital shape as a result of absorbing
-            energy. The ether is not a radial shape anymore.
+            So far, the hypothesis has been tested based on Bohr's atomic model.
+            However, Bohr's atomic model is no longer valid. It does not apply
+            to multi-electron atoms, and in reality, electrons do not orbit in
+            circular paths. What quantum physics has revealed is that electrons
+            within an atom manifest as shapes (probability) called orbitals by
+            absorbing energy. Within the orbital, the electron exists
+            probabilistically.
         </p>
 
         <div className="align__center">
-            <img src={pic9} alt="Atomic Orbital" />
+            <img src={pic9} alt="Electron Orbital" />
             <p>
-                <strong>Atomic Orbital</strong>{' '}
+                <strong>Electron Orbital</strong>{' '}
                 <a
                     href="https://en.wikipedia.org/wiki/Atomic_orbital"
                     target="_blank"
                     rel="noreferrer"
                 >
-                    From : Wikipedia
+                    credit: Wikipedia
                 </a>
             </p>
         </div>
 
+        <h3>Hypothesis: The nodes of orbitals are photon-Ether</h3>
+
         <p>
-            The shape of the orbital is determined by quantum numbers n, l, and
-            m<sub>l</sub>. The electron's energy, n, increases the number of the
-            node. The angular momentum, l, changes the shape of the node to
-            linear. Let me ignore the magnetic quantum number, m<sub>l</sub>,
-            which changes the angle of the orbital.
+            In the diagram, the black regions are referred to as nodes. The
+            shape of the orbitals is determined by the pattern and number of
+            these nodes. The orbital's shape is influenced by the principal
+            quantum number <code>n</code>, azimuthal quantum number{' '}
+            <code>l</code>, and magnetic quantum number{' '}
+            <code>
+                m<sub>l</sub>
+            </code>
+            , as introduced in Bohr's atomic model. An increase in{' '}
+            <code>n</code> results in an increase in the number of circular
+            patterns, similar to Bohr's atomic model. An increase in{' '}
+            <code>l</code> leads to the disappearance of one circular pattern,
+            giving rise to linear nodes. The magnetic quantum number determines
+            the orientation.
         </p>
+
         <p>
-            The s orbital is an orbital that only has radial nodes. When there
-            is no node, it is s1, and s2 has one radial node. The p orbital has
-            one linear node. One linear node is p2, and one linear and one
-            radial node is p3. Under this rule, scientists named d, f, and g
-            orbital based on how many linear nodes the orbital has.
+            An orbital with circular nodes is referred to as an s orbital. If
+            there are no nodes, it is labeled as <code>1s</code>; with one
+            circular node, it becomes <code>2s</code>. An orbital with one
+            linear node is designated as a p orbital. With one linear node is{' '}
+            <code>2s</code>, and one linear and one circular node is{' '}
+            <code>3p</code>, and so forth. Following this pattern, orbitals with
+            specific numbers of linear nodes are assigned letters such as{' '}
+            <code>d</code>, <code>f</code>, <code>g</code>, etc. Now, let's
+            reinterpret the orbitals assuming the nodes are photon-Ether.
         </p>
 
         <div className="align__center">
-            <img src={pic10} alt="The Orbital with the Hypothesis" />
+            <img
+                src={pic10}
+                alt="Viewing Orbitals from the Perspective of Ether"
+            />
             <p>
-                <strong>The Orbital with the Hypothesis</strong>
+                <strong>Viewing Orbitals from the Perspective of Ether</strong>
                 <br />
-                The combination of radial and linear ethers
+                See the circular and linear ethers
             </p>
         </div>
 
         <p>
-            We can translate the node into the ether. Increasing n increases the
-            number of ethers, and increasing l changes the shape of the ether.
-            The s orbital only has radial ethers, and the p orbital has one
-            linear ether. The s1 orbital means the electron does not have any
-            ether, and p3 orbital has one radial and one linear ether.
+            An increase in <code>n</code> signifies an increase in the number of
+            Ether entities, and an increase in <code>l</code> transforms the
+            circular Ether into a linear form. An s orbital contains only
+            circular Ether, while a p orbital can be interpreted as having one
+            linear Ether and one circular Ether. The <code>1s</code> orbital
+            corresponds to a state without Ether, and the <code>3p</code>{' '}
+            orbital represents a state with one circular and one linear Ether
         </p>
 
         <p>
-            The orbital has been understood to change the shape of an electron.
-            Under my hypothesis, the electron is not changed, but its space is
-            separated by the photon-ether likewise it is separated by the
-            double-slit. If so, the electron-sparkle travels through the
-            separated electron-ether, which is divided by the photon-ether, and
-            the existence of the electron-sparkle exists in probability. This is
-            what orbital is.
+            This is commonly understood as a transformation in the shape of the
+            electron. However, from the Ether perspective, the black nodes
+            represent Ether, and the Ether of the electron maintains a spherical
+            shape, with space separated by photon-Ether. It can be understood as
+            if the Ether of the electron is split, similar to the double-slit
+            experiment. Therefore, the electron-Sparkle probabilistically exists
+            in the separated space, shaped according to the form that manifests
+            as the orbital.
         </p>
 
+        <div className="align__center">
+            <img src={pic92} alt="The Shape of Nodes in Orbital" width="300" />
+            <p>
+                <strong>The Shape of Nodes in Orbital</strong>
+                <br />
+                What if the nodes are electron-Ether?
+            </p>
+        </div>
+
         <p>
-            To be clear, I want to suggest the notation. The p3 is{' '}
-            <strong>[-O]</strong>, and <strong>[--O]</strong> is d4. Too many
-            ethers like <strong>[--OOOOO]</strong> can be written in{' '}
-            <strong>[2-5O]</strong> for your readability. The data below is from{' '}
+            In order to better illustrate the perspective of Ether, let's
+            establish a notation using circles and lines. <code>[X]</code>{' '}
+            represents <code>1s</code>, <code>[O]</code> represents{' '}
+            <code>2s</code>, and <code>[OO]</code> represents <code>3s</code>.{' '}
+            <code>[-]</code> stands for <code>2p</code>, <code>[-O]</code>{' '}
+            represents <code>3p</code>, and <code>[--O]</code> signifies{' '}
+            <code>4d</code>. As the digit increases, for readability, we will
+            also use a notation like <code>[2-5O]</code> to represent{' '}
+            <code>[--OOOOO]</code>. When there are multiple electrons, for
+            example,{' '}
+            <code>
+                1s<sup>2</sup>
+            </code>{' '}
+            can be denoted as <code>[X]2</code>, and{' '}
+            <code>
+                2s<sup>2</sup>
+            </code>{' '}
+            as <code>[O]2</code>. The data used below is referenced from{' '}
             <a
                 href="https://physics.nist.gov/PhysRefData/ASD/lines_form.html"
                 target="_blank"
@@ -96,564 +144,657 @@ export const MultiElectronAtoms = (): JSX.Element => (
             >
                 NIST
             </a>
-            . The configuration is from the same set which just changed l value
-            (1S/J=0, 1P/J=1, 1D/J=2...) I built the website to visualize the
-            data{' '}
-            <a
-                href="https://ether.sujinc.com/orbital/1+1/graph/percent"
-                target="_blank"
-                rel="noreferrer"
-            >
-                here
-            </a>
-            . The correction value is what the formula satisfied.
+            .
         </p>
 
-        <Latex
-            displayMode={true}
-        >{`$$Diff = (\\frac{1}{n+c})^2 - (\\frac{1}{n+1+c})^2$$`}</Latex>
-
-        <h3>Hydrogen: Singular Electron</h3>
+        <p>
+            What I want to demonstrate through this is that there is a pattern
+            in the accumulation based on circular and linear shapes. The
+            transition of values in multi-electron atoms follows a regular
+            trend, much like in hydrogen atoms. I aim to show that the emitted
+            energy is the sum of Ether and that I need a reference point,
+            similar to the Rydberg formula for hydrogen-like atoms, to explain
+            this trend.
+        </p>
 
         <p>
-            The hydrogen shows the exact, calculable values. The reason I
-            mention the hydrogen is to check the accuracy of NIST data and to
-            reveal what should be focused on in other atoms.
+            First, let's observe the change in circular Ether values in hydrogen
+            and helium. It involves variations such as <code>[X]</code>,{' '}
+            <code>[O]</code>, <code>[OO]</code>, and so on.
         </p>
 
         <div className="align__center">
-            <img src={pic16} alt="Hydrogen Atom" />
+            <img
+                src={pic55}
+                alt="Hydrogen and Helium's Circular Ether Values"
+            />
             <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/orbital/1+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Hydrogen Atom
-                    </a>
-                </strong>
+                <strong>Hydrogen and Helium's Circular Ether Values</strong>
                 <br />
-                Simple as Classic Physics
+                The graph represents the Rydberg formula, and helium is located
+                in the top right corner.
             </p>
         </div>
 
         <p>
-            NIST data is from various observations, and the values are the same,
-            so it is extremely accurate. As we already know, the value meets N
-            <sub>th</sub>(n), but we still can see the small differences.
+            When the graph is shifted vertically and horizontally, it appears as
+            if it might overlap. Although it is repeatedly emphasized not to use
+            the Rydberg formula for multi-electron atoms, the temptation is
+            irresistible. I will attempt to create a reference equation by
+            modifying the Rydberg formula. Spoiler alert: finding a perfect
+            equation without any errors in this process would be a great
+            achievement, but beware! I haven't found that method. However, I aim
+            to find an equation that approximates it as closely as possible.
         </p>
 
-        <p>
-            The first-row set <strong>s orbital</strong> is what we should focus
-            on. This set shows <strong>an increment of radial ether</strong>.
-            The <strong>diagonal set of top left to bottom right from p</strong>{' '}
-            is also important. The first diagonal set is{' '}
-            <strong>the increment of linear ether</strong>. From the second set,
-            they represent a{' '}
-            <strong>similar set of increments of radial ether</strong>. For
-            example, p4 is <strong>[-O]</strong> to <strong>[-OO]</strong>, and
-            p5 is <strong>[--O]</strong> to <strong>[--OO]</strong>. So, every
-            orbital should have the same tendency because it is all about radial
-            ether increment. In the other words,{' '}
-            <strong>
-                the diagonal sets and linear; and s orbital and the other
-                orbitals should have a similar tendency
-            </strong>{' '}
-            because they are the same increments.
-        </p>
+        <h3>Shifting a Graph</h3>
+
+        <div className="align__center">
+            <img src={pic56} alt="Helium's s and p Orbitals" />
+            <p>
+                <strong>Helium's s and p Orbitals</strong>
+            </p>
+        </div>
 
         <p>
-            Let us go back to the graph. The s orbital goes up and keeps down.
-            Linear ether comes from top-left to bottom-right as the
-            <Latex>{`$y=\\dfrac{a}{x}$`}</Latex> graph goes. Other orbitals,
-            well..., not quite organized, and also not quite matched to the s
-            orbital changes. This is a pretty graph, but I cannot say it is
-            satisfactory. According to the hypothesis, s, p, and d orbitals are
-            the increment of radial ether, but the tendencies are different.
-        </p>
-
-        <h3>Helium: Multi-Electron Atom (two electrons)</h3>
-
-        <p>
-            The energy of the multi-electron atom is not constant like a
-            hydrogen atom. Scientists say this is because of the influence of
-            other electrons. Nevertheless, to prove the ether-sparkle
-            hypothesis, it should have a tendency even though it is not as
-            simple as N<sub>th</sub>(n). Let me check the helium, which shows
-            the variety of orbital. And its result is{' '}
-            <strong>very disappointing</strong>.
+            Let's examine the changes in the helium orbitals. Hydrogen is not
+            suitable for this analysis due to its very small errors. Each color
+            represents s and p orbitals with the same term symbols (e.g.,{' '}
+            <code>
+                <sup>1</sup>S<sub>0</sub>
+            </code>
+            ,{' '}
+            <code>
+                <sup>3</sup>S<sub>1</sub>
+            </code>
+            ,{' '}
+            <code>
+                <sup>3</sup>P*
+                <sub>2</sub>
+            </code>
+            ). Consider these values as the result of the Rydberg formula being
+            shifted left and right. Then, it might be possible to create graphs
+            for each orbital by modifying the Rydberg formula. Let's use the
+            ionization energy values as convergence points. The ionization
+            energy of hydrogen is <code>13.60676328</code>. Let's assume the
+            ratio for the graphs is same with hydrogen. The ionization energy of
+            helium is <code>24.58556828</code>. This can be expressed in the
+            following equation. In the upcoming equations, R will be represented
+            with Arabic numerals separated by a dot (.) for the atomic and ion
+            numbers, while the ether or orbital values will be indicated below
+            it.
         </p>
 
         <div className="align__center">
-            <img src={pic17} alt="Helium Atom" />
+            <Latex
+                displayMode={true}
+            >{`$$ R^{1.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) $$`}</Latex>
+            <p>Rydberg formula of hydrogen (eV)</p>
+            <Latex
+                displayMode={true}
+            >{`$$R^{2.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) + 24.58556828 - 13.60676328$$`}</Latex>
+            <p>Rydberg formula of helium (eV)</p>
+        </div>
+
+        <p>
+            It is vertically shifted Rydberg formula to match the height of
+            helium
+        </p>
+
+        <div className="align__center">
+            <img
+                src={pic57}
+                alt="the Rydberg Formula Shifted Vertically to Match Helium"
+            />
             <p>
                 <strong>
-                    <a
-                        href="https://ether.sujinc.com/orbital/2+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Helium Atom
-                    </a>
+                    the Rydberg Formula Shifted Vertically to Match Helium
                 </strong>
             </p>
         </div>
 
         <p>
-            The first positions of s, p, and linear orbital are high Rydberg of
-            approximately 100%p. The d and f orbitals are higher than N
-            <sub>th</sub>(n), and others are lower. By increasing the position,
-            it tends to close to N<sub>th</sub>(n), but the diagonal changes are
-            not matched to each other. Moreover, it is not convincing why the
-            changes of two and three linear ether, d and f, are different from
-            other changes. The table is too irregular. There is no tendency. End
-            of the story. Bye.
+            It seems to fit together nicely. Now, let's try horizontal movement.
+            The ratio of the graph, <code>13.60676328</code>, is denoted as{' '}
+            <code>r</code> (radius), and the difference between the vertical
+            shift values, <code>24.58556828 - 13.60676328</code>, is denoted as{' '}
+            <code>s</code> (shift). The horizontal shift value is substituted
+            with <code>k</code>.
         </p>
 
         <div className="align__center">
-            <img src={pic25} alt="Radial Change" />
-            <p>
-                <strong>Radial Change</strong> Too irregular & huge failure
-            </p>
+            <Latex
+                displayMode={true}
+            >{`$$w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s$$`}</Latex>
         </div>
 
-        <p>What if the way we think is wrong?</p>
-
         <p>
-            Let me recheck the 3p orbital. It should be different between [O-]
-            and [-O] because the radial and linear ether affect differently in
-            different positions. [-] is 107.933, and [O] is 102.031, so [-O]
-            should not be the same as [O-]. However, the 3p value from NIST is
-            always the same. Therefore, only one case is right.
-        </p>
-
-        <p>
-            When I constructed the table, I accepted the s and p orbital which
-            is linear ether first. What if it is the opposite? What if the
-            radial ether first, and then the linear ether comes above the radial
-            ether?
+            In the given equation, if we substitute <code>w</code> with the
+            energy of <code>[O]</code>
+            ether and <code>v</code> with the ether's number, <code>1</code>,
+            then adjusting the graph to the first position will result in
+            horizontal movement. Now, let's formulate the equation for the
+            horizontal shift value <code>k</code>.
         </p>
 
         <div className="align__center">
-            <img src={pic18} alt="Radial Ether First!!" />
+            <Latex
+                displayMode={true}
+            >{`$$w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to \\dfrac{w - s}{r} = 1 - \\dfrac{1}{(v + 1 + k)^2}$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to 1 - \\dfrac{w - s}{r} = \\dfrac{1}{(v + 1 + k)^2}$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to \\dfrac{1}{1 - \\dfrac{w - s}{r}} = (v + 1 + k)^2$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} = v + 1 + k$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1$$`}</Latex>
+
             <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/ether/2+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Radial Ether First!!
-                    </a>
-                </strong>
+                Sure, let's substitute the expression we derived for the
+                horizontal shift value k back into the original equation.
+            </p>
+
+            <Latex
+                displayMode={true}
+            >{`$$R(x, r, s, v, w) = r \\cdot (1 - \\dfrac{1}{(x + 1 + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1)^2}) + s$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v)^2}$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\dfrac{1}{\\sqrt{\\dfrac{r - w + s}{r}}})^2}$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{r - w + s}})^2}$$`}</Latex>
+
+            <p>
+                Here, <code>r + s</code> represents the peak of the graph,
+                equivalent to the ionization energy. Let's denote{' '}
+                <code>r + s</code> as <code>p</code> (peak)
+            </p>
+
+            <Latex
+                displayMode={true}
+            >{`$$R(x, r, p, v, w) = p - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{p - w}})^2}$$`}</Latex>
+
+            <p>
+                Modified Rydberg formula with vertical and horizontal shifting.
             </p>
         </div>
 
         <p>
-            See, human? See this beautiful tendency! Each row shows the
-            increment of linear ethers. So, we need to compare other rows with
-            linear ether. They go down and close to the N<sub>th</sub>
-            (n).
+            <code>r</code> represents the ratio of the graph and is the peak of
+            the hydrogen-like atom in the same phase. In other words, the{' '}
+            <code>r</code> value for helium is the same as that for hydrogen,
+            and the <code>r</code> value for Li II is the same as that for He
+            II. <code>p</code>represents the peak and convergence value of the
+            graph, which is equivalent to the ionization energy. When values are
+            substituted, the graph of the s and p orbitals of helium looks as
+            follows.
         </p>
 
         <div className="align__center">
-            <img src={pic26} alt="Linear Change" />
+            <img src={pic58} alt="The Graphs of Helium's s and p Orbitals" />
             <p>
-                <strong className="strike_through">
-                    How to divide a pizza
-                </strong>
+                <strong>The Graphs of Helium's s and p Orbitals</strong> Aren't
+                thy beautiful?
             </p>
         </div>
 
-        <p>My excitement makes me draw the diagonal table for you.</p>
+        <p>
+            In another example, when expressing the equation for lithium's{' '}
+            <code>
+                <sup>2</sup>S<sub>1/2</sub>
+            </code>
+            , shifted to{' '}
+            <code>
+                1s<sup>2</sup>3s
+            </code>{' '}
+            as <code>[X]2[OO]</code> notation, it can be formulated as follows.
+            Substituting hydrogen's <code>r</code> value (
+            <code>13.60676328</code>), lithium's ionization energy{' '}
+            <code>s</code> value (<code>5.39114472</code>), and the emission
+            energy at the 2nd position (<code>3.373129</code>):
+        </p>
 
-        <div className="table-scroll">
-            <table className="unstriped">
-                <thead>
-                    <tr>
-                        <th>digit</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
-                        <th>7</th>
-                        <th>8</th>
-                        <th>9</th>
-                        <th>10</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>first linear %p</th>
-                        <td>107.933</td>
-                        <td>30.776</td>
-                        <td>24.247</td>
-                        <td>21.593</td>
-                        <td>20.143</td>
-                        <td>19.228</td>
-                        <td>18.597</td>
-                        <td>18.136</td>
-                        <td>17.784</td>
-                    </tr>
-                    <tr>
-                        <th>second linear %p</th>
-                        <td></td>
-                        <td>-1.780</td>
-                        <td>-1.825</td>
-                        <td>-1.762</td>
-                        <td>-1.709</td>
-                        <td>-1.670</td>
-                        <td>-1.639</td>
-                        <td>-1.616</td>
-                        <td>-1.597</td>
-                    </tr>
-                    <tr>
-                        <th>third linear %p</th>
-                        <td></td>
-                        <td></td>
-                        <td>0.234</td>
-                        <td>0.226</td>
-                        <td>0.217</td>
-                        <td>0.209</td>
-                        <td>0.202</td>
-                        <td>0.197</td>
-                        <td>0.193</td>
-                    </tr>
-                    <tr>
-                        <th>fourth linear %p</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0.026</td>
-                        <td>0.027</td>
-                        <td>0.027</td>
-                        <td>0.026</td>
-                        <td>0.026</td>
-                        <td>0.025</td>
-                    </tr>
-                    <tr>
-                        <th>fifth linear %p</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>-0.004</td>
-                        <td>-0.004</td>
-                        <td>-0.004</td>
-                        <td>-0.004</td>
-                        <td>-0.004</td>
-                    </tr>
-                    <tr>
-                        <th>sixth linear %p</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>-0.011</td>
-                        <td>-0.011</td>
-                        <td>-0.011</td>
-                        <td>-0.011</td>
-                    </tr>
-                    <tr>
-                        <th>seventh linear %p</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>-0.013</td>
-                        <td>-0.013</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div className="align__center">
+            <Latex
+                displayMode={true}
+            >{`$$R^{3.1}_{2S.1/2}(x) = R(x, 13.60676328, 5.39114472, 2, 3.373129)$$`}</Latex>
         </div>
 
-        <p>
-            The first linear ether has a high Rydberg vale, the second is minus,
-            and from the third, it converges to N<sub>th</sub>(n). It seems to
-            be possible to make functions, and the overall Rydberg would be
-            calculated.
-        </p>
+        <div className="align__center">
+            <img src={pic59} alt="The Graphs of Lithium's s Orbital" />
+            <p>
+                <strong>The Graphs of Lithium's s Orbital</strong> It's
+                beautiful too
+            </p>
+        </div>
+
+        <h3>How to Shift Horizontally</h3>
 
         <p>
-            On the other hand, it has a rule, and I can say the condition of the
-            ether-sparkle hypothesis is compromised.
-        </p>
-
-        <p>
-            It explains how the radial ether increased and how the linear ether
-            was added above the radial ether. The orbital is not an electron
-            shape. The node is photon-ether, and the orbital is electron ether,
-            divided by the photon-ether.
-        </p>
-
-        <p>
-            The table above is the percentage point. The Rydberg of the position
-            is in the table below. Now I changed the digit from 1 because we do
-            not need s1 which means no ether.
+            Now, by simply plugging in the values into the equation, the graph
+            will shift vertically and horizontally. However, it raises the
+            question of what values to use as a reference and how much to move
+            them for a meaningful comparison. Since the reference equation must
+            remain consistent, continuously shifting the graph may not be
+            practical. Let's examine the values for the helium orbitals.
         </p>
 
         <div className="table-scroll">
             <table className="unstriped">
                 <thead>
                     <tr>
-                        <th>digit</th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
-                        <th>7</th>
-                        <th>8</th>
-                        <th>9</th>
+                        <th>
+                            <sup>1</sup>S<sub>0</sub>
+                        </th>
+                        <th>[X][O]</th>
+                        <th>[X][OO]</th>
+                        <th>[X][OOO]</th>
+                        <th>[X][OOOO]</th>
+                        <th>[X][5O]</th>
+                        <th>[X][6O]</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>radial</th>
-                        <td>1.515</td>
-                        <td>0.169</td>
-                        <td>0.055</td>
-                        <td>0.025</td>
-                        <td>0.013</td>
-                        <td>0.008</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
+                        <th></th>
+                        <td>20.616</td>
+                        <td>22.920</td>
+                        <td>23.674</td>
+                        <td>24.011</td>
+                        <td>24.191</td>
+                        <td>24.298</td>
                     </tr>
+                </tbody>
+                <thead>
                     <tr>
-                        <th>1st linear</th>
-                        <td>1.559</td>
-                        <td>0.182</td>
-                        <td>0.060</td>
-                        <td>0.027</td>
-                        <td>0.015</td>
-                        <td>0.009</td>
-                        <td>0.006</td>
-                        <td>0.004</td>
-                        <td>0.003</td>
+                        <th>
+                            <sup>1</sup>P*<sub>1</sub>
+                        </th>
+                        <th>[X][-]</th>
+                        <th>[X][-O]</th>
+                        <th>[X][-OO]</th>
+                        <th>[X][-OOO]</th>
+                        <th>[X][1-4O]</th>
+                        <th>[X][1-5O]</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <th>2nd linear</th>
-                        <td></td>
-                        <td>0.136</td>
-                        <td>0.048</td>
-                        <td>0.022</td>
-                        <td>0.012</td>
-                        <td>0.007</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
+                        <th></th>
+                        <td>21.218</td>
+                        <td>23.087</td>
+                        <td>23.742</td>
+                        <td>24.046</td>
+                        <td>24.211</td>
+                        <td>24.311</td>
                     </tr>
+                </tbody>
+                <thead>
                     <tr>
-                        <th>3rd linear</th>
-                        <td></td>
-                        <td></td>
-                        <td>0.049</td>
-                        <td>0.023</td>
-                        <td>0.012</td>
-                        <td>0.007</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
+                        <th>
+                            <sup>1</sup>D<sub>2</sub>
+                        </th>
+                        <th></th>
+                        <th>[X][--]</th>
+                        <th>[X][--O]</th>
+                        <th>[X][--OO]</th>
+                        <th>[X][2-3O]</th>
+                        <th>[X][2-4O]</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <th>4th linear</th>
+                        <th></th>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0.023</td>
-                        <td>0.012</td>
-                        <td>0.007</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
-                    </tr>
-                    <tr>
-                        <th>5th linear</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0.012</td>
-                        <td>0.007</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
-                    </tr>
-                    <tr>
-                        <th>6th linear</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0.007</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
-                    </tr>
-                    <tr>
-                        <th>7th linear</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td></td>
+                        <td>23.087</td>
+                        <td>23.742</td>
+                        <td>24.046</td>
+                        <td>24.211</td>
+                        <td>24.311</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div className="align__center">
-            <img src={pic11} alt="The Ether [OO--] of Helium" />
-            <p>
-                <strong>The Ether [OO--] of Helium</strong>
-                <br />
-                The value seems to be calculated, and we can get the Rydberg by
-                summing the value.
-                <br />
-                The values are from radial 1 to →→↘︎↘︎ order.
-            </p>
-        </div>
-
         <p>
-            This tendency can be observed in other atoms like lithium,
-            beryllium, boron, and neon. It is also on the same site as{' '}
-            <a
-                href="https://ether.sujinc.com/ether/10+1/graph/percent"
-                target="_blank"
-                rel="noreferrer"
-            >
-                Neon
-            </a>
-        </p>
-
-        <h3>Radial Ethers</h3>
-
-        <p>
-            The set below is a set of radial ether changes from helium to
-            magnesium. I assure you it is possible to find the rule or function
-            with atom number, term, and J value.
+            What should be placed in an empty space? Before <code>[X][--]</code>
+            , let's position <code>[X][-]</code>, which represents a value where
+            the spherical orbital doesn't exist. In this case, we can shift the
+            s orbital symmetrically to the reference graph, and for the rest, we
+            can move them by the same amount as the horizontal shift of the p
+            orbitals.
         </p>
 
         <div className="align__center">
-            <img src={pic19} alt="% Values of Radial Ethers" />
+            <img
+                src={pic93}
+                alt="Horizontal Shifting of Helium Orbital Values"
+            />
             <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/saved-data/639ccf1ad649ed64672f6a67/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        % Values of Radial Ethers
-                    </a>
-                </strong>
-            </p>
-        </div>
-
-        <div className="align__center">
-            <img src={pic20} alt="Correction Values of Radial Ethers" />
-            <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/saved-data/639ccf1ad649ed64672f6a67/graph/correction"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Correction Values of Radial Ethers
-                    </a>
-                </strong>
+                <strong>Horizontal Shifting of Helium Orbital Values</strong>
             </p>
         </div>
 
         <p>
-            Under -1 correction value means the changing digit of N<sub>th</sub>
-            (n). It would be possible to figure out the rule of stacking radial
-            ethers per atomic number.
-        </p>
-
-        <h3>Tendency of other ethers</h3>
-
-        <p>
-            I mentioned the tendency, so I will serve you graphs of them. Please
-            watch the similar tendency in the hydrogen whose error is too small.
+            If done this way, all points can be aligned towards the reference
+            graph. Some may wonder why we are shifting the values left or right.
+            However, this is exactly the same concept as shifting an equation
+            horizontally. After shifting the equation, both the equation and the
+            points must be moved simultaneously to create a unified reference
+            equation. This allows for a comparison of all values against a
+            single reference. Let's substitute the s orbital into the shifting
+            equation and calculate the shift.
         </p>
 
         <div className="align__center">
-            <img src={pic21} alt="Hydrogen" />
+            <Latex
+                displayMode={true}
+            >{`$$k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to k_{s} = \\dfrac{1}{\\sqrt{1 - \\dfrac{20.6157751334 - (24.58556828 - 13.60676328)}{13.60676328}}} - 1 - 1$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to k_{s} = −0.148628918071$$`}</Latex>
+
             <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/ether/1+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Hydrogen
-                    </a>
-                </strong>
+                If we move all points in the x-axis direction by this amount,
+                they will align with the reference Rydberg formula.
             </p>
         </div>
 
         <div className="align__center">
-            <img src={pic22} alt="Helium" />
+            <img src={pic113} alt="s, p, and d Orbitals" />
             <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/ether/2+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Helium
-                    </a>
-                </strong>
+                <strong>s, p, and d Orbitals</strong>
             </p>
         </div>
 
-        <div className="align__center">
-            <img src={pic23} alt="Lithium" />
-            <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/ether/3+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Lithium
-                    </a>
-                </strong>
-            </p>
-        </div>
-
-        <div className="align__center">
-            <img src={pic24} alt="Beryllium" />
-            <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/ether/4+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Beryllium
-                    </a>
-                </strong>
-            </p>
-        </div>
-
-        <h3>Limit</h3>
         <p>
-            Unfortunately, there are enough atoms that have enough linear
-            ethers. I need to analyze more data or create a possible equation
-            from helium.
+            The s orbital has a lower value (shifting graph to the right), while
+            orbitals like p and d containing linear ether are clustered to the
+            left. Let's move the orbitals excluding s towards the next state,
+            represented by <code>[-]</code>.
+        </p>
+
+        <p>
+            The k<sub>p</sub> value for moving the p orbital in the{' '}
+            <code>[X][-]</code>
+            direction is <code>0.00897479319406</code>. Now, let's substitute
+            these values and redraw the table. This time, I will represent them
+            in coordinates instead of values.
+        </p>
+
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>S<sub>0</sub>
+                        </th>
+                        <th>[X][O]</th>
+                        <th>[X][OO]</th>
+                        <th>[X][OOO]</th>
+                        <th>[X][OOOO]</th>
+                        <th>[X][5O]</th>
+                        <th>[X][6O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>
+                            (1+k<sub>s</sub>, 20.616)
+                        </td>
+                        <td>
+                            (2+k<sub>s</sub>, 22.920)
+                        </td>
+                        <td>
+                            (3+k<sub>s</sub>, 23.674)
+                        </td>
+                        <td>
+                            (4+k<sub>s</sub>, 24.011)
+                        </td>
+                        <td>
+                            (5+k<sub>s</sub>, 24.191)
+                        </td>
+                        <td>
+                            (5+k<sub>s</sub>, 24.298)
+                        </td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>P*<sub>1</sub>
+                        </th>
+                        <th>[X][-]</th>
+                        <th>[X][-O]</th>
+                        <th>[X][-OO]</th>
+                        <th>[X][-OOO]</th>
+                        <th>[X][1-4O]</th>
+                        <th>[X][1-5O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>
+                            (1+k<sub>p</sub>, 21.218)
+                        </td>
+                        <td>
+                            (2+k<sub>p</sub>, 23.087)
+                        </td>
+                        <td>
+                            (3+k<sub>p</sub>, 23.742)
+                        </td>
+                        <td>
+                            (4+k<sub>p</sub>, 24.046)
+                        </td>
+                        <td>
+                            (5+k<sub>p</sub>, 24.211)
+                        </td>
+                        <td>
+                            (6+k<sub>p</sub>, 24.311)
+                        </td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>D<sub>2</sub>
+                        </th>
+                        <th></th>
+                        <th>[X][--]</th>
+                        <th>[X][--O]</th>
+                        <th>[X][--OO]</th>
+                        <th>[X][2-3O]</th>
+                        <th>[X][2-4O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td>
+                            (1+k<sub>p</sub>, 23.087)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 23.742)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 24.046)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 24.211)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 24.311)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>The result graph is like below:</p>
+
+        <div className="align__center">
+            <img
+                src={pic94}
+                alt="The Horizontal Shifting Graph of Helium Orbitals"
+            />
+            <p>
+                <strong>
+                    The Horizontal Shifting Graph of Helium Orbitals
+                </strong>
+            </p>
+        </div>
+
+        <p>
+            The purpose of this document is to demonstrate the accumulation of
+            ether. Therefore, instead of looking at the total energy, we should
+            focus on the energy changes at each stage. The increase in energy
+            from <code>[X][O]</code> to <code>[X][OO]</code> should be compared
+            by examining the difference between the two values and{' '}
+            <Latex>{`$R(2+k_{s}) - R(1+k_{s})$`}</Latex>.
+        </p>
+
+        <div className="align__center">
+            <Latex
+                displayMode={true}
+            >{`$$a = 22.920317682 - 20.6157751334 = 2.3045425486$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$b = R(2+k_{s}) - R(1+k_{s}) = 2.29784533694$$`}</Latex>
+
+            <Latex displayMode={true}>{`$$a - b = 0.00669721166409$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to D(x) = v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))$$`}</Latex>
+
+            <p>
+                The difference D(x) when energy is emitted from energy v
+                <sub>2</sub> to v<sub>1</sub>
+                in the modified Rydberg formula.
+            </p>
+        </div>
+
+        <p>The table below is shifting result for all values:</p>
+
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>S<sub>0</sub>
+                        </th>
+                        <th>[OO] - [O]</th>
+                        <th>[OOO] - [OO]</th>
+                        <th>[OOOO] - [OOO]</th>
+                        <th>[5O] - [OOOO]</th>
+                        <th>[6O] - [5O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>0.00669721166409</td>
+                        <td>−0.00322123849668</td>
+                        <td>−0.00157668275873</td>
+                        <td>−0.00076388060241</td>
+                        <td>−0.000401501193807</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>P*<sub>1</sub>
+                        </th>
+                        <th>[-O] - [-]</th>
+                        <th>[-OO] - [-O]</th>
+                        <th>[-OOO] - [-OO]</th>
+                        <th>[1-4O] - [-OOO]</th>
+                        <th>[1-5O] - [1-4O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>0.00163108806923</td>
+                        <td>−0.000784728358325</td>
+                        <td>-0.00038084816397</td>
+                        <td>−0.000180879400757</td>
+                        <td>−0.0000924805841381</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>D<sub>2</sub>
+                        </th>
+                        <th></th>
+                        <th>[--O] - [--]</th>
+                        <th>[--OO] - [--O]</th>
+                        <th>[2-3O] - [--OO]</th>
+                        <th>[2-4O] - [2-3O]</th>
+                        <th>[2-5O] - [2-4O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td>0.00642397109168</td>
+                        <td>0.00235719100603</td>
+                        <td>0.00106323196224</td>
+                        <td>0.000549605285862</td>
+                        <td>0.000312953223304</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Let's move them to a graph:</p>
+
+        <div className="align__center">
+            <img src={pic95} alt="Changes in the Helium Orbital Values" />
+            <p>
+                <strong>Changes in the Helium Orbital Values</strong>
+            </p>
+        </div>
+
+        <p>
+            This way, we can compare the energy changes, which represent the
+            differences in all measured values, on the same standardized basis.
+            The values also seem quite consistent, making them very suitable for
+            representation on a single graph. The error is also very small. It
+            looks delightful at every glance. In the next section, through
+            actual comparisons and interpretations, I aim to explore whether we
+            can consider the emission energy of an atom as the accumulation of
+            ether
         </p>
     </Doc>
 )

@@ -5,7 +5,7 @@ import { TOCKor } from 'src/frontend/components/document/TOCKor'
 
 export const Doc = (props: PropsWithChildren<{}>): JSX.Element => (
     <Row>
-        <Column small={12} medium={9} dom="article">
+        <Column small={12} medium={9} dom="article" id="main-content">
             {props.children}
         </Column>
         <Column medium={3} dom="aside" className="hide-for-small">

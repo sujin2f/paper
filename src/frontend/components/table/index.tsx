@@ -1,25 +1,30 @@
 import React, { Fragment } from 'react'
-import { Row } from 'src/frontend/components/table/Row'
-import { ContainerAbstract } from 'src/model/ContainerAbstract'
+import { Container } from 'src/model/Container'
+import { TermGroup } from './TermGroup'
 
-type Props = {
-    data: ContainerAbstract
-}
-
-export const Table = (props: Props): JSX.Element => {
-    const { data } = props
-
-    if (!data) {
+export const Table = (): JSX.Element => {
+    const container = Container.getInstance()
+    if (!container) {
         return <Fragment></Fragment>
     }
-    const cols = data.columns
 
     return (
         <div className="table-scroll">
             <table className="unstriped">
-                {data.map((row, rowIndex) => (
-                    <Row key={`${rowIndex}-thead`} row={row} cols={cols} />
-                ))}
+                {container.map((term, termIndex) => {
+                    if (term.visible) {
+                        return (
+                            <TermGroup
+                                key={`${termIndex}-termGroup`}
+                                termGroup={term}
+                            />
+                        )
+                    } else {
+                        return (
+                            <Fragment key={`${termIndex}-termGroup`}></Fragment>
+                        )
+                    }
+                })}
             </table>
         </div>
     )

@@ -4,28 +4,29 @@ import { Doc } from 'src/frontend/scenes/doc-kor'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
 import pic10 from 'src/assets/images/doc/pic10.png'
-import pic11 from 'src/assets/images/doc/pic11.png'
-import pic16 from 'src/assets/images/doc/pic16.png'
-import pic17 from 'src/assets/images/doc/pic17.png'
-import pic18 from 'src/assets/images/doc/pic18.png'
-import pic19 from 'src/assets/images/doc/pic19.png'
-import pic20 from 'src/assets/images/doc/pic20.png'
-import pic21 from 'src/assets/images/doc/pic21.png'
-import pic22 from 'src/assets/images/doc/pic22.png'
-import pic23 from 'src/assets/images/doc/pic23.png'
-import pic24 from 'src/assets/images/doc/pic24.png'
-import pic25 from 'src/assets/images/doc/pic25.png'
-import pic26 from 'src/assets/images/doc/pic26.png'
+import pic55 from 'src/assets/images/doc/pic55.png'
+import pic56 from 'src/assets/images/doc/pic56.png'
+import pic57 from 'src/assets/images/doc/pic57.png'
+import pic58 from 'src/assets/images/doc/pic58.png'
+import pic59 from 'src/assets/images/doc/pic59.png'
+import pic92 from 'src/assets/images/doc/pic92.jpeg'
+import pic93 from 'src/assets/images/doc/pic93.jpeg'
+import pic94 from 'src/assets/images/doc/pic94.png'
+import pic95 from 'src/assets/images/doc/pic95.png'
+import pic113 from 'src/assets/images/doc/pic113.png'
 
 export const MultiElectronAtoms = (): JSX.Element => (
     <Doc>
-        <h2 id="multi-electron-atoms">가설의 검증(2): 다 전자 원자</h2>
+        <h2 id="multi-electron-atoms">
+            가설의 검증(2): 뤼드베리 방정식의 재정립
+        </h2>
 
         <p>
             지금까지는 보어의 원자모형을 기준으로 가설을 검증했었다. 그러나 보어
-            원자모형은 더 이상 유효하지 않다. 양자물리학이 밝혀낸 것은 원자에
-            속한 전자가 에너지를 흡수해서 오비탈이라는 형상으로 나타난다는
-            것이다. 이제 더 이상 에테르는 원형이 아니다.
+            원자모형은 더 이상 유효하지 않다. 다전자 원자에서는 성립하지 않으며,
+            실제 전자는 원형 궤도를 도는 존재가 아니다. 양자물리학이 밝혀낸 것은
+            원자에 속한 전자가 에너지를 흡수해서 오비탈이라는 형상(확률)으로
+            나타난다는 것이다. 오비탈 안에서 전자는 활률적으로 존재한다.
         </p>
 
         <div className="align__center">
@@ -42,18 +43,29 @@ export const MultiElectronAtoms = (): JSX.Element => (
             </p>
         </div>
 
+        <h3>가설: 오비탈의 마디는 광자-에테르</h3>
+
         <p>
-            오비탈의 모양은 앞서 보어 원자모형에서도 등장한 주양자수 n과
-            부양자수 l, 그리고 자기양자수인 m<sub>l</sub>에 의해 결정된다. n의
-            증가는 보어 원자모형과 같이 원형의 자릿수를 증가시킨다. l의 증가는
-            원형 하나가 없어지면서 선형의 마디가 생겨난다. 자기양자수는 각도를
-            결정한다.
+            그림에서 검은 부분을 마디라고 부른다. 그 마디의 모양과 개수에 따라
+            오비탈의 형태가 결정된다. 오비탈의 모양은 앞서 보어 원자모형에서도
+            등장한 주양자수 <code>n</code>과 부양자수 <code>l</code>, 그리고
+            자기양자수인{' '}
+            <code>
+                m<sub>l</sub>
+            </code>
+            에 의해 결정된다. <code>n</code>의 증가는 보어 원자모형과 같이
+            원형의 개수를 증가시킨다. <code>l</code>의 증가는 원형 하나가
+            없어지면서 선형의 마디가 생겨난다. 자기양자수는 각도를 결정한다.
         </p>
+
         <p>
-            원형의 마디를 가진 오비탈을 s 오비탈이라고 부른다. 마디가 없으면 s1,
-            원형 마디가 하나일 때 s2이다. 선형의 마디를 하나 가진 오비탈을 p라고
-            한다. 선형 하나면 p2, 선형 하나에 원형 하나면 p3이다. 이런 식으로
-            선형의 마디 개수를 기준으로 d, f, g와 같은 이름을 가진다.
+            원형의 마디를 가진 오비탈을 s 오비탈이라고 부른다. 마디가 없으면{' '}
+            <code>1s</code>, 원형 마디가 하나일 때 <code>2s</code>
+            이다. 선형의 마디를 하나 가진 오비탈을 <code>p</code>라고 한다. 선형
+            하나면 <code>2p</code>, 선형 하나에 원형 하나면 <code>3p</code>이다.
+            이런 식으로 선형의 마디 개수를 기준으로 <code>d</code>,{' '}
+            <code>f</code>, <code>g</code>와 같은 이름을 가진다. 이제 마디를
+            광자-에테르라고 가정하고 오비탈을 다시 해석해 보겠다.
         </p>
 
         <div className="align__center">
@@ -66,12 +78,12 @@ export const MultiElectronAtoms = (): JSX.Element => (
         </div>
 
         <p>
-            이를 에테르의 관점으로 다시 보자. n의 증가는 에테르의 개수를
-            의미하며, l의 증가는 원형이었던 에테르를 선형으로 변화시킨다. s
+            <code>n</code>의 증가는 에테르의 개수가 늘어나는 것을 의미하며,
+            <code>l</code>의 증가는 원형이었던 에테르를 선형으로 변화시킨다. s
             오비탈은 원형의 에테르만을 가지고 있으며, p 오비탈은 선형 에테르
-            하나에 원형 에테르를 가진 것으로 해석할 수 있다. s1 오비탈은
-            에테르를 가지지 않은 상태이며, p3 오비탈은 원형 하나와 선형 하나를
-            가진 상태를 가지는 것이다.
+            하나에 원형 에테르를 가진 것으로 해석할 수 있다. <code>1s</code>
+            오비탈은 에테르를 가지지 않은 상태이며, <code>3p</code> 오비탈은
+            원형 하나와 선형 하나를 가진 상태를 가진다는 것이다.
         </p>
 
         <p>
@@ -84,11 +96,31 @@ export const MultiElectronAtoms = (): JSX.Element => (
             오비탈인 것이다.
         </p>
 
+        <div className="align__center">
+            <img src={pic92} alt="오비탈에서 마디의 모양" width="300" />
+            <p>
+                <strong>오비탈에서 마디의 모양</strong>
+                <br />저 마디가 광자-에테르라면?
+            </p>
+        </div>
+
         <p>
             에테르의 관점을 더 잘 나타내기 위해 원과 선으로 표기법을 정해보기로
-            하자. [-O]는 p3를, [--O]는 d4를 의미하게 될 것이다. [--OOOOO]와 같이
-            자릿수가 높아지면 가독성을 위해 [2-5O]와 같이 나타내는 방식을
-            병행하겠다. 아래 사용되는 데이터는{' '}
+            하자. <code>[X]</code>는 <code>1s</code>, <code>[O]</code>는{' '}
+            <code>2s</code>, <code>[OO]</code>는 <code>3s</code>를 의미한다.{' '}
+            <code>[-]</code>는 <code>2p</code>, <code>[-O]</code>는{' '}
+            <code>3p</code>를, <code>[--O]</code>는 <code>4d</code>를 의미하게
+            될 것이다. <code>[--OOOOO]</code>와 같이 자릿수가 높아지면 가독성을
+            위해 <code>[2-5O]</code>와 같이 나타내는 방식을 병행하겠다. 전자가
+            여러개일 때,{' '}
+            <code>
+                1s<sup>2</sup>
+            </code>
+            는 <code>[X]2</code>,
+            <code>
+                2s<sup>2</sup>
+            </code>
+            는 <code>[O]2</code>와 같이 표기하도록 하자. 아래 사용되는 데이터는{' '}
             <a
                 href="https://physics.nist.gov/PhysRefData/ASD/lines_form.html"
                 target="_blank"
@@ -96,574 +128,586 @@ export const MultiElectronAtoms = (): JSX.Element => (
             >
                 NIST에서 참조
             </a>
-            하였다. Configuration은 l값만이 변하는 세트들로 가져왔다. (1S/J=0,
-            1P/J=1, 1D/J=2...) 모든 데이터는{' '}
-            <a
-                href="https://ether.sujinc.com/orbital/1+1/graph/percent"
-                target="_blank"
-                rel="noreferrer"
-            >
-                이렇게
-            </a>{' '}
-            표와 그래프로 시각화 하였다. 표에서 Correction은 아래의 수식을
-            만족시키는 보정 값이다.
+            하였다.
         </p>
 
-        <Latex
-            displayMode={true}
-        >{`$$Diff = (\\frac{1}{n+c})^2 - (\\frac{1}{n+1+c})^2$$`}</Latex>
-
-        <h3>수소: 전자 하나</h3>
+        <p>
+            이를 통해 증명하고 싶은 것은 원형과 선형에 따라 쌓이는 패턴이
+            존재한다는 것이다. 다전자 원자에서 값이 변하는 추이가 마치 수소
+            원자와 같이 일정하며, 방출 에너지는 에테르의 합이라는 것을 보이고
+            싶은 것이다. 그렇다면 그 추이를 설명할 수 있는 기준값이 필요하다.
+            수소꼴 원자에서의 뤼드베리 방정식과 같은 것 말이다.
+        </p>
 
         <p>
-            수소는 보어 원자모형도 만족할 정도로 매우 규칙적인 값을 보인다.
-            여기서 수소를 굳이 언급하는 것은 NIST에서 제공되는 관측데이터의
-            정확성을 알아봄과 동시에 앞으로 다른 원자에서 어떤 것에 집중해야
-            하는지 환기하기 위함이다.
+            먼저 수소와 헬륨에서 원형 에테르 값의 변화를 보자. <code>[X]</code>,{' '}
+            <code>[O]</code>, <code>[OO]</code>과 같은 변화이다.
         </p>
 
         <div className="align__center">
-            <img src={pic16} alt="수소원자" />
+            <img src={pic55} alt="수소와 헬륨의 원형 에테르" />
             <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/orbital/1+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        수소원자
-                    </a>
-                </strong>
-                <br />
-                고전 물리학으로도 설명할 수 있는 단순함
+                <strong>수소와 헬륨의 원형 에테르</strong> 그래프는 뤼드베리
+                방정식, 오른쪽 상단이 헬륨이다.
             </p>
         </div>
 
         <p>
-            NIST의 데이터는 한 번의 관측이 아닌, 여러 번의 관측 결과를 모두
-            망라한 것이라 그만큼 엄밀하다고 볼 수 있다. 주지하다시피, 수소
-            원자의 스펙트럼과 N<sub>th</sub>(n)의 오차는 거의 없다시피 하다.
-            그러나 그 얼마 안되는 오차에도 경향성을 볼 수 있다. 이것은 나중에
-            설명하는 것으로 하자.
+            그래프를 상하좌우로 이동 시키면 마치 겹칠 것 같이 생겼다. 다전자
+            원자에서 뤼드베리 방정식을 쓰지 말라고 여기저기 씌여 있지만 유혹을
+            참을 수 없다. 뤼드베리 방정식을 변형시키는 방식으로 기준값 방정식을
+            만들어보겠다. 이 과정에서 오차 없이 완벽한 방정식을 찾으면 훌륭한
+            성과이겠지만, 스포일러 경고!, 그 방법을 찾지는 못했다. 다만 최대한
+            근사하는 방정식을 찾아보고자 한다.
         </p>
 
-        <p>
-            눈 여겨봐야 하는 값은 첫째, <strong>s 오비탈</strong>이다.{' '}
-            <strong>원형 에테르가 하나씩 증가</strong>하는 부분이기 때문이다.{' '}
-            <strong>p 오비탈을 시작으로 좌상단에서 우하단으로의 대각선</strong>{' '}
-            값 역시 주목해봐야 하는데, 첫번째 대각선 값은{' '}
-            <strong>선형 에테르가 하나씩 증가</strong>하는 부분이다. 두번째
-            부터는 <strong>원형 에테르만을 보았을 때 같은 변화</strong>를
-            나타내기 때문이다. 예를 들어 p4는 [-O]에서 [-OO] 으로, 원형 에테르
-            하나에서 둘로 변화한 결과이며, 그 대각선에 위치한 d5는 [--O]에서
-            [--OO] 으로, 역시 원형 하나가 원형 둘이 되는 변화이기 때문이다. 이는
-            같은 개념인 s 오비탈을 포함해서 일정한 규칙을 지녀야 한다. 즉,{' '}
-            <strong>
-                s 오비탈과 다른 오비탈의 변화는 같은 경향성을, 선형 에테르와
-                대각선 변화는 같은 경향성을 가져야 한다
-            </strong>
-            는 것이다.
-        </p>
+        <h3>그래프의 이동</h3>
+
+        <div className="align__center">
+            <img src={pic56} alt="헬륨의 s, p 오비탈" />
+            <p>
+                <strong>헬륨의 s, p 오비탈</strong>
+            </p>
+        </div>
 
         <p>
-            다시 그래프를 보자. 원형 에테르의 증가인 s 오비탈(붉은색)은 올라갔다
-            내려오는 형태를 보인다. 선형 에테르는 좌상단에서 우하단으로의 곡선
-            형태인 <Latex>{`$y=\\dfrac{a}{x}$`}</Latex>와 같은 모습을 보인다. p
-            오비탈 부터는 내려갔다 올라갔다 다시 내려가는 형태를 보인다. 위에서
-            내가 강조한 '경향성'이란 s 오비탈의 원형 에테르의 증가와 p 오비탈의
-            원형 에테르 증가가 비슷한 형상을 보여야 한다는 것이다. 그래프가
-            예쁘기는 하지만 딱 드러맞지는 않는다. 가설에 따르면 s도 p도 d도 원형
-            에테르의 증가인데 그 추이가 다르다는 것이다.
-        </p>
-
-        <h3>헬륨: 다전자 원자 (2개)</h3>
-
-        <p>
-            전자가 둘 이상인 다전자 원자의 Rydberg는 수소형 원자와 같이 일정하지
-            않다. 과학자들은 이것이 다른 전자의 영향이라 이야기한다. 그럼에도
-            에테르-스파클 가설을 증명하기 위해서는 이것이 단순한 덧셈은 아니라도
-            일정한 경향을 가진다는 것을 보여야 한다. 비교적 다양한 오비탈을 볼
-            수 있는 헬륨의 데이터를 가져오도록 하자. 이것을 표로 정리하면{' '}
-            <strong>매우 실망스러운 결과</strong>를 볼 수 있다.
+            헬륨 원자의 오비탈의 변화를 통해 알아보겠다. 수소는 너무 오차가
+            작아서 적절하지 않다. 각각의 색상은{' '}
+            <code>
+                <sup>1</sup>S<sub>0</sub>
+            </code>
+            ,{' '}
+            <code>
+                <sup>3</sup>S<sub>1</sub>
+            </code>
+            ,{' '}
+            <code>
+                <sup>3</sup>P*
+                <sub>2</sub>
+            </code>
+            와 같은 항기호(Term Symbol)가 같은 s, p 오비탈들이다. 이 값들이
+            뤼드베리 방정식이 좌우로 이동을 한 값이라 생각해보자. 그렇다면
+            뤼드베리 방정식을 변형하여 각각의 그래프를 만들 수 있을 것이다.
+            수렴값은 이온화 에너지 값을 이용하자. 수소의 이온화 에너지는{' '}
+            <code>13.60676328</code>이다. 이는 그래프의 비율이 된다. 헬륨의
+            이온화 에너지는 <code>24.58556828</code>이다. 이를 식으로 표현하면
+            이와 같다. 앞으로 구하는 R방정식은 R위에 원소 번호와 이온 번호를
+            쩜(.)으로 구분하여 아라비아 숫자로 표기하고, 에테르나 오비탈의
+            경우는 그 밑에 표기하도록 하겠다.
         </p>
 
         <div className="align__center">
-            <img src={pic17} alt="헬륨 원자" />
+            <Latex
+                displayMode={true}
+            >{`$$ R^{1.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) $$`}</Latex>
+            <p>수소의 뤼드베리 방정식 (eV)</p>
+            <Latex
+                displayMode={true}
+            >{`$$R^{2.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) + 24.58556828 - 13.60676328$$`}</Latex>
+            <p>헬륨의 뤼드베리 방정식 (eV)</p>
+        </div>
+
+        <p>헬륨의 높이에 맞추어 뤼드베리 방정식을 상하로 이동해준 것이다.</p>
+
+        <div className="align__center">
+            <img
+                src={pic57}
+                alt="뤼드베리 방정식을 헬륨에 맞추어 상하이동한 그래프"
+            />
             <p>
                 <strong>
-                    <a
-                        href="https://ether.sujinc.com/orbital/2+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        헬륨 원자
-                    </a>
+                    뤼드베리 방정식을 헬륨에 맞추어 상하이동한 그래프
                 </strong>
             </p>
         </div>
 
         <p>
-            s와 p 오비탈 그리고 선형 에테르에서 2번 위치는 100%p 정도로 높은
-            에너지를 보인다. d와 f 오비탈은 N<sub>th</sub>(n) 보다 큰 값을
-            나타내며 나머지는 그보다 작은 값을 보인다. 자릿수가 증가할수록 N
-            <sub>th</sub>(n)에 일치하려는 경향을 보이기는 하나 대각선 성분은
-            들쭉날쭉 규칙성이 많이 망가지고 있다. 무엇보다 s 오비탈과 다른
-            오비탈들은 똑같이 원형의 변화를 나타냄에도 다른 경향성을 보인다.
-            또한 선형 에테르 둘과 셋 위에 원형이 쌓이는 d와 f의 변화 경향이 왜
-            다른 경우와 다른지를 설명할 수 없기 때문에 위 표는 매우 불규칙한
-            것으로 해석할 수 있다. 경향성을 발견할 수가 없다. 끝.
+            뭔가 근사하게 맞아 떨어지는 듯 보인다. 이제 좌우 이동을 해보자.
+            그래프의 비율인 <code>13.60676328</code>는 <code>r</code>
+            (radius)로, 상하 이동값인 <code>
+                24.58556828 - 13.60676328
+            </code>는 <code>s</code>(shift)로 좌우 이동값은 <code>k</code>로
+            치환한다.
         </p>
 
         <div className="align__center">
-            <img src={pic25} alt="원형 에테르의 변화" />
+            <Latex
+                displayMode={true}
+            >{`$$w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s$$`}</Latex>
+        </div>
+        <p>
+            위 식에서 <code>w</code>를 <code>[O]</code>에테르의 에너지,{' '}
+            <code>v</code>에 에테르의 번호인 <code>1</code>을 대입하면, 첫번째
+            위치에 맞추어 그래프가 좌우 이동할 것이다. 그럼 좌우 이동값{' '}
+            <code>k</code>에 관한 식으로 만들어 보자.
+        </p>
+        <div className="align__center">
+            <Latex
+                displayMode={true}
+            >{`$$w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to \\dfrac{w - s}{r} = 1 - \\dfrac{1}{(v + 1 + k)^2}$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to 1 - \\dfrac{w - s}{r} = \\dfrac{1}{(v + 1 + k)^2}$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to \\dfrac{1}{1 - \\dfrac{w - s}{r}} = (v + 1 + k)^2$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} = v + 1 + k$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1$$`}</Latex>
+            <p>이를 최초의 식에 다시 대입해보자.</p>
+            <Latex
+                displayMode={true}
+            >{`$$R(x, r, s, v, w) = r \\cdot (1 - \\dfrac{1}{(x + 1 + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1)^2}) + s$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v)^2}$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\dfrac{1}{\\sqrt{\\dfrac{r - w + s}{r}}})^2}$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{r - w + s}})^2}$$`}</Latex>
             <p>
-                <strong>원형 에테르의 변화</strong> 예상과는 너무 다르다 / 폭망
+                여기서 <code>r+s</code>는 이온화 에너지와 동일한 그래프의
+                고점이다. <code>r+s</code>를<code>p</code>(peak)로 표기해 보자.
             </p>
+            <Latex
+                displayMode={true}
+            >{`$$R(x, r, p, v, w) = p - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{p - w}})^2}$$`}</Latex>
+            <p>완성된 변형 뤼드베리 방정식.</p>
         </div>
 
-        <p>혹시 우리가 생각하는 틀이 문제인 것은 아닐까?</p>
-
         <p>
-            3p 오비탈을 보자. 저 값이 [-O]인 경우와 [O-]인 경우는 값이 달라야
-            옳다. 왜냐하면 원형과 선형은 분명 다른 방식으로 값에 영향을 미치고
-            있으며 그것이 자릿수에 의해서도 변화하기 때문이다. 107.933인 [-]가
-            [-O]로 된 것과 102.031인 [O]가 [O-]로 된 것은 첫 자리의 Rydberg도 두
-            번째 자리의 Rydberg도 다르다. 그런데 NIST에서 제공하는 3p의 값은
-            언제나 일정하다. 따라서 둘 중 하나만이 옳다고 봐야 한다.
-        </p>
-
-        <p>
-            우리가 오비탈을 이해할 때 s형, p형과 같이 이미 정의된 방식으로 선형
-            오비탈의 개수를 기준으로 분류를 받아들이게 된다. 만일 이것이 원형이
-            먼저 쌓이고 그 위에 선형이 쌓이는 것이라면 어떨까?
+            <code>r</code>은 그래프의 비율이며 같은 위상에 있는 수소꼴 원자의
+            고점이다. 즉, 헬륨의 <code>r</code> 값은 수소와 같으며, Li II의{' '}
+            <code>r</code> 값은 He II와 같은 값이다. <code>p</code>는 그래프의
+            고점, 수렴값이며 이는 이온화 에너지와 동일하다. 값을 대입해서 헬륨
+            I의 s, p 오비탈의 그래프를 그려보면 아래와 같다.
         </p>
 
         <div className="align__center">
-            <img src={pic18} alt="원형이 먼저다!!" />
+            <img src={pic58} alt="헬륨의 s, p 오비탈의 그래프" />
             <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/ether/2+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        원형이 먼저다!!
-                    </a>
-                </strong>
+                <strong>헬륨의 s, p 오비탈의 그래프</strong> 아름답지 아니한가?
             </p>
         </div>
 
         <p>
-            보이는가 휴먼? 이 아름다운 경향성이? 각 행은 원형 위에 선형이
-            증가하는 것을 나타낸다. 그러니 이번에는 원형 오비탈을 제외한 다른
-            그래프들의 경향성이 보여야 한다. 떨어졌다 올라오면서 N<sub>th</sub>
-            (n)에 수렴하는 모습을 보인다.
+            다른 예로 리튬의{' '}
+            <code>
+                <sup>2</sup>S<sub>1/2</sub>
+            </code>
+            을{' '}
+            <code>
+                1s<sup>2</sup>3s
+            </code>
+            인<code>[X]2[OO]</code>에 맞추어 방정식을 만들면 아래와 같다. 수소의{' '}
+            <code>r</code>값<code>13.60676328</code>, 리튬의 이온화 에너지{' '}
+            <code>s</code>값 <code>5.39114472</code>, 2번 자리에서의 방출 에너지{' '}
+            <code>3.373129</code>를 대입하는 것이다.
         </p>
 
         <div className="align__center">
-            <img src={pic26} alt="선형 에테르의 변화" />
+            <Latex
+                displayMode={true}
+            >{`$$R^{3.1}_{2S.1/2}(x) = R(x, 13.60676328, 5.39114472, 2, 3.373129)$$`}</Latex>
+        </div>
+
+        <div className="align__center">
+            <img src={pic59} alt="리튬 I의 s 오비탈의 그래프" />
             <p>
-                <strong className="strike_through">피자를 자르는 방법</strong>
+                <strong>리튬의 s 오비탈의 그래프</strong> 얘도 아름답다
             </p>
         </div>
 
+        <h3>좌우 이동 방법</h3>
+
         <p>
-            신이 좀 났으니 아직 안 보이는 휴먼들을 위해 대각선 방향을 정리한
-            표를 그려 보겠다.
+            이제 수식에 넣기만 하면 상하좌우로 이동할 것이다. 그런데, 어떤 값을
+            어디를 기준으로 얼마나 이동해야 적절한 비교일까? 기준이 되는 수식은
+            동일해야 적절하기 때문에 그래프를 계속 이동시킬 수는 없다. 헬륨
+            오비탈의 값들을 보자.
         </p>
 
         <div className="table-scroll">
             <table className="unstriped">
                 <thead>
                     <tr>
-                        <th>digit</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
-                        <th>7</th>
-                        <th>8</th>
-                        <th>9</th>
-                        <th>10</th>
+                        <th>
+                            <sup>1</sup>S<sub>0</sub>
+                        </th>
+                        <th>[X][O]</th>
+                        <th>[X][OO]</th>
+                        <th>[X][OOO]</th>
+                        <th>[X][OOOO]</th>
+                        <th>[X][5O]</th>
+                        <th>[X][6O]</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>first linear %p</th>
-                        <td>107.933</td>
-                        <td>30.776</td>
-                        <td>24.247</td>
-                        <td>21.593</td>
-                        <td>20.143</td>
-                        <td>19.228</td>
-                        <td>18.597</td>
-                        <td>18.136</td>
-                        <td>17.784</td>
+                        <th></th>
+                        <td>20.616</td>
+                        <td>22.920</td>
+                        <td>23.674</td>
+                        <td>24.011</td>
+                        <td>24.191</td>
+                        <td>24.298</td>
                     </tr>
+                </tbody>
+                <thead>
                     <tr>
-                        <th>second linear %p</th>
-                        <td></td>
-                        <td>-1.780</td>
-                        <td>-1.825</td>
-                        <td>-1.762</td>
-                        <td>-1.709</td>
-                        <td>-1.670</td>
-                        <td>-1.639</td>
-                        <td>-1.616</td>
-                        <td>-1.597</td>
+                        <th>
+                            <sup>1</sup>P*<sub>1</sub>
+                        </th>
+                        <th>[X][-]</th>
+                        <th>[X][-O]</th>
+                        <th>[X][-OO]</th>
+                        <th>[X][-OOO]</th>
+                        <th>[X][1-4O]</th>
+                        <th>[X][1-5O]</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <th>third linear %p</th>
-                        <td></td>
-                        <td></td>
-                        <td>0.234</td>
-                        <td>0.226</td>
-                        <td>0.217</td>
-                        <td>0.209</td>
-                        <td>0.202</td>
-                        <td>0.197</td>
-                        <td>0.193</td>
+                        <th></th>
+                        <td>21.218</td>
+                        <td>23.087</td>
+                        <td>23.742</td>
+                        <td>24.046</td>
+                        <td>24.211</td>
+                        <td>24.311</td>
                     </tr>
+                </tbody>
+                <thead>
                     <tr>
-                        <th>fourth linear %p</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0.026</td>
-                        <td>0.027</td>
-                        <td>0.027</td>
-                        <td>0.026</td>
-                        <td>0.026</td>
-                        <td>0.025</td>
+                        <th>
+                            <sup>1</sup>D<sub>2</sub>
+                        </th>
+                        <th></th>
+                        <th>[X][--]</th>
+                        <th>[X][--O]</th>
+                        <th>[X][--OO]</th>
+                        <th>[X][2-3O]</th>
+                        <th>[X][2-4O]</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <th>fifth linear %p</th>
+                        <th></th>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>-0.004</td>
-                        <td>-0.004</td>
-                        <td>-0.004</td>
-                        <td>-0.004</td>
-                        <td>-0.004</td>
-                    </tr>
-                    <tr>
-                        <th>sixth linear %p</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>-0.011</td>
-                        <td>-0.011</td>
-                        <td>-0.011</td>
-                        <td>-0.011</td>
-                    </tr>
-                    <tr>
-                        <th>seventh linear %p</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>-0.013</td>
-                        <td>-0.013</td>
-                        <td></td>
+                        <td>23.087</td>
+                        <td>23.742</td>
+                        <td>24.046</td>
+                        <td>24.211</td>
+                        <td>24.311</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <p>
-            선형 에테르가 첫 번째 자리에 위치할 때는 높은 값의 Rydberg를, 그리고
-            두 번째는 마이너스 값을, 세 번째부터는 N<sub>th</sub>
-            (n)로 수렴하는 경향을 보인다고 말할 수 있다. 함수를 만들어 예측
-            가능한 값이 된 것이다. 이 값들을 단순히 더하는 것으로 Rydberg를
-            예측할 수도 있을 것이다.
+            비어있는 공간에는 무엇이 들어가야 적절할까? <code>[X][--]</code>{' '}
+            이전에는 원형 오비탈이 존재하지 않는 값인 <code>[X][-]</code>를
+            배치하자. 그렇다면 s 오비탈은 기준 그래프 쪽으로 동일하게 좌우
+            이동을 시키고, 나머지는 p 오비탈의 좌우 이동값 만큼 이동시키면 될
+            것이다.
+        </p>
+
+        <div className="align__center">
+            <img src={pic93} alt="헬륨 오비탈 값의 좌우 이동" />
+            <p>
+                <strong>헬륨 오비탈 값의 좌우 이동</strong>
+            </p>
+        </div>
+
+        <p>
+            이렇게 한다면 모든 점들을 기준 그래프 쪽으로 정렬 시킬 수 있다. 왜
+            값을 좌우 이동하는지 의아한 사람이 있을 것이다. 그러나 이는 방정식의
+            좌우 이동과 완전히 동일한 개념이다. 방정식을 이동 시킨 후에는
+            방정식과 점을 동시에 이동해서 하나의 기준 방정식으로 만들어야 하나의
+            기준으로 모든 값을 비교하는 것이 가능하기 때문이다. 이동 수식에 s
+            오비탈을 대입해서 이동값을 구해보자.
+        </p>
+
+        <div className="align__center">
+            <Latex
+                displayMode={true}
+            >{`$$k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to k_{s} = \\dfrac{1}{\\sqrt{1 - \\dfrac{20.6157751334 - (24.58556828 - 13.60676328)}{13.60676328}}} - 1 - 1$$`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`$$\\to k_{s} = −0.148628918071$$`}</Latex>
+            <p>
+                모든 점을 x축 방향으로 이만큼 옮겨주면 기준 뤼드베리 방정식에
+                붙을 것이다
+            </p>
+        </div>
+
+        <div className="align__center">
+            <img src={pic113} alt="s, p, d의 배치" />
+            <p>
+                <strong>s, p, d의 배치</strong>
+            </p>
+        </div>
+
+        <p>
+            s 오비탈은 값이 낮고 (그래프가 오른쪽), 선형 에테르가 포함된 p, d
+            등은 왼쪽에 모여있다. s를 제외한 다른 친구들은 바닥 상태의 다음
+            상태인 <code>[-]</code>쪽으로 이동시키자.
         </p>
 
         <p>
-            다시 말해, 앞서 제시한 에테르의 존재 조건을 만족했다고 볼 수 있다.
-            규칙이 존재한다.
-        </p>
-
-        <p>
-            선형 에테르가 쌓이는 방식을 설명할 수 있게 된 것이다. 즉, 전자의
-            모양이 변한 것이 오비탈이 아니라, 그 마디인 광자-에테르가 에너지를
-            가지고 있는 것이며, 오비탈은 광자-에테르에 의해 나누어진 원형의
-            전자-에테르라는 가설에 한 걸음 다가갔다.
-        </p>
-
-        <p>
-            위 표는 퍼센트 포인트를 표시한 것이다. 덧셈을 위한 각 자리수의 값은
-            아래와 같다. 아래의 값은 위 표에서 생략한 diff 값으로, 자리수에 맞게
-            넣어주면 정확한 Rydberg를 알 수 있다. digit에 쓰였던 숫자는 오비탈을
-            기준으로 2번 부터 시작한 것이다. 이제 자리수라는 의미로 1번 부터
-            시작한다.
+            p 오비탈을 <code>[X][-]</code> 방향으로 이동한 k<sub>p</sub>값은{' '}
+            <code>0.00897479319406</code>가 된다. 그럼 이들을 대입하여 표를 다시
+            그려보자. 이번에는 값 대신 좌표로 표시하겠다.
         </p>
 
         <div className="table-scroll">
             <table className="unstriped">
                 <thead>
                     <tr>
-                        <th>digit</th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
-                        <th>7</th>
-                        <th>8</th>
-                        <th>9</th>
+                        <th>
+                            <sup>1</sup>S<sub>0</sub>
+                        </th>
+                        <th>[X][O]</th>
+                        <th>[X][OO]</th>
+                        <th>[X][OOO]</th>
+                        <th>[X][OOOO]</th>
+                        <th>[X][5O]</th>
+                        <th>[X][6O]</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>radial</th>
-                        <td>1.515</td>
-                        <td>0.169</td>
-                        <td>0.055</td>
-                        <td>0.025</td>
-                        <td>0.013</td>
-                        <td>0.008</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
+                        <th></th>
+                        <td>
+                            (1+k<sub>s</sub>, 20.616)
+                        </td>
+                        <td>
+                            (2+k<sub>s</sub>, 22.920)
+                        </td>
+                        <td>
+                            (3+k<sub>s</sub>, 23.674)
+                        </td>
+                        <td>
+                            (4+k<sub>s</sub>, 24.011)
+                        </td>
+                        <td>
+                            (5+k<sub>s</sub>, 24.191)
+                        </td>
+                        <td>
+                            (5+k<sub>s</sub>, 24.298)
+                        </td>
                     </tr>
+                </tbody>
+                <thead>
                     <tr>
-                        <th>1st linear</th>
-                        <td>1.559</td>
-                        <td>0.182</td>
-                        <td>0.060</td>
-                        <td>0.027</td>
-                        <td>0.015</td>
-                        <td>0.009</td>
-                        <td>0.006</td>
-                        <td>0.004</td>
-                        <td>0.003</td>
+                        <th>
+                            <sup>1</sup>P*<sub>1</sub>
+                        </th>
+                        <th>[X][-]</th>
+                        <th>[X][-O]</th>
+                        <th>[X][-OO]</th>
+                        <th>[X][-OOO]</th>
+                        <th>[X][1-4O]</th>
+                        <th>[X][1-5O]</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <th>2nd linear</th>
-                        <td></td>
-                        <td>0.136</td>
-                        <td>0.048</td>
-                        <td>0.022</td>
-                        <td>0.012</td>
-                        <td>0.007</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
+                        <th></th>
+                        <td>
+                            (1+k<sub>p</sub>, 21.218)
+                        </td>
+                        <td>
+                            (2+k<sub>p</sub>, 23.087)
+                        </td>
+                        <td>
+                            (3+k<sub>p</sub>, 23.742)
+                        </td>
+                        <td>
+                            (4+k<sub>p</sub>, 24.046)
+                        </td>
+                        <td>
+                            (5+k<sub>p</sub>, 24.211)
+                        </td>
+                        <td>
+                            (6+k<sub>p</sub>, 24.311)
+                        </td>
                     </tr>
+                </tbody>
+                <thead>
                     <tr>
-                        <th>3rd linear</th>
-                        <td></td>
-                        <td></td>
-                        <td>0.049</td>
-                        <td>0.023</td>
-                        <td>0.012</td>
-                        <td>0.007</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
+                        <th>
+                            <sup>1</sup>D<sub>2</sub>
+                        </th>
+                        <th></th>
+                        <th>[X][--]</th>
+                        <th>[X][--O]</th>
+                        <th>[X][--OO]</th>
+                        <th>[X][2-3O]</th>
+                        <th>[X][2-4O]</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <th>4th linear</th>
+                        <th></th>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0.023</td>
-                        <td>0.012</td>
-                        <td>0.007</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
-                    </tr>
-                    <tr>
-                        <th>5th linear</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0.012</td>
-                        <td>0.007</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
-                    </tr>
-                    <tr>
-                        <th>6th linear</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0.007</td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td>0.002</td>
-                    </tr>
-                    <tr>
-                        <th>7th linear</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0.005</td>
-                        <td>0.003</td>
-                        <td></td>
+                        <td>
+                            (1+k<sub>p</sub>, 23.087)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 23.742)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 24.046)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 24.211)
+                        </td>
+                        <td>
+                            (1+k<sub>p</sub>, 24.311)
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
+        <p>이를 그래프에 얹으면 아래와 같다.</p>
+
         <div className="align__center">
-            <img src={pic11} alt="헬륨의 에테르 [OO--]" />
+            <img src={pic94} alt="헬륨 오비탈 값의 좌우 이동 그래프" />
             <p>
-                <strong>헬륨의 에테르 [OO--]</strong>
-                <br />
-                각 자리수에 있는 값은 예측 가능해 보이고 그것들을 더하거나 빼는
-                것으로 총 Rydberg를 계산할 수 있다.
-                <br />
-                실제로 쓰여진 값은 원형 1번을 시작으로 →→↘︎↘︎로 내려가면 된다.
+                <strong>헬륨 오비탈 값의 좌우 이동 그래프</strong>
             </p>
         </div>
 
         <p>
-            데이터가 약간 부족하기는 하나, 이는 리튬, 베릴륨, 붕소, 네온 등과
-            같은 다른 원소에서도 관찰할 수 있다. 역시 같은 사이트에서 값을
-            바꿈으로 확인 가능하다. 예를 들자면{' '}
-            <a
-                href="https://ether.sujinc.com/ether/10+1/graph/percent"
-                target="_blank"
-                rel="noreferrer"
-            >
-                네온
-            </a>
-            과 같이 말이다.
-        </p>
-
-        <h3>원형 에테르의 변화 추이</h3>
-
-        <p>
-            아래의 세트는 수소 부터 마그네슘 까지의 원형 에테르(s 오비탈)의
-            변화들을 모아놓은 것이다. 알맞은 J 값을 잘 선택하면 일정한 규칙을
-            찾을 수 있을 것으로 기대된다.
+            이 문서의 목적은 에테르가 쌓이는 것을 증명하는 것이다. 따라서 전체
+            에너지 보다는 각 단계별로 변하는 에너지를 보아야 한다.{' '}
+            <code>[X][O]</code>에서 <code>[X][OO]</code>로의 에너지 증가는 두
+            값의 차이와 <Latex>{`$R(2+k_{s}) - R(1+k_{s})$`}</Latex>를 비교해야
+            할 것이다.
         </p>
 
         <div className="align__center">
-            <img src={pic19} alt="원형 에테르들의 % 값" />
+            <Latex
+                displayMode={true}
+            >{`$$a = 22.920317682 - 20.6157751334 = 2.3045425486$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$b = R(2+k_{s}) - R(1+k_{s}) = 2.29784533694$$`}</Latex>
+            <Latex displayMode={true}>{`$$a - b = 0.00669721166409$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$\\to D(x) = v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))$$`}</Latex>
             <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/saved-data/639ccf1ad649ed64672f6a67/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        원형 에테르들의 % 값
-                    </a>
-                </strong>
+                에너지 v<sub>2</sub> 에서 v<sub>1</sub>로 에너지가 방출될 때
+                변형 뤼드베리 방정식과의 차이 D(x)
             </p>
         </div>
 
+        <p>같은 식으로 모든 값의 변화를 표로 나타내면 아래와 같다.</p>
+
+        <div className="table-scroll">
+            <table className="unstriped">
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>S<sub>0</sub>
+                        </th>
+                        <th>[OO] - [O]</th>
+                        <th>[OOO] - [OO]</th>
+                        <th>[OOOO] - [OOO]</th>
+                        <th>[5O] - [OOOO]</th>
+                        <th>[6O] - [5O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>0.00669721166409</td>
+                        <td>−0.00322123849668</td>
+                        <td>−0.00157668275873</td>
+                        <td>−0.00076388060241</td>
+                        <td>−0.000401501193807</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>P*<sub>1</sub>
+                        </th>
+                        <th>[-O] - [-]</th>
+                        <th>[-OO] - [-O]</th>
+                        <th>[-OOO] - [-OO]</th>
+                        <th>[1-4O] - [-OOO]</th>
+                        <th>[1-5O] - [1-4O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>0.00163108806923</td>
+                        <td>−0.000784728358325</td>
+                        <td>-0.00038084816397</td>
+                        <td>−0.000180879400757</td>
+                        <td>−0.0000924805841381</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                            <sup>1</sup>D<sub>2</sub>
+                        </th>
+                        <th></th>
+                        <th>[--O] - [--]</th>
+                        <th>[--OO] - [--O]</th>
+                        <th>[2-3O] - [--OO]</th>
+                        <th>[2-4O] - [2-3O]</th>
+                        <th>[2-5O] - [2-4O]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td>0.00642397109168</td>
+                        <td>0.00235719100603</td>
+                        <td>0.00106323196224</td>
+                        <td>0.000549605285862</td>
+                        <td>0.000312953223304</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>이를 그래프에 옮겨 보자.</p>
+
         <div className="align__center">
-            <img src={pic20} alt="원형 에테르들의 Correction 값" />
+            <img src={pic95} alt="헬륨 오비탈 값의 변화" />
             <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/saved-data/639ccf1ad649ed64672f6a67/graph/correction"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        원형 에테르들의 Correction 값
-                    </a>
-                </strong>
+                <strong>헬륨 오비탈 값의 변화</strong>
             </p>
         </div>
 
         <p>
-            Correction 값이 -1이 넘어간다는 이야기는 N<sub>th</sub>(n)의
-            자릿수가 변화하는 것으로 해석할 수 있다. 원자 번호가 증가함에 따라
-            원형 에테르가 쌓이는 방식은 일정한 규칙을 발견할 수 있을 것이다.
-        </p>
-
-        <h3>에테르의 변화 추이</h3>
-
-        <p>
-            앞서 경향성을 언급했는데, 이 경향성을 그래프로 나열하도록 하겠다.
-            이러한 경향성은 오차가 극히 적은 수소 원자에서도 동일하게 나타남을
-            주목하도록 하자.
-        </p>
-
-        <div className="align__center">
-            <img src={pic21} alt="수소 원자의 에테르" />
-            <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/ether/1+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        수소 원자의 에테르
-                    </a>
-                </strong>
-            </p>
-        </div>
-
-        <div className="align__center">
-            <img src={pic22} alt="헬륨 원자의 에테르" />
-            <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/ether/2+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        헬륨 원자의 에테르
-                    </a>
-                </strong>
-            </p>
-        </div>
-
-        <div className="align__center">
-            <img src={pic23} alt="리튬 원자의 에테르" />
-            <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/ether/3+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        리튬 원자의 에테르
-                    </a>
-                </strong>
-            </p>
-        </div>
-
-        <div className="align__center">
-            <img src={pic24} alt="베릴륨 원자의 에테르" />
-            <p>
-                <strong>
-                    <a
-                        href="https://ether.sujinc.com/ether/4+1/graph/percent"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        베릴륨 원자의 에테르
-                    </a>
-                </strong>
-            </p>
-        </div>
-
-        <h3>한계</h3>
-        <p>
-            불행하게도 선형 에테르가 다양하게 존재하는 원자가 그리 많지 않다. 더
-            많은 데이터를 살펴보거나 헬륨에서 얻어낼 수 있는 방정식으로 예측
-            데이터를 만들어야 할 것이다.
+            이렇게 하면 측정된 모든 값의 차이인 에너지 변화를 동일한 기준으로
+            비교할 수 있다. 값도 들쭉날쭉 하지 않아 하나의 그래프에 나타내기
+            매우 좋아 보인다. 오차도 매우 작다. 언제 보아도 사랑스럽다. 다음
+            장에서는 실제 비교와 해석을 통하여 원자의 방출 에너지를 에테르가
+            쌓이는 것으로 볼 수 있을지 알아보고자 한다.
         </p>
     </Doc>
 )

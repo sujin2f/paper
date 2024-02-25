@@ -1,63 +1,71 @@
 import React, { Fragment, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useRawDataParam } from 'src/frontend/hooks/useRawDataParam'
-import { ContainerAbstract } from 'src/model/ContainerAbstract'
+import { useURLParam } from 'src/frontend/hooks/useURLParam'
+import { Container } from 'src/model/Container'
 
-type Props = {
-    data: ContainerAbstract
-}
-
-export const TermDropdown = (props: Props): JSX.Element => {
-    const { linkBase, term, getAddress } = useRawDataParam()
-    const { data } = props
-
+export const TermDropdown = (): JSX.Element => {
+    const { term, getAddress } = useURLParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
+    const container = Container.getInstance()
+
+    if (!container) {
+        return <Fragment></Fragment>
+    }
 
     document.addEventListener('click', () => {
         setShowOptions(false)
     })
 
     return (
-        <Fragment>
-            {linkBase !== 'raw-data' && data && (
-                <li>
-                    <Link
-                        to="#"
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            setShowOptions(!showOptions)
-                        }}
-                    >
-                        Terms ▾
-                    </Link>
-                    {showOptions && (
-                        <ul className="menu vertical" ref={dropdown}>
-                            {data.entries.map((entry) => {
-                                return (
-                                    <li
-                                        key={`term-selector-${entry.encodeURI}`}
-                                        className={
-                                            term === entry.encodeURI
-                                                ? 'link-base current'
-                                                : ''
-                                        }
-                                    >
-                                        <Link
-                                            to={getAddress({
-                                                term: `${entry.encodeURI}`,
-                                            })}
-                                            type="button"
-                                        >
-                                            {entry.term}.{entry.j}
-                                        </Link>
-                                    </li>
-                                )
+        <li>
+            <Link
+                to="#"
+                onClick={(e) => {
+                    e.stopPropagation()
+                    setShowOptions(!showOptions)
+                }}
+            >
+                Term ▾
+            </Link>
+            {showOptions && container.length > 0 && (
+                <ul className="menu vertical" ref={dropdown}>
+                    <li>
+                        <Link
+                            to={getAddress({
+                                term: 0,
                             })}
-                        </ul>
-                    )}
-                </li>
+                            type="button"
+                            className={
+                                0 === term ? '' : 'view-option__unselected'
+                            }
+                        >
+                            ✔ All
+                        </Link>
+                    </li>
+                    {container.map((termGroup, index) => {
+                        return (
+                            <li key={`term-${index}`}>
+                                <Link
+                                    to={getAddress({
+                                        term: index + 1,
+                                    })}
+                                    type="button"
+                                    className={
+                                        index + 1 === term
+                                            ? ''
+                                            : 'view-option__unselected'
+                                    }
+                                >
+                                    ✔ {termGroup.get(0).term[0]}
+                                    {termGroup.get(0).term[1]}
+                                    {termGroup.get(0).j}
+                                </Link>
+                            </li>
+                        )
+                    })}
+                </ul>
             )}
-        </Fragment>
+        </li>
     )
 }
