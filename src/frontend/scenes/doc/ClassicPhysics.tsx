@@ -24,7 +24,7 @@ export const ClassicPhysics = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$\\dfrac{1}{\\lambda} = R(\\dfrac{1}{m^2} - \\dfrac{1}{n^2}) \\hspace{10pt} \\{ R=1.0974 \\times 10^7 m^2 \\}$$`}</Latex>
+            >{`$$\\dfrac{1}{\\lambda} = R(\\dfrac{1}{m^2} - \\dfrac{1}{n^2}) \\hspace{10pt} \\{ R=1.0973731568539 \\times 10^7 m^{-1} \\}$$`}</Latex>
             <p>
                 <strong>Rydberg Formula</strong>: how did you figure it out,
                 sir?
@@ -232,36 +232,37 @@ export const ClassicPhysics = (): JSX.Element => (
             energy have been combined as additions.
         </p>
 
-        <h3>Emmision Energy of Photon-Ether</h3>
+        <h3>Emission Energy of Photon-Ether</h3>
 
         <p>
-            If the Photon-Ether has a constant wavelength, its energy can be
-            determined. The energy of light can be calculated using the equation
+            If photon-Ether has a constant wavelength, we can determine its
+            energy. The energy of light can be calculated using the formula
             <Latex>$E = hc / λ$</Latex>, where λ represents the previously
-            calculated wave number. Here, λ refers to the wave number obtained
-            earlier, and the resulting value is in units of joules (J). The
-            energy values, measured in electron volts (eV), can be expressed
-            using the following formula, and when organized, they correspond to
-            the table below. Let's denote{' '}
-            <Latex>{`$\\dfrac{1}{n - 1}^2 - \\dfrac{1}{n}^2$`}</Latex> as the
-            function <Latex>{`$N_{th}(n)$`}</Latex>. This function will be used
-            continuously in the future.
+            calculated wavelength. The value obtained has units of Joules (J).
+            Converting this energy value to electron volts (eV) yields the
+            following formula, and organizing it results in the table below.
         </p>
 
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$N_{th}(n) = \\dfrac{1}{(n-1)^2} - \\dfrac{1}{n^2}$$`}</Latex>
+            >{`$$E = Rhc(\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2})\\cdot6.242\\cdot10^{32}$$`}</Latex>
             <p>
-                <strong>
-                    N<sub>th</sub>(n)
-                </strong>
+                Since the Rydberg constant, Planck's constant, and the speed of
+                light are all constants,
             </p>
             <Latex
                 displayMode={true}
-            >{`$$E = Rhc(N_{th}(n))\\cdot6.242\\cdot10^{32}$$`}</Latex>
+            >{`$$E = 1.0973731568539 \\cdot 10^{-7} \\cdot 6.62607015 \\cdot 10^{-34} \\cdot 299792458 \\cdot (\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2}) \\cdot 6.242 \\cdot 10^{32}$$`}</Latex>
+            <Latex
+                displayMode={true}
+            >{`$$E = 13.60676328 \\cdot (\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2})$$`}</Latex>
+
             <p>
-                <strong>Energy Formula from Wavelength</strong>
+                <strong>
+                    The formula for calculating energy (in electron volts, eV)
+                    using the Rydberg formula
+                </strong>
             </p>
         </div>
 
@@ -323,13 +324,14 @@ export const ClassicPhysics = (): JSX.Element => (
 
         <p>
             By substituting <Latex>{`$\\dfrac{1}{n^2}$`}</Latex> with{' '}
-            <Latex>{`$N_{th}(n)$`}</Latex> and J with eV, we can observe that
-            the obtained expression closely matches the one derived earlier.
+            <Latex>{`$(\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2})$`}</Latex> and J
+            with eV, we can observe that the obtained expression closely matches
+            the one derived earlier.
         </p>
 
         <Latex
             displayMode={true}
-        >{`$$E_{th}(n) = \\frac{ℏ^2}{2 \\mu a_0 ^ 2}N_{th}(n) \\hspace{10pt} \\{ n \\geqq 2 \\}$$`}</Latex>
+        >{`$\\frac{ℏ^2}{2 \\mu a_0 ^ 2} (\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2}) \\hspace{10pt} \\{ n \\geqq 2 \\}$`}</Latex>
 
         <div className="table-scroll">
             <table className="unstriped">

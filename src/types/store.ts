@@ -8,8 +8,8 @@ export type State = {
         orbital: boolean
         ether: boolean
         energy: boolean
-        fixed: boolean
-        float: boolean
+        transform: boolean
+        between: boolean
     }
 }
 
@@ -18,6 +18,6 @@ export type Action = {
     orbital?: boolean
     ether?: boolean
     energy?: boolean
-    fixed?: boolean
-    float?: boolean
+    transform?: boolean
+    between?: boolean
 } & Type

@@ -7,6 +7,7 @@ import pic3 from 'src/assets/images/doc/pic3_eng.png'
 import pic4 from 'src/assets/images/doc/pic4_eng.png'
 import pic7 from 'src/assets/images/doc/pic7_eng.png'
 import pic8 from 'src/assets/images/doc/pic8_eng.png'
+import pic91 from 'src/assets/images/doc/pic91.jpeg'
 
 export const Hypothesis = (): JSX.Element => (
     <Doc>
@@ -27,27 +28,33 @@ export const Hypothesis = (): JSX.Element => (
         </div>
 
         <p>
-            Matter was divided into space and particles. So, what
-            characteristics do each of them possess? Let's go back to the early
-            days of quantum physics. Just like photons, matter was found to
-            exhibit both particle-like and wave-like properties, which formed
-            the foundation of quantum physics. Therefore, we can assume that the
-            particles in the above diagram, representing matter as we know it,
-            possess the properties of conventional matter, while space
-            symbolizes something else.
+            In dividing matter into space and particles, what characteristics do
+            space and particles possess? It has been revealed that photons
+            exhibit both particle-like and wave-like properties. Similarly,
+            electrons have been shown to possess both particle and wave
+            characteristics. This laid the foundation for the birth of quantum
+            physics. If we consider the particles in the left model, which we
+            previously understood as matter, as something with both particle and
+            wave properties, we can assume that space symbolizes something else.
+            In that case, the dots in the hypothesis on the right would
+            represent something similar or identical to photons. The probability
+            space could be seen as a world akin to that of photon-ish matter,
+            bound within it.
         </p>
 
+        <h3>Ether and Sparkle</h3>
+
         <p>
-            What if the particles in the above diagram were similar to or
-            closely resembled photons? If matter is composed of both space and
-            confined photon-like matter, then we can consider the spatial extent
-            of actual photons to be the entire universe. Just as photons have
-            zero mass, if the photon-like matter also have zero mass, we can
-            assume that mass belongs to space. A photon in a vacuum travels at
-            the speed of light. On the other hand, a photon-like matter confined
-            by mass would have a slower speed. If the density of space
-            increases, the speed of photon-like matter would decrease, and the
-            reverse would hold true as well.
+            If that's the case, what is the probability space? Assuming that the
+            mass of a photon-ish matter is also zero, just like the photon with
+            zero mass, we can assume that what has mass is space. A photon in a
+            vacuum state travels at the speed of light. On the other hand,
+            photon-ish matter bound by mass would have a slower speed. If the
+            mass of space increases, the speed of photon-ish matter would
+            decrease, and vice versa. The universe is what photons can travel
+            through. If the space of a photon is the entire universe, then the
+            universe of photon-ish matter can be considered a probability space
+            with mass.
         </p>
 
         <div className="align__center">
@@ -60,15 +67,13 @@ export const Hypothesis = (): JSX.Element => (
                 <strong>The differences between the photon and electron</strong>
             </p>
         </div>
-
-        <h3>Ether and Sparkle</h3>
-
         <p>
-            At this point, I feel the need for their names. Let's call the space
-            of matter "Ether" and the photon-like matter within it "Sparkles." I
-            understand that using the term "Ether," which is a defunct concept,
-            may lead to misunderstandings. However, I cannot find a more
-            suitable word than this.
+            Let's pause for a moment. Instead of 'photon-ish matter' and
+            'probability space of mass,' let's give them different names. We'll
+            call the probability space 'Ether,' and the photon-ish matter will
+            be referred to as 'Sparkle.' I acknowledge that using the term
+            'Ether,' an obsolete concept, may lead to misunderstandings, but
+            that's my choice. I can't find a more fitting word than this
         </p>
 
         <div className="align__center">
@@ -78,53 +83,44 @@ export const Hypothesis = (): JSX.Element => (
             </p>
         </div>
 
-        <h3>Where is time?</h3>
-
         <p>
-            According to the theory of relativity, the velocity of matter
-            affects its mass. If we consider this as an increase in the density
-            of Ether, the velocity of Sparkles can also be seen as symbolic of
-            time. The magnitude of time would be proportional to the velocity of
-            Sparkles within matter.
+            So, what happens when Sparkle reaches the boundary within Ether?
+            There's no answer to that question, but for the hypothesis to hold,
+            it must be impossible to escape beyond Ether. The structure of Ether
+            could be considered as a space that has no end, whether it's a
+            three-dimensional Möbius strip or a more complex structure
         </p>
 
         <p>
-            So far, our inference has brought about a change in the position of
-            time. We used to think that time exists throughout the universe. The
-            universe was considered as spacetime. However, according to the flow
-            of this line of thought, time becomes a property of matter. Matter
-            is spacetime.
+            The universe is said to be expanding, where space is stretching.
+            Let's look at the diagram below. The speed of light is always
+            constant. I believe this is the absolute unit we can consistently
+            measure in the universe. Speed is the ratio of distance to time. In
+            other words, using the speed of light, we can posit absolute
+            distance and absolute time. With absolute distance, we can shift our
+            perspective to see that space in the universe is not expanding but
+            rather emerging.
         </p>
 
+        <div className="align__center">
+            <img src={pic91} alt="Emerging and shrinking of universe" />
+        </div>
+
         <p>
-            If time does not exist in the universe, what changes would occur?
-            With my limited knowledge, nothing would happen. Let's assume a
-            universe with only one star. This star is moving at a constant
-            velocity. The matter that makes up the star has its own time, which
-            would be synchronized because they are moving at the same velocity.
-            Here, velocity is a constant and not a relative concept. Relative
-            velocity arises only when an observer exists. Now, let's consider an
-            observer. Velocity, mass, and time become relative concepts. They
-            are relative because both the star and an observer has its own
-            attributes.
+            Now, let's rewind time and go back to the early moments of the Big
+            Bang. Let's rewind time until the point where the size of the
+            universe is an absolute distance. In this scenario, where does the
+            light go? If it disappears, the first law of thermodynamics is
+            violated. I believe that this light will return to the universe
+            through some spatial structure.
         </p>
 
-        <h3>Gravity and Time</h3>
-        <p>
-            If time is a property of matter, then it would be energy. If the
-            velocity increases, the mass increases, and conversely, the time
-            decreases. In other words, the forces of gravity and time vary
-            oppositely based on the velocity. This is similar to the
-            relationship between electricity and magnetism. If electricity is
-            magnetism and magnetism is electricity, then gravity and time can be
-            seen to share the same essence. This is because the increase in mass
-            affects the velocity of Sparkles.
-        </p>
+        <p>The structure of Ether would likely be similar.</p>
 
-        <h3>Double-Slit Experiment</h3>
+        <h3>Properties of Ether</h3>
 
         <p>
-            Let's reconstruct the famous{' '}
+            Let's reconstruct the{' '}
             <a
                 href="https://en.wikipedia.org/wiki/Double-slit_experiment"
                 target="_blank"
@@ -132,11 +128,11 @@ export const Hypothesis = (): JSX.Element => (
             >
                 double-slit experiment
             </a>{' '}
-            for electrons based on the hypothesis. This renowned experiment
-            vividly demonstrates the wave-particle duality of matter. Electrons
-            pass through two slits simultaneously, but when observed, they
-            appear to exist only at one of the two slits. Ultimately, this
-            phenomenon results in the formation of an interference pattern.
+            for electrons based on the hypothesis. This famous experiment
+            illustrates the duality of waves and particles. Electrons pass
+            through both slits simultaneously, but upon observation, they appear
+            to exist at only one of the slits. Ultimately, this results in the
+            formation of diffraction patterns.
         </p>
 
         <div className="align__center">
@@ -154,35 +150,41 @@ export const Hypothesis = (): JSX.Element => (
         </div>
 
         <p>
-            In this experiment, it can be assumed that Ether is separated by the
-            two slits. The Ether is divided into two, while Sparkles can freely
-            move between the two spaces. The appearance of an interference
-            pattern implies that both spaces. Therefore, Ether is something
-            other than the space we know as a coordinate system. It is a new
-            space that can be separated but still connected.
+            If we reinterpret this according to the hypothesis, we can assume
+            that Ether has been separated by the two slits. The space called
+            Ether has split into two in the three-dimensional coordinate system
+            that we refer to as space, but Sparkle can freely move between these
+            two spaces. They are still the same space, the same Ether. The
+            appearance of diffraction patterns signifies that both split Ethers
+            each contain one Sparkle. This implies that Ether is something other
+            than the space as we know it in the coordinate system. It can be
+            separated but still remains a connected space.
         </p>
 
         <p>
-            Another characteristic of Ether and Sparkles would be their
-            observability. Science has only observed Sparkles so far. Assuming
-            the existence of Ether, Ether would possess mass but become
-            unobservable.
+            Another characteristic of Ether and Sparkle would be their
+            observability. Science has observed only Sparkle until now. Assuming
+            the existence of Ether, it would have{' '}
+            <strong>mass but remain unobservable</strong>.
         </p>
 
-        <h3>Sparkle-Independent Ether: In Bohr's Atomic Model</h3>
+        <h3>Sparkle-Independent Ether</h3>
 
         <p>
-            We have assumed the existence of matter as a composite of Ether and
-            Sparkles, and the Ether-independent Sparkle, which is the photon.
-            The Ether of the photon encompasses the entire universe. In light of
-            this, we question whether there could be a Sparkle-independent
-            Ether, which is the opposite concept of the photon. It is an
-            unobservable substance with mass.
+            From the assumptions made so far, we can derive the properties of
+            photons. Since the mass of a photon is zero, we can say that a
+            photon is a Sparkle not bound by Ether. In other words, the Ether of
+            a photon would be the entire universe. We assumed the existence of
+            matter as a composite of Ether and Sparkle, and a photon as a
+            Sparkle independent of Ether. Then, we may wonder if there could be
+            Sparkle-independent Ether, the opposite concept of a photon. It is
+            unobservable but a material with mass. Can such a thing really
+            exist?
         </p>
 
         <p>
-            To deduce what Sparkle-independent Ether could be, let us examine
-            Niels Bohr's atomic model.
+            To speculate on what Sparkle-independent Ether might be, let's
+            examine Niels Bohr's atomic model."
         </p>
 
         <div className="align__center">
@@ -194,13 +196,26 @@ export const Hypothesis = (): JSX.Element => (
         </div>
 
         <p>
-            In Bohr's atomic model, when an electron absorbs a photon of a
-            specific wavelength, its orbit increases by an integer value called
-            "n." Conversely, when it emits a photon of that wavelength, the
-            orbit decreases. Now, let us reconsider the framework of thought by
-            envisioning that the Ether-independent Sparkle, which is the photon
-            with mass, transforms into a Sparkle-independent Ether that enters
-            between the orbits.
+            In Bohr's atomic model, when an electron absorbs photons (energy) of
+            a specific wavelength, the orbit of the electron increases by an
+            integer denoted as 'n,' and when it emits photons of that
+            wavelength, the orbit decreases. The orbits of electrons making up
+            an atom do not gradually increase when absorbing energy. Instead,
+            they abruptly change, like the transition between numbers in a
+            digital clock rather than the smooth movement of an analog clock.
+            When the electron transitions from orbit 1 to orbit 2, it doesn't go
+            through increments like 1.1, 1.2, 1.3, 1.4...; it just becomes 2.
+            This abrupt change with a discrete nature, possessing the property
+            of quantity, is called a quantum, and it gave rise to quantum
+            mechanics.
+        </p>
+
+        <p>
+            Let's reconsider this model by imagining that Sparkle-independent
+            photons transform into Ether-independent Sparkles with mass,
+            entering the space between orbits. Think of the energy of light
+            entering the atom as being transformed into Ether where Sparkles do
+            not exist.
         </p>
 
         <div className="align__center">
@@ -217,25 +232,26 @@ export const Hypothesis = (): JSX.Element => (
         </div>
 
         <p>
-            The photon, known as the Sparkle, converts into Ether with an
-            equivalent amount of energy, which is mass, and positions itself in
-            the electron's orbit, causing the orbit to increase accordingly.
-            Conversely, when energy is emitted, Ether transforms back into a
-            Sparkle and exits in the form of a photon, resulting in a decrease
-            in the electron's orbit. When an atom absorbs a photon, the energy
-            of the photon is reduced to mass, becoming an unobservable Ether
-            located between the electron clouds. This explanation accounts for
-            the gradual increase in the electron's orbit and provides insight
-            into the quantum nature of the phenomenon. Let's name this substance
-            that forms the electron's orbit, which was once a Sparkle but has
-            transformed into Ether, the Photon-Ether.
+            The Sparkle known as a photon is converted into Ether, or mass
+            equivalent to its corresponding energy, and positions itself between
+            the electron and the atomic nucleus. Consequently, the orbit of the
+            electron increases. Conversely, when releasing energy, Ether
+            transforms back into Sparkle, exiting in the form of a photon, and
+            the electron's orbit decreases. When an atom absorbs a photon, it
+            means that the mass equivalent to the energy of the photon is
+            restored as unobservable Ether between the electron cloud, abruptly!
+            This explains why the electron's orbit doesn't gradually increase or
+            decrease. Let's name this substance determining the electron's
+            orbit, which was a Sparkle and has now transformed into Ether,
+            'photon-Ether.'
         </p>
 
         <p>
-            From the next chapter onwards, we will attempt to explore the
-            properties of the Photon-Ether in an effort to provide evidence by
-            investigating the regular characteristics of the Photon-Ether that
-            the electron absorbs.
+            Photon-Ether is Ether without Sparkle, having mass but being
+            unobservable. Is this possible? In the following chapters, we will
+            explore the existence of photon-Ether and attempt to provide
+            evidence. If the photon-Ether absorbed by the electron exhibits
+            regular properties, it could serve as proof for its existence.
         </p>
     </Doc>
 )

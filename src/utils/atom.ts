@@ -1,6 +1,4 @@
 import { periodicTable } from 'src/constants/periodic-table'
-import { Container } from 'src/model/Container'
-import { Item } from 'src/model/Item'
 
 /*
  * Get atom from atomNumber

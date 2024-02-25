@@ -31,7 +31,7 @@ export const ChartDropdown = (): JSX.Element => {
                     </li>
                     <li
                         className={
-                            isGraph && graphType === 'ground-fixed'
+                            isGraph && graphType === 'transform'
                                 ? 'link-base current'
                                 : ''
                         }
@@ -39,28 +39,11 @@ export const ChartDropdown = (): JSX.Element => {
                         <Link
                             to={getAddress({
                                 isGraph: true,
-                                graphType: 'ground-fixed',
+                                graphType: 'transform',
                             })}
                             type="button"
                         >
-                            G.Fixed
-                        </Link>
-                    </li>
-                    <li
-                        className={
-                            isGraph && graphType === 'float'
-                                ? 'link-base current'
-                                : ''
-                        }
-                    >
-                        <Link
-                            to={getAddress({
-                                isGraph: true,
-                                graphType: 'float',
-                            })}
-                            type="button"
-                        >
-                            Float
+                            Transform
                         </Link>
                     </li>
                     <li

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from 'src/frontend/store'
 import { setDigit } from 'src/frontend/store/actions'
-import { Container } from 'src/model/Container'
 
 export const HeaderRight = (): JSX.Element => {
     const [{ digit }, dispatch] = useContext(Context) as ContextType

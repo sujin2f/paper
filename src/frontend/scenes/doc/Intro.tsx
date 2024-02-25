@@ -4,34 +4,42 @@ import { Doc } from 'src/frontend/scenes/doc'
 export const Intro = (): JSX.Element => (
     <Doc>
         <h1 id="intro">
-            Hypothesis on the Spatiality and Temporality of Matter
+            Hypothesis on the Spatial and Temporal Aspects of Matter
         </h1>
+
         <p>
-            A Matter as a Composite of Mass-Electromagnetic Waves, Photons as
-            Mass-Independent Electromagnetic Waves, and Electromagnetic
-            Wave-Independent Mass
+            Substance as a composite of mass and electromagnetic waves, photons
+            as mass-independent electromagnetic waves, and electromagnetic waves
+            independent of mass.
         </p>
-        <p>2022 Sujin</p>
+
+        <p>2024 Sujin</p>
 
         <h2>Abstract</h2>
+
         <p>
             This document aims to propose a new hypothesis regarding the
-            structure of matter. According to this hypothesis, matter can be
-            divided into two entities: the ether, which constitutes the
-            spatiality of mass, and sparkles, which possess the properties of
-            electromagnetic waves. These two entities can interact with each
-            other. If particles such as electrons are considered as composites
-            of ether and sparkles, photons can be seen as sparkles without
-            ether. Let's refer to this hypothesis as the Ether-Sparkle
-            Hypothesis.
+            structure of matter. According to the proposed hypothesis, matter
+            can be divided into particles-waves that make up mass and possess
+            electromagnetic wave properties. If matter, such as electrons, is
+            considered a composite of space and particles-waves, then photons
+            are assumed to be particles-waves without space.
         </p>
+
         <p>
             To demonstrate this, this document will explore the existence of
-            independent ether. In order to do so, we will reinterpret the Bohr
-            model and orbitals. If we can provide a simpler explanation for
-            phenomena observed in matter from the perspective of the
-            Ether-Sparkle framework, it may present a small possibility in
-            support of the hypothesis.
+            mass space without particles-waves. To achieve this, the Bohr model
+            and orbitals will be reinterpreted. If phenomena observed in matter
+            from the perspective of space and particles-waves can be explained
+            more simply, it may suggest a small possibility for the hypothesis.
+        </p>
+
+        <p>
+            The author of this document is a non-expert in the field. I lack the
+            ability to discern how scientifically clear this is. The document is
+            written with as much explanation as possible to make it
+            understandable for non-experts like myself, which may result in
+            verbose explanations.
         </p>
     </Doc>
 )

@@ -7,7 +7,7 @@ html {
 html[lang='en-US'],
 body {
     font-family: $body-font-family;
-    font-weight: 300;
+    font-weight: 400;
     margin: 0 !important;
 }
 
@@ -79,6 +79,11 @@ button {
 dd {
     margin-bottom: 1em;
     overflow-wrap: break-word;
+}
+
+#main-content {
+    padding-bottom: 7rem;
+    background: url('../images/favicon-32x32.png') center bottom no-repeat;
 }
 
 .align__left {

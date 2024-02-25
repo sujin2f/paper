@@ -15,7 +15,7 @@ import pic53 from 'src/assets/images/doc/pic53.png'
 
 export const OrbitalEquation = (): JSX.Element => (
     <Doc>
-        <h2 id="multi-electron-atoms">가설의 검증(3): 뤼드베리 방정식</h2>
+        <h2 id="orbital-equation">가설의 검증(3): 뤼드베리 방정식</h2>
 
         <p>
             앞서 진행한 뤼드베리 값의 비교는 완전하지 않다. 왜냐하면 뤼드베리

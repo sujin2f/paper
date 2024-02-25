@@ -37,6 +37,7 @@ export const periodicTable: { elements: Atom[] } = {
             electron_affinity: 72.769,
             electronegativity_pauling: 2.2,
             ionization_energies: [1312],
+            ratios: [13.5984355],
             'cpk-hex': 'ffffff',
             image: {
                 title: 'Vial of glowing ultrapure hydrogen, H2. Original size in cm: 1 x 5',
@@ -78,6 +79,7 @@ export const periodicTable: { elements: Atom[] } = {
             electron_affinity: -48,
             electronegativity_pauling: null,
             ionization_energies: [2372.3, 5250.5],
+            ratios: [24.58732518],
             'cpk-hex': 'd9ffff',
             image: {
                 title: 'Vial of glowing ultrapure helium. Original size in cm: 1 x 5',

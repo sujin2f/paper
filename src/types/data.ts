@@ -1,6 +1,7 @@
 import { ApolloError } from '@apollo/client'
 import { Schema } from 'mongoose'
 import { Container } from 'src/model/Container'
+import { DataType } from './ui'
 
 export type RawData = {
     _id?: string
@@ -58,25 +59,6 @@ export type GraphQLParam = {
     number: number
     ion: number
     term: number
-}
-
-export type GraphType = 'ground-fixed' | 'float' | 'between'
-export type DataType = 'raw-data' | 'orbital' | 'ether'
-export type TableRowType =
-    | 'Energy'
-    | 'E Diff'
-    | 'G.Fixed'
-    | 'G.Fixed.D'
-    | 'G.Fixed.%'
-    | 'Float'
-    | 'Float Diff'
-    | 'Float %'
-    | 'Between'
-
-export type URLParam = {
-    dataType: DataType
-    atom: string
-    graphType: GraphType
 }
 
 export type DataHook = (variables: GraphQLParam) => {

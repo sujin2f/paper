@@ -5,15 +5,15 @@ import {
     setEther,
     setOrbital,
     setEnergy,
-    setFixed,
-    setFloat,
+    setTransform,
+    setBetween,
 } from 'src/frontend/store/actions'
 
 export const OptionDropdown = (): JSX.Element => {
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const [
         {
-            visible: { orbital, ether, energy, fixed, float },
+            visible: { orbital, ether, energy, transform, between },
         },
         dispatch,
     ] = useContext(Context) as ContextType
@@ -81,11 +81,13 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setFixed(!fixed))
+                                dispatch(setTransform(!transform))
                             }}
-                            className={fixed ? '' : 'view-option__unselected'}
+                            className={
+                                transform ? '' : 'view-option__unselected'
+                            }
                         >
-                            ✔ Fixed
+                            ✔ Transform
                         </Link>
                     </li>
                     <li>
@@ -94,11 +96,11 @@ export const OptionDropdown = (): JSX.Element => {
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                dispatch(setFloat(!float))
+                                dispatch(setBetween(!between))
                             }}
-                            className={float ? '' : 'view-option__unselected'}
+                            className={between ? '' : 'view-option__unselected'}
                         >
-                            ✔ Float
+                            ✔ Between
                         </Link>
                     </li>
                 </ul>

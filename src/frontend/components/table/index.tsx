@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import { RowGroup } from 'src/frontend/components/table/RowGroup'
 import { Container } from 'src/model/Container'
+import { TermGroup } from './TermGroup'
 
 export const Table = (): JSX.Element => {
     const container = Container.getInstance()
@@ -11,9 +11,20 @@ export const Table = (): JSX.Element => {
     return (
         <div className="table-scroll">
             <table className="unstriped">
-                {container.map((row, rowIndex) => (
-                    <RowGroup key={`${rowIndex}-thead`} row={row} />
-                ))}
+                {container.map((term, termIndex) => {
+                    if (term.visible) {
+                        return (
+                            <TermGroup
+                                key={`${termIndex}-termGroup`}
+                                termGroup={term}
+                            />
+                        )
+                    } else {
+                        return (
+                            <Fragment key={`${termIndex}-termGroup`}></Fragment>
+                        )
+                    }
+                })}
             </table>
         </div>
     )

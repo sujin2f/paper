@@ -1,37 +1,43 @@
 import { ChartDataset, DefaultDataPoint } from 'chart.js'
 import { chartColors } from 'src/constants/chart'
-import { DataType, GraphType, RawData } from 'src/types/data'
+import { RawData } from 'src/types/data'
+import { DataType, GraphType } from 'src/types/ui'
 import { Row } from 'src/model/Row'
-import { Item } from './Item'
+import { ElectronState } from './ElectronState'
 import { Iterator } from './Iterator'
-import { jouleToEv, orbitalKeys } from 'src/constants/orbital'
-import { periodicTable } from 'src/constants/periodic-table'
-import { Atom } from 'src/types/atom'
-import { getAtom, getConfArray } from 'src/utils/atom'
-import { Nullable } from 'src/types/common'
+import { orbitalKeys } from 'src/constants/orbital'
+import { TermGroup } from './TermGroup'
+import { trimEnd } from 'src/common/utils/array'
+
+type ChartDatasets = ChartDataset<'line', DefaultDataPoint<'line'>>
 
 type ChartData = {
     labels: number[]
-    datasets: ChartDataset<'line', DefaultDataPoint<'line'>>[]
+    datasets: ChartDatasets[]
 }
 
-export class Container extends Iterator<Row> {
+export class Container extends Iterator<TermGroup> {
     private static instance: Container
-    public static getInstance(): Container {
+    public static getInstance(): Container | undefined {
         if (!Container.instance) {
-            Container.instance = new Container([], 'raw-data')
+            return undefined
         }
         return Container.instance
     }
+
+    private ion: number
+    private number: number
+    private baseState: ElectronState
+
     public static getOrCreateInstance(
         number: number,
         ion: number,
         rawData: RawData[],
         dataType: DataType,
-        root = 0,
+        term = 0,
     ): Container {
         if (!Container.instance) {
-            Container.instance = new Container(rawData, dataType, root)
+            Container.instance = new Container(rawData, dataType, term)
         }
 
         if (
@@ -40,351 +46,292 @@ export class Container extends Iterator<Row> {
             Container.instance.dataType === dataType
         ) {
             const container = Container.instance
-            if (container.root !== root) {
-                container.root = root
+            if (container.term !== term) {
+                container.term = term
                 container.setTerm()
             }
             return Container.instance
         }
 
-        Container.instance = new Container(rawData, dataType, root)
+        Container.instance = new Container(rawData, dataType, term)
         return Container.instance
     }
 
-    private atom: Atom = periodicTable.elements[0]
-    private allItems: Record<string, Row[]> = {}
-    public roots: Row[] = []
+    public constructor(
+        rawData: RawData[],
+        public dataType: DataType,
+        public term = 0,
+    ) {
+        super()
+        this.ion = rawData[0].ion
+        this.number = rawData[0].number
 
-    public get ion() {
-        return this.rawData[0].ion
-    }
+        let rows: Record<string, Row[]> = {} // by term group
 
-    public get number() {
-        return this.rawData[0].number
-    }
-
-    public get maxLength() {
-        let max = this.get(0)
-        this.forEach((row) => {
-            if (row.length > max.length) {
-                max = row
+        this.baseState = new ElectronState(rawData[0])
+        rawData.forEach((data) => {
+            if (data.rydberg === 0) {
+                this.baseState = new ElectronState(data)
             }
+        })
+        switch (dataType) {
+            case 'orbital':
+                rows = this.setOrbital(rawData)
+                break
+            case 'ether':
+                rows = this.setEther(rawData)
+        }
+
+        // Remove empty Rows and push it into this.items
+        Object.keys(rows).forEach((key) => {
+            const filteredRows = rows[key].filter((row) => row !== undefined)
+            const termGroup = new TermGroup(filteredRows, this.number, this.ion)
+            this.items.push(termGroup)
+        })
+
+        this.setTerm()
+    }
+
+    /*
+     * Maximum number of ElectronState in all Rows
+     * to make table columns
+     */
+    public get maxCols() {
+        let max = this.get(0).get(0)
+        this.forEach((termGroup) => {
+            termGroup.forEach((row) => {
+                if (row.length > max.length) {
+                    max = row
+                }
+            })
         })
         return max.length
     }
 
-    private _orbitalBase: string[] = []
-    private get orbitalBase() {
-        if (this._orbitalBase.length !== 0) {
-            return this._orbitalBase
-        }
-
-        this._orbitalBase = getConfArray(this.atom.electron_configuration)
-        return this._orbitalBase
-    }
-
-    private _peak = NaN
-    public get peak() {
-        if (!isNaN(this._peak)) {
-            return this._peak
-        }
-
-        let energies = getAtom(this.number).ionization_energies
-        if (energies.length < this.number) {
-            energies = energies.concat(
-                Array(energies.length - this.number).fill(0),
-            )
-        }
-        this._peak = energies[this.ion - 1] * jouleToEv
-        return this._peak
-    }
-
-    private _ratio = NaN
-    public get ratio() {
-        if (!isNaN(this._ratio)) {
-            return this._ratio
-        }
-
-        this._ratio = 0
-        const energy = getAtom(this.ion).ionization_energies[this.ion - 1]
-        if (energy) {
-            this._ratio = energy * jouleToEv
-        }
-        return this._ratio
-    }
-
-    private _groundFixed: Nullable<Row>
-    public get groundFixed(): Row {
-        if (this._groundFixed) {
-            return this._groundFixed
-        }
-
-        const allItems = Object.values(this.allItems).reduce((prev, next) =>
-            prev.concat(next),
-        )
-        this._groundFixed = allItems.filter((row) => row.isGroundFixed)[0]
-        return this._groundFixed
-    }
-
-    public constructor(
-        private rawData: RawData[],
-        public dataType: DataType,
-        public root = 0,
-    ) {
-        super()
-        let items: Record<string, Row[]> = {} // Term Symbol
-        this.atom = getAtom(this.number)
-        switch (dataType) {
-            case 'raw-data':
-                items = this.setRawData()
-                break
-            case 'ether':
-                items = this.setEther()
-        }
-
-        Object.keys(items).forEach((key) => {
-            items[key] = items[key].filter((row) => row !== undefined)
-        })
-
-        // Set Ground Fixed and Low Fixed rows
-        let groundFixed: Row = items[Object.keys(items)[0]][0]
-        Object.keys(items).forEach((key) => {
-            items[key].forEach((row) => {
-                if (!groundFixed || groundFixed.energy > row.energy) {
-                    groundFixed = row
-                }
+    /*
+     * Set child terms visibilities
+     */
+    private setTerm() {
+        // Show all
+        if (this.term === 0) {
+            this.forEach((termGroup) => {
+                termGroup.visible = true
             })
-        })
-        groundFixed.isGroundFixed = true
-
-        const basePosition = groundFixed.position + 1
-        let lowFixed: Row = groundFixed
-        Object.keys(items).forEach((key) => {
-            items[key].forEach((row) => {
-                if (
-                    !lowFixed.get(basePosition) ||
-                    (row.get(basePosition) &&
-                        lowFixed.get(basePosition).energy >
-                            row.get(basePosition).energy)
-                ) {
-                    lowFixed = row
-                }
-            })
-        })
-        lowFixed.lowFixedIndex = basePosition
-
-        this.allItems = items
-        Object.keys(items).forEach((groupKey, index) => {
-            const group = items[groupKey].filter((row) => row.length !== 0)
-            group.forEach((row, rowIndex) => {
-                // Roots
-                if (rowIndex === 0) {
-                    this.roots.push(row)
-                }
-
-                // Per Term
-                if (this.root === 0) {
-                    this.items.push(row)
-                } else if (index + 1 === this.root) {
-                    this.items.push(row)
-                }
-            })
-        })
-        this.setTerm()
-    }
-
-    public setTerm() {
-        if (this.root === 0) {
-            this.items = Object.values(this.allItems).reduce((prev, next) =>
-                prev.concat(next),
-            )
             return
         }
-        this.items = Object.values(this.allItems)[this.root - 1]
+
+        this.forEach((termGroup, index) => {
+            if (index === this.term - 1) {
+                termGroup.visible = true
+            } else {
+                termGroup.visible = false
+            }
+        })
     }
 
-    private setRawData() {
+    /*
+     * Create Row groups by its term group
+     */
+    private setOrbital(rawData: RawData[]) {
         const linear: Record<string, Row> = {}
-        const items: Record<string, Row[]> = {}
-        let key = ''
+        const rows: Record<string, Row[]> = {}
 
-        this.rawData.forEach((rawItem) => {
-            const item = new Item(rawItem, this)
-            const orbital = orbitalKeys.indexOf(item.orbital)
-            const radial = item.position - orbital
-            const term = item.termNumber
-            const j = item.jNumber - orbital
-            const prefix = item.confPrefix.join('.')
-            key = `${prefix}.${term}.${j}`
+        rawData.forEach((rawItem) => {
+            const electron = new ElectronState(rawItem)
+            const orbital = orbitalKeys.indexOf(electron.orbital)
+            const radial = electron.position - orbital
+            const term = electron.termNumber
+            const j = electron.jNumber - orbital
+            const prefix = electron.confPrefix.join('.')
+            const key = `${prefix}.${term}.${j}`
 
-            if (!items[key]) {
-                items[key] = []
+            if (!rows[key]) {
+                rows[key] = []
             }
 
-            if (!items[key][orbital]) {
-                items[key][orbital] = new Row(this)
-                items[key][orbital].isCombination = this.isCombination(item)
+            if (!rows[key][orbital]) {
+                rows[key][orbital] = new Row()
             }
 
             if (!linear[key]) {
-                linear[key] = new Row(this)
-                linear[key].isCombination = this.isCombination(item)
+                linear[key] = new Row()
             }
 
-            items[key][orbital].set(item.position, item)
+            rows[key][orbital].set(electron.position, electron)
 
+            // Linear row
             if (!radial) {
-                const itemLinear = new Item(rawItem, this)
-                linear[key].set(item.position, itemLinear)
+                const electronLinear = new ElectronState(rawItem)
+                linear[key].set(electron.position, electronLinear)
             }
         })
 
-        Object.keys(items).forEach((key) => {
-            items[key].forEach((row) => {
-                // Set first item for Float
-                row.first = row.filter((item) => item !== undefined)[0]
+        // For each rows, set type
+        Object.keys(rows).forEach((key) => {
+            rows[key].forEach((row) => {
+                if (!row.first) {
+                    return
+                }
                 if (row.first.orbital === 's') {
                     row.type = 'radial'
                 } else {
                     row.type = 'orbital'
                 }
 
-                // Fill linear items
+                // Fill linear items to empty positions
                 if (linear[key] && row.type === 'orbital') {
-                    linear[key].slice(0, row.position).forEach((item) => {
-                        row.set(item.position, item)
-                    })
+                    linear[key]
+                        .slice(0, row.first.position)
+                        .forEach((electron) => {
+                            row.set(electron.position, electron)
+                        })
                 }
             })
         })
 
-        // Push Linear to items
+        // Push Linear to rows
         Object.keys(linear).forEach((key) => {
             if (linear[key].length) {
                 linear[key].type = 'linear'
-                linear[key].first = linear[key].filter((item) => !!item)[0]
-                items[key].push(linear[key])
+                rows[key].push(linear[key])
             }
         })
 
-        return items
+        return rows
     }
 
-    private setEther() {
+    /*
+     * Create Row groups by its term group
+     */
+    private setEther(rawData: RawData[]) {
         const radialObj: Record<string, Row> = {}
-        const items: Record<string, Row[]> = {}
-        let key = ''
+        const rows: Record<string, Row[]> = {}
 
-        this.rawData.forEach((data) => {
-            const item = new Item(data, this)
-            const orbital = orbitalKeys.indexOf(item.orbital)
-            const term = item.termNumber
-            const j = item.jNumber - orbital
-            const prefix = item.confPrefix.join('.')
-            const radial = item.position - orbital
-            key = `${prefix}.${term}.${j}`
-
-            if (!items[key]) {
-                items[key] = []
+        rawData.forEach((data) => {
+            const electron = new ElectronState(data)
+            const orbital = orbitalKeys.indexOf(electron.orbital)
+            const term = electron.termNumber
+            const j = electron.jNumber - orbital
+            const prefix = electron.confPrefix.join('.')
+            const radial = electron.position - orbital
+            const key = `${prefix}.${term}.${j}`
+            if (!rows[key]) {
+                rows[key] = []
             }
-
-            if (item.orbital === 's') {
+            if (electron.orbital === 's') {
                 // Radial
-                if (!items[key][0]) {
-                    items[key][0] = new Row(this)
-                    items[key][0].isCombination = this.isCombination(item)
-                    items[key][0].type = 'radial'
+                if (!rows[key][0]) {
+                    rows[key][0] = new Row()
+                    rows[key][0].type = 'radial'
                 }
-                items[key][0].set(item.position, item)
-
+                rows[key][0].set(electron.position, electron)
                 // Radial Object
-                const itemRadial = new Item(data, this)
+                const electronRadial = new ElectronState(data)
                 if (!radialObj[key]) {
-                    radialObj[key] = new Row(this)
+                    radialObj[key] = new Row()
                 }
-                radialObj[key].set(item.position, itemRadial)
-
+                radialObj[key].set(electron.position, electronRadial)
                 if (radial) {
                     // S base
-                    const itemBase = new Item(data, this)
-                    if (!items[key][radial + 1]) {
-                        items[key][radial + 1] = new Row(this)
-                        items[key][radial + 1].isCombination =
-                            this.isCombination(itemBase)
-                        items[key][radial + 1].type = 'ether'
+                    const electronBase = new ElectronState(data)
+                    if (!rows[key][radial + 1]) {
+                        rows[key][radial + 1] = new Row()
+                        rows[key][radial + 1].type = 'ether'
                     }
-                    items[key][radial + 1].set(itemBase.position, itemBase)
+                    rows[key][radial + 1].set(
+                        electronBase.position,
+                        electronBase,
+                    )
                 }
             } else if (radial === 0) {
                 // Linear
-                if (!items[key][1]) {
-                    items[key][1] = new Row(this)
-                    items[key][1].isCombination = this.isCombination(item)
-                    items[key][1].type = 'linear'
+                if (!rows[key][1]) {
+                    rows[key][1] = new Row()
+                    rows[key][1].type = 'linear'
                 }
-                items[key][1].set(item.position, item)
+                rows[key][1].set(electron.position, electron)
             } else {
                 // S base
-                if (!items[key][radial + 1]) {
-                    items[key][radial + 1] = new Row(this)
-                    items[key][radial + 1].isCombination =
-                        this.isCombination(item)
-                    items[key][radial + 1].type = `ether`
+                if (!rows[key][radial + 1]) {
+                    rows[key][radial + 1] = new Row()
+                    rows[key][radial + 1].type = `ether`
                 }
-                items[key][radial + 1].set(item.position, item)
+                rows[key][radial + 1].set(electron.position, electron)
             }
         })
-
-        Object.keys(items).forEach((key) => {
-            items[key].forEach((row) => {
-                // Set first item for Float
-                row.first = row.filter((item) => item !== undefined)[0]
+        Object.keys(rows).forEach((key) => {
+            rows[key].forEach((row) => {
                 // Fill radial items
                 if (radialObj[key] && row.type !== 'linear') {
-                    radialObj[key].slice(0, row.position).forEach((item) => {
-                        row.set(item.position, item)
-                    })
+                    radialObj[key]
+                        .slice(0, row.first.position)
+                        .forEach((electron) => {
+                            row.set(electron.position, electron)
+                        })
                 }
             })
         })
-
-        return items
+        return rows
     }
 
-    public chart(graphType: GraphType): ChartData {
-        const datasets = this.filter((row) => !row.isCombination).map(
-            (row, index) => {
-                const data: number[] = row
-                    // eslint-disable-next-line array-callback-return
-                    .map((item, position) => {
-                        if (!item) {
-                            return NaN
-                        }
+    /*
+     * Chart Data
+     */
+    public getChartData(graphType: GraphType): ChartData {
+        const datasets: ChartDatasets[] = []
+        this.filter((term) => term.visible).forEach((term) => {
+            // only visible terms
+            const rowData = term
+                .filter((row) => !row.isCombination)
+                .map((row, index) => {
+                    const data: number[] = row
+                        .map((electron) => {
+                            if (!electron) {
+                                return NaN
+                            }
 
-                        switch (graphType) {
-                            case 'ground-fixed':
-                                return this.getFixedPercent(item, row)
-                            case 'float':
-                                return row.getFloatPercent(position)
-                            case 'between':
-                                return this.getBetween(item)
-                        }
-                    })
-                    .slice(1)
+                            switch (graphType) {
+                                case 'transform':
+                                    return this.getTransform(
+                                        term,
+                                        row,
+                                        electron,
+                                    )
+                                case 'between':
+                                    return this.getBetween(term, row, electron)
+                                default:
+                                    return this.getTransform(
+                                        term,
+                                        row,
+                                        electron,
+                                    )
+                            }
+                        })
+                        .slice(1)
 
-                const result: ChartDataset<'line', DefaultDataPoint<'line'>> = {
-                    label: `${row.type}${row.symbol}`,
-                    data,
-                    fill: false,
-                    borderColor: chartColors[index] || 'rgb(200, 200, 200)',
-                    tension: 0,
-                }
-                return result
-            },
-        )
+                    // Cut empty value from the end
+                    const trimmed = trimEnd(data)
+
+                    if (trimmed.length === 0) {
+                        return false
+                    }
+
+                    const result: ChartDatasets = {
+                        label: `${row.type}${row.symbol}`,
+                        data: trimmed,
+                        fill: false,
+                        borderColor: chartColors[index] || 'rgb(200, 200, 200)',
+                        tension: 0,
+                    }
+                    return result
+                })
+
+            // Filter empty out
+            const filtered = rowData.filter((i) => i) as ChartDatasets[]
+            datasets.push(...filtered)
+        })
 
         const length: number[] = datasets.map((v) => v.data.length)
-
         const columns = length.length
             ? Array(Math.max(...length))
                   .fill(0)
@@ -397,126 +344,187 @@ export class Container extends Iterator<Row> {
         }
     }
 
-    private isCombination(item: Item): boolean {
-        // Check if it's not multiple ethers
-        const orbitalBase = getConfArray(item.conf)
-            .filter((conf) => !conf.startsWith('('))
-            .slice(0, -1)
-        const length = this.orbitalBase.length - orbitalBase.length - 1
-        const confCompare = this.orbitalBase.slice(0, -1).slice(length)
-
-        if (orbitalBase.join('') !== confCompare.join('')) {
-            return true
-        }
-
-        return false
+    /*
+     * Modified Rydberg formula
+     */
+    private getRydberg(
+        ratio: number,
+        shift: number,
+        k: number,
+        position: number,
+    ) {
+        return ratio * (1 - 1 / Math.pow(position + 1 + k, 2)) + shift
+    }
+    /*
+     * For storing data, make a unique key of each rows
+     */
+    private getUniqueKey(termGroup: TermGroup, row: Row) {
+        return `${termGroup.key}.${row.type}.${row.symbol}.${row.first.energy}`
     }
 
-    private _fixed: number[] = []
-    public getFixed(item: Item): number {
-        const position = item.position
+    /*
+     * Transform equation
+     */
+    private _transform: Record<string, number[]> = {}
+    public getTransform(
+        termGroup: TermGroup,
+        row: Row,
+        electron: ElectronState,
+    ): number {
+        const key = this.getUniqueKey(termGroup, row)
+        const position = electron.position
 
-        if (!this._fixed[position]) {
-            // Rydberg Equation
-            const p = this.peak
-            const r = this.ratio
-            if (p === 0 || r === 0) {
-                this._fixed[position] = NaN
-                return this._fixed[position]
-            }
-
-            const partial = Math.sqrt(r / (p - this.groundFixed.energy))
-            this._fixed[position] =
-                p -
-                r / Math.pow(position - this.groundFixed.position + partial, 2)
+        if (!this._transform[key]) {
+            this._transform[key] = []
         }
-        return this._fixed[item.position]
-    }
-
-    private _fixedDiff: number[] = []
-    public getFixedDiff(item: Item): number {
-        const position = item.position
-        if (!item.prev) {
-            return this.getFixed(item)
-        }
-        if (!this._fixedDiff[position]) {
-            if (position === this.groundFixed.position + 1) {
-                this._fixedDiff[position] = this.getFixed(item)
-                return this._fixedDiff[position]
-            }
-
-            this._fixedDiff[position] =
-                this.getFixed(item) - this.getFixed(item.prev)
+        if (this._transform[key][position]) {
+            return this._transform[key][position]
         }
 
-        return this._fixedDiff[position]
-    }
-
-    public getFixedPercent(item: Item, row: Row): number {
-        const position = item.position
-        if (position < row.first.position) {
+        // Before the first item
+        if (row.first.position > position) {
+            this._transform[key][position] = NaN
             return NaN
         }
-        if (position <= this.groundFixed.position) {
+
+        // First item of ether and orbital
+        if (
+            (row.type === 'ether' || row.type === 'orbital') &&
+            row.first === electron
+        ) {
+            this._transform[key][position] = NaN
             return NaN
         }
-        if (item.prev) {
-            return (this.getFixedDiff(item) / item.diff) * 100
-        }
-        return (this.getFixed(item) / item.energy) * 100
-    }
 
-    private k: [number, number] = [NaN, NaN]
-    public getK(): number[] {
-        if (isNaN(this.k[0]) && isNaN(this.k[1])) {
-            let allK: number[] = []
-            this.filter((row) => !row.isCombination).forEach((row) => {
-                const k = row.getK().filter((value) => !isNaN(value))
-                allK.push(...k)
-            })
-            // console.log(allK)
-            allK = allK.sort()
-            this.k = [Math.min(...allK), Math.max(...allK)]
-        }
-        return this.k
-    }
-
-    private _betweenRydberg: [number[], number[]] = [[], []]
-    private getRydberg(position: number, kIndex: number) {
-        if (this._betweenRydberg[kIndex][position]) {
-            return this._betweenRydberg[kIndex][position]
-        }
-
-        // Rydberg Equation
-        const peak = this.peak
-        const ratio = this.ratio
-
-        if (peak === 0 || ratio === 0) {
-            this._betweenRydberg[kIndex][position] = NaN
-            return this._betweenRydberg[kIndex][position]
-        }
-
-        this.getK()
-        const shift = peak - ratio
-        this._betweenRydberg[kIndex][position] =
-            ratio * (1 - 1 / Math.pow(position + 1 + this.k[kIndex], 2)) + shift
-
-        return this._betweenRydberg[kIndex][position]
-    }
-
-    public getBetween(item: Item) {
-        const min =
-            this.getRydberg(item.position, 1) -
-            this.getRydberg(item.position - 1, 1)
-        const max =
-            this.getRydberg(item.position, 0) -
-            this.getRydberg(item.position - 1, 0)
-
-        if (!item.prev) {
+        // Base state
+        if (!electron.prev) {
+            this._transform[key][position] = NaN
             return NaN
         }
-        const energy = item.energy - item.prev.energy
-        console.log(max, min, energy)
-        return (100 * (energy - min)) / (max - min)
+
+        // Shifted point is always zero
+        if (electron.prev.energy === 0) {
+            this._transform[key][position] = 0
+            return 0
+        }
+
+        // Get horizontal shift (k) of prev and current state
+        const hShift = electron.isRadial
+            ? termGroup.radialHShift
+            : termGroup.linearHShift
+        const hShiftPrev = electron.prev.isRadial
+            ? termGroup.radialHShift
+            : termGroup.linearHShift
+
+        if (isNaN(hShift) || isNaN(hShiftPrev)) {
+            this._transform[key][position] = NaN
+            return NaN
+        }
+
+        // Vertical shift (s)
+        const vShift = termGroup.peak - termGroup.ratio
+
+        // Rydberg of two points
+        const r2 = this.getRydberg(termGroup.ratio, vShift, hShift, position)
+        const r1 = this.getRydberg(
+            termGroup.ratio,
+            vShift,
+            hShiftPrev,
+            position - 1,
+        )
+
+        // Rydberg for normalization
+        const normalize =
+            this.getRydberg(termGroup.ratio, vShift, 0, position) -
+            this.getRydberg(termGroup.ratio, vShift, 0, position - 1)
+
+        this._transform[key][position] = (electron.diff - (r2 - r1)) / normalize
+        return this._transform[key][position]
+    }
+
+    /*
+     * Between equation
+     */
+    private _between: Record<string, number[]> = {}
+    public getBetween(termGroup: TermGroup, row: Row, electron: ElectronState) {
+        const key = this.getUniqueKey(termGroup, row)
+        const position = electron.position
+
+        if (!this._between[key]) {
+            this._between[key] = []
+        }
+        if (this._between[key][position]) {
+            return this._between[key][position]
+        }
+
+        // Before the first item
+        if (row.first.position > position) {
+            this._between[key][position] = NaN
+            return NaN
+        }
+
+        // First item of ether and orbital
+        if (
+            (row.type === 'ether' || row.type === 'orbital') &&
+            row.first === electron
+        ) {
+            this._between[key][position] = NaN
+            return NaN
+        }
+        // Base state
+        if (!electron.prev) {
+            this._between[key][position] = NaN
+            return NaN
+        }
+
+        // Remove shifted point
+        if (electron.prev.energy === 0) {
+            this._between[key][position] = 0
+            return NaN
+        }
+
+        // Get horizontal shift (k) of radial and linear
+        const radialShift = termGroup.radialHShift
+        const linearHShift = termGroup.linearHShift
+
+        if (isNaN(radialShift) || isNaN(linearHShift)) {
+            this._between[key][position] = NaN
+            return NaN
+        }
+
+        // Vertical shift (s)
+        const vShift = termGroup.peak - termGroup.ratio
+
+        // s orbital equation
+        const sRydberg1 = this.getRydberg(
+            termGroup.ratio,
+            vShift,
+            radialShift,
+            position,
+        )
+        const sRydberg2 = this.getRydberg(
+            termGroup.ratio,
+            vShift,
+            radialShift,
+            position - 1,
+        )
+        // p orbital equation
+        const pRydberg1 = this.getRydberg(
+            termGroup.ratio,
+            vShift,
+            linearHShift,
+            position,
+        )
+        const pRydberg2 = this.getRydberg(
+            termGroup.ratio,
+            vShift,
+            linearHShift,
+            position - 1,
+        )
+
+        this._between[key][position] =
+            (100 * (electron.diff - (sRydberg1 - sRydberg2))) /
+            (pRydberg1 - pRydberg2 - (sRydberg1 - sRydberg2))
+        return this._between[key][position]
     }
 }

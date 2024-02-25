@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { romanize } from 'src/common/utils/number'
 import { useURLParam } from 'src/frontend/hooks/useURLParam'
 import { getAtom } from 'src/utils/atom'
-import { Container } from 'src/model/Container'
 
 import { Info } from 'src/frontend/components/modal/Info'
 import { PeriodicTable } from 'src/frontend/components/modal/PeriodicTable'
@@ -103,12 +102,12 @@ export const Header = (): JSX.Element => {
 
                         <li
                             className={`link-base ${
-                                dataType === 'raw-data' ? 'current' : ''
+                                dataType === 'orbital' ? 'current' : ''
                             }`}
                         >
                             <Link
                                 to={getAddress({
-                                    dataType: 'raw-data',
+                                    dataType: 'orbital',
                                     term: 0,
                                 })}
                             >

@@ -25,8 +25,6 @@ const envPath =
         : path.resolve(__dirname, '../', '../', '../', `.env.${nodeEnv}`)
 dotEnvConfig({ path: envPath })
 
-console.log(envPath)
-
 /* eslint-disable import/first */
 import { mongoConnect } from 'src/utils/mongo/connect'
 import { staticRouter } from 'src/server/routes/static'

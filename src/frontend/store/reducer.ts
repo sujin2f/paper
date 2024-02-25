@@ -3,8 +3,8 @@ import {
     SET_ORBITAL,
     SET_ETHER,
     SET_ENERGY,
-    SET_FIXED,
-    SET_FLOAT,
+    SET_TRANSFORM,
+    SET_BETWEEN,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/types/store'
 
@@ -14,8 +14,8 @@ export const initialState: State = {
         orbital: true,
         ether: true,
         energy: true,
-        fixed: true,
-        float: false,
+        transform: true,
+        between: true,
     },
 }
 
@@ -57,21 +57,21 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 },
             }
         }
-        case SET_FIXED: {
+        case SET_TRANSFORM: {
             return {
                 ...state,
                 visible: {
                     ...state.visible,
-                    fixed: action.fixed!,
+                    transform: action.transform!,
                 },
             }
         }
-        case SET_FLOAT: {
+        case SET_BETWEEN: {
             return {
                 ...state,
                 visible: {
                     ...state.visible,
-                    float: action.float!,
+                    between: action.between!,
                 },
             }
         }

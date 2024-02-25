@@ -8,6 +8,7 @@ type Props = {
     large?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
     largeOffset?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11
     className?: string
+    id?: string
     dom?: string
 }
 export const Column = (props: PropsWithChildren<Props>): JSX.Element => {
@@ -35,6 +36,7 @@ export const Column = (props: PropsWithChildren<Props>): JSX.Element => {
         type,
         {
             className: `columns ${join} ${className}`,
+            id: props.id,
         },
         props.children,
     )

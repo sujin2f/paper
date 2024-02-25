@@ -22,7 +22,7 @@ ChartJS.register(
 )
 
 export const Chart = (): JSX.Element => {
-    const { graphType, isGraph } = useURLParam()
+    const { isGraph, graphType } = useURLParam()
     const container = Container.getInstance()
 
     if (!container || !isGraph) {
@@ -38,7 +38,7 @@ export const Chart = (): JSX.Element => {
         },
     }
 
-    const chartData = container.chart(graphType)
+    const chartData = container.getChartData(graphType)
 
     return <Line options={options} data={chartData} className="chart" />
 }

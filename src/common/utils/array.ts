@@ -26,3 +26,18 @@ export const splitItems = <T>(arr: T[], numOfRows: number): T[][] => {
 export const random = <T>(arr: T[]): T => {
     return arr[Math.floor(Math.random() * arr.length)]
 }
+
+export const trimEnd = <T>(items: T[]): T[] => {
+    let notEmpty = false
+    return items
+        .reverse()
+        .filter((item) => {
+            // Once it's not empty, keep values
+            if (notEmpty || (item && !notEmpty)) {
+                notEmpty = true
+                return true
+            }
+            return false
+        })
+        .reverse()
+}

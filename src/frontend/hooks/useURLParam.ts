@@ -1,5 +1,6 @@
 import { useLocation, useParams } from 'react-router-dom'
-import { GraphType, DataType, URLParam } from 'src/types/data'
+import { URLParam } from 'src/types/common'
+import { DataType, GraphType } from 'src/types/ui'
 import { getAtom } from 'src/utils/atom'
 
 export const useURLParam = () => {
@@ -10,7 +11,7 @@ export const useURLParam = () => {
     const atomNumber = parseInt(numberParam || '1', 10)
     const ion = parseInt(ionParam || '1', 10)
     const term = parseInt(termParam || '0')
-    const graphType = graphTypeParam || '%'
+    const graphType = graphTypeParam || 'transform'
     const isGraph = location.pathname.indexOf('/graph') !== -1
     const mode =
         location.pathname.indexOf('/equation') !== -1 ? '/equation' : ''
@@ -43,12 +44,12 @@ export const useURLParam = () => {
 
     return {
         dataType: dataType as DataType,
-        graphType: graphType as GraphType,
         atomNumber,
         ion,
         term,
         atom: getAtom(atomNumber),
         isGraph,
+        graphType,
         mode,
         getAddress,
     }
