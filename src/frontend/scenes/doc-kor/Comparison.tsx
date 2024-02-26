@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Latex from 'react-latex'
 
 import { scrollTo } from 'src/common/utils/device'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 
 import { Doc } from 'src/frontend/scenes/doc-kor'
+import { Latex } from 'src/frontend/components/document/latex'
 
 import pic29 from 'src/assets/images/doc/pic29.png'
 import pic42 from 'src/assets/images/doc/pic42.png'
@@ -256,14 +256,14 @@ export const Comparison = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$D(x) = v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))$$`}</Latex>
+            >{`D(x) = v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))`}</Latex>
             <p>
                 에너지 v<sub>2</sub> 에서 v<sub>1</sub>로 에너지가 방출될 때
                 변형 뤼드베리 방정식과의 차이 D(x)
             </p>
             <Latex
                 displayMode={true}
-            >{`$$D(x) = \\dfrac{v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))}{R(x+1+k_{2}) - R(x+k_{1})} $$`}</Latex>
+            >{`D(x) = \\dfrac{v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))}{R(x+1+k_{2}) - R(x+k_{1})} `}</Latex>
             <p>뒤로 갈 수록 가중치를 주어 보기 편하게 만든 결과 D(x)</p>
         </div>
 
@@ -443,20 +443,19 @@ export const Comparison = (): JSX.Element => (
             +3, +4로 일정하다. 0.75의 정수배로 값의 변화를 예측할 수 있을 것만
             같다. Li I이 3, Be I이 4일 수 있다는 것이다. 그렇게 가정하고 세로
             방향의 변화를 보면 리튬은{' '}
-            <Latex>{`$\\begin{bmatrix}+3\\\\+3\\end{bmatrix}$`}</Latex>,
-            베릴륨은{' '}
-            <Latex>{`$\\begin{bmatrix}+4\\\\+4\\\\+4\\end{bmatrix}$`}</Latex>가
+            <Latex>{`\\begin{bmatrix}+3\\\\+3\\end{bmatrix}`}</Latex>, 베릴륨은{' '}
+            <Latex>{`\\begin{bmatrix}+4\\\\+4\\\\+4\\end{bmatrix}`}</Latex>가
             되는 것을 볼 수 있다. 한 가지 가능성이 더 있는데, 가로축 변화량을
-            <Latex>{`$\\begin{bmatrix}+1 & +2 & +3 & +4 & ...\\end{bmatrix}$`}</Latex>
+            <Latex>{`\\begin{bmatrix}+1 & +2 & +3 & +4 & ...\\end{bmatrix}`}</Latex>
             로 가정하는 것이다. 그렇게 하면 세로 방향의 변화는{' '}
-            <Latex>{`$\\begin{bmatrix}+2\\\\+3\\end{bmatrix}$`}</Latex>과 같이
-            1씩 증가한다. 두 가지 가능성 중에서 더 설득력이 있는 것은 첫번째
-            것이다. <code>[X]</code>의 수가 상하 이동에 미치는 영향이 0.75로
-            일정해지기 때문이다. 수소는 <code>[X]</code>가 없기 때문에 고점이
-            0.75이다. 헬륨은 0.75에 <code>[X]</code> 하나의 영향 0.75를 더해
-            1.5가 된다. 리튬은 0.75에 <code>[X]</code> 두 개의 영향 1.5를 더해
-            2.25가 되는 것이다. 더 단순한 설명이 진실일 것이라는 오컴의 면도날을
-            따르자. 이를 도해하면 아래와 같다.
+            <Latex>{`\\begin{bmatrix}+2\\\\+3\\end{bmatrix}`}</Latex>과 같이 1씩
+            증가한다. 두 가지 가능성 중에서 더 설득력이 있는 것은 첫번째 것이다.{' '}
+            <code>[X]</code>의 수가 상하 이동에 미치는 영향이 0.75로 일정해지기
+            때문이다. 수소는 <code>[X]</code>가 없기 때문에 고점이 0.75이다.
+            헬륨은 0.75에 <code>[X]</code> 하나의 영향 0.75를 더해 1.5가 된다.
+            리튬은 0.75에 <code>[X]</code> 두 개의 영향 1.5를 더해 2.25가 되는
+            것이다. 더 단순한 설명이 진실일 것이라는 오컴의 면도날을 따르자.
+            이를 도해하면 아래와 같다.
         </p>
 
         <div className="align__center">

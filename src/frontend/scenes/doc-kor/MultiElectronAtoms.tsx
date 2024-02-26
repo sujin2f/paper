@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Latex from 'react-latex'
 
 import { scrollTo } from 'src/common/utils/device'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 
 import { Doc } from 'src/frontend/scenes/doc-kor'
+import { Latex } from 'src/frontend/components/document/latex'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
 import pic10 from 'src/assets/images/doc/pic10.png'
@@ -205,11 +205,11 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$ R^{1.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) $$`}</Latex>
+            >{` R^{1.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) `}</Latex>
             <p>수소의 뤼드베리 방정식 (eV)</p>
             <Latex
                 displayMode={true}
-            >{`$$R^{2.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) + 24.58556828 - 13.60676328$$`}</Latex>
+            >{`R^{2.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) + 24.58556828 - 13.60676328`}</Latex>
             <p>헬륨의 뤼드베리 방정식 (eV)</p>
         </div>
 
@@ -239,7 +239,7 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s$$`}</Latex>
+            >{`w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s`}</Latex>
         </div>
         <p>
             위 식에서 <code>w</code>를 <code>[O]</code>에테르의 에너지,{' '}
@@ -250,42 +250,42 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s$$`}</Latex>
+            >{`w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to \\dfrac{w - s}{r} = 1 - \\dfrac{1}{(v + 1 + k)^2}$$`}</Latex>
+            >{`\\to \\dfrac{w - s}{r} = 1 - \\dfrac{1}{(v + 1 + k)^2}`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to 1 - \\dfrac{w - s}{r} = \\dfrac{1}{(v + 1 + k)^2}$$`}</Latex>
+            >{`\\to 1 - \\dfrac{w - s}{r} = \\dfrac{1}{(v + 1 + k)^2}`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to \\dfrac{1}{1 - \\dfrac{w - s}{r}} = (v + 1 + k)^2$$`}</Latex>
+            >{`\\to \\dfrac{1}{1 - \\dfrac{w - s}{r}} = (v + 1 + k)^2`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} = v + 1 + k$$`}</Latex>
+            >{`\\to \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} = v + 1 + k`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1$$`}</Latex>
+            >{`\\to k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1`}</Latex>
             <p>이를 최초의 식에 다시 대입해보자.</p>
             <Latex
                 displayMode={true}
-            >{`$$R(x, r, s, v, w) = r \\cdot (1 - \\dfrac{1}{(x + 1 + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1)^2}) + s$$`}</Latex>
+            >{`R(x, r, s, v, w) = r \\cdot (1 - \\dfrac{1}{(x + 1 + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1)^2}) + s`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v)^2}$$`}</Latex>
+            >{`\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v)^2}`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\dfrac{1}{\\sqrt{\\dfrac{r - w + s}{r}}})^2}$$`}</Latex>
+            >{`\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\dfrac{1}{\\sqrt{\\dfrac{r - w + s}{r}}})^2}`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{r - w + s}})^2}$$`}</Latex>
+            >{`\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{r - w + s}})^2}`}</Latex>
             <p>
                 여기서 <code>r+s</code>는 이온화 에너지와 동일한 그래프의
                 고점이다. <code>r+s</code>를<code>p</code>(peak)로 표기해 보자.
             </p>
             <Latex
                 displayMode={true}
-            >{`$$R(x, r, p, v, w) = p - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{p - w}})^2}$$`}</Latex>
+            >{`R(x, r, p, v, w) = p - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{p - w}})^2}`}</Latex>
             <p>완성된 변형 뤼드베리 방정식.</p>
         </div>
 
@@ -322,7 +322,7 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$R^{3.1}_{2S.1/2}(x) = R(x, 13.60676328, 5.39114472, 2, 3.373129)$$`}</Latex>
+            >{`R^{3.1}_{2S.1/2}(x) = R(x, 13.60676328, 5.39114472, 2, 3.373129)`}</Latex>
         </div>
 
         <div className="align__center">
@@ -445,15 +445,13 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1$$`}</Latex>
+            >{`k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to k_{s} = \\dfrac{1}{\\sqrt{1 - \\dfrac{20.6157751334 - (24.58556828 - 13.60676328)}{13.60676328}}} - 1 - 1$$`}</Latex>
+            >{`\\to k_{s} = \\dfrac{1}{\\sqrt{1 - \\dfrac{20.6157751334 - (24.58556828 - 13.60676328)}{13.60676328}}} - 1 - 1`}</Latex>
 
-            <Latex
-                displayMode={true}
-            >{`$$\\to k_{s} = −0.148628918071$$`}</Latex>
+            <Latex displayMode={true}>{`\\to k_{s} = −0.148628918071`}</Latex>
             <p>
                 모든 점을 x축 방향으로 이만큼 옮겨주면 기준 뤼드베리 방정식에
                 붙을 것이다
@@ -603,21 +601,21 @@ export const MultiElectronAtoms = (): JSX.Element => (
             이 문서의 목적은 에테르가 쌓이는 것을 증명하는 것이다. 따라서 전체
             에너지 보다는 각 단계별로 변하는 에너지를 보아야 한다.{' '}
             <code>[X][O]</code>에서 <code>[X][OO]</code>로의 에너지 증가는 두
-            값의 차이와 <Latex>{`$R(2+k_{s}) - R(1+k_{s})$`}</Latex>를 비교해야
-            할 것이다.
+            값의 차이와 <Latex>{`R(2+k_{s}) - R(1+k_{s})`}</Latex>를 비교해야 할
+            것이다.
         </p>
 
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$a = 22.920317682 - 20.6157751334 = 2.3045425486$$`}</Latex>
+            >{`a = 22.920317682 - 20.6157751334 = 2.3045425486`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$b = R(2+k_{s}) - R(1+k_{s}) = 2.29784533694$$`}</Latex>
-            <Latex displayMode={true}>{`$$a - b = 0.00669721166409$$`}</Latex>
+            >{`b = R(2+k_{s}) - R(1+k_{s}) = 2.29784533694`}</Latex>
+            <Latex displayMode={true}>{`a - b = 0.00669721166409`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to D(x) = v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))$$`}</Latex>
+            >{`\\to D(x) = v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))`}</Latex>
             <p>
                 에너지 v<sub>2</sub> 에서 v<sub>1</sub>로 에너지가 방출될 때
                 변형 뤼드베리 방정식과의 차이 D(x)

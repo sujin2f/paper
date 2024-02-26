@@ -1,6 +1,7 @@
 import React from 'react'
-import Latex from 'react-latex'
+
 import { Doc } from 'src/frontend/scenes/doc-kor'
+import { Latex } from 'src/frontend/components/document/latex'
 
 import pic27 from 'src/assets/images/doc/pic27.png'
 import pic28 from 'src/assets/images/doc/pic28.png'
@@ -30,9 +31,7 @@ export const OrbitalEquation = (): JSX.Element => (
         <div className="align__center">
             <img src={pic27} alt="수소(H)의 뤼드베리 값" />
             <p>
-                <Latex
-                    displayMode={true}
-                >{`$$Z^2(1 - \\dfrac{1}{n^2})$$`}</Latex>
+                <Latex displayMode={true}>{`Z^2(1 - \\dfrac{1}{n^2})`}</Latex>
                 <strong>수소(H)의 뤼드베리 값</strong>: 뤼드베리 방정식과 딱
                 맞아 떨어지나..?
             </p>
@@ -154,22 +153,21 @@ export const OrbitalEquation = (): JSX.Element => (
             +2, +3, +4로 일정하다. (짜자자잔!) 이제 빈 전자들과 오비탈 하나의
             값을 예측할 수 있게 되었다. 0.75의 정수배일 것이다. Li I이 3, Be I이
             4일 수 있다는 것이다. 그렇게 가정하고 세로 방향의 변화를 보면 리튬은{' '}
-            <Latex>{`$\\begin{bmatrix}+3\\\\+3\\end{bmatrix}$`}</Latex>,
-            베릴륨은{' '}
-            <Latex>{`$\\begin{bmatrix}+4\\\\+4\\\\+4\\end{bmatrix}$`}</Latex>가
+            <Latex>{`\\begin{bmatrix}+3\\\\+3\\end{bmatrix}`}</Latex>, 베릴륨은{' '}
+            <Latex>{`\\begin{bmatrix}+4\\\\+4\\\\+4\\end{bmatrix}`}</Latex>가
             되는 것을 볼 수 있다. 한 가지 가능성이 더 있는데, 가로축 변화량을
-            <Latex>{`$\\begin{bmatrix}+1 & +2 & +3 & +4 & ...\\end{bmatrix}$`}</Latex>
+            <Latex>{`\\begin{bmatrix}+1 & +2 & +3 & +4 & ...\\end{bmatrix}`}</Latex>
             로 가정하는 것이다. 그렇게 하면 세로 방향의 변화는{' '}
-            <Latex>{`$\\begin{bmatrix}+2\\\\+3\\end{bmatrix}$`}</Latex>과 같이
-            1씩 증가한다. 두 가지 가능성 중에서 더 설득력이 있는 것은 첫번째
-            것이다. 빈 전자의 수가 첫점에 미치는 영향이 0.75로 일정해지기
-            때문이다. 수소는 다른 전자가 없기 때문에 고점이 0.75이다. 헬륨은
-            0.75에 빈 전자 하나의 영향 0.75를 더해 1.5가 된다. 리튬은 0.75에 빈
-            전자 두 개의 영향 1.5를 더해 2.25가 되는 것이다. 더 단순한 설명이
-            진실일 것이라는 오컴의 면도날을 따르자.
+            <Latex>{`\\begin{bmatrix}+2\\\\+3\\end{bmatrix}`}</Latex>과 같이 1씩
+            증가한다. 두 가지 가능성 중에서 더 설득력이 있는 것은 첫번째 것이다.
+            빈 전자의 수가 첫점에 미치는 영향이 0.75로 일정해지기 때문이다.
+            수소는 다른 전자가 없기 때문에 고점이 0.75이다. 헬륨은 0.75에 빈
+            전자 하나의 영향 0.75를 더해 1.5가 된다. 리튬은 0.75에 빈 전자 두
+            개의 영향 1.5를 더해 2.25가 되는 것이다. 더 단순한 설명이 진실일
+            것이라는 오컴의 면도날을 따르자.
         </p>
         <div className="align__center">
-            <Latex displayMode={true}>{`$$u(Z, i) = 0.75Zi$$`}</Latex>
+            <Latex displayMode={true}>{`u(Z, i) = 0.75Zi`}</Latex>
             <p>
                 <strong>첫점 공식 (안 정밀 버전)</strong>
             </p>
@@ -208,10 +206,10 @@ export const OrbitalEquation = (): JSX.Element => (
         <div>
             <Latex
                 displayMode={true}
-            >{`$$f^{\\prime}_{H}(x) = \\dfrac{p_{10}-p_{9}-(p_{2}-p_{1})}{8}x-\\dfrac{p_{10}-p_{9}-(p_{2}-p_{1})}{8}+p_{2}-p_{1}$$`}</Latex>
+            >{`f^{\\prime}_{H}(x) = \\dfrac{p_{10}-p_{9}-(p_{2}-p_{1})}{8}x-\\dfrac{p_{10}-p_{9}-(p_{2}-p_{1})}{8}+p_{2}-p_{1}`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to f^{\\prime}_{H}(x) = 1.50352958331x + 0.746578380239$$`}</Latex>
+            >{`\\to f^{\\prime}_{H}(x) = 1.50352958331x + 0.746578380239`}</Latex>
         </div>
         <p>
             1을 넣으면 1번에서 2번으로의 변화량, 2를 넣으면 3번에서 4번으로의
@@ -221,7 +219,7 @@ export const OrbitalEquation = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$f_{H}(i) = 0.7495987475942 + \\sum_{n=1}^{i-1} (1.50352958331n + 0.746578380239)$$`}</Latex>
+            >{`f_{H}(i) = 0.7495987475942 + \\sum_{n=1}^{i-1} (1.50352958331n + 0.746578380239)`}</Latex>
             <p>
                 <strong>수소꼴 원자에서의 첫점 공식</strong>
             </p>
@@ -234,10 +232,10 @@ export const OrbitalEquation = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$f^{\\prime}_{He}(x) = 1.50330222794x + 1.41856704855$$`}</Latex>
+            >{`f^{\\prime}_{He}(x) = 1.50330222794x + 1.41856704855`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$f_{He}(i) = 1.48597317351 + \\sum_{n=1}^{i-1} (1.50330222794n + 1.41856704855)$$`}</Latex>
+            >{`f_{He}(i) = 1.48597317351 + \\sum_{n=1}^{i-1} (1.50330222794n + 1.41856704855)`}</Latex>
             <p>
                 <strong>헬륨꼴 원자에서의 첫점 공식</strong>
             </p>
@@ -246,10 +244,10 @@ export const OrbitalEquation = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$f(Z, i) = (f_{He}(i) - f_{H}(i))(Z - i + 1) - (f_{He}(i) - f_{H}(i)) + f_{H}(i)$$`}</Latex>
+            >{`f(Z, i) = (f_{He}(i) - f_{H}(i))(Z - i + 1) - (f_{He}(i) - f_{H}(i)) + f_{H}(i)`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$f(Z, i) = (f_{He}(i) - f_{H}(i))(Z - i) + f_{H}(i)$$`}</Latex>
+            >{`f(Z, i) = (f_{He}(i) - f_{H}(i))(Z - i) + f_{H}(i)`}</Latex>
             <p>
                 <strong>첫점 공식 (최종)</strong>
             </p>
@@ -316,7 +314,7 @@ export const OrbitalEquation = (): JSX.Element => (
             <img src={pic50} alt="수소 방정식" />
             <Latex
                 displayMode={true}
-            >{`$$y = 13.5970432 (1 - \\dfrac{1}{(x + 1)^2})$$`}</Latex>
+            >{`y = 13.5970432 (1 - \\dfrac{1}{(x + 1)^2})`}</Latex>
         </div>
 
         <p>
@@ -328,7 +326,7 @@ export const OrbitalEquation = (): JSX.Element => (
             <img src={pic51} alt="구리 방정식" />
             <Latex
                 displayMode={true}
-            >{`$$y = 11566.865778 (1 - \\dfrac{1}{(x + 1)^2})$$`}</Latex>
+            >{`y = 11566.865778 (1 - \\dfrac{1}{(x + 1)^2})`}</Latex>
         </div>
 
         <p>
@@ -348,7 +346,7 @@ export const OrbitalEquation = (): JSX.Element => (
             <img src={pic52} alt="헬륨I의 방정식" />
             <Latex
                 displayMode={true}
-            >{`$$y = 13.5970432 (1 - \\dfrac{1}{(x + 1)^2}) + 24.58556828 - 13.5970432$$`}</Latex>
+            >{`y = 13.5970432 (1 - \\dfrac{1}{(x + 1)^2}) + 24.58556828 - 13.5970432`}</Latex>
         </div>
 
         <p>
@@ -360,25 +358,25 @@ export const OrbitalEquation = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$y = r (1 - \\dfrac{1}{(x + 1 + k)^2}) + S$$`}</Latex>
+            >{`y = r (1 - \\dfrac{1}{(x + 1 + k)^2}) + S`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to r (1 - \\dfrac{1}{(x + 1 + k)^2}) = y - S$$`}</Latex>
+            >{`\\to r (1 - \\dfrac{1}{(x + 1 + k)^2}) = y - S`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to 1 - \\dfrac{1}{(x + 1 + k)^2} = \\dfrac{y - S}{r}$$`}</Latex>
+            >{`\\to 1 - \\dfrac{1}{(x + 1 + k)^2} = \\dfrac{y - S}{r}`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to \\dfrac{1}{(x + 1 + k)^2} = 1 - \\dfrac{y - S}{r}$$`}</Latex>
+            >{`\\to \\dfrac{1}{(x + 1 + k)^2} = 1 - \\dfrac{y - S}{r}`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to (x + 1 + k)^2 = \\dfrac{1}{1 - \\dfrac{y - S}{r}}$$`}</Latex>
+            >{`\\to (x + 1 + k)^2 = \\dfrac{1}{1 - \\dfrac{y - S}{r}}`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to x + 1 + k = \\sqrt{\\dfrac{1}{1 - \\dfrac{y - S}{r}}}$$`}</Latex>
+            >{`\\to x + 1 + k = \\sqrt{\\dfrac{1}{1 - \\dfrac{y - S}{r}}}`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$\\to k = \\sqrt{\\dfrac{1}{1 - \\dfrac{y - S}{r}}} - x- 1$$`}</Latex>
+            >{`\\to k = \\sqrt{\\dfrac{1}{1 - \\dfrac{y - S}{r}}} - x- 1`}</Latex>
         </div>
 
         <p>
@@ -389,7 +387,7 @@ export const OrbitalEquation = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$y = r (1 - \\dfrac{1}{(x + \\sqrt{\\dfrac{1}{1 - \\dfrac{y_1 - S}{r}}} - x_1)^2}) + S$$`}</Latex>
+            >{`y = r (1 - \\dfrac{1}{(x + \\sqrt{\\dfrac{1}{1 - \\dfrac{y_1 - S}{r}}} - x_1)^2}) + S`}</Latex>
         </div>
 
         <div className="align__center">

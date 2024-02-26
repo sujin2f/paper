@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Latex from 'react-latex'
 
-import { Doc } from 'src/frontend/scenes/doc'
 import { scrollTo } from 'src/common/utils/device'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
+
+import { Doc } from 'src/frontend/scenes/doc'
+import { Latex } from 'src/frontend/components/document/latex'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
 import pic10 from 'src/assets/images/doc/pic10.png'
@@ -233,11 +234,11 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$ R^{1.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) $$`}</Latex>
+            >{` R^{1.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) `}</Latex>
             <p>Rydberg formula of hydrogen (eV)</p>
             <Latex
                 displayMode={true}
-            >{`$$R^{2.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) + 24.58556828 - 13.60676328$$`}</Latex>
+            >{`R^{2.1}(x) = 13.60676328 \\cdot (1 - \\dfrac{1}{(x + 1)^2}) + 24.58556828 - 13.60676328`}</Latex>
             <p>Rydberg formula of helium (eV)</p>
         </div>
 
@@ -270,7 +271,7 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s$$`}</Latex>
+            >{`w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s`}</Latex>
         </div>
 
         <p>
@@ -285,27 +286,27 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s$$`}</Latex>
+            >{`w = r \\cdot (1 - \\dfrac{1}{(v + 1 + k)^2}) + s`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to \\dfrac{w - s}{r} = 1 - \\dfrac{1}{(v + 1 + k)^2}$$`}</Latex>
+            >{`\\to \\dfrac{w - s}{r} = 1 - \\dfrac{1}{(v + 1 + k)^2}`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to 1 - \\dfrac{w - s}{r} = \\dfrac{1}{(v + 1 + k)^2}$$`}</Latex>
+            >{`\\to 1 - \\dfrac{w - s}{r} = \\dfrac{1}{(v + 1 + k)^2}`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to \\dfrac{1}{1 - \\dfrac{w - s}{r}} = (v + 1 + k)^2$$`}</Latex>
+            >{`\\to \\dfrac{1}{1 - \\dfrac{w - s}{r}} = (v + 1 + k)^2`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} = v + 1 + k$$`}</Latex>
+            >{`\\to \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} = v + 1 + k`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1$$`}</Latex>
+            >{`\\to k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1`}</Latex>
 
             <p>
                 Sure, let's substitute the expression we derived for the
@@ -314,19 +315,19 @@ export const MultiElectronAtoms = (): JSX.Element => (
 
             <Latex
                 displayMode={true}
-            >{`$$R(x, r, s, v, w) = r \\cdot (1 - \\dfrac{1}{(x + 1 + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1)^2}) + s$$`}</Latex>
+            >{`R(x, r, s, v, w) = r \\cdot (1 - \\dfrac{1}{(x + 1 + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1)^2}) + s`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v)^2}$$`}</Latex>
+            >{`\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x + \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v)^2}`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\dfrac{1}{\\sqrt{\\dfrac{r - w + s}{r}}})^2}$$`}</Latex>
+            >{`\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\dfrac{1}{\\sqrt{\\dfrac{r - w + s}{r}}})^2}`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{r - w + s}})^2}$$`}</Latex>
+            >{`\\to R(x, r, s, v, w) = r + s - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{r - w + s}})^2}`}</Latex>
 
             <p>
                 Here, <code>r + s</code> represents the peak of the graph,
@@ -336,7 +337,7 @@ export const MultiElectronAtoms = (): JSX.Element => (
 
             <Latex
                 displayMode={true}
-            >{`$$R(x, r, p, v, w) = p - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{p - w}})^2}$$`}</Latex>
+            >{`R(x, r, p, v, w) = p - \\dfrac{r}{(x - v + \\sqrt{\\dfrac{r}{p - w}})^2}`}</Latex>
 
             <p>
                 Modified Rydberg formula with vertical and horizontal shifting.
@@ -381,7 +382,7 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$R^{3.1}_{2S.1/2}(x) = R(x, 13.60676328, 5.39114472, 2, 3.373129)$$`}</Latex>
+            >{`R^{3.1}_{2S.1/2}(x) = R(x, 13.60676328, 5.39114472, 2, 3.373129)`}</Latex>
         </div>
 
         <div className="align__center">
@@ -513,15 +514,13 @@ export const MultiElectronAtoms = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1$$`}</Latex>
+            >{`k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - s}{r}}} - v - 1`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to k_{s} = \\dfrac{1}{\\sqrt{1 - \\dfrac{20.6157751334 - (24.58556828 - 13.60676328)}{13.60676328}}} - 1 - 1$$`}</Latex>
+            >{`\\to k_{s} = \\dfrac{1}{\\sqrt{1 - \\dfrac{20.6157751334 - (24.58556828 - 13.60676328)}{13.60676328}}} - 1 - 1`}</Latex>
 
-            <Latex
-                displayMode={true}
-            >{`$$\\to k_{s} = −0.148628918071$$`}</Latex>
+            <Latex displayMode={true}>{`\\to k_{s} = −0.148628918071`}</Latex>
 
             <p>
                 If we move all points in the x-axis direction by this amount,
@@ -682,23 +681,23 @@ export const MultiElectronAtoms = (): JSX.Element => (
             focus on the energy changes at each stage. The increase in energy
             from <code>[X][O]</code> to <code>[X][OO]</code> should be compared
             by examining the difference between the two values and{' '}
-            <Latex>{`$R(2+k_{s}) - R(1+k_{s})$`}</Latex>.
+            <Latex>{`R(2+k_{s}) - R(1+k_{s})`}</Latex>.
         </p>
 
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$a = 22.920317682 - 20.6157751334 = 2.3045425486$$`}</Latex>
+            >{`a = 22.920317682 - 20.6157751334 = 2.3045425486`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$b = R(2+k_{s}) - R(1+k_{s}) = 2.29784533694$$`}</Latex>
+            >{`b = R(2+k_{s}) - R(1+k_{s}) = 2.29784533694`}</Latex>
 
-            <Latex displayMode={true}>{`$$a - b = 0.00669721166409$$`}</Latex>
+            <Latex displayMode={true}>{`a - b = 0.00669721166409`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to D(x) = v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))$$`}</Latex>
+            >{`\\to D(x) = v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))`}</Latex>
 
             <p>
                 The difference D(x) when energy is emitted from energy v

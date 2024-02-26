@@ -6,6 +6,7 @@ declare global {
         twttr: any
         adsbygoogle: any
         opera: any
+        katex: any
     }
 }
 

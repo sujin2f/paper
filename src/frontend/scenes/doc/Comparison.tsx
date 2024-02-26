@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Latex from 'react-latex'
 
 import { Doc } from 'src/frontend/scenes/doc'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 import { scrollTo } from 'src/common/utils/device'
+
+import { Latex } from 'src/frontend/components/document/latex'
 
 import pic29 from 'src/assets/images/doc/pic29.png'
 import pic42 from 'src/assets/images/doc/pic42.png'
@@ -297,7 +298,7 @@ export const Comparison = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$D(x) = v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))$$`}</Latex>
+            >{`D(x) = v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))`}</Latex>
 
             <p>
                 The difference D(x) when energy is emitted from energy v
@@ -307,7 +308,7 @@ export const Comparison = (): JSX.Element => (
 
             <Latex
                 displayMode={true}
-            >{`$$D(x) = \\dfrac{v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))}{R(x+1+k_{2}) - R(x+k_{1})} $$`}</Latex>
+            >{`D(x) = \\dfrac{v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))}{R(x+1+k_{2}) - R(x+k_{1})} `}</Latex>
             <p>
                 The result D(x), where weights are applied to make it easier to
                 see as you go backward
@@ -515,13 +516,13 @@ export const Comparison = (): JSX.Element => (
             seems plausible. This suggests that Li I could be 3, and Be I could
             be 4. Assuming this, looking at the vertical changes, we can observe
             that lithium becomes{' '}
-            <Latex>{`$\\begin{bmatrix}+3\\\\+3\\end{bmatrix}$`}</Latex>, and
+            <Latex>{`\\begin{bmatrix}+3\\\\+3\\end{bmatrix}`}</Latex>, and
             beryllium becomes{' '}
-            <Latex>{`$\\begin{bmatrix}+4\\\\+4\\\\+4\\end{bmatrix}$`}</Latex>.
+            <Latex>{`\\begin{bmatrix}+4\\\\+4\\\\+4\\end{bmatrix}`}</Latex>.
             Another possibility is assuming the horizontal axis changes as{' '}
-            <Latex>{`$\\begin{bmatrix}+1 & +2 & +3 & +4 & ...\\end{bmatrix}$`}</Latex>
+            <Latex>{`\\begin{bmatrix}+1 & +2 & +3 & +4 & ...\\end{bmatrix}`}</Latex>
             . In this case, the vertical changes would increase by 1, like{' '}
-            <Latex>{`$\\begin{bmatrix}+2\\\\+3\\end{bmatrix}$`}</Latex>. Between
+            <Latex>{`\\begin{bmatrix}+2\\\\+3\\end{bmatrix}`}</Latex>. Between
             the two possibilities, the first one seems more convincing. This is
             because the impact of <code>[X]</code> on the vertical shift becomes
             constant at 0.75. Hydrogen has no <code>[X]</code>, making its peak

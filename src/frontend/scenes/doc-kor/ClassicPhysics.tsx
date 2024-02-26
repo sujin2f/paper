@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Latex from 'react-latex'
 
 import { scrollTo } from 'src/common/utils/device'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 
 import { Doc } from 'src/frontend/scenes/doc-kor'
+import { Latex } from 'src/frontend/components/document/latex'
 
 import pic5 from 'src/assets/images/doc/pic5_eng.png'
 
@@ -17,16 +17,16 @@ export const ClassicPhysics = (): JSX.Element => (
 
         <p>
             전자가 방출하는 파장은 뤼드베리 공식을 통해 구할 수 있다. 아래는
-            뤼드베리 공식과 <Latex>$n \geq 2$</Latex>에서 <Latex>$n = 1$</Latex>
+            뤼드베리 공식과 <Latex>n \geq 2</Latex>에서 <Latex>n = 1</Latex>
             으로 준위가 떨어질 때 방출되는 빛의 파장인 라이먼 계열과{' '}
-            <Latex>$n \geq 4$</Latex>에서 <Latex>$n = 3$</Latex>으로 변화하는
-            파센 계열의 방출 파장을 정리한 것이다.
+            <Latex>n \geq 4</Latex>에서 <Latex>n = 3</Latex>으로 변화하는 파센
+            계열의 방출 파장을 정리한 것이다.
         </p>
 
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$\\dfrac{1}{\\lambda} = R(\\dfrac{1}{m^2} - \\dfrac{1}{n^2}) \\hspace{10pt} \\{ R=1.0973731568539 \\times 10^7 m^{-1} \\}$$`}</Latex>
+            >{`\\dfrac{1}{\\lambda} = R(\\dfrac{1}{m^2} - \\dfrac{1}{n^2}) \\hspace{10pt} \\{ R=1.0973731568539 \\times 10^7 m^{-1} \\}`}</Latex>
             <p>
                 <strong>뤼드베리 공식</strong>: 이걸 도데체 어떻게 알아낸거야?
             </p>
@@ -146,22 +146,22 @@ export const ClassicPhysics = (): JSX.Element => (
                     <tr>
                         <th>n</th>
                         <th>
-                            <Latex>$3 \to 2$</Latex>
+                            <Latex>3 \to 2</Latex>
                         </th>
                         <th>
-                            <Latex>$4 \to 3$</Latex>
+                            <Latex>4 \to 3</Latex>
                         </th>
                         <th>
-                            <Latex>$5 \to 4$</Latex>
+                            <Latex>5 \to 4</Latex>
                         </th>
                         <th>
-                            <Latex>$6 \to 5$</Latex>
+                            <Latex>6 \to 5</Latex>
                         </th>
                         <th>
-                            <Latex>$7 \to 6$</Latex>
+                            <Latex>7 \to 6</Latex>
                         </th>
                         <th>
-                            <Latex>$8 \to 7$</Latex>
+                            <Latex>8 \to 7</Latex>
                         </th>
                     </tr>
                 </thead>
@@ -192,16 +192,16 @@ export const ClassicPhysics = (): JSX.Element => (
                         <th></th>
                         <th></th>
                         <th>
-                            <Latex>$5 \to 4$</Latex>
+                            <Latex>5 \to 4</Latex>
                         </th>
                         <th>
-                            <Latex>$6 \to 5$</Latex>
+                            <Latex>6 \to 5</Latex>
                         </th>
                         <th>
-                            <Latex>$7 \to 6$</Latex>
+                            <Latex>7 \to 6</Latex>
                         </th>
                         <th>
-                            <Latex>$8 \to 7$</Latex>
+                            <Latex>8 \to 7</Latex>
                         </th>
                     </tr>
                 </thead>
@@ -236,7 +236,7 @@ export const ClassicPhysics = (): JSX.Element => (
 
         <p>
             광자-에테르가 일정한 파장을 가지고 있다면 그 에너지를 구할 수 있을
-            것이다. 빛의 에너지는 <Latex>$E = hc / λ$</Latex>의 식으로 구할 수
+            것이다. 빛의 에너지는 <Latex>E = hc / λ</Latex>의 식으로 구할 수
             있다. 여기서 λ는 앞서 구한 파수를 의미하며, 이렇게 구한 값은 J의
             단위를 가진다. 이를 eV를 단위로 갖는 에너지 값은 아래의 수식과
             같으며, 이를 정리하면 아래의 표와 같다.
@@ -245,14 +245,14 @@ export const ClassicPhysics = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$E = Rhc(\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2})\\cdot6.242\\cdot10^{32}$$`}</Latex>
+            >{`E = Rhc(\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2})\\cdot6.242\\cdot10^{32}`}</Latex>
             <p>뤼드베리 상수, 플랑크 상수, 빛의 속도는 모두 상수이니까,</p>
             <Latex
                 displayMode={true}
-            >{`$$E = 1.0973731568539 \\cdot 10^{-7} \\cdot 6.62607015 \\cdot 10^{-34} \\cdot 299792458 \\cdot (\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2}) \\cdot 6.242 \\cdot 10^{32}$$`}</Latex>
+            >{`E = 1.0973731568539 \\cdot 10^{-7} \\cdot 6.62607015 \\cdot 10^{-34} \\cdot 299792458 \\cdot (\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2}) \\cdot 6.242 \\cdot 10^{32}`}</Latex>
             <Latex
                 displayMode={true}
-            >{`$$E = 13.60676328 \\cdot (\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2})$$`}</Latex>
+            >{`E = 13.60676328 \\cdot (\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2})`}</Latex>
 
             <p>
                 <strong>
@@ -267,25 +267,25 @@ export const ClassicPhysics = (): JSX.Element => (
                     <tr>
                         <th>n</th>
                         <th>
-                            <Latex>$2 \to 1$</Latex>
+                            <Latex>2 \to 1</Latex>
                         </th>
                         <th>
-                            <Latex>$3 \to 2$</Latex>
+                            <Latex>3 \to 2</Latex>
                         </th>
                         <th>
-                            <Latex>$4 \to 3$</Latex>
+                            <Latex>4 \to 3</Latex>
                         </th>
                         <th>
-                            <Latex>$5 \to 4$</Latex>
+                            <Latex>5 \to 4</Latex>
                         </th>
                         <th>
-                            <Latex>$6 \to 5$</Latex>
+                            <Latex>6 \to 5</Latex>
                         </th>
                         <th>
-                            <Latex>$7 \to 6$</Latex>
+                            <Latex>7 \to 6</Latex>
                         </th>
                         <th>
-                            <Latex>$8 \to 7$</Latex>
+                            <Latex>8 \to 7</Latex>
                         </th>
                     </tr>
                 </thead>
@@ -314,18 +314,18 @@ export const ClassicPhysics = (): JSX.Element => (
 
         <Latex
             displayMode={true}
-        >{`$$E_n = -\\frac{ℏ^2}{2 \\mu a_0 ^ 2} \\frac{1}{n^2}$$`}</Latex>
+        >{`E_n = -\\frac{ℏ^2}{2 \\mu a_0 ^ 2} \\frac{1}{n^2}`}</Latex>
 
         <p>
-            여기서 <Latex>{`$\\dfrac{1}{n^2}$`}</Latex>을{' '}
-            <Latex>{`$(\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2})$`}</Latex>로
+            여기서 <Latex>{`\\dfrac{1}{n^2}`}</Latex>을{' '}
+            <Latex>{`(\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2})`}</Latex>로
             치환하고, J를 eV로 변환하면 위에서 구한 값과 일치하는 것을 알 수
             있다.
         </p>
 
         <Latex
             displayMode={true}
-        >{`$\\frac{ℏ^2}{2 \\mu a_0 ^ 2} (\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2}) \\hspace{10pt} \\{ n \\geqq 2 \\}$`}</Latex>
+        >{`\\frac{ℏ^2}{2 \\mu a_0 ^ 2} (\\dfrac{1}{(n - 1)^2} - \\dfrac{1}{n^2}) \\hspace{10pt} \\{ n \\geqq 2 \\}`}</Latex>
 
         <div className="table-scroll">
             <table className="unstriped">
@@ -333,25 +333,25 @@ export const ClassicPhysics = (): JSX.Element => (
                     <tr>
                         <th>n</th>
                         <th>
-                            <Latex>$2 \to 1$</Latex>
+                            <Latex>2 \to 1</Latex>
                         </th>
                         <th>
-                            <Latex>$3 \to 2$</Latex>
+                            <Latex>3 \to 2</Latex>
                         </th>
                         <th>
-                            <Latex>$4 \to 3$</Latex>
+                            <Latex>4 \to 3</Latex>
                         </th>
                         <th>
-                            <Latex>$5 \to 4$</Latex>
+                            <Latex>5 \to 4</Latex>
                         </th>
                         <th>
-                            <Latex>$6 \to 5$</Latex>
+                            <Latex>6 \to 5</Latex>
                         </th>
                         <th>
-                            <Latex>$7 \to 6$</Latex>
+                            <Latex>7 \to 6</Latex>
                         </th>
                         <th>
-                            <Latex>$8 \to 7$</Latex>
+                            <Latex>8 \to 7</Latex>
                         </th>
                     </tr>
                 </thead>

@@ -5,6 +5,7 @@ import {
     SET_ENERGY,
     SET_TRANSFORM,
     SET_BETWEEN,
+    LOAD_SCRIPT,
 } from 'src/frontend/store/actions'
 import { Action, State } from 'src/frontend/types/store'
 
@@ -17,6 +18,7 @@ export const initialState: State = {
         transform: true,
         between: true,
     },
+    scriptLoader: {},
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
@@ -72,6 +74,15 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 visible: {
                     ...state.visible,
                     between: action.between!,
+                },
+            }
+        }
+        case LOAD_SCRIPT: {
+            return {
+                ...state,
+                scriptLoader: {
+                    ...state.scriptLoader,
+                    [action.scriptLoader![0]]: action.scriptLoader![1],
                 },
             }
         }

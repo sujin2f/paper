@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Doc } from 'src/frontend/scenes/doc'
+
 import { scrollTo } from 'src/common/utils/device'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
+
+import { Doc } from 'src/frontend/scenes/doc'
 
 import pic1 from 'src/assets/images/doc/pic1_eng.png'
 import pic2 from 'src/assets/images/doc/pic2_eng.png'

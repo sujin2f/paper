@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Latex from 'react-latex'
 
 import { Doc } from 'src/frontend/scenes/doc'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 import { scrollTo } from 'src/common/utils/device'
+import { Latex } from 'src/frontend/components/document/latex'
 
 import pic58 from 'src/assets/images/doc/pic58.png'
 import pic114 from 'src/assets/images/doc/pic114.png'
@@ -54,11 +54,11 @@ export const Between = (): JSX.Element => (
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`$$(R_{p}(x) - R_{p}(x-1)) - (R_{s}(x) - R_{s}(x-1)) : 100 = (p_{x} - p_{x-1}) - (R_{s}(x) - R_{s}(x-1)) : v$$`}</Latex>
+            >{`(R_{p}(x) - R_{p}(x-1)) - (R_{s}(x) - R_{s}(x-1)) : 100 = (p_{x} - p_{x-1}) - (R_{s}(x) - R_{s}(x-1)) : v`}</Latex>
 
             <Latex
                 displayMode={true}
-            >{`$$\\to v = \\dfrac{100\\{(p_{x} - p_{x-1}) - (R_{s}(x) - R_{s}(x-1))\\}}{(R_{p}(x) - R_{p}(x-1)) - (R_{s}(x) - R_{s}(x-1))}$$`}</Latex>
+            >{`\\to v = \\dfrac{100\\{(p_{x} - p_{x-1}) - (R_{s}(x) - R_{s}(x-1))\\}}{(R_{p}(x) - R_{p}(x-1)) - (R_{s}(x) - R_{s}(x-1))}`}</Latex>
         </div>
 
         <h3>
