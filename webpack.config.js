@@ -20,4 +20,10 @@ if ('stage' === process.env.NODE_ENV) {
     process.env.NODE_ENV = 'production'
 }
 
+if ('production' === process.env.NODE_ENV) {
+    config.optimization['splitChunks'] = {
+        chunks: 'all',
+    }
+}
+
 module.exports = config

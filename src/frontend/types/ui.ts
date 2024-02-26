@@ -7,3 +7,8 @@ export type TableRowType =
     | 'Transform'
     | 'Between'
 export type GraphType = 'transform' | 'between'
+export type URLParam = {
+    dataType: DataType
+    atom: string
+    graphType: GraphType
+}

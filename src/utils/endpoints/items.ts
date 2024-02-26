@@ -1,9 +1,10 @@
 import { periodicTable } from 'src/constants/periodic-table'
-import { GraphQLParam, RawData } from 'src/types/data'
+import { RawData } from 'src/types/data'
 import { crawl } from 'src/utils/crawler'
 import { query } from 'src/utils/mongo/items'
 import { addOne, getOne } from 'src/utils/mongo/crawler'
 import { Cached } from 'src/utils/cached'
+import { GraphQLParam } from 'src/types/graphQl'
 
 export const items = async (param: GraphQLParam): Promise<RawData[]> => {
     const cacheKey = `${param.number} ${param.ion}`

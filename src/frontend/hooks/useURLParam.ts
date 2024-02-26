@@ -1,6 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom'
-import { URLParam } from 'src/types/common'
-import { DataType, GraphType } from 'src/types/ui'
+import { DataType, GraphType, URLParam } from 'src/frontend/types/ui'
 import { getAtom } from 'src/utils/atom'
 
 export const useURLParam = () => {

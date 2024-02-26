@@ -1,4 +1,4 @@
-import { Action } from 'src/types/store'
+import { Action } from 'src/frontend/types/store'
 
 export const SET_DIGIT = 'ether/v1/SET_DIGIT'
 export const SET_ORBITAL = 'ether/v1/SET_ORBITAL'

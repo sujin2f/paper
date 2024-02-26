@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Modal } from 'src/common/components/containers/Modal'
 import { periodicTable } from 'src/constants/periodic-table'
 import { useURLParam } from 'src/frontend/hooks/useURLParam'
-import { Atom } from 'src/types/atom'
+import { Atom } from 'src/frontend/types/atom'
 
 export const PeriodicTable = (): JSX.Element => {
     const { atom, getAddress } = useURLParam()

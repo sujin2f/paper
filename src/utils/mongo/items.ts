@@ -1,5 +1,14 @@
-import mongoose from 'mongoose'
-import { mongoSchema, RawData } from 'src/types/data'
+import mongoose, { Schema } from 'mongoose'
+import { RawData } from 'src/types/data'
+
+export const mongoSchema = new Schema({
+    number: Number,
+    ion: Number,
+    rydberg: Number,
+    term: String,
+    j: String,
+    conf: String,
+})
 
 export const model = mongoose.model('rawData', mongoSchema)
 

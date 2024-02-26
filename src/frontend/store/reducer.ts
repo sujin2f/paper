@@ -6,7 +6,7 @@ import {
     SET_TRANSFORM,
     SET_BETWEEN,
 } from 'src/frontend/store/actions'
-import { Action, State } from 'src/types/store'
+import { Action, State } from 'src/frontend/types/store'
 
 export const initialState: State = {
     digit: 4,

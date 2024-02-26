@@ -3,7 +3,7 @@ import { Context, ContextType } from 'src/frontend/store'
 import { Container } from 'src/model/Container'
 import { Row as RowModel } from 'src/model/Row'
 import { TermGroup as TermGroupModel } from 'src/model/TermGroup'
-import { TableRowType } from 'src/types/ui'
+import { TableRowType } from 'src/frontend/types/ui'
 
 type Props = {
     type: TableRowType

@@ -1,5 +1,3 @@
-import { DataType, GraphType } from './ui'
-
 export type Fn<T extends unknown[] = void[], R = void> = (...param: T) => R
 
 export type Nullable<T> = T | undefined
@@ -15,10 +13,4 @@ export type GlobalVariable = {
     adSlot?: string
     isProd?: boolean
     is404?: boolean
-}
-
-export type URLParam = {
-    dataType: DataType
-    atom: string
-    graphType: GraphType
 }

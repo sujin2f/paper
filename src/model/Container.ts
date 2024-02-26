@@ -1,7 +1,7 @@
 import { ChartDataset, DefaultDataPoint } from 'chart.js'
 import { chartColors } from 'src/constants/chart'
 import { RawData } from 'src/types/data'
-import { DataType, GraphType } from 'src/types/ui'
+import { DataType, GraphType } from 'src/frontend/types/ui'
 import { Row } from 'src/model/Row'
 import { ElectronState } from './ElectronState'
 import { Iterator } from './Iterator'

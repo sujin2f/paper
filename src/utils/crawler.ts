@@ -2,7 +2,7 @@ import https from 'https'
 import { parse } from 'csv-parse'
 import axios from 'axios'
 import { addOne } from 'src/utils/mongo/items'
-import { Atom } from 'src/types/atom'
+import { Atom } from 'src/frontend/types/atom'
 import { RawData } from 'src/types/data'
 import { romanize } from 'src/common/utils/number'
 

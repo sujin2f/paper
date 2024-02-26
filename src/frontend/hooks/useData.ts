@@ -1,16 +1,12 @@
-import { useQuery } from '@apollo/client'
-import { gql } from '@apollo/client'
+import { useQuery, gql } from '@apollo/client'
+import { request } from 'src/constants/graphql'
+import { GraphQLParam } from 'src/types/graphQl'
+import { GraphQLReturnType, DataHook } from 'src/frontend/types/graphql'
 import { Container } from 'src/model/Container'
-import {
-    GraphQLReturnType,
-    graphQL,
-    GraphQLParam,
-    DataHook,
-} from 'src/types/data'
 
 export const useData: DataHook = (variables) => {
     const { data, loading, error } = useQuery<GraphQLReturnType, GraphQLParam>(
-        gql(graphQL.request),
+        gql(request),
         {
             variables,
         },
