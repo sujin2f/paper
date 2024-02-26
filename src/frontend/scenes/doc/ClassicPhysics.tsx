@@ -1,5 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Latex from 'react-latex'
+import { scrollTo } from 'src/common/utils/device'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
+
 import { Doc } from 'src/frontend/scenes/doc'
 
 import pic5 from 'src/assets/images/doc/pic5_eng.png'
@@ -433,5 +438,29 @@ export const ClassicPhysics = (): JSX.Element => (
             demonstrate that energy is stored in the form of ether. In the next
             section, we will delve into multi-electron atoms.
         </p>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link to="/hypothesis" onClick={() => scrollTo()}>
+                            Hypothesis
+                        </Link>
+                    </li>
+                    <li>
+                        Next:
+                        <Link
+                            to="/multi-electron-atoms"
+                            onClick={() => scrollTo()}
+                        >
+                            Proof(2): Reinterpretation of Rydberg Formula
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

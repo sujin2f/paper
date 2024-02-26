@@ -1,4 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+import { scrollTo } from 'src/common/utils/device'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
+
 import { Doc } from 'src/frontend/scenes/doc-kor'
 
 import pic13 from 'src/assets/images/doc/pic13.png'
@@ -203,5 +209,20 @@ export const Conclusion = (): JSX.Element => (
         <div className="align__center">
             <p>Fin</p>
         </div>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link to="/kor/between" onClick={() => scrollTo()}>
+                            가설의 검증(4): 비교기준, Between
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

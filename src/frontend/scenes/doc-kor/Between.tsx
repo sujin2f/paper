@@ -1,8 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Latex from 'react-latex'
-import { Doc } from 'src/frontend/scenes/doc-kor'
+
+import { scrollTo } from 'src/common/utils/device'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
+
+import { Doc } from 'src/frontend/scenes/doc-kor'
 
 import pic58 from 'src/assets/images/doc/pic58.png'
 import pic114 from 'src/assets/images/doc/pic114.png'
@@ -222,5 +226,26 @@ export const Between = (): JSX.Element => (
             완전한 증거라고 주장하는 것은 아니지만 혹시 맞을 수도 있지 않을까
             하는 가능성을 제시하는 것으로 증명을 마치도록 하겠다.
         </p>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link to="/kor/comparison" onClick={() => scrollTo()}>
+                            가설의 검증(3): 방출 에너지 분석
+                        </Link>
+                    </li>
+                    <li>
+                        Next:
+                        <Link to="/kor/conclusion" onClick={() => scrollTo()}>
+                            결론
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

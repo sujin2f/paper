@@ -1,4 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { scrollTo } from 'src/common/utils/device'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
+
 import { Doc } from 'src/frontend/scenes/doc'
 
 export const Intro = (): JSX.Element => (
@@ -41,5 +46,20 @@ export const Intro = (): JSX.Element => (
             understandable for non-experts like myself, which may result in
             verbose explanations.
         </p>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Next:
+                        <Link to="/hypothesis" onClick={() => scrollTo()}>
+                            Hypothesis
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

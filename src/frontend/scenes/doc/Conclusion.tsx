@@ -1,5 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import { Doc } from 'src/frontend/scenes/doc'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
+import { scrollTo } from 'src/common/utils/device'
 
 import pic13 from 'src/assets/images/doc/pic13_eng.png'
 import pic14 from 'src/assets/images/doc/pic14_eng.png'
@@ -244,5 +249,20 @@ export const Conclusion = (): JSX.Element => (
                 <strong>Fin</strong>
             </p>
         </div>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link to="/between" onClick={() => scrollTo()}>
+                            Proof(4): Between Comparison
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

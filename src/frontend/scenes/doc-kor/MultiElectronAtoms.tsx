@@ -1,5 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Latex from 'react-latex'
+
+import { scrollTo } from 'src/common/utils/device'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
+
 import { Doc } from 'src/frontend/scenes/doc-kor'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
@@ -709,5 +715,29 @@ export const MultiElectronAtoms = (): JSX.Element => (
             장에서는 실제 비교와 해석을 통하여 원자의 방출 에너지를 에테르가
             쌓이는 것으로 볼 수 있을지 알아보고자 한다.
         </p>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link
+                            to="/kor/classic-physics"
+                            onClick={() => scrollTo()}
+                        >
+                            가설의 검증(1): 고전 물리학
+                        </Link>
+                    </li>
+                    <li>
+                        Next:
+                        <Link to="/kor/comparison" onClick={() => scrollTo()}>
+                            가설의 검증(3): 방출 에너지 분석
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

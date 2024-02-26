@@ -1,8 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Latex from 'react-latex'
+
 import { Doc } from 'src/frontend/scenes/doc'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
+import { scrollTo } from 'src/common/utils/device'
 
 import pic58 from 'src/assets/images/doc/pic58.png'
 import pic114 from 'src/assets/images/doc/pic114.png'
@@ -270,5 +273,26 @@ export const Between = (): JSX.Element => (
             provide clearer patterns than the traditional method. This concludes
             the demonstration.
         </p>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link to="/comparison" onClick={() => scrollTo()}>
+                            Proof(3): Emission Energy Analysis
+                        </Link>
+                    </li>
+                    <li>
+                        Next:
+                        <Link to="/conclusion" onClick={() => scrollTo()}>
+                            Conclusion
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

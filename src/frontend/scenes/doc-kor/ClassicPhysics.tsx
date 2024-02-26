@@ -1,5 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Latex from 'react-latex'
+
+import { scrollTo } from 'src/common/utils/device'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
+
 import { Doc } from 'src/frontend/scenes/doc-kor'
 
 import pic5 from 'src/assets/images/doc/pic5_eng.png'
@@ -419,5 +425,29 @@ export const ClassicPhysics = (): JSX.Element => (
             속에 저장된다는 것을 증명할 수 있을 것이다. 다음 장에서는 다전자
             원자에 대해 다루고자 한다.
         </p>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link to="/kor/hypothesis" onClick={() => scrollTo()}>
+                            가설 제시
+                        </Link>
+                    </li>
+                    <li>
+                        Next:
+                        <Link
+                            to="/kor/multi-electron-atoms"
+                            onClick={() => scrollTo()}
+                        >
+                            가설의 검증(2): 뤼드베리 방정식의 재정립
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

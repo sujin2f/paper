@@ -1,5 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Doc } from 'src/frontend/scenes/doc'
+import { scrollTo } from 'src/common/utils/device'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
 
 import pic1 from 'src/assets/images/doc/pic1_eng.png'
 import pic2 from 'src/assets/images/doc/pic2_eng.png'
@@ -253,5 +257,26 @@ export const Hypothesis = (): JSX.Element => (
             evidence. If the photon-Ether absorbed by the electron exhibits
             regular properties, it could serve as proof for its existence.
         </p>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link to="/" onClick={() => scrollTo()}>
+                            Introduction
+                        </Link>
+                    </li>
+                    <li>
+                        Next:
+                        <Link to="/classic-physics" onClick={() => scrollTo()}>
+                            Proof(1): Classic Physics
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

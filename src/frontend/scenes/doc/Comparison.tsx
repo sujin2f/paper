@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Latex from 'react-latex'
 
 import { Doc } from 'src/frontend/scenes/doc'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
+import { scrollTo } from 'src/common/utils/device'
 
 import pic29 from 'src/assets/images/doc/pic29.png'
 import pic42 from 'src/assets/images/doc/pic42.png'
@@ -710,6 +712,30 @@ export const Comparison = (): JSX.Element => (
                         </strong>
                     </p>
                 </div>
+            </Column>
+        </Row>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link
+                            to="/multi-electron-atoms"
+                            onClick={() => scrollTo()}
+                        >
+                            Proof(2): Reinterpretation of Rydberg Formula
+                        </Link>
+                    </li>
+                    <li>
+                        Next:
+                        <Link to="/between" onClick={() => scrollTo()}>
+                            Proof(4): Between Comparison
+                        </Link>
+                    </li>
+                </ul>
             </Column>
         </Row>
     </Doc>

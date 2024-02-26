@@ -1,4 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+import { scrollTo } from 'src/common/utils/device'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
+
 import { Doc } from 'src/frontend/scenes/doc-kor'
 
 import pic1 from 'src/assets/images/doc/pic1.png'
@@ -214,5 +220,29 @@ export const Hypothesis = (): JSX.Element => (
             흡수한 광자-에테르가 규칙적인 성질을 가지고 있다면 이를 증명할 수
             있는 근거가 될 것이다.
         </p>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link to="/kor" onClick={() => scrollTo()}>
+                            소개
+                        </Link>
+                    </li>
+                    <li>
+                        Next:
+                        <Link
+                            to="/kor/classic-physics"
+                            onClick={() => scrollTo()}
+                        >
+                            가설의 검증(1): 고전 물리학
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

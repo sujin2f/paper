@@ -1,4 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+import { scrollTo } from 'src/common/utils/device'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
 import { Doc } from 'src/frontend/scenes/doc-kor'
 
 export const Intro = (): JSX.Element => (
@@ -34,5 +39,20 @@ export const Intro = (): JSX.Element => (
             비전공자들도 이해할 수 있도록 최대한의 설명을 곁들여 작성했기 때문에
             설명이 매우 장황할 수 있다는 것을 밝힌다.
         </p>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Next:
+                        <Link to="/kor/hypothesis" onClick={() => scrollTo()}>
+                            가설 제시
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )

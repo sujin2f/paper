@@ -1,6 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Latex from 'react-latex'
+
 import { Doc } from 'src/frontend/scenes/doc'
+import { scrollTo } from 'src/common/utils/device'
+import { Row } from 'src/common/components/layout/Row'
+import { Column } from 'src/common/components/layout/Column'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
 import pic10 from 'src/assets/images/doc/pic10.png'
@@ -796,5 +801,26 @@ export const MultiElectronAtoms = (): JSX.Element => (
             can consider the emission energy of an atom as the accumulation of
             ether
         </p>
+
+        <hr />
+
+        <Row className="hide-for-medium hide-for-large">
+            <Column>
+                <ul>
+                    <li>
+                        Prev:
+                        <Link to="/classic-physics" onClick={() => scrollTo()}>
+                            Proof(1): Classic Physics
+                        </Link>
+                    </li>
+                    <li>
+                        Next:
+                        <Link to="/comparison" onClick={() => scrollTo()}>
+                            Proof(3): Emission Energy Analysis
+                        </Link>
+                    </li>
+                </ul>
+            </Column>
+        </Row>
     </Doc>
 )
