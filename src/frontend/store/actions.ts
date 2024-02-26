@@ -1,4 +1,3 @@
-import { ScriptLoaderStatus } from 'src/constants/script-loader'
 import { Action } from 'src/frontend/types/store'
 
 export const SET_DIGIT = 'ether/v1/SET_DIGIT'
@@ -7,7 +6,6 @@ export const SET_ETHER = 'ether/v1/SET_ETHER'
 export const SET_ENERGY = 'ether/v1/SET_ENERGY'
 export const SET_TRANSFORM = 'ether/v1/SET_TRANSFORM'
 export const SET_BETWEEN = 'ether/v1/SET_BETWEEN'
-export const LOAD_SCRIPT = 'ether/v1/LOAD_SCRIPT'
 
 export const setDigit = (digit: number): Action => {
     return {
@@ -48,14 +46,5 @@ export const setBetween = (between: boolean): Action => {
     return {
         type: SET_BETWEEN,
         between,
-    }
-}
-
-export const loadScript = (
-    scriptLoader: [string, ScriptLoaderStatus],
-): Action => {
-    return {
-        type: LOAD_SCRIPT,
-        scriptLoader,
     }
 }

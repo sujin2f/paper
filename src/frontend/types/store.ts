@@ -1,5 +1,3 @@
-import { ScriptLoaderStatus } from 'src/constants/script-loader'
-
 type Type = {
     type: string
 }
@@ -13,7 +11,6 @@ export type State = {
         transform: boolean
         between: boolean
     }
-    scriptLoader: Record<string, ScriptLoaderStatus>
 }
 
 export type Action = {
@@ -23,5 +20,4 @@ export type Action = {
     energy?: boolean
     transform?: boolean
     between?: boolean
-    scriptLoader?: [string, ScriptLoaderStatus]
 } & Type

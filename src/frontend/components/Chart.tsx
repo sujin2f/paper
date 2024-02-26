@@ -1,44 +1,54 @@
-import React, { Fragment } from 'react'
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Legend,
-} from 'chart.js'
-import { Line } from 'react-chartjs-2'
+import React, { Fragment, useEffect, useRef } from 'react'
 import { useURLParam } from 'src/frontend/hooks/useURLParam'
 import { Container } from 'src/model/Container'
-
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Legend,
-)
+import {
+    ScriptLoaderStatus,
+    useScriptLoader,
+} from 'src/common/hooks/useScriptLoader'
 
 export const Chart = (): JSX.Element => {
     const { isGraph, graphType } = useURLParam()
+    const wrapper = useRef<HTMLCanvasElement>(null)
     const container = Container.getInstance()
+    const script = useScriptLoader(
+        'https://unpkg.com/chart.js@4.2.0/dist/chart.umd.js',
+    )
 
-    if (!container || !isGraph) {
+    useEffect(() => {
+        let chart: undefined | any = undefined
+        if (script === ScriptLoaderStatus.COMPLETE) {
+            if (container && wrapper.current && isGraph) {
+                const options = {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top' as const,
+                        },
+                    },
+                }
+                const data = container.getChartData(graphType)
+                chart = new window.Chart(wrapper.current, {
+                    type: 'line',
+                    data,
+                    options,
+                })
+            }
+        }
+
+        if (!isGraph && chart) {
+            chart.destroy()
+        }
+
+        return () => {
+            if (chart) {
+                chart.destroy()
+            }
+        }
+    }, [container, graphType, script, isGraph])
+
+    if (!isGraph) {
         return <Fragment></Fragment>
     }
 
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top' as const,
-            },
-        },
-    }
-
-    const chartData = container.getChartData(graphType)
-
-    return <Line options={options} data={chartData} className="chart" />
+    return <canvas id="chart" className="chart" ref={wrapper}></canvas>
 }

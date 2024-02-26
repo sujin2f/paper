@@ -7,6 +7,7 @@ declare global {
         adsbygoogle: any
         opera: any
         katex: any
+        Chart: any
     }
 }
 
