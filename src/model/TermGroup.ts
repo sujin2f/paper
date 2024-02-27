@@ -6,6 +6,9 @@ import { jouleToEv } from 'src/constants/orbital'
 
 export class TermGroup extends Iterator<Row> {
     public visible = true
+    // When this is false, this set is not from the base state
+    public isCombination = false
+
     private _key = ''
     public get key() {
         return this._key

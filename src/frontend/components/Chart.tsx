@@ -7,7 +7,7 @@ import {
 } from 'src/common/hooks/useScriptLoader'
 
 export const Chart = (): JSX.Element => {
-    const { isGraph, graphType } = useURLParam()
+    const { isGraph, graphType, term } = useURLParam()
     const wrapper = useRef<HTMLCanvasElement>(null)
     const container = Container.getInstance()
     const script = useScriptLoader(
@@ -44,7 +44,7 @@ export const Chart = (): JSX.Element => {
                 chart.destroy()
             }
         }
-    }, [container, graphType, script, isGraph])
+    }, [container, graphType, script, isGraph, term])
 
     if (!isGraph) {
         return <Fragment></Fragment>

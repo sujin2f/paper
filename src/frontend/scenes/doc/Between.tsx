@@ -18,6 +18,7 @@ import pic120 from 'src/assets/images/doc/pic120.png'
 import pic121 from 'src/assets/images/doc/pic121.png'
 import pic122 from 'src/assets/images/doc/pic122.png'
 import pic123 from 'src/assets/images/doc/pic123.png'
+import pic125 from 'src/assets/images/doc/pic125.png'
 
 export const Between = (): JSX.Element => (
     <Doc>
@@ -46,20 +47,49 @@ export const Between = (): JSX.Element => (
             be proposed is to create coordinates from these two shifted graphs.
             By considering the graph shifted with <code>[O]</code> as 0 and the
             graph shifted with <code>[-]</code> as 100, the positions of the
-            points will be marked. This approach allows aligning all points with
-            a single criterion. Let's call this method "Between," and the
-            previous one will be referred to as "Transform."
+            points will be marked. It is about placing the top purple line as
+            100 and the bottom red dot as 0 in the above diagram, and observing
+            how the points move between them. By using this method, all points
+            can be aligned based on a single criterion. Let's call this the
+            "Between," and let the previous one be called the "Transform."
         </p>
+
+        <p>
+            However, the above diagram cannot be used as is. What we want to
+            understand is not the position of the points, but rather how much
+            they have changed from their previous values. Therefore, we will use
+            <Latex>{`\\dfrac{1}{x ^ 2}-\\dfrac{1}{(x + 1) ^ 2}`}</Latex> instead
+            of <Latex>{`1-\\dfrac{1}{(x + 1) ^ 2}`}</Latex>.
+        </p>
+
+        <div className="align__center">
+            <img src={pic125} alt="The bottom graphs serve as the reference" />
+            <p>
+                <strong>The bottom graphs serve as the reference</strong>
+            </p>
+        </div>
 
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`(R_{p}(x) - R_{p}(x-1)) - (R_{s}(x) - R_{s}(x-1)) : 100 = (p_{x} - p_{x-1}) - (R_{s}(x) - R_{s}(x-1)) : v`}</Latex>
+            >{`R_{l}(x) = r(\\dfrac{1}{(x + k_{h}) ^ 2}-\\dfrac{1}{(x + k_{h} + 1) ^ 2})`}</Latex>
+            <p>R(x) with highest k</p>
 
             <Latex
                 displayMode={true}
-            >{`\\to v = \\dfrac{100\\{(p_{x} - p_{x-1}) - (R_{s}(x) - R_{s}(x-1))\\}}{(R_{p}(x) - R_{p}(x-1)) - (R_{s}(x) - R_{s}(x-1))}`}</Latex>
+            >{`R_{h}(x) = r(\\dfrac{1}{(x + k_{l}) ^ 2}-\\dfrac{1}{(x + k_{l} + 1) ^ 2})`}</Latex>
+            <p>R(x) with lowest k</p>
+
+            <Latex
+                displayMode={true}
+            >{`R_{h}(x) - R_{l}(x) : 100 = p_{x} - p_{x-1} - R_{l}(x) : v`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`\\to v = \\dfrac{100(p_{x} - p_{x-1} - R_{l}(x))}{R_{h}(x) - R_{l}(x)}`}</Latex>
         </div>
+
+        <p>Let's see if a pattern emerges</p>
 
         <h3>
             <a
@@ -150,14 +180,10 @@ export const Between = (): JSX.Element => (
         </Row>
 
         <p>
-            Let's focus on orbitals first. The red line starts at 0,
-            representing the point where <code>[O]</code> becomes{' '}
-            <code>[OO]</code>. It is the point where the second circular ether
-            is added. It slightly increases. The orange line represents the p
-            orbital, and if we ignore the ratio of its increase, it can be seen
-            to exhibit a pattern similar to s. The ether changes are also
-            clearly evident. Let's look at elements with higher atomic numbers
-            to better observe the changes.
+            The changes in the orbitals show a slight decrease and a slight
+            increase, but it can be considered as noise. The variation in ether,
+            on the other hand, is clearly evident. Let's examine elements with
+            higher numbers to better observe the extent of the changes.
         </p>
 
         <h3>Higher Atomic Numbers</h3>

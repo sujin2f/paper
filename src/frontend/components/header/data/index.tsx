@@ -108,7 +108,6 @@ export const Header = (): JSX.Element => {
                             <Link
                                 to={getAddress({
                                     dataType: 'orbital',
-                                    term: 0,
                                 })}
                             >
                                 Orbital
@@ -122,7 +121,6 @@ export const Header = (): JSX.Element => {
                             <Link
                                 to={getAddress({
                                     dataType: 'ether',
-                                    term: 0,
                                 })}
                             >
                                 Ether

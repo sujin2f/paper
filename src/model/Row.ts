@@ -13,8 +13,6 @@ export class Row extends Iterator<ElectronState> {
         this._first = electrons[0]
         return this._first
     }
-    public isCombination = false
-
     public get term() {
         const term = this.first?.term
         if (!term) {

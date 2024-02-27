@@ -19,6 +19,7 @@ import pic120 from 'src/assets/images/doc/pic120.png'
 import pic121 from 'src/assets/images/doc/pic121.png'
 import pic122 from 'src/assets/images/doc/pic122.png'
 import pic123 from 'src/assets/images/doc/pic123.png'
+import pic125 from 'src/assets/images/doc/pic125.png'
 
 export const Between = (): JSX.Element => (
     <Doc>
@@ -44,19 +45,49 @@ export const Between = (): JSX.Element => (
             나머지를 p 오비탈 쪽으로 이동시켰다. 새롭게 제시할 기준은 이 두
             지점으로 옮긴 그래프를 좌표로 만드는 것이다. <code>[O]</code>로 옮긴
             그래프를 0으로, <code>[-]</code>의 그래프를 100으로 잡았을 때 점의
-            위치를 표시하는 것이다. 이 방식을 사용하면 모든 점을 한 가지
-            기준으로 정렬 시킬 수 있을 것이다. 이것을 Between이라 부르고, 앞서
-            것을 Transform이라 부르기로 허자.
+            위치를 표시하는 것이다. 위 그림에서 가장 위의 보라색 선을 100, 가장
+            아래의 붉은 점을 0으로 놓고 그 사이에서 점들이 어떻게 움직이는지
+            보는 것이다. 이 방식을 사용하면 모든 점을 한 가지 기준으로 정렬 시킬
+            수 있을 것이다. 이것을 Between이라 부르고, 앞서 것을 Transform이라
+            부르기로 허자.
         </p>
+
+        <p>
+            그런데, 위 그림을 그대로 사용할 수 없다. 우리가 알고자 하는 것은
+            점의 위치가 아니라 이전 값에서 얼마나 변하였는지를 보는 것이다.
+            따라서 <Latex>{`1-\\dfrac{1}{(x + 1) ^ 2}`}</Latex> 형태가 아닌{' '}
+            <Latex>{`\\dfrac{1}{x ^ 2}-\\dfrac{1}{(x + 1) ^ 2}`}</Latex>을
+            사용할 것이다.
+        </p>
+
+        <div className="align__center">
+            <img src={pic125} alt="아래쪽 그래프들이 기준이 된다" />
+            <p>
+                <strong>아래쪽 그래프들이 기준이 된다</strong>
+            </p>
+        </div>
 
         <div className="align__center">
             <Latex
                 displayMode={true}
-            >{`(R_{p}(x) - R_{p}(x-1)) - (R_{s}(x) - R_{s}(x-1)) : 100 = (p_{x} - p_{x-1}) - (R_{s}(x) - R_{s}(x-1)) : v`}</Latex>
+            >{`R_{l}(x) = r(\\dfrac{1}{(x + k_{h}) ^ 2}-\\dfrac{1}{(x + k_{h} + 1) ^ 2})`}</Latex>
+            <p>k 값이 가장 높은 점으로 옮긴 방정식</p>
+
             <Latex
                 displayMode={true}
-            >{`\\to v = \\dfrac{100\\{(p_{x} - p_{x-1}) - (R_{s}(x) - R_{s}(x-1))\\}}{(R_{p}(x) - R_{p}(x-1)) - (R_{s}(x) - R_{s}(x-1))}`}</Latex>
+            >{`R_{h}(x) = r(\\dfrac{1}{(x + k_{l}) ^ 2}-\\dfrac{1}{(x + k_{l} + 1) ^ 2})`}</Latex>
+            <p>k 값이 가장 낮은 점으로 옮긴 방정식</p>
+
+            <Latex
+                displayMode={true}
+            >{`R_{h}(x) - R_{l}(x) : 100 = p_{x} - p_{x-1} - R_{l}(x) : v`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`\\to v = \\dfrac{100(p_{x} - p_{x-1} - R_{l}(x))}{R_{h}(x) - R_{l}(x)}`}</Latex>
         </div>
+
+        <p>패턴이 나타나는지 보자.</p>
 
         <h3>
             <a
@@ -81,7 +112,7 @@ export const Between = (): JSX.Element => (
             </Column>
             <Column medium={6} small={12}>
                 <div className="align__center">
-                    <img src={pic123} alt="헬륨 에테르 값의 Between" />
+                    <img src={pic123} alt="수소 에테르 값의 Between" />
                     <p>
                         <strong>
                             수소 에테르 <sup>2</sup>S<sub>1/2</sub> 값의 Between
@@ -130,12 +161,9 @@ export const Between = (): JSX.Element => (
         </Row>
 
         <p>
-            먼저 오비탈을 보자. 붉은 색 1번의 값은 0에서 시작한다. 이 지점은{' '}
-            <code>[O]</code>가 <code>[OO]</code>가 되는 지점이다. 두번째 원형
-            에테르가 쌓이는 지점인 것이다. 살짝 올라간다. 주황색은 p 오비탈로
-            얼마나 값이 증가하는지 그 비율을 무시하면 s와 비슷한 패턴을 보인다고
-            볼 수도 있다. 에테르 변화는 역시 뚜렷하게 나타난다. 조금더 변화량을
-            잘 볼 수 있는 높은 번호의 원소를 보자.
+            오비탈의 변화는 살짝 떨어지는 것과 살짝 올라가는 것이 있지만,
+            오차라고 볼 수 있다. 에테르 변화는 역시 뚜렷하게 나타난다. 조금더
+            변화량을 잘 볼 수 있는 높은 번호의 원소를 보자.
         </p>
 
         <h3>높은 번호의 원소들</h3>

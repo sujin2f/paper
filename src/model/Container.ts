@@ -27,7 +27,6 @@ export class Container extends Iterator<TermGroup> {
 
     private ion: number
     private number: number
-    private baseState: ElectronState
 
     public static getOrCreateInstance(
         number: number,
@@ -68,10 +67,10 @@ export class Container extends Iterator<TermGroup> {
 
         let rows: Record<string, Row[]> = {} // by term group
 
-        this.baseState = new ElectronState(rawData[0])
+        let baseState = new ElectronState(rawData[0])
         rawData.forEach((data) => {
             if (data.rydberg === 0) {
-                this.baseState = new ElectronState(data)
+                baseState = new ElectronState(data)
             }
         })
         switch (dataType) {
@@ -86,6 +85,12 @@ export class Container extends Iterator<TermGroup> {
         Object.keys(rows).forEach((key) => {
             const filteredRows = rows[key].filter((row) => row !== undefined)
             const termGroup = new TermGroup(filteredRows, this.number, this.ion)
+            if (
+                termGroup.get(0).first.confPrefix.join('.') !==
+                baseState.confPrefix.join('.')
+            ) {
+                termGroup.isCombination = true
+            }
             this.items.push(termGroup)
         })
 
@@ -279,11 +284,10 @@ export class Container extends Iterator<TermGroup> {
      */
     public getChartData(graphType: GraphType): ChartData {
         const datasets: ChartDatasets[] = []
-        this.filter((term) => term.visible).forEach((term) => {
-            // only visible terms
-            const rowData = term
-                .filter((row) => !row.isCombination)
-                .map((row, index) => {
+        this.filter((term) => term.visible && !term.isCombination).forEach(
+            (term) => {
+                // only visible terms
+                const rowData = term.map((row, index) => {
                     const data: number[] = row
                         .map((electron) => {
                             if (!electron) {
@@ -326,10 +330,11 @@ export class Container extends Iterator<TermGroup> {
                     return result
                 })
 
-            // Filter empty out
-            const filtered = rowData.filter((i) => i) as ChartDatasets[]
-            datasets.push(...filtered)
-        })
+                // Filter empty out
+                const filtered = rowData.filter((i) => i) as ChartDatasets[]
+                datasets.push(...filtered)
+            },
+        )
 
         const length: number[] = datasets.map((v) => v.data.length)
         const columns = length.length
@@ -352,8 +357,17 @@ export class Container extends Iterator<TermGroup> {
         shift: number,
         k: number,
         position: number,
+        isDiff = false,
     ) {
-        return ratio * (1 - 1 / Math.pow(position + 1 + k, 2)) + shift
+        if (!isDiff) {
+            return ratio * (1 - 1 / Math.pow(position + 1 + k, 2)) + shift
+        }
+        return (
+            ratio *
+                (1 / Math.pow(position + k, 2) -
+                    1 / Math.pow(position + 1 + k, 2)) +
+            shift
+        )
     }
     /*
      * For storing data, make a unique key of each rows
@@ -365,25 +379,28 @@ export class Container extends Iterator<TermGroup> {
     /*
      * Transform equation
      */
-    private _transform: Record<string, number[]> = {}
+    private transform: Record<string, number[]> = {}
     public getTransform(
         termGroup: TermGroup,
         row: Row,
         electron: ElectronState,
     ): number {
+        if (termGroup.isCombination) {
+            return NaN
+        }
         const key = this.getUniqueKey(termGroup, row)
         const position = electron.position
 
-        if (!this._transform[key]) {
-            this._transform[key] = []
+        if (!this.transform[key]) {
+            this.transform[key] = []
         }
-        if (this._transform[key][position]) {
-            return this._transform[key][position]
+        if (this.transform[key][position]) {
+            return this.transform[key][position]
         }
 
         // Before the first item
         if (row.first.position > position) {
-            this._transform[key][position] = NaN
+            this.transform[key][position] = NaN
             return NaN
         }
 
@@ -392,19 +409,19 @@ export class Container extends Iterator<TermGroup> {
             (row.type === 'ether' || row.type === 'orbital') &&
             row.first === electron
         ) {
-            this._transform[key][position] = NaN
+            this.transform[key][position] = NaN
             return NaN
         }
 
         // Base state
         if (!electron.prev) {
-            this._transform[key][position] = NaN
+            this.transform[key][position] = NaN
             return NaN
         }
 
         // Shifted point is always zero
         if (electron.prev.energy === 0) {
-            this._transform[key][position] = 0
+            this.transform[key][position] = 0
             return 0
         }
 
@@ -417,7 +434,7 @@ export class Container extends Iterator<TermGroup> {
             : termGroup.linearHShift
 
         if (isNaN(hShift) || isNaN(hShiftPrev)) {
-            this._transform[key][position] = NaN
+            this.transform[key][position] = NaN
             return NaN
         }
 
@@ -438,93 +455,68 @@ export class Container extends Iterator<TermGroup> {
             this.getRydberg(termGroup.ratio, vShift, 0, position) -
             this.getRydberg(termGroup.ratio, vShift, 0, position - 1)
 
-        this._transform[key][position] = (electron.diff - (r2 - r1)) / normalize
-        return this._transform[key][position]
+        this.transform[key][position] = (electron.diff - (r2 - r1)) / normalize
+        return this.transform[key][position]
     }
 
     /*
      * Between equation
      */
-    private _between: Record<string, number[]> = {}
+    private highK = NaN
+    private lowK = NaN
+    private between: Record<string, number[]> = {}
     public getBetween(termGroup: TermGroup, row: Row, electron: ElectronState) {
+        if (termGroup.isCombination) {
+            return NaN
+        }
+
         const key = this.getUniqueKey(termGroup, row)
         const position = electron.position
 
-        if (!this._between[key]) {
-            this._between[key] = []
+        if (!this.between[key]) {
+            this.between[key] = []
         }
-        if (this._between[key][position]) {
-            return this._between[key][position]
+        if (!electron.prev) {
+            this.between[key][position] = NaN
+            return NaN
         }
-
         // Before the first item
         if (row.first.position > position) {
-            this._between[key][position] = NaN
+            this.between[key][position] = NaN
             return NaN
         }
 
-        // First item of ether and orbital
-        if (
-            (row.type === 'ether' || row.type === 'orbital') &&
-            row.first === electron
-        ) {
-            this._between[key][position] = NaN
-            return NaN
-        }
-        // Base state
-        if (!electron.prev) {
-            this._between[key][position] = NaN
-            return NaN
+        if (isNaN(this.highK)) {
+            let shifts: number[] = []
+            this.filter((item) => !item.isCombination).forEach((item) => {
+                shifts.push(item.linearHShift, item.radialHShift)
+            })
+            shifts = shifts.filter((value) => !isNaN(value))
+            this.highK = Math.max(...shifts)
+            this.lowK = Math.min(...shifts)
         }
 
-        // Remove shifted point
-        if (electron.prev.energy === 0) {
-            this._between[key][position] = 0
-            return NaN
-        }
-
-        // Get horizontal shift (k) of radial and linear
-        const radialShift = termGroup.radialHShift
-        const linearHShift = termGroup.linearHShift
-
-        if (isNaN(radialShift) || isNaN(linearHShift)) {
-            this._between[key][position] = NaN
-            return NaN
-        }
-
-        // Vertical shift (s)
-        const vShift = termGroup.peak - termGroup.ratio
-
-        // s orbital equation
-        const sRydberg1 = this.getRydberg(
+        const rydbergLow = this.getRydberg(
             termGroup.ratio,
-            vShift,
-            radialShift,
+            0,
+            this.highK,
             position,
+            true,
         )
-        const sRydberg2 = this.getRydberg(
+        const rydbergHigh = this.getRydberg(
             termGroup.ratio,
-            vShift,
-            radialShift,
-            position - 1,
-        )
-        // p orbital equation
-        const pRydberg1 = this.getRydberg(
-            termGroup.ratio,
-            vShift,
-            linearHShift,
+            0,
+            this.lowK,
             position,
+            true,
         )
-        const pRydberg2 = this.getRydberg(
-            termGroup.ratio,
-            vShift,
-            linearHShift,
-            position - 1,
-        )
+        if (this.between[key][position]) {
+            return this.between[key][position]
+        }
 
-        this._between[key][position] =
-            (100 * (electron.diff - (sRydberg1 - sRydberg2))) /
-            (pRydberg1 - pRydberg2 - (sRydberg1 - sRydberg2))
-        return this._between[key][position]
+        this.between[key][position] =
+            (100 * (electron.diff - rydbergLow)) / (rydbergHigh - rydbergLow)
+
+        return this.between[key][position]
     }
 }
