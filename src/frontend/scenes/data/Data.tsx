@@ -20,24 +20,55 @@ export const Data = (): JSX.Element => {
     if (!atom) {
         return (
             <Fragment>
-                <p>
-                    The atom you are trying to find does not exist in this
-                    universe
-                </p>
-                <p>
-                    Please visit another universe or go back to our
-                    <Link to="/">front page</Link>
-                </p>
+                <Row>
+                    <Column>
+                        <Header />
+                    </Column>
+                </Row>
+                <Row>
+                    <Column>
+                        <p>
+                            The atom you are trying to find does not exist in
+                            this universe
+                        </p>
+                        <p>
+                            Please visit another universe or go back to our
+                            <Link to="/">front page</Link>
+                        </p>
+                    </Column>
+                </Row>
             </Fragment>
         )
     }
 
     if (loading) {
-        return <Fragment>Loading</Fragment>
+        return (
+            <Fragment>
+                <Row>
+                    <Column>
+                        <Header />
+                    </Column>
+                </Row>
+                <Row>
+                    <Column>Loading</Column>
+                </Row>
+            </Fragment>
+        )
     }
 
     if (!container) {
-        return <Fragment>No Data</Fragment>
+        return (
+            <Fragment>
+                <Row>
+                    <Column>
+                        <Header />
+                    </Column>
+                </Row>
+                <Row>
+                    <Column>No Data</Column>
+                </Row>
+            </Fragment>
+        )
     }
 
     return (

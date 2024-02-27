@@ -85,10 +85,15 @@ export class Container extends Iterator<TermGroup> {
         Object.keys(rows).forEach((key) => {
             const filteredRows = rows[key].filter((row) => row !== undefined)
             const termGroup = new TermGroup(filteredRows, this.number, this.ion)
-            if (
-                termGroup.get(0).first.confPrefix.join('.') !==
-                baseState.confPrefix.join('.')
-            ) {
+            // Only last ether is difference from base:
+            const confPrefix = termGroup
+                .get(0)
+                .first.confPrefix.filter((conf) => !conf.startsWith('('))
+                .join('.')
+            const confPrefixBase = baseState.confPrefix
+                .filter((conf) => !conf.startsWith('('))
+                .join('.')
+            if (confPrefix !== confPrefixBase) {
                 termGroup.isCombination = true
             }
             this.items.push(termGroup)
