@@ -1,8 +1,9 @@
 import { RawData } from 'src/types/data'
 import { orbitalKeys } from 'src/constants/orbital'
-import { Row } from './Row'
-import { Nullable } from 'src/types/common'
+import { Nullable } from 'src/common/types'
 import { getConfArray } from 'src/utils/atom'
+
+import { Row } from 'src/model/Row'
 
 export class ElectronState {
     public _id?: string

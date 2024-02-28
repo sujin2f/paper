@@ -6,7 +6,7 @@ import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 
 import { Doc } from 'src/frontend/scenes/doc-kor'
-import { Latex } from 'src/frontend/components/document/latex'
+import { Latex } from 'src/frontend/components/document/Latex'
 
 import pic29 from 'src/assets/images/doc/pic29.png'
 import pic42 from 'src/assets/images/doc/pic42.png'
@@ -625,14 +625,17 @@ export const Comparison = (): JSX.Element => (
                         Prev:
                         <Link
                             to="/kor/multi-electron-atoms"
-                            onClick={() => scrollTo()}
+                            onClick={() => scrollTo('', false)}
                         >
                             가설의 검증(2): 뤼드베리 방정식의 재정립
                         </Link>
                     </li>
                     <li>
                         Next:
-                        <Link to="/kor/between" onClick={() => scrollTo()}>
+                        <Link
+                            to="/kor/between"
+                            onClick={() => scrollTo('', false)}
+                        >
                             가설의 검증(4): 비교기준, Between
                         </Link>
                     </li>

@@ -108,7 +108,7 @@ describe('device.ts', () => {
         })
 
         test('scrollTo()', () => {
-            scrollTo()
+            scrollTo('')
             expect(window.scrollTo).toHaveBeenCalledWith(0, 0)
         })
 

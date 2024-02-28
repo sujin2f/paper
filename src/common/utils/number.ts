@@ -1,3 +1,6 @@
+/**
+ * Number to $
+ */
 export const formatCurrency = (amount: number, currency = 'USD'): string => {
     const value = amount || 0
     return value.toLocaleString('en-US', {
@@ -6,6 +9,9 @@ export const formatCurrency = (amount: number, currency = 'USD'): string => {
     })
 }
 
+/**
+ * Roman Number
+ */
 export const romanize = (arabic: number) => {
     const lookup = {
         M: 1000,

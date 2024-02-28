@@ -47,7 +47,10 @@ export const Intro = (): JSX.Element => (
                 <ul>
                     <li>
                         Next:
-                        <Link to="/kor/hypothesis" onClick={() => scrollTo()}>
+                        <Link
+                            to="/kor/hypothesis"
+                            onClick={() => scrollTo('', false)}
+                        >
                             가설 제시
                         </Link>
                     </li>

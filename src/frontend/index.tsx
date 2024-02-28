@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom/client'
 import * as serviceWorker from 'src/frontend/serviceWorker'
 import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client/react'
+import { ApolloClient, InMemoryCache } from '@apollo/client'
 
 import { Router } from 'src/frontend/Router'
 import { Store } from 'src/frontend/store'
-import { graphqlClient } from 'src/utils/graphqlClient'
 
 import 'src/assets/styles/style.scss'
+
+const cache = new InMemoryCache()
+export const graphqlClient = new ApolloClient({
+    uri: '/graphql',
+    cache,
+})
 
 const root = document.getElementById('root')
 if (root) {

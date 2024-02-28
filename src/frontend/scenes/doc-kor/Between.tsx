@@ -6,7 +6,7 @@ import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 
 import { Doc } from 'src/frontend/scenes/doc-kor'
-import { Latex } from 'src/frontend/components/document/latex'
+import { Latex } from 'src/frontend/components/document/Latex'
 
 import pic58 from 'src/assets/images/doc/pic58.png'
 import pic114 from 'src/assets/images/doc/pic114.png'
@@ -262,13 +262,19 @@ export const Between = (): JSX.Element => (
                 <ul>
                     <li>
                         Prev:
-                        <Link to="/kor/comparison" onClick={() => scrollTo()}>
+                        <Link
+                            to="/kor/comparison"
+                            onClick={() => scrollTo('', false)}
+                        >
                             가설의 검증(3): 방출 에너지 분석
                         </Link>
                     </li>
                     <li>
                         Next:
-                        <Link to="/kor/conclusion" onClick={() => scrollTo()}>
+                        <Link
+                            to="/kor/conclusion"
+                            onClick={() => scrollTo('', false)}
+                        >
                             결론
                         </Link>
                     </li>

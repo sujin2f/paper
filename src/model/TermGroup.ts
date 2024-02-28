@@ -1,7 +1,7 @@
 import { getAtom } from 'src/utils/atom'
-import { ElectronState } from './ElectronState'
-import { Iterator } from './Iterator'
-import { Row } from './Row'
+import { ElectronState } from 'src/model/ElectronState'
+import { Iterator } from 'src/common/model/Iterator'
+import { Row } from 'src/model/Row'
 import { jouleToEv } from 'src/constants/orbital'
 
 export class TermGroup extends Iterator<Row> {
@@ -116,7 +116,7 @@ export class TermGroup extends Iterator<Row> {
         private number: number,
         private ion: number,
     ) {
-        super()
+        super(rows)
         this.items = rows
         this._key = rows[0] ? rows[0].symbol : ''
     }

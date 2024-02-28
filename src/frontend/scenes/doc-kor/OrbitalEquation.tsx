@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Doc } from 'src/frontend/scenes/doc-kor'
-import { Latex } from 'src/frontend/components/document/latex'
+import { Latex } from 'src/frontend/components/document/Latex'
 
 import pic27 from 'src/assets/images/doc/pic27.png'
 import pic28 from 'src/assets/images/doc/pic28.png'

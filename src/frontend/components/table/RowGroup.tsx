@@ -1,11 +1,10 @@
-import React, { Fragment, useContext } from 'react'
-import { Context, ContextType } from 'src/frontend/store'
+import React, { Fragment } from 'react'
 import { Ether } from './cells/Ether'
 import { Orbital } from './cells/Orbital'
 import { Row as RowModel } from 'src/model/Row'
 import { TermGroup as TermGroupModel } from 'src/model/TermGroup'
 import { Row } from './Row'
-import { Container } from 'src/model/Container'
+import { useStore } from 'src/frontend/hooks/useStore'
 
 type Props = {
     row: RowModel
@@ -15,12 +14,12 @@ type Props = {
 export const RowGroup = (props: Props): JSX.Element => {
     const [
         {
+            container,
             visible: { orbital, ether, energy, transform, between },
         },
-    ] = useContext(Context) as ContextType
+    ] = useStore()
     const { row, termGroup } = props
 
-    const container = Container.getInstance()
     if (!container) {
         return <Fragment></Fragment>
     }

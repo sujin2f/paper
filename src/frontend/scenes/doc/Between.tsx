@@ -5,7 +5,7 @@ import { Doc } from 'src/frontend/scenes/doc'
 import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 import { scrollTo } from 'src/common/utils/device'
-import { Latex } from 'src/frontend/components/document/latex'
+import { Latex } from 'src/frontend/components/document/Latex'
 
 import pic58 from 'src/assets/images/doc/pic58.png'
 import pic114 from 'src/assets/images/doc/pic114.png'
@@ -307,13 +307,19 @@ export const Between = (): JSX.Element => (
                 <ul>
                     <li>
                         Prev:
-                        <Link to="/comparison" onClick={() => scrollTo()}>
+                        <Link
+                            to="/comparison"
+                            onClick={() => scrollTo('', false)}
+                        >
                             Proof(3): Emission Energy Analysis
                         </Link>
                     </li>
                     <li>
                         Next:
-                        <Link to="/conclusion" onClick={() => scrollTo()}>
+                        <Link
+                            to="/conclusion"
+                            onClick={() => scrollTo('', false)}
+                        >
                             Conclusion
                         </Link>
                     </li>

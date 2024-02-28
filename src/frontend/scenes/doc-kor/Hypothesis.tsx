@@ -228,7 +228,7 @@ export const Hypothesis = (): JSX.Element => (
                 <ul>
                     <li>
                         Prev:
-                        <Link to="/kor" onClick={() => scrollTo()}>
+                        <Link to="/kor" onClick={() => scrollTo('', false)}>
                             소개
                         </Link>
                     </li>
@@ -236,7 +236,7 @@ export const Hypothesis = (): JSX.Element => (
                         Next:
                         <Link
                             to="/kor/classic-physics"
-                            onClick={() => scrollTo()}
+                            onClick={() => scrollTo('', false)}
                         >
                             가설의 검증(1): 고전 물리학
                         </Link>

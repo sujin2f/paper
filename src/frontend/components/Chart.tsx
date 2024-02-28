@@ -1,22 +1,24 @@
 import React, { Fragment, useEffect, useRef } from 'react'
-import { useURLParam } from 'src/frontend/hooks/useURLParam'
-import { Container } from 'src/model/Container'
+
 import {
-    ScriptLoaderStatus,
+    LoadingStatus,
     useScriptLoader,
 } from 'src/common/hooks/useScriptLoader'
 
+import { useURLParam } from 'src/frontend/hooks/useURLParam'
+import { useStore } from 'src/frontend/hooks/useStore'
+
 export const Chart = (): JSX.Element => {
-    const { isGraph, graphType, term } = useURLParam()
+    const [{ container }] = useStore()
+    const { isGraph, graphType, term, dataType } = useURLParam()
     const wrapper = useRef<HTMLCanvasElement>(null)
-    const container = Container.getInstance()
     const script = useScriptLoader(
         'https://unpkg.com/chart.js@4.2.0/dist/chart.umd.js',
     )
 
     useEffect(() => {
         let chart: undefined | any = undefined
-        if (script === ScriptLoaderStatus.COMPLETE) {
+        if (script === LoadingStatus.COMPLETE) {
             if (container && wrapper.current && isGraph) {
                 const options = {
                     responsive: true,
@@ -44,7 +46,7 @@ export const Chart = (): JSX.Element => {
                 chart.destroy()
             }
         }
-    }, [container, graphType, script, isGraph, term])
+    }, [container, graphType, script, isGraph, term, dataType])
 
     if (!isGraph) {
         return <Fragment></Fragment>

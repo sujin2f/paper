@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { romanize } from 'src/common/utils/number'
 import { useURLParam } from 'src/frontend/hooks/useURLParam'
@@ -7,13 +7,24 @@ export const IonDropdown = (): JSX.Element => {
     const { atomNumber, getAddress, ion: current } = useURLParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
-    const ions = Array(atomNumber)
-        .fill('')
-        .map((_, index) => index + 1)
 
-    document.addEventListener('click', () => {
-        setShowOptions(false)
-    })
+    const ions = useMemo(() => {
+        return Array(atomNumber)
+            .fill('')
+            .map((_, i) => i + 1)
+    }, [atomNumber])
+
+    useEffect(() => {
+        document.addEventListener('click', () => {
+            setShowOptions(false)
+        })
+
+        return () => {
+            document.removeEventListener('click', () => {
+                setShowOptions(false)
+            })
+        }
+    }, [])
 
     return (
         <li>

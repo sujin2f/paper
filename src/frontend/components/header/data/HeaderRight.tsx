@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import { Context, ContextType } from 'src/frontend/store'
+import React from 'react'
+import { useStore } from 'src/frontend/hooks/useStore'
 import { setDigit } from 'src/frontend/store/actions'
 
 export const HeaderRight = (): JSX.Element => {
-    const [{ digit }, dispatch] = useContext(Context) as ContextType
+    const [{ digit }, dispatch] = useStore()
 
     return (
         <div className="top-bar-right">

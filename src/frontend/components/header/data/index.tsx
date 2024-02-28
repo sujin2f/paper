@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { romanize } from 'src/common/utils/number'
 import { useURLParam } from 'src/frontend/hooks/useURLParam'
@@ -12,16 +12,23 @@ import { HeaderRight } from './HeaderRight'
 import { IonDropdown } from 'src/frontend/components/dropdown/IonDropdown'
 import { OptionDropdown } from 'src/frontend/components/dropdown/OptionDropdown'
 import { TermDropdown } from '../../dropdown/TermDropdown'
+import { useStore } from 'src/frontend/hooks/useStore'
 
 export const Header = (): JSX.Element => {
+    const [{ container }] = useStore()
     const { atom, atomNumber, ion, dataType, getAddress } = useURLParam()
+
+    const prev = useMemo(() => {
+        return getAtom(atomNumber - 1)
+    }, [atomNumber])
+
+    const next = useMemo(() => {
+        return getAtom(atomNumber + 1)
+    }, [atomNumber])
 
     if (!atom) {
         return <Fragment></Fragment>
     }
-
-    const prev = getAtom(atomNumber - 1)
-    const next = getAtom(atomNumber + 1)
 
     return (
         <Fragment>
@@ -91,49 +98,51 @@ export const Header = (): JSX.Element => {
                     )}
                 </nav>
             </div>
-            <div className="top-bar">
-                <nav className="top-bar-left">
-                    <ul className="dropdown menu">
-                        <OptionDropdown />
-                        <IonDropdown />
-                        <TermDropdown />
+            {container && (
+                <div className="top-bar">
+                    <nav className="top-bar-left">
+                        <ul className="dropdown menu">
+                            <OptionDropdown />
+                            <IonDropdown />
+                            <TermDropdown />
 
-                        <li className="divider">|</li>
+                            <li className="divider">|</li>
 
-                        <li
-                            className={`link-base ${
-                                dataType === 'orbital' ? 'current' : ''
-                            }`}
-                        >
-                            <Link
-                                to={getAddress({
-                                    dataType: 'orbital',
-                                })}
+                            <li
+                                className={`link-base ${
+                                    dataType === 'orbital' ? 'current' : ''
+                                }`}
                             >
-                                Orbital
-                            </Link>
-                        </li>
-                        <li
-                            className={`link-base ${
-                                dataType === 'ether' ? 'current' : ''
-                            }`}
-                        >
-                            <Link
-                                to={getAddress({
-                                    dataType: 'ether',
-                                })}
+                                <Link
+                                    to={getAddress({
+                                        dataType: 'orbital',
+                                    })}
+                                >
+                                    Orbital
+                                </Link>
+                            </li>
+                            <li
+                                className={`link-base ${
+                                    dataType === 'ether' ? 'current' : ''
+                                }`}
                             >
-                                Ether
-                            </Link>
-                        </li>
+                                <Link
+                                    to={getAddress({
+                                        dataType: 'ether',
+                                    })}
+                                >
+                                    Ether
+                                </Link>
+                            </li>
 
-                        <li className="divider">|</li>
+                            <li className="divider">|</li>
 
-                        <ChartDropdown />
-                    </ul>
-                </nav>
-                <HeaderRight />
-            </div>
+                            <ChartDropdown />
+                        </ul>
+                    </nav>
+                    <HeaderRight />
+                </div>
+            )}
         </Fragment>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useURLParam } from 'src/frontend/hooks/useURLParam'
 
@@ -7,9 +7,17 @@ export const ChartDropdown = (): JSX.Element => {
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
 
-    document.addEventListener('click', () => {
-        setShowOptions(false)
-    })
+    useEffect(() => {
+        document.addEventListener('click', () => {
+            setShowOptions(false)
+        })
+
+        return () => {
+            document.removeEventListener('click', () => {
+                setShowOptions(false)
+            })
+        }
+    }, [])
 
     return (
         <li>

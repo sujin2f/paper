@@ -1,4 +1,8 @@
-export const currencyToNumber = (currency?: string): number => {
+/**
+ * String to number
+ * i.g $1,123,00.23
+ */
+export const toNumber = (currency?: string): number => {
     if (!currency) {
         return 0
     }
@@ -9,6 +13,9 @@ export const currencyToNumber = (currency?: string): number => {
     return float
 }
 
+/**
+ * Get UUID
+ */
 export const generateUUID = () => {
     let d = new Date().getTime()
     let d2: number
@@ -32,14 +39,4 @@ export const generateUUID = () => {
         // tslint:disable-next-line: no-bitwise
         return (c === 'x' ? r : (r & 0x7) | 0x8).toString(16)
     })
-}
-
-export const toMongoSearchString = (text: string) => {
-    const title = text
-        .replace(/[^a-zA-Z]/g, ' ')
-        .toLowerCase()
-        .split(' ')
-        .filter((v) => v)
-    const unique = [...new Set(title)]
-    return unique.join(' ')
 }

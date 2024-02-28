@@ -217,7 +217,10 @@ export const Conclusion = (): JSX.Element => (
                 <ul>
                     <li>
                         Prev:
-                        <Link to="/kor/between" onClick={() => scrollTo()}>
+                        <Link
+                            to="/kor/between"
+                            onClick={() => scrollTo('', false)}
+                        >
                             가설의 검증(4): 비교기준, Between
                         </Link>
                     </li>

@@ -1,75 +1,18 @@
 import React, { Fragment } from 'react'
+
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
+
 import { Header } from 'src/frontend/components/header/data'
-import { Link } from 'react-router-dom'
-import { useURLParam } from 'src/frontend/hooks/useURLParam'
-import { useData } from 'src/frontend/hooks/useData'
 import { Chart } from 'src/frontend/components/Chart'
 import { Table } from 'src/frontend/components/table'
+import { Loading } from 'src/frontend/components/Loading'
+import { useGraphQL } from 'src/frontend/hooks/useGraphQL'
+import { useStore } from 'src/frontend/hooks/useStore'
 
 export const Data = (): JSX.Element => {
-    const { dataType, atom, atomNumber, ion, term } = useURLParam()
-    const { container, loading, error } = useData({
-        dataType,
-        number: atomNumber,
-        ion,
-        term,
-    })
-
-    if (!atom) {
-        return (
-            <Fragment>
-                <Row>
-                    <Column>
-                        <Header />
-                    </Column>
-                </Row>
-                <Row>
-                    <Column>
-                        <p>
-                            The atom you are trying to find does not exist in
-                            this universe
-                        </p>
-                        <p>
-                            Please visit another universe or go back to our
-                            <Link to="/">front page</Link>
-                        </p>
-                    </Column>
-                </Row>
-            </Fragment>
-        )
-    }
-
-    if (loading) {
-        return (
-            <Fragment>
-                <Row>
-                    <Column>
-                        <Header />
-                    </Column>
-                </Row>
-                <Row>
-                    <Column>Loading</Column>
-                </Row>
-            </Fragment>
-        )
-    }
-
-    if (!container) {
-        return (
-            <Fragment>
-                <Row>
-                    <Column>
-                        <Header />
-                    </Column>
-                </Row>
-                <Row>
-                    <Column>No Data</Column>
-                </Row>
-            </Fragment>
-        )
-    }
+    const [{ container }] = useStore()
+    const { loading, error } = useGraphQL()
 
     return (
         <Fragment>
@@ -79,8 +22,14 @@ export const Data = (): JSX.Element => {
                 </Column>
             </Row>
             <Row>
-                {error && <Fragment>404</Fragment>}
-                {!error && (
+                {loading && (
+                    <Column>
+                        <Loading />
+                    </Column>
+                )}
+                {!loading && !container && <Column>No Data</Column>}
+                {!loading && container && error && <Column>404</Column>}
+                {!loading && container && !error && (
                     <Column>
                         <Chart />
                         <Table />

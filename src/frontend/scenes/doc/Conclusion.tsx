@@ -257,7 +257,7 @@ export const Conclusion = (): JSX.Element => (
                 <ul>
                     <li>
                         Prev:
-                        <Link to="/between" onClick={() => scrollTo()}>
+                        <Link to="/between" onClick={() => scrollTo('', false)}>
                             Proof(4): Between Comparison
                         </Link>
                     </li>

@@ -6,7 +6,7 @@ import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 
 import { Doc } from 'src/frontend/scenes/doc-kor'
-import { Latex } from 'src/frontend/components/document/latex'
+import { Latex } from 'src/frontend/components/document/Latex'
 
 import pic5 from 'src/assets/images/doc/pic5_eng.png'
 
@@ -433,7 +433,10 @@ export const ClassicPhysics = (): JSX.Element => (
                 <ul>
                     <li>
                         Prev:
-                        <Link to="/kor/hypothesis" onClick={() => scrollTo()}>
+                        <Link
+                            to="/kor/hypothesis"
+                            onClick={() => scrollTo('', false)}
+                        >
                             가설 제시
                         </Link>
                     </li>
@@ -441,7 +444,7 @@ export const ClassicPhysics = (): JSX.Element => (
                         Next:
                         <Link
                             to="/kor/multi-electron-atoms"
-                            onClick={() => scrollTo()}
+                            onClick={() => scrollTo('', false)}
                         >
                             가설의 검증(2): 뤼드베리 방정식의 재정립
                         </Link>

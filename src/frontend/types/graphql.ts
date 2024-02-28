@@ -1,14 +1,12 @@
 import { ApolloError } from '@apollo/client'
-import { Container } from 'src/model/Container'
+import { Nullable } from 'src/common/types'
 import { RawData } from 'src/types/data'
-import { GraphQLParam } from 'src/types/graphQl'
 
 export type GraphQLReturnType = {
     items: RawData[]
 }
 
-export type DataHook = (variables: GraphQLParam) => {
-    container: Container | null
+export type DataHook = () => {
     loading: boolean
-    error: ApolloError | undefined
+    error: Nullable<ApolloError>
 }

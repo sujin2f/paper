@@ -6,7 +6,7 @@ import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 
 import { Doc } from 'src/frontend/scenes/doc'
-import { Latex } from 'src/frontend/components/document/latex'
+import { Latex } from 'src/frontend/components/document/Latex'
 
 import pic5 from 'src/assets/images/doc/pic5_eng.png'
 
@@ -453,7 +453,10 @@ export const ClassicPhysics = (): JSX.Element => {
                     <ul>
                         <li>
                             Prev:
-                            <Link to="/hypothesis" onClick={() => scrollTo()}>
+                            <Link
+                                to="/hypothesis"
+                                onClick={() => scrollTo('', false)}
+                            >
                                 Hypothesis
                             </Link>
                         </li>
@@ -461,7 +464,7 @@ export const ClassicPhysics = (): JSX.Element => {
                             Next:
                             <Link
                                 to="/multi-electron-atoms"
-                                onClick={() => scrollTo()}
+                                onClick={() => scrollTo('', false)}
                             >
                                 Proof(2): Reinterpretation of Rydberg Formula
                             </Link>

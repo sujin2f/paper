@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react'
-import { Container } from 'src/model/Container'
-import { TermGroup } from './TermGroup'
+import { useStore } from 'src/frontend/hooks/useStore'
+import { TermGroup } from 'src/frontend/components/table/TermGroup'
 
 export const Table = (): JSX.Element => {
-    const container = Container.getInstance()
+    const [{ container }] = useStore()
     if (!container) {
         return <Fragment></Fragment>
     }

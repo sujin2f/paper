@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { TermGroup as TermGroupModel } from 'src/model/TermGroup'
-import { Container } from 'src/model/Container'
 import { RowGroup } from './RowGroup'
+import { useStore } from 'src/frontend/hooks/useStore'
 
 type Props = {
     termGroup: TermGroupModel
@@ -9,7 +9,7 @@ type Props = {
 
 export const TermGroup = (props: Props): JSX.Element => {
     const { termGroup } = props
-    const container = Container.getInstance()
+    const [{ container }] = useStore()
     if (!container) {
         return <Fragment></Fragment>
     }

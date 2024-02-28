@@ -1,4 +1,5 @@
 import {
+    SET_DATA_CONTAINER,
     SET_DIGIT,
     SET_ORBITAL,
     SET_ETHER,
@@ -9,6 +10,7 @@ import {
 import { Action, State } from 'src/frontend/types/store'
 
 export const initialState: State = {
+    container: undefined,
     digit: 4,
     visible: {
         orbital: true,
@@ -21,6 +23,12 @@ export const initialState: State = {
 
 export const reducer = (state: State = initialState, action: Action): State => {
     switch (action.type) {
+        case SET_DATA_CONTAINER: {
+            return {
+                ...state,
+                container: action.container!,
+            }
+        }
         case SET_DIGIT: {
             if (action.digit! < 0 || action.digit! > 13) {
                 return state

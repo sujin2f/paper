@@ -1,21 +1,30 @@
-import React, { Fragment, useRef, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+
 import { useURLParam } from 'src/frontend/hooks/useURLParam'
-import { Container } from 'src/model/Container'
+import { useStore } from 'src/frontend/hooks/useStore'
 
 export const TermDropdown = (): JSX.Element => {
     const { term, getAddress } = useURLParam()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
-    const container = Container.getInstance()
+    const [{ container }] = useStore()
+
+    useEffect(() => {
+        document.addEventListener('click', () => {
+            setShowOptions(false)
+        })
+
+        return () => {
+            document.removeEventListener('click', () => {
+                setShowOptions(false)
+            })
+        }
+    }, [])
 
     if (!container) {
         return <Fragment></Fragment>
     }
-
-    document.addEventListener('click', () => {
-        setShowOptions(false)
-    })
 
     return (
         <li>

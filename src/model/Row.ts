@@ -1,5 +1,5 @@
-import { ElectronState } from './ElectronState'
-import { Iterator } from './Iterator'
+import { ElectronState } from 'src/model/ElectronState'
+import { Iterator } from 'src/common/model/Iterator'
 
 export class Row extends Iterator<ElectronState> {
     public type: 'radial' | 'linear' | 'orbital' | 'ether' = 'radial'
@@ -36,7 +36,7 @@ export class Row extends Iterator<ElectronState> {
     }
 
     public constructor() {
-        super()
+        super([])
     }
 
     public set(index: number, electron: ElectronState) {

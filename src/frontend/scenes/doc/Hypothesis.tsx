@@ -267,13 +267,16 @@ export const Hypothesis = (): JSX.Element => (
                 <ul>
                     <li>
                         Prev:
-                        <Link to="/" onClick={() => scrollTo()}>
+                        <Link to="/" onClick={() => scrollTo('', false)}>
                             Introduction
                         </Link>
                     </li>
                     <li>
                         Next:
-                        <Link to="/classic-physics" onClick={() => scrollTo()}>
+                        <Link
+                            to="/classic-physics"
+                            onClick={() => scrollTo('', false)}
+                        >
                             Proof(1): Classic Physics
                         </Link>
                     </li>

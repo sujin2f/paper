@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { TOCKor } from 'src/frontend/components/document/TOCKor'
 
 export const KorDocDropdown = (): JSX.Element => {
     const [showOptions, setShowOptions] = useState<boolean>(false)
 
-    document.addEventListener('click', () => {
-        setShowOptions(false)
-    })
+    useEffect(() => {
+        document.addEventListener('click', () => {
+            setShowOptions(false)
+        })
+
+        return () => {
+            document.removeEventListener('click', () => {
+                setShowOptions(false)
+            })
+        }
+    }, [])
 
     return (
         <li>

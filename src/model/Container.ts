@@ -1,13 +1,15 @@
 import { ChartDataset, DefaultDataPoint } from 'chart.js'
+
+import { Iterator } from 'src/common/model/Iterator'
+import { trimEnd } from 'src/common/utils/array'
 import { chartColors } from 'src/constants/chart'
+import { orbitalKeys } from 'src/constants/orbital'
 import { RawData } from 'src/types/data'
 import { DataType, GraphType } from 'src/frontend/types/ui'
+
 import { Row } from 'src/model/Row'
-import { ElectronState } from './ElectronState'
-import { Iterator } from './Iterator'
-import { orbitalKeys } from 'src/constants/orbital'
-import { TermGroup } from './TermGroup'
-import { trimEnd } from 'src/common/utils/array'
+import { ElectronState } from 'src/model/ElectronState'
+import { TermGroup } from 'src/model/TermGroup'
 
 type ChartDatasets = ChartDataset<'line', DefaultDataPoint<'line'>>
 
@@ -17,68 +19,37 @@ type ChartData = {
 }
 
 export class Container extends Iterator<TermGroup> {
-    private static instance: Container
-    public static getInstance(): Container | undefined {
-        if (!Container.instance) {
-            return undefined
-        }
-        return Container.instance
-    }
-
-    private ion: number
-    private number: number
-
-    public static getOrCreateInstance(
-        number: number,
-        ion: number,
-        rawData: RawData[],
-        dataType: DataType,
-        term = 0,
-    ): Container {
-        if (!Container.instance) {
-            Container.instance = new Container(rawData, dataType, term)
-        }
-
-        if (
-            Container.instance.ion === ion &&
-            Container.instance.number === number &&
-            Container.instance.dataType === dataType
-        ) {
-            const container = Container.instance
-            if (container.term !== term) {
-                container.term = term
-                container.setTerm()
-            }
-            return Container.instance
-        }
-
-        Container.instance = new Container(rawData, dataType, term)
-        return Container.instance
-    }
+    public ion: number = NaN
+    public number: number = NaN
 
     public constructor(
-        rawData: RawData[],
+        private rawData: RawData[],
         public dataType: DataType,
         public term = 0,
     ) {
-        super()
-        this.ion = rawData[0].ion
-        this.number = rawData[0].number
+        super([])
+        this.init()
+    }
+
+    public init() {
+        this.items = []
+        this.ion = this.rawData[0].ion
+        this.number = this.rawData[0].number
 
         let rows: Record<string, Row[]> = {} // by term group
 
-        let baseState = new ElectronState(rawData[0])
-        rawData.forEach((data) => {
+        let baseState = new ElectronState(this.rawData[0])
+        this.rawData.forEach((data) => {
             if (data.rydberg === 0) {
                 baseState = new ElectronState(data)
             }
         })
-        switch (dataType) {
+        switch (this.dataType) {
             case 'orbital':
-                rows = this.setOrbital(rawData)
+                rows = this.setOrbital(this.rawData)
                 break
             case 'ether':
-                rows = this.setEther(rawData)
+                rows = this.setEther(this.rawData)
         }
 
         // Remove empty Rows and push it into this.items

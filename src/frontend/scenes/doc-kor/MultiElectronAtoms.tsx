@@ -6,7 +6,7 @@ import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 
 import { Doc } from 'src/frontend/scenes/doc-kor'
-import { Latex } from 'src/frontend/components/document/latex'
+import { Latex } from 'src/frontend/components/document/Latex'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
 import pic10 from 'src/assets/images/doc/pic10.png'
@@ -723,14 +723,17 @@ export const MultiElectronAtoms = (): JSX.Element => (
                         Prev:
                         <Link
                             to="/kor/classic-physics"
-                            onClick={() => scrollTo()}
+                            onClick={() => scrollTo('', false)}
                         >
                             가설의 검증(1): 고전 물리학
                         </Link>
                     </li>
                     <li>
                         Next:
-                        <Link to="/kor/comparison" onClick={() => scrollTo()}>
+                        <Link
+                            to="/kor/comparison"
+                            onClick={() => scrollTo('', false)}
+                        >
                             가설의 검증(3): 방출 에너지 분석
                         </Link>
                     </li>

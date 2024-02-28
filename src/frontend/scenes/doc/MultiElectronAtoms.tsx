@@ -6,7 +6,7 @@ import { Row } from 'src/common/components/layout/Row'
 import { Column } from 'src/common/components/layout/Column'
 
 import { Doc } from 'src/frontend/scenes/doc'
-import { Latex } from 'src/frontend/components/document/latex'
+import { Latex } from 'src/frontend/components/document/Latex'
 
 import pic9 from 'src/assets/images/doc/pic9.png'
 import pic10 from 'src/assets/images/doc/pic10.png'
@@ -808,13 +808,19 @@ export const MultiElectronAtoms = (): JSX.Element => (
                 <ul>
                     <li>
                         Prev:
-                        <Link to="/classic-physics" onClick={() => scrollTo()}>
+                        <Link
+                            to="/classic-physics"
+                            onClick={() => scrollTo('', false)}
+                        >
                             Proof(1): Classic Physics
                         </Link>
                     </li>
                     <li>
                         Next:
-                        <Link to="/comparison" onClick={() => scrollTo()}>
+                        <Link
+                            to="/comparison"
+                            onClick={() => scrollTo('', false)}
+                        >
                             Proof(3): Emission Energy Analysis
                         </Link>
                     </li>

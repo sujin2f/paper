@@ -1,5 +1,8 @@
+/*
+ * Abstract class that makes a class iterable
+ */
 export abstract class Iterator<T> {
-    protected items: T[] = []
+    constructor(protected items: T[]) {}
 
     public get length(): number {
         return this.items.length
@@ -17,7 +20,7 @@ export abstract class Iterator<T> {
         return this.items.filter(callback)
     }
 
-    public sort(callback: (a: T, b: T) => number) {
+    public sort(callback?: (a: T, b: T) => number) {
         return this.items.sort(callback)
     }
 
@@ -33,7 +36,15 @@ export abstract class Iterator<T> {
         this.items[index] = item
     }
 
-    public copy() {
+    public push(item: T) {
+        this.items.push(item)
+    }
+
+    public pop() {
+        return this.items.pop()
+    }
+
+    public toArray() {
         return this.items
     }
 }

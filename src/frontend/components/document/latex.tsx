@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useEffect, useState } from 'react'
 
 import {
     useScriptLoader,
-    ScriptLoaderStatus,
+    LoadingStatus,
 } from 'src/common/hooks/useScriptLoader'
 import { useStyleLoader } from 'src/common/hooks/useStyleLoader'
 
@@ -18,7 +18,7 @@ export const Latex = (
     )
 
     useEffect(() => {
-        if (script === ScriptLoaderStatus.COMPLETE) {
+        if (script === LoadingStatus.COMPLETE) {
             const latex = window.katex.renderToString(props.children, {
                 throwOnError: false,
                 displayMode: props.displayMode,

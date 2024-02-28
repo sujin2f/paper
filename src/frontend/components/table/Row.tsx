@@ -1,9 +1,8 @@
-import React, { Fragment, useContext } from 'react'
-import { Context, ContextType } from 'src/frontend/store'
-import { Container } from 'src/model/Container'
+import React, { Fragment } from 'react'
 import { Row as RowModel } from 'src/model/Row'
 import { TermGroup as TermGroupModel } from 'src/model/TermGroup'
 import { TableRowType } from 'src/frontend/types/ui'
+import { useStore } from 'src/frontend/hooks/useStore'
 
 type Props = {
     type: TableRowType
@@ -14,18 +13,16 @@ type Props = {
 
 export const Row = (props: Props): JSX.Element => {
     const { row, type, css, termGroup } = props
-    const [{ digit }] = useContext(Context) as ContextType
+    const [{ container, digit }] = useStore()
 
-    const container = Container.getInstance()
     if (!container) {
         return <Fragment></Fragment>
     }
-    const cols = container.maxCols
 
     return (
         <tr className={`border__bottom ${css || ''}`}>
             <th className="align__right ">{type}</th>
-            {Array(cols)
+            {Array(container.maxCols)
                 .fill('')
                 .map((_, position) => {
                     const electron = row.get(position)

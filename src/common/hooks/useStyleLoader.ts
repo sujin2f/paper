@@ -1,34 +1,28 @@
-// Store Global State
-// From: https://dev.to/yezyilomo/global-state-management-in-react-with-global-variables-and-hooks-state-management-doesn-t-have-to-be-so-hard-2n2c
-class GlobalState {
-    private _value: string[] = []
+import { GlobalState } from '../model/GlobalState'
 
-    private static instance: GlobalState
-    public static getInstance(): GlobalState {
-        if (!GlobalState.instance) {
-            GlobalState.instance = new GlobalState()
-        }
-        return GlobalState.instance
-    }
-
-    public loadStyle(src: string) {
-        // Already loaded
-        if (this._value.indexOf(src) > -1) {
-            return
-        }
-        const link = document.createElement('link')
-        link.href = src
-        link.rel = 'stylesheet'
-
-        document.body.appendChild(link)
-        this._value.push(src)
-    }
+export enum LoadingStatus {
+    INIT = 'init',
+    ON_LOADING = 'onload',
+    COMPLETE = 'complete',
 }
 
+/*
+ * External CSS loader
+ * Even though multiple components call same css, this will embed it just once
+ *
+ * useStyleLoader('https://cdn.com/style.css')
+ */
 export const useStyleLoader = (...src: string[]) => {
-    const globalState = GlobalState.getInstance()
-    src.forEach((href) => {
-        globalState.loadStyle(href)
+    src.forEach((url) => {
+        const globalState = GlobalState.getInstance(url, LoadingStatus.INIT)
+        const state = globalState.value
+        if (state === LoadingStatus.INIT) {
+            globalState.value = LoadingStatus.COMPLETE
+            const link = document.createElement('link')
+            link.href = url
+            link.rel = 'stylesheet'
+            document.body.appendChild(link)
+        }
     })
 
     return

@@ -1,6 +1,6 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Context, ContextType } from 'src/frontend/store'
+import { useStore } from 'src/frontend/hooks/useStore'
 import {
     setEther,
     setOrbital,
@@ -16,12 +16,20 @@ export const OptionDropdown = (): JSX.Element => {
             visible: { orbital, ether, energy, transform, between },
         },
         dispatch,
-    ] = useContext(Context) as ContextType
+    ] = useStore()
     const dropdown = useRef<HTMLUListElement>(null)
 
-    document.addEventListener('click', () => {
-        setShowOptions(false)
-    })
+    useEffect(() => {
+        document.addEventListener('click', () => {
+            setShowOptions(false)
+        })
+
+        return () => {
+            document.removeEventListener('click', () => {
+                setShowOptions(false)
+            })
+        }
+    }, [])
 
     return (
         <li>
