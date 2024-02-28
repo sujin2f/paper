@@ -56,7 +56,7 @@ export const Comparison = (): JSX.Element => (
             orbital. The blue values of the s orbital are all changes
             corresponding to the increase in circular ether. The first value in
             green, representing the p orbital, is the change from{' '}
-            <code>[X]</code>에서 <code>[-]</code>, and the rest are changes
+            <code>[X]</code> to <code>[-]</code>, and the rest are changes
             corresponding to the increase in circular ether. Finally, the violet
             values for the d orbital also show an increase in linear ether for
             the first value, and the rest indicate an increase in circular

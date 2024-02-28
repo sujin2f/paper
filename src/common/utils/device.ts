@@ -22,11 +22,11 @@ export const scrollTo = (
     id: Nullable<string>,
     isSmooth = true,
 ): Nullable<number> => {
-    const behavior = isSmooth ? 'smooth' : 'instant'
+    // const behavior = isSmooth ? 'smooth' : 'instant'
     if (!id) {
         window.scrollTo({
             top: 0,
-            behavior,
+            // behavior,
         })
         return
     }
@@ -42,6 +42,9 @@ export const scrollTo = (
     const clientTop = docElem.clientTop || body.clientTop || 0
     const scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop
 
-    window.scrollTo({ top: box.top + scrollTop - clientTop, behavior })
+    window.scrollTo({
+        top: box.top + scrollTop - clientTop,
+        // behavior
+    })
     return box.top + scrollTop - clientTop
 }
