@@ -12,9 +12,10 @@ const staticRouter = express.Router()
  * Public Dir
  */
 staticRouter.get(
-    /robots\.txt|manifest\.json|favicon\.png|favicon-16x16\.png|favicon-32x32\.png|thumbnail\.png$/,
+    /robots\.txt|manifest\.json|favicon\.png|favicon-16x16\.png|favicon-32x32\.png|thumbnail\.png|service-worker\.js$/,
     (req, res) => {
         const html = `${publicDir}${req.url}`
+        console.log(html)
         res.sendFile(html)
     },
 )
@@ -27,10 +28,11 @@ staticRouter.get('/static(/*)', (req, res) => {
 })
 
 const getGlobalVariable = async (req: Request): Promise<GlobalVariable> => {
+    const frontend = process.env.FRONTEND || 'https://ether.sujinc.com'
     return {
         siteName: process.env.TITLE,
-        url: `${process.env.FRONTEND}${req.url}`,
-        frontend: process.env.FRONTEND,
+        url: `${frontend}${req.url}`,
+        frontend,
         adClient: process.env.GOOGLE_AD_CLIENT,
         adSlot: process.env.GOOGLE_AD_SLOT,
         isProd: process.env.NODE_ENV === 'production',
