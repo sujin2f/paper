@@ -30,7 +30,7 @@ import pic110 from 'src/assets/images/doc/pic110.png'
 import pic111 from 'src/assets/images/doc/pic111.png'
 import pic112 from 'src/assets/images/doc/pic112.png'
 
-export const Comparison = (): JSX.Element => (
+const Comparison = (): JSX.Element => (
     <Doc>
         <h2 id="comparison">가설의 검증(3): 방출 에너지 분석</h2>
 
@@ -644,3 +644,4 @@ export const Comparison = (): JSX.Element => (
         </Row>
     </Doc>
 )
+export default Comparison

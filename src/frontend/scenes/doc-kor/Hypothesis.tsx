@@ -15,7 +15,7 @@ import pic7 from 'src/assets/images/doc/pic7.png'
 import pic8 from 'src/assets/images/doc/pic8.png'
 import pic91 from 'src/assets/images/doc/pic91.jpeg'
 
-export const Hypothesis = (): JSX.Element => (
+const Hypothesis = (): JSX.Element => (
     <Doc>
         <h2 id="hypothesis">가설 제시</h2>
 
@@ -246,3 +246,4 @@ export const Hypothesis = (): JSX.Element => (
         </Row>
     </Doc>
 )
+export default Hypothesis

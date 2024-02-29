@@ -10,7 +10,7 @@ import { Latex } from 'src/frontend/components/document/Latex'
 
 import pic5 from 'src/assets/images/doc/pic5_eng.png'
 
-export const ClassicPhysics = (): JSX.Element => {
+const ClassicPhysics = (): JSX.Element => {
     return (
         <Doc>
             <h2 id="classic-physics">Proof(1): Classic Physics</h2>
@@ -475,3 +475,4 @@ export const ClassicPhysics = (): JSX.Element => {
         </Doc>
     )
 }
+export default ClassicPhysics

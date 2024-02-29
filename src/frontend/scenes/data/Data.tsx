@@ -10,7 +10,7 @@ import { Loading } from 'src/frontend/components/Loading'
 import { useGraphQL } from 'src/frontend/hooks/useGraphQL'
 import { useStore } from 'src/frontend/hooks/useStore'
 
-export const Data = (): JSX.Element => {
+const Data = (): JSX.Element => {
     const [{ container }] = useStore()
     const { loading, error } = useGraphQL()
 
@@ -39,3 +39,4 @@ export const Data = (): JSX.Element => {
         </Fragment>
     )
 }
+export default Data

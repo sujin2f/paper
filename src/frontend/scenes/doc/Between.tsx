@@ -20,7 +20,7 @@ import pic122 from 'src/assets/images/doc/pic122.png'
 import pic123 from 'src/assets/images/doc/pic123.png'
 import pic125 from 'src/assets/images/doc/pic125.png'
 
-export const Between = (): JSX.Element => (
+const Between = (): JSX.Element => (
     <Doc>
         <h2 id="between">Proof(4): Between Comparison</h2>
 
@@ -328,3 +328,4 @@ export const Between = (): JSX.Element => (
         </Row>
     </Doc>
 )
+export default Between

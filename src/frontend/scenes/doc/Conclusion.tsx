@@ -266,3 +266,4 @@ export const Conclusion = (): JSX.Element => (
         </Row>
     </Doc>
 )
+export default Conclusion

@@ -21,7 +21,7 @@ import pic122 from 'src/assets/images/doc/pic122.png'
 import pic123 from 'src/assets/images/doc/pic123.png'
 import pic125 from 'src/assets/images/doc/pic125.png'
 
-export const Between = (): JSX.Element => (
+const Between = (): JSX.Element => (
     <Doc>
         <h2 id="between">가설의 검증(4): 비교 기준, Between</h2>
 
@@ -283,3 +283,4 @@ export const Between = (): JSX.Element => (
         </Row>
     </Doc>
 )
+export default Between

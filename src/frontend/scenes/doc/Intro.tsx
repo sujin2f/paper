@@ -7,7 +7,7 @@ import { Column } from 'src/common/components/layout/Column'
 
 import { Doc } from 'src/frontend/scenes/doc'
 
-export const Intro = (): JSX.Element => (
+const Intro = (): JSX.Element => (
     <Doc>
         <h1 id="intro">
             Hypothesis on the Spatial and Temporal Aspects of Matter
@@ -67,3 +67,4 @@ export const Intro = (): JSX.Element => (
         </Row>
     </Doc>
 )
+export default Intro

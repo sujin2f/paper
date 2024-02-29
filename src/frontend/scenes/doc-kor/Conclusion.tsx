@@ -12,7 +12,7 @@ import pic14 from 'src/assets/images/doc/pic14.png'
 import pic15 from 'src/assets/images/doc/pic15.png'
 import pic124 from 'src/assets/images/doc/pic124.jpeg'
 
-export const Conclusion = (): JSX.Element => (
+const Conclusion = (): JSX.Element => (
     <Doc>
         <h2 id="conclusion">결론</h2>
 
@@ -229,3 +229,4 @@ export const Conclusion = (): JSX.Element => (
         </Row>
     </Doc>
 )
+export default Conclusion

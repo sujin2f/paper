@@ -1,65 +1,86 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import { Public } from 'src/frontend/scenes/Public'
-import { Data } from 'src/frontend/scenes/data/Data'
+import { Loading } from './components/Loading'
 
-import { Intro } from 'src/frontend/scenes/doc/Intro'
-import { Hypothesis } from 'src/frontend/scenes/doc/Hypothesis'
-import { ClassicPhysics } from 'src/frontend/scenes/doc/ClassicPhysics'
-import { MultiElectronAtoms } from 'src/frontend/scenes/doc/MultiElectronAtoms'
-import { Comparison } from 'src/frontend/scenes/doc/Comparison'
-import { Between } from 'src/frontend/scenes/doc/Between'
-import { Conclusion } from 'src/frontend/scenes/doc/Conclusion'
+const Data = lazy(() => import('src/frontend/scenes/data/Data'))
 
-import { Intro as IntroKor } from 'src/frontend/scenes/doc-kor/Intro'
-import { Hypothesis as HypothesisKor } from 'src/frontend/scenes/doc-kor/Hypothesis'
-import { ClassicPhysics as ClassicPhysicsKor } from 'src/frontend/scenes/doc-kor/ClassicPhysics'
-import { MultiElectronAtoms as MultiElectronAtomsKor } from 'src/frontend/scenes/doc-kor/MultiElectronAtoms'
-import { Comparison as ComparisonKor } from 'src/frontend/scenes/doc-kor/Comparison'
-import { Conclusion as ConclusionKor } from 'src/frontend/scenes/doc-kor/Conclusion'
-import { Between as BetweenKor } from 'src/frontend/scenes/doc-kor/Between'
+const IntroKor = lazy(() => import('src/frontend/scenes/doc-kor/Intro'))
+const HypothesisKor = lazy(
+    () => import('src/frontend/scenes/doc-kor/Hypothesis'),
+)
+const ClassicPhysicsKor = lazy(
+    () => import('src/frontend/scenes/doc-kor/ClassicPhysics'),
+)
+const MultiElectronAtomsKor = lazy(
+    () => import('src/frontend/scenes/doc-kor/MultiElectronAtoms'),
+)
+const ComparisonKor = lazy(
+    () => import('src/frontend/scenes/doc-kor/Comparison'),
+)
+const ConclusionKor = lazy(
+    () => import('src/frontend/scenes/doc-kor/Conclusion'),
+)
+const BetweenKor = lazy(() => import('src/frontend/scenes/doc-kor/Between'))
+
+const Intro = lazy(() => import('src/frontend/scenes/doc/Intro'))
+const Hypothesis = lazy(() => import('src/frontend/scenes/doc/Hypothesis'))
+const ClassicPhysics = lazy(
+    () => import('src/frontend/scenes/doc/ClassicPhysics'),
+)
+const MultiElectronAtoms = lazy(
+    () => import('src/frontend/scenes/doc/MultiElectronAtoms'),
+)
+const Comparison = lazy(() => import('src/frontend/scenes/doc/Comparison'))
+const Between = lazy(() => import('src/frontend/scenes/doc/Between'))
+const Conclusion = lazy(() => import('src/frontend/scenes/doc/Conclusion'))
 
 export const Router = (): JSX.Element => {
     return (
         <Public>
-            <Routes>
-                {/* Document */}
-                <Route path="/" element={<Intro />} />
-                <Route path="/hypothesis" element={<Hypothesis />} />
-                <Route path="/classic-physics" element={<ClassicPhysics />} />
-                <Route
-                    path="/multi-electron-atoms"
-                    element={<MultiElectronAtoms />}
-                />
-                <Route path="/comparison" element={<Comparison />} />
-                <Route path="/between" element={<Between />} />
-                <Route path="/conclusion" element={<Conclusion />} />
+            <Suspense fallback={<Loading />}>
+                <Routes>
+                    {/* Document */}
+                    <Route path="/" element={<Intro />} />
+                    <Route path="/hypothesis" element={<Hypothesis />} />
+                    <Route
+                        path="/classic-physics"
+                        element={<ClassicPhysics />}
+                    />
+                    <Route
+                        path="/multi-electron-atoms"
+                        element={<MultiElectronAtoms />}
+                    />
+                    <Route path="/comparison" element={<Comparison />} />
+                    <Route path="/between" element={<Between />} />
+                    <Route path="/conclusion" element={<Conclusion />} />
 
-                {/* Document: Kor */}
-                <Route path="/kor" element={<IntroKor />} />
-                <Route path="/kor/hypothesis" element={<HypothesisKor />} />
-                <Route
-                    path="/kor/classic-physics"
-                    element={<ClassicPhysicsKor />}
-                />
-                <Route
-                    path="/kor/multi-electron-atoms"
-                    element={<MultiElectronAtomsKor />}
-                />
-                <Route path="/kor/comparison" element={<ComparisonKor />} />
-                <Route path="/kor/between" element={<BetweenKor />} />
-                <Route path="/kor/conclusion" element={<ConclusionKor />} />
+                    {/* Document: Kor */}
+                    <Route path="/kor" element={<IntroKor />} />
+                    <Route path="/kor/hypothesis" element={<HypothesisKor />} />
+                    <Route
+                        path="/kor/classic-physics"
+                        element={<ClassicPhysicsKor />}
+                    />
+                    <Route
+                        path="/kor/multi-electron-atoms"
+                        element={<MultiElectronAtomsKor />}
+                    />
+                    <Route path="/kor/comparison" element={<ComparisonKor />} />
+                    <Route path="/kor/between" element={<BetweenKor />} />
+                    <Route path="/kor/conclusion" element={<ConclusionKor />} />
 
-                {/* Data */}
-                <Route path="/:dataType/:atom" element={<Data />}>
-                    <Route path="graph" element={<Data />}>
-                        <Route path=":graphType" element={<Data />} />
+                    {/* Data */}
+                    <Route path="/:dataType/:atom" element={<Data />}>
+                        <Route path="graph" element={<Data />}>
+                            <Route path=":graphType" element={<Data />} />
+                        </Route>
                     </Route>
-                </Route>
 
-                <Route path="*" element={<div>Page Broken</div>} />
-            </Routes>
+                    <Route path="*" element={<div>Page Broken</div>} />
+                </Routes>{' '}
+            </Suspense>
         </Public>
     )
 }

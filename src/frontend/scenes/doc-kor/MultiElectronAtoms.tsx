@@ -21,7 +21,7 @@ import pic94 from 'src/assets/images/doc/pic94.png'
 import pic95 from 'src/assets/images/doc/pic95.png'
 import pic113 from 'src/assets/images/doc/pic113.png'
 
-export const MultiElectronAtoms = (): JSX.Element => (
+const MultiElectronAtoms = (): JSX.Element => (
     <Doc>
         <h2 id="multi-electron-atoms">
             가설의 검증(2): 뤼드베리 방정식의 재정립
@@ -742,3 +742,4 @@ export const MultiElectronAtoms = (): JSX.Element => (
         </Row>
     </Doc>
 )
+export default MultiElectronAtoms

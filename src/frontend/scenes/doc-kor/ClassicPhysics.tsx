@@ -10,7 +10,7 @@ import { Latex } from 'src/frontend/components/document/Latex'
 
 import pic5 from 'src/assets/images/doc/pic5_eng.png'
 
-export const ClassicPhysics = (): JSX.Element => (
+const ClassicPhysics = (): JSX.Element => (
     <Doc>
         <h2 id="classic-physics">가설의 검증(1): 고전 물리학</h2>
         <h3>보어의 원자 모형에 기초한 광자-에테르의 방출 파장</h3>
@@ -454,3 +454,4 @@ export const ClassicPhysics = (): JSX.Element => (
         </Row>
     </Doc>
 )
+export default ClassicPhysics
