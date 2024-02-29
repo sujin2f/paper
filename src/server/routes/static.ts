@@ -15,7 +15,6 @@ staticRouter.get(
     /robots\.txt|manifest\.json|favicon\.png|favicon-16x16\.png|favicon-32x32\.png|thumbnail\.png|service-worker\.js$/,
     (req, res) => {
         const html = `${publicDir}${req.url}`
-        console.log(html)
         res.sendFile(html)
     },
 )

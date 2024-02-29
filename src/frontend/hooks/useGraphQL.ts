@@ -26,7 +26,11 @@ export const useGraphQL: DataHook = () => {
 
     const { data, loading, error } = useQuery<GraphQLReturnType, GraphQLParam>(
         gql(request),
-        { variables: { dataType, number, ion, term }, skip },
+        {
+            variables: { dataType, number, ion, term },
+            skip,
+            context: { fetchOptions: { method: 'GET' } },
+        },
     )
 
     useEffect(() => {
