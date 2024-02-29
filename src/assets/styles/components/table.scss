@@ -1,16 +1,12 @@
 table.unstriped {
     thead {
         tr.table__header {
-            background-color: smart-scale(
-                $table-background,
-                $table-color-scale
-            );
+            background-color: lighten($table-background, $table-color-scale);
             color: white;
         }
     }
     tr.border__bottom {
-        border-bottom: 1px solid
-            smart-scale($table-background, $table-color-scale);
+        border-bottom: 1px solid lighten($table-background, $table-color-scale);
     }
     tr.dashed {
         border-bottom: 3px dashed $medium-gray;
@@ -27,12 +23,10 @@ table.unstriped {
     th {
         min-width: 6rem;
         text-align: center;
-        border-right: 1px solid
-            smart-scale($table-background, $table-color-scale);
+        border-right: 1px solid lighten($table-background, $table-color-scale);
     }
     td {
-        border-right: 1px solid
-            smart-scale($table-background, $table-color-scale);
+        border-right: 1px solid lighten($table-background, $table-color-scale);
     }
 }
 

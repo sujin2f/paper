@@ -19,6 +19,9 @@ export const Header = (): JSX.Element => {
     const { atom, atomNumber, ion, dataType, getAddress } = useURLParam()
 
     const prev = useMemo(() => {
+        if (atomNumber === 1) {
+            return
+        }
         return getAtom(atomNumber - 1)
     }, [atomNumber])
 
@@ -32,7 +35,7 @@ export const Header = (): JSX.Element => {
 
     return (
         <Fragment>
-            <div className="table-header">
+            <div className="data-header">
                 <nav className="align__left">
                     {prev && (
                         <Fragment>
@@ -43,24 +46,12 @@ export const Header = (): JSX.Element => {
                                     ion: 1,
                                 })}
                             >
-                                &lt; {prev.name}
+                                &lt; {prev.symbol}
                             </Link>
-                            <br />
-                            {ion - 1 !== 0 && (
-                                <Link
-                                    to={getAddress({
-                                        number: prev.number,
-                                        term: 0,
-                                        ion: ion - 1,
-                                    })}
-                                >
-                                    &lt; {prev.name} {ion - 1}
-                                </Link>
-                            )}
                         </Fragment>
                     )}
                 </nav>
-                <header className="align__center table-header__title">
+                <header className="align__center data-header__title">
                     <div>
                         <h1>
                             {atom.symbol} {romanize(ion)}
@@ -82,17 +73,7 @@ export const Header = (): JSX.Element => {
                                     ion: 1,
                                 })}
                             >
-                                {next.name} &gt;
-                            </Link>
-                            <br />
-                            <Link
-                                to={getAddress({
-                                    number: next.number,
-                                    term: 0,
-                                    ion: ion + 1,
-                                })}
-                            >
-                                {next.name} {ion + 1} &gt;
+                                {next.symbol} &gt;
                             </Link>
                         </Fragment>
                     )}
@@ -101,12 +82,12 @@ export const Header = (): JSX.Element => {
             {container && (
                 <div className="top-bar">
                     <nav className="top-bar-left">
-                        <ul className="dropdown menu">
+                        <ul className="dropdown__wrapper menu">
                             <OptionDropdown />
                             <IonDropdown />
                             <TermDropdown />
 
-                            <li className="divider">|</li>
+                            <li className="divider hide-for-small-only">|</li>
 
                             <li
                                 className={`link-base ${
@@ -135,7 +116,7 @@ export const Header = (): JSX.Element => {
                                 </Link>
                             </li>
 
-                            <li className="divider">|</li>
+                            <li className="divider hide-for-small-only">|</li>
 
                             <ChartDropdown />
                         </ul>

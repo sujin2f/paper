@@ -38,8 +38,8 @@ const Conclusion = lazy(() => import('src/frontend/scenes/doc/Conclusion'))
 
 export const Router = (): JSX.Element => {
     return (
-        <Public>
-            <Suspense fallback={<Loading />}>
+        <Suspense fallback={<Loading />}>
+            <Public>
                 <Routes>
                     {/* Document */}
                     <Route path="/" element={<Intro />} />
@@ -80,7 +80,7 @@ export const Router = (): JSX.Element => {
 
                     <Route path="*" element={<div>Page Broken</div>} />
                 </Routes>{' '}
-            </Suspense>
-        </Public>
+            </Public>
+        </Suspense>
     )
 }

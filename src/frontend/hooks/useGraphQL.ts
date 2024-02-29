@@ -11,8 +11,14 @@ import { Container } from 'src/model/Container'
 
 export const useGraphQL: DataHook = () => {
     const [{ container }, dispatch] = useStore()
-    const { dataType, atomNumber: number, ion, term } = useURLParam()
+    const {
+        dataType: dataTypeParam,
+        atomNumber: number,
+        ion,
+        term,
+    } = useURLParam()
     let skip = false
+    const dataType = dataTypeParam || 'orbital'
 
     if (container && container.number === number && container.ion === ion) {
         skip = true

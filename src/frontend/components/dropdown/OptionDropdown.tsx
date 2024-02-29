@@ -32,7 +32,7 @@ export const OptionDropdown = (): JSX.Element => {
     }, [])
 
     return (
-        <li>
+        <li className="hide-for-small-only">
             <Link
                 to="#"
                 onClick={(e) => {
@@ -43,7 +43,7 @@ export const OptionDropdown = (): JSX.Element => {
                 Option ▾
             </Link>
             {showOptions && (
-                <ul className="menu vertical" ref={dropdown}>
+                <ul className="menu dropdown" ref={dropdown}>
                     <li>
                         <Link
                             to="#"

@@ -29,7 +29,7 @@ export const EngDocDropdown = (): JSX.Element => {
                 Document ▾
             </Link>
             {!!showOptions && (
-                <ul className="menu vertical">
+                <ul className="menu dropdown">
                     <TOCEng />
                 </ul>
             )}

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
@@ -15,28 +15,30 @@ const Data = (): JSX.Element => {
     const { loading, error } = useGraphQL()
 
     return (
-        <Fragment>
-            <Row>
-                <Column>
-                    <Header />
-                </Column>
-            </Row>
-            <Row>
-                {loading && (
+        <Row dom="main">
+            <Column>
+                <Row>
                     <Column>
-                        <Loading />
+                        <Header />
                     </Column>
-                )}
-                {!loading && !container && <Column>No Data</Column>}
-                {!loading && container && error && <Column>404</Column>}
-                {!loading && container && !error && (
-                    <Column>
-                        <Chart />
-                        <Table />
-                    </Column>
-                )}
-            </Row>
-        </Fragment>
+                </Row>
+                <Row>
+                    {loading && (
+                        <Column>
+                            <Loading />
+                        </Column>
+                    )}
+                    {!loading && !container && <Column>No Data</Column>}
+                    {!loading && container && error && <Column>404</Column>}
+                    {!loading && container && !error && (
+                        <Column>
+                            <Chart />
+                            <Table />
+                        </Column>
+                    )}
+                </Row>
+            </Column>
+        </Row>
     )
 }
 export default Data

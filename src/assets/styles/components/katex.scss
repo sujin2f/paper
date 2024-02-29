@@ -1,0 +1,8 @@
+.katex-display {
+    > .katex {
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+        overflow-x: scroll;
+    }
+}

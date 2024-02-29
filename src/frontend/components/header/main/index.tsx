@@ -5,20 +5,20 @@ import { KorDocDropdown } from './KorDocDropdown'
 
 export const MainHeader = (): JSX.Element => {
     return (
-        <div className="top-bar">
+        <div className="top-bar main-header">
             <nav className="top-bar-left">
-                <ul className="dropdown menu">
+                <ul className="dropdown__wrapper menu">
                     <EngDocDropdown />
                     <KorDocDropdown />
                 </ul>
             </nav>
-            <div className="top-bar-right">
+            <nav className="top-bar-right">
                 <ul className="menu">
                     <li>
                         <Link to="/orbital/1">Data</Link>
                     </li>
                 </ul>
-            </div>
+            </nav>
         </div>
     )
 }

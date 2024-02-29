@@ -35,10 +35,10 @@ export const TermDropdown = (): JSX.Element => {
                     setShowOptions(!showOptions)
                 }}
             >
-                Term ▾
+                Term<span className="hide-for-small-only"> ▾</span>
             </Link>
             {showOptions && container.length > 0 && (
-                <ul className="menu vertical" ref={dropdown}>
+                <ul className="menu dropdown" ref={dropdown}>
                     <li>
                         <Link
                             to={getAddress({

@@ -1,4 +1,5 @@
 import express from 'express'
+import compression from 'compression'
 import { config as dotEnvConfig } from 'dotenv'
 import path from 'path'
 import moduleAlias from 'module-alias'
@@ -42,6 +43,18 @@ switch (nodeEnv) {
     default:
         port = 80
         break
+}
+
+app.use(compression({ filter: shouldCompress }))
+
+function shouldCompress(req: any, res: any) {
+    if (req.headers['x-no-compression']) {
+        // don't compress responses with this request header
+        return false
+    }
+
+    // fallback to standard filter function
+    return compression.filter(req, res)
 }
 
 app.use('/graphql', graphqlRouter)

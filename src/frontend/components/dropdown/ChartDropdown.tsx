@@ -28,10 +28,10 @@ export const ChartDropdown = (): JSX.Element => {
                     setShowOptions(!showOptions)
                 }}
             >
-                Graph ▾
+                Graph<span className="hide-for-small-only"> ▾</span>
             </Link>
             {showOptions && (
-                <ul className="menu vertical" ref={dropdown}>
+                <ul className="menu dropdown" ref={dropdown}>
                     <li className={!isGraph ? 'link-base current' : ''}>
                         <Link to={getAddress({ isGraph: false })} type="button">
                             Close

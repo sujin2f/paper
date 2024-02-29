@@ -39,7 +39,7 @@ export const useURLParam = () => {
     }
 
     return {
-        dataType: dataType as DataType,
+        dataType,
         atomNumber,
         ion,
         term,

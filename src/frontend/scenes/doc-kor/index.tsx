@@ -4,7 +4,7 @@ import { Row } from 'src/common/components/layout/Row'
 import { TOCKor } from 'src/frontend/components/document/TOCKor'
 
 export const Doc = (props: PropsWithChildren<{}>): JSX.Element => (
-    <Row>
+    <Row dom="main">
         <Column small={12} medium={9} dom="article" id="main-content">
             {props.children}
         </Column>

@@ -10,3 +10,32 @@ aside {
     margin-top: 10px;
     margin-bottom: 30px;
 }
+
+.main-header {
+    position: fixed;
+    width: 100vw;
+    z-index: 100;
+
+    .top-bar-left {
+        flex: none;
+        width: auto;
+        margin-right: auto;
+    }
+
+    .top-bar-right {
+        flex: none;
+        width: auto;
+        margin-left: auto;
+    }
+
+    .dropdown {
+        left: 0;
+        width: 100vw;
+        background-color: darken($light-gray, 10%);
+
+        @media print, screen and (min-width: 40em) {
+            left: auto;
+            width: auto;
+        }
+    }
+}

@@ -35,10 +35,10 @@ export const IonDropdown = (): JSX.Element => {
                     setShowOptions(!showOptions)
                 }}
             >
-                Ion ▾
+                Ion<span className="hide-for-small-only"> ▾</span>
             </Link>
             {showOptions && (
-                <ul className="menu vertical" ref={dropdown}>
+                <ul className="menu dropdown" ref={dropdown}>
                     {ions.map((ion) => (
                         <li
                             key={`ion-selector-${ion}`}

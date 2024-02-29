@@ -81,9 +81,13 @@ dd {
     overflow-wrap: break-word;
 }
 
-#main-content {
-    padding-bottom: 7rem;
-    background: url('../images/favicon-32x32.png') center bottom no-repeat;
+main {
+    padding-top: 5rem;
+
+    article {
+        padding-bottom: 7rem;
+        background: url('../images/favicon-32x32.png') center bottom no-repeat;
+    }
 }
 
 .align__left {

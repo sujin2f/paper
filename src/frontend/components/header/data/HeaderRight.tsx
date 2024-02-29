@@ -6,7 +6,7 @@ export const HeaderRight = (): JSX.Element => {
     const [{ digit }, dispatch] = useStore()
 
     return (
-        <div className="top-bar-right">
+        <div className="top-bar-right hide-for-small-only">
             <ul className="menu">
                 <li>
                     <button

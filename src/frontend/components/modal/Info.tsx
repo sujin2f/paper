@@ -15,7 +15,7 @@ export const Info = (): JSX.Element => {
     return (
         <Fragment>
             <button
-                className="table-header__info-button"
+                className="data-header__info-button"
                 type="button"
                 onClick={() => setShowModal(true)}
             >

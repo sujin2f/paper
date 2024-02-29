@@ -29,7 +29,7 @@ export const KorDocDropdown = (): JSX.Element => {
                 문서 ▾
             </Link>
             {!!showOptions && (
-                <ul className="menu vertical">
+                <ul className="menu dropdown">
                     <TOCKor />
                 </ul>
             )}
