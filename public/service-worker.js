@@ -1,5 +1,5 @@
-const PRECACHE = 'ether-cache-v1'
-const RUNTIME = 'ether-cache-runtime-v1'
+const PRECACHE = 'ether-cache-v2'
+const RUNTIME = 'ether-cache-runtime-v2'
 const PRE_CACHE_URLS = ['index.html', './']
 
 self.addEventListener('install', (event) => {
