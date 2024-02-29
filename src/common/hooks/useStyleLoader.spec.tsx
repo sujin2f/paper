@@ -22,7 +22,7 @@ describe('useStyleLoader.ts', () => {
             return <Fragment></Fragment>
         }
         render(<Component />)
-        const html = document.body.innerHTML
+        const html = document.head.innerHTML
         const matching1 = html.match(
             /https:\/\/test.com\/test1.css/g,
         ) as RegExpMatchArray

@@ -109,7 +109,7 @@ describe('device.ts', () => {
 
         test('scrollTo()', () => {
             scrollTo('')
-            expect(window.scrollTo).toHaveBeenCalledWith(0, 0)
+            expect(window.scrollTo).toHaveBeenCalledWith({ top: 0 })
         })
 
         test('scrollTo(selector)', () => {

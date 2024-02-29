@@ -1,7 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path')
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const configFactory = require('react-scripts/config/webpack.config')
+const CompressionPlugin = require('compression-webpack-plugin')
+
 const config =
     'development' === process.env.NODE_ENV
         ? configFactory('development')
@@ -24,6 +24,7 @@ if ('production' === process.env.NODE_ENV) {
     config.optimization['splitChunks'] = {
         chunks: 'all',
     }
+    config.plugins.push(new CompressionPlugin())
 }
 
 module.exports = config

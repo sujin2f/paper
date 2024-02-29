@@ -1,5 +1,3 @@
-import { ChartDataset, DefaultDataPoint } from 'chart.js'
-
 import { Iterator } from 'src/common/model/Iterator'
 import { trimEnd } from 'src/common/utils/array'
 import { chartColors } from 'src/constants/chart'
@@ -11,7 +9,13 @@ import { Row } from 'src/model/Row'
 import { ElectronState } from 'src/model/ElectronState'
 import { TermGroup } from 'src/model/TermGroup'
 
-type ChartDatasets = ChartDataset<'line', DefaultDataPoint<'line'>>
+type ChartDatasets = {
+    label: string
+    data: number[]
+    fill: false
+    borderColor: string
+    tension: number
+}
 
 type ChartData = {
     labels: number[]

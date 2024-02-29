@@ -21,7 +21,7 @@ export const useStyleLoader = (...src: string[]) => {
             const link = document.createElement('link')
             link.href = url
             link.rel = 'stylesheet'
-            document.body.appendChild(link)
+            document.head.insertBefore(link, document.head.firstChild)
         }
     })
 
