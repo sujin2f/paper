@@ -1,8 +1,25 @@
-import { DataType } from 'src/frontend/types/ui'
+import { Nullable } from 'src/common/types'
+import { RawData } from 'src/types/data'
 
-export type GraphQLParam = {
-    dataType: DataType
+export type GraphQLParamData = {
     number: number
     ion: number
-    term: number
+}
+
+export type GraphQLParamByPosition = {
+    ionReverse: number
+    position: number
+}
+
+export type GraphQLReturnTypeData = {
+    sorted: RawData[]
+}
+
+export type GraphQLReturnTypeByPosition = {
+    byPosition: RawData[]
+}
+
+export type DataHook = () => {
+    loading: boolean
+    error: Nullable<Error>
 }

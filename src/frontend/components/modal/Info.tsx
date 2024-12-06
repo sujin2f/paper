@@ -2,10 +2,10 @@ import React, { Fragment, useState } from 'react'
 import { Modal } from 'src/common/components/containers/Modal'
 import { Column } from 'src/common/components/layout/Column'
 import { Row } from 'src/common/components/layout/Row'
-import { useURLParam } from 'src/frontend/hooks/useURLParam'
+import { useURLParamSorted } from 'src/frontend/hooks/useURLParam'
 
 export const Info = (): JSX.Element => {
-    const { atom } = useURLParam()
+    const { atom } = useURLParamSorted()
     const [showModal, setShowModal] = useState<boolean>(false)
 
     if (!atom) {

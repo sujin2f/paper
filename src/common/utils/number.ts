@@ -39,3 +39,7 @@ export const romanize = (arabic: number) => {
     })
     return roman
 }
+
+export const getRandomInt = (max: number) => {
+    return Math.floor(Math.random() * max)
+}

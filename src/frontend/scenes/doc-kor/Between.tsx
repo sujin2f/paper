@@ -91,7 +91,7 @@ const Between = (): JSX.Element => (
 
         <h3>
             <a
-                href="/orbital/1+1+1/graph/between"
+                href="/orbital/1+1+1/chart/between"
                 target="_blank"
                 rel="noreferrer"
             >
@@ -129,7 +129,7 @@ const Between = (): JSX.Element => (
 
         <h3>
             <a
-                href="/orbital/2+1+1/graph/between"
+                href="/orbital/2+1+1/chart/between"
                 target="_blank"
                 rel="noreferrer"
             >

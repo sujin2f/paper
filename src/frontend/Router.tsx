@@ -4,7 +4,13 @@ import { Routes, Route } from 'react-router-dom'
 import { Public } from 'src/frontend/scenes/Public'
 import { Loading } from './components/Loading'
 
-const Data = lazy(() => import('src/frontend/scenes/data/Data'))
+if (process.env.NODE_ENV === 'development') {
+    require('foundation-sites/dist/css/foundation.min.css')
+}
+
+const Sorted = lazy(() => import('src/frontend/scenes/data/Sorted'))
+const ByPosition = lazy(() => import('src/frontend/scenes/data/ByPosition'))
+const Ion = lazy(() => import('src/frontend/scenes/data/Ion'))
 
 const IntroKor = lazy(() => import('src/frontend/scenes/doc-kor/Intro'))
 const HypothesisKor = lazy(
@@ -71,15 +77,32 @@ export const Router = (): JSX.Element => {
                     <Route path="/kor/between" element={<BetweenKor />} />
                     <Route path="/kor/conclusion" element={<ConclusionKor />} />
 
-                    {/* Data */}
-                    <Route path="/:dataType/:atom" element={<Data />}>
-                        <Route path="graph" element={<Data />}>
-                            <Route path=":graphType" element={<Data />} />
+                    {/* Sorted */}
+                    <Route path="/:type/:atom" element={<Sorted />}>
+                        <Route path="chart" element={<Sorted />}>
+                            <Route path=":chartType" element={<Sorted />} />
+                        </Route>
+                    </Route>
+
+                    {/* by position */}
+                    <Route
+                        path="/position/:ionReverse/:position"
+                        element={<ByPosition />}
+                    >
+                        <Route path="chart" element={<ByPosition />}>
+                            <Route path=":chartType" element={<ByPosition />} />
+                        </Route>
+                    </Route>
+
+                    {/* Ion */}
+                    <Route path="/ion" element={<Ion />}>
+                        <Route path="chart" element={<ByPosition />}>
+                            <Route path=":chartType" element={<ByPosition />} />
                         </Route>
                     </Route>
 
                     <Route path="*" element={<div>Page Broken</div>} />
-                </Routes>{' '}
+                </Routes>
             </Public>
         </Suspense>
     )

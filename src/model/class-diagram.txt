@@ -1,0 +1,74 @@
+classDiagram
+    direction LR
+    class RawData{
+        + string _id?
+        + number number
+        + number ion
+        + number energy
+        + number spin?
+        + string l?
+        + boolean parity
+        + number j
+        + string[] conf
+    }
+    class ElectronState{
+        + ElectronState prev?
+        + ElectronState next?
+        + boolean isNull
+        + boolean isFirst
+        + number orbital
+        + number position
+        - number linear
+        + number isLinear
+        + number radial
+        + number isRadial
+        - number ether
+        + number diff
+        + number scaled
+        + number k
+        + number scaledK
+        + toString(type?) string
+        + clone() ElectronState
+    }
+    class Row {
+        + RowType type
+        + boolean isCombination
+        + terms term
+        + find() ElectronState
+        + refresh()
+        + push(...electrons) number
+        + toString() string
+    }
+    class TermGroup {
+        + boolean visible
+        + boolean isCombination
+        + map~U~() U[]
+        + getTransforms(row: Row) number[]
+        + toString() string
+    }
+    class Container {
+        * TABLE_ROW[] tableRows
+        * TABLE_ROW[] chartTypes
+        + TABLE_ROW  chartType
+        + number cols
+        + number min
+        + number max
+        * getAddress(param: unknown) string
+        * getChartLabel() string[]
+        + getRowValues(type, group, row) number[]
+        + getChartData() ChartData
+    }
+    class ContainerSorted {
+        + number term
+        - getBetweens(row) number[]
+    }
+    <<interface>> RawData
+    <<abstract>> Container
+    RawData <|..ElectronState
+    Row~ElectronState~ --|> Array~T~
+    TermGroup~Row~ --|> Array~T~
+    Container~TermGroup~ --|> Array~T~
+    ContainerSorted --|> Container
+    ElectronState "0..n"--*"1" Row
+    Row "0..n"--*"1" TermGroup
+    TermGroup "0..n"--*"1" Container

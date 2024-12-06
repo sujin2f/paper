@@ -17,6 +17,12 @@ export const MainHeader = (): JSX.Element => {
                     <li>
                         <Link to="/orbital/1">Data</Link>
                     </li>
+                    <li>
+                        <Link to="/position/1/1">By Position</Link>
+                    </li>
+                    <li>
+                        <Link to="/ion">Ion</Link>
+                    </li>
                 </ul>
             </nav>
         </div>

@@ -1,12 +1,12 @@
 /**
  * String to number
- * i.g $1,123,00.23
+ * i.g $1, 123, 00.23
  */
-export const toNumber = (currency?: string): number => {
-    if (!currency) {
+export const toNumber = (input?: string): number => {
+    if (!input) {
         return 0
     }
-    const float = parseFloat(currency.replace(/[^0-9.-]+/g, ''))
+    const float = parseFloat(input.replace(/[^0-9.-]+/g, ''))
     if (!float || isNaN(float)) {
         return 0
     }
@@ -39,4 +39,8 @@ export const generateUUID = () => {
         // tslint:disable-next-line: no-bitwise
         return (c === 'x' ? r : (r & 0x7) | 0x8).toString(16)
     })
+}
+
+export const capitalize = (string: string) => {
+    return `${string.charAt(0).toUpperCase()}${string.slice(1)}`
 }

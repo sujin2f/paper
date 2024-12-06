@@ -11,6 +11,10 @@ export const Multiton = <T>() => {
             return this._instance[identifier]
         }
 
+        public static hasInstance(identifier: string): boolean {
+            return !!this._instance[identifier]
+        }
+
         public static destroy(identifier: string) {
             delete this._instance[identifier]
         }

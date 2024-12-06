@@ -3,7 +3,8 @@ import { createHandler } from 'graphql-http/lib/use/http'
 import { buildSchema } from 'graphql'
 import { graphqlSchema } from 'src/constants/graphql'
 
-import { items } from 'src/utils/endpoints/items'
+import { sorted } from 'src/utils/endpoints/sorted'
+import { byPosition } from 'src/utils/endpoints/byPosition'
 
 const graphqlRouter = express.Router()
 const schema = buildSchema(graphqlSchema)
@@ -13,7 +14,8 @@ graphqlRouter.use(
     createHandler({
         schema,
         rootValue: {
-            items,
+            sorted,
+            byPosition,
         },
     }),
 )

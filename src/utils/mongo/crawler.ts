@@ -15,7 +15,9 @@ export const mongoSchema = new Schema({
 
 export const model = mongoose.model('Crawler', mongoSchema)
 
-export const getOne = async (crawler: Partial<Crawler>): Promise<Crawler> =>
+export const getOne = async (
+    crawler: Omit<Crawler, 'result'>,
+): Promise<Crawler> =>
     await model
         .findOne<Crawler>({
             ...crawler,
@@ -28,7 +30,7 @@ export const getOne = async (crawler: Partial<Crawler>): Promise<Crawler> =>
             return item
         })
 
-export const addOne = async (crawler: Partial<Crawler>): Promise<boolean> =>
+export const addOne = async (crawler: Crawler): Promise<boolean> =>
     await getOne(crawler)
         .then(() => false)
         .catch(async () => {

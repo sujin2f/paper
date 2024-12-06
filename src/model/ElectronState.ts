@@ -1,136 +1,332 @@
 import { RawData } from 'src/types/data'
 import { orbitalKeys } from 'src/constants/orbital'
+
+import { getAtom, getIonizationEnergy, getPeak, getRatio } from 'src/utils/atom'
+import { isEmpty } from 'src/common/utils/object'
+import { generateUUID } from 'src/common/utils/string'
+import { romanize } from 'src/common/utils/number'
+import { Error } from 'src/common/model/Error'
 import { Nullable } from 'src/common/types'
-import { getConfArray } from 'src/utils/atom'
 
-import { Row } from 'src/model/Row'
+type strFormat = 'group' | 'ether'
 
-export class ElectronState {
+export class ElectronState implements RawData {
+    // From RawData
     public _id?: string
-    public parent: Nullable<Row>
-    public prev: Nullable<ElectronState>
-    public next: Nullable<ElectronState>
-    public term: string
-    public orbital: string
-    public jNumber: number
-    public jIncrement: number
-    public termIncrement: number
-    public termNumber: number
-    public position: number
-    public confPrefix: string[]
+    public number: number
+    public ion: number
+    public energy: number
+    public spin: number
+    public l: string
+    public parity: boolean
+    public j: number
+    public conf: string[]
 
-    public constructor(public data: RawData) {
-        const term = data.term ? data.term.split(' ') : null
+    public prev?: ElectronState
+    public next?: ElectronState
+    // public atom: Atom
 
-        this.term = term && term[1] ? term[1] : data.term
-        this.termNumber = this.getNumber(this.term)
-        this.jNumber = this.getNumber(data.j)
-        this.jIncrement = data.j && data.j.indexOf('/') !== -1 ? 2 : 1
-        this.termIncrement = data.term && data.term.indexOf('/') !== -1 ? 1 : 0
+    public isNull = false
+    public isFirst = false
 
-        const { position, orbital, confPrefix } = this.getConfObject()
-        this.position = position - 1
-        this.orbital = orbital
-        this.confPrefix = confPrefix
+    public constructor(rawData: Partial<RawData>) {
+        if (isEmpty(rawData._id)) {
+            this.isNull = true
+        }
+        this._id = rawData._id
+        this.energy = !isEmpty(rawData.energy) ? rawData.energy! : NaN
+
+        this.spin = rawData.spin || NaN
+        this.l = rawData.l || ''
+        this.parity = rawData.parity || false
+        this.j = rawData.j || NaN
+        this.conf = rawData.conf || []
+        this.ion = rawData.ion || NaN
+        this.number = rawData.number || NaN
     }
 
-    public get energy(): number {
-        return this.data.rydberg
+    private _orbital = NaN
+    /**
+     * The last orbital by number
+     */
+    public get orbital() {
+        if (!isNaN(this._orbital)) {
+            return this._orbital
+        }
+
+        const electron = this.conf.filter((conf) => !conf.startsWith('(')).pop()
+
+        if (!electron) {
+            throw new Error(
+                `Cannot fetch the last orbital: ${this.conf.join('.')}`,
+                {
+                    source: 'ElectronState.ts::orbital()',
+                    level: 'info',
+                },
+            )
+        }
+
+        const match = /[a-z]/.exec(electron)
+        if (match) {
+            this._orbital = orbitalKeys.indexOf(match[0])
+            return this._orbital
+        }
+
+        throw new Error(
+            `Cannot fetch the last orbital: ${this.conf.join('.')}`,
+            {
+                source: 'ElectronState.ts::orbital()',
+                level: 'info',
+            },
+        )
     }
 
-    public get ion(): number {
-        return this.data.ion
+    private _position = NaN
+    /**
+     * The last position
+     */
+    public get position() {
+        if (!isNaN(this._position)) {
+            return this._position
+        }
+
+        const electron = this.conf[this.conf.length - 1]
+        const match = /[0-9]+/.exec(electron)
+        if (match) {
+            const position = parseInt(match[0])
+            if (isNaN(position)) {
+                throw new Error(
+                    `Cannot fetch the last position: ${this.conf.join('.')}`,
+                    {
+                        source: 'ElectronState.ts::position()',
+                        level: 'info',
+                    },
+                )
+            }
+            this._position = position - 1
+            return this._position
+        }
+
+        throw new Error(
+            `Cannot fetch the last position: ${this.conf.join('.')}`,
+            {
+                source: 'ElectronState.ts::position()',
+                level: 'info',
+            },
+        )
     }
 
-    public get number(): number {
-        return this.data.number
+    /**
+     * Number of linear ether
+     */
+    private get linear(): number {
+        return this.orbital === -1 ? NaN : this.orbital
     }
 
-    public get linear() {
-        return orbitalKeys.indexOf(this.orbital)
-    }
-
-    public get radial() {
+    /**
+     * Number of radial ether
+     */
+    public get radial(): number {
         return this.position - this.linear
     }
 
-    public get ether() {
-        const linear = this.linear
-        const radial = this.radial
+    private _ether = ''
+    private get ether() {
+        if (this._ether) {
+            return this._ether
+        }
+
+        if (this.isNull) {
+            return this._ether
+        }
+
+        const linear = this.linear >= 0 ? this.linear : 0
+        const radial = this.radial >= 0 ? this.radial : 0
 
         if (linear + radial > 4) {
             if (linear === 0) {
-                return `${radial}🔘`
+                this._ether = `${radial}🔘`
+                return this._ether
             }
             if (radial === 0) {
-                return `${linear}➖`
+                this._ether = `${linear}➖`
+                return this._ether
             }
-            return `${radial}🔘${linear}➖`
+            this._ether = `${radial}🔘${linear}➖`
+            return this._ether
         }
 
         if (radial > 0) {
-            return Array(radial)
+            this._ether = Array(radial)
                 .fill('🔘')
                 .concat(Array(linear).fill('➖'))
                 .join('')
+            return this._ether
         }
 
         const ether = Array(linear).fill('➖').join('')
-        return ether || '🆇'
+        this._ether = ether || '🆇'
+        return this._ether
     }
 
-    public get conf() {
-        return this.data.conf
-    }
-
-    public get j() {
-        return this.data.j
-    }
-
+    /**
+     * If this has only radial ethers
+     */
     public get isRadial() {
         return this.linear === 0
     }
 
+    /**
+     * If this has only linear ethers
+     */
     public get isLinear() {
         return this.radial === 0
     }
 
-    private _diff: Nullable<number>
+    /**
+     * Diff from prev state
+     */
     public get diff(): number {
-        if (this._diff) {
-            return this._diff
+        if (!this.prev || this.prev.isNull) {
+            return NaN
         }
-
-        this._diff = this.energy - (this.prev?.energy || 0)
-        return this._diff
+        return this.energy - this.prev.energy
     }
 
-    private getNumber(value: string): number {
-        const regexInt = /([0-9]+)/.exec(value)
-        const regexFrac = /([0-9]+)\/([0-9]+)/.exec(value)
-        if (regexFrac) {
-            const one = parseInt(regexFrac[1], 10)
-            const two = parseInt(regexFrac[2], 10)
-            return one / two
+    /**
+     * Scaled energy
+     */
+    private _scaled: Nullable<number> = undefined
+    public get scaled(): number {
+        if (this._scaled) {
+            return this._scaled
         }
-        return parseInt(regexInt ? regexInt[1] : '', 10)
+
+        if (this.isNull) {
+            this._scaled = NaN
+            return NaN
+        }
+        if (this.number === this.ion) {
+            this._scaled = (this.energy * getRatio(1)) / getRatio(this.ion)
+            return this._scaled
+        }
+
+        const ionizationEnergy = getIonizationEnergy(this.number, this.ion)
+        if (isNaN(ionizationEnergy)) {
+            this._scaled = NaN
+            return this._scaled
+        }
+        const baseAtom = getAtom(this.ion)
+        if (!baseAtom) {
+            this._scaled = NaN
+            return this._scaled
+        }
+        const baseIonizationEnergy = getIonizationEnergy(this.ion, this.ion)
+        const k = baseIonizationEnergy - ionizationEnergy
+
+        this._scaled =
+            (this.energy + k) *
+            (getIonizationEnergy(1, 1) / baseIonizationEnergy)
+        return this._scaled
     }
 
-    private getConfObject() {
-        const confArray = getConfArray(this.data.conf).reverse()
-        if (confArray[0].indexOf('(') !== -1) {
-            confArray.shift()
+    private _k: Nullable<number> = undefined
+    /**
+     * k value
+     */
+    public get k() {
+        if (this._k) {
+            return this._k
         }
-        const last = confArray.shift()
-        const orbital = new RegExp(`(${orbitalKeys.join('|')})`).exec(
-            last || '',
-        )
-        const position = /([0-9]+)/.exec(last || '')
 
-        return {
-            position: parseInt(position ? position[1] : '0', 10),
-            orbital: orbital ? orbital[1] : '',
-            confPrefix: confArray.reverse(),
+        if (this.isNull) {
+            this._k = NaN
+            return this._k
         }
+
+        const ratio = getRatio(this.ion)
+        const peak = getPeak(this.number, this.ion)
+        this._k = Math.sqrt(ratio / (peak - this.energy)) - this.position - 1
+        return this._k
     }
+
+    private _scaledK: Nullable<number> = undefined
+    /**
+     * scaled k value
+     */
+    public get scaledK() {
+        if (this._scaledK) {
+            return this._scaledK
+        }
+
+        if (this.isNull) {
+            this._scaledK = NaN
+            return this._scaledK
+        }
+
+        this._scaledK =
+            1 / Math.sqrt(1 - this.scaled / getIonizationEnergy(1, 1)) -
+            this.position -
+            1
+        return this._scaledK
+    }
+
+    public toString(type?: strFormat) {
+        if (this.isNull) {
+            if (type === 'ether') {
+                return ''
+            }
+            return generateUUID()
+        }
+
+        const ion = romanize(this.ion)
+        const atom = `${getAtom(this.number).name} ${ion}`
+        const p = this.parity ? '*' : ''
+        switch (type) {
+            case 'group':
+                const L = orbitalKeys.indexOf(this.l.toLowerCase())
+                if (L === -1) {
+                    break
+                }
+                return `${this.spin}.${L - this.j} ${this.conf
+                    .slice(0, -1)
+                    .join('.')}`
+            case 'ether':
+                return this.ether
+        }
+        return `ES ${atom} ${this.spin}.${this.l}${p}.${this.j} ${this.conf
+            .slice(0, -1)
+            .join('.')}`
+    }
+
+    public clone() {
+        return ElectronStateFactory({
+            _id: this._id,
+            number: this.number,
+            ion: this.ion,
+            energy: this.energy,
+            spin: this.spin,
+            j: this.j,
+            l: this.l,
+            parity: this.parity,
+            conf: this.conf,
+        })
+    }
+}
+
+export const ElectronStateFactory = (data: Partial<RawData> = {}) => {
+    if (
+        !data.number ||
+        !data.ion ||
+        !data.j ||
+        !data.conf ||
+        isEmpty(data.energy)
+    ) {
+        return new ElectronState({
+            ...data,
+            _id: undefined,
+        })
+    }
+
+    return new ElectronState(data)
 }

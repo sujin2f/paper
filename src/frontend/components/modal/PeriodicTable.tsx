@@ -2,14 +2,16 @@ import React, { Fragment, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Modal } from 'src/common/components/containers/Modal'
 import { periodicTable } from 'src/constants/periodic-table'
-import { useURLParam } from 'src/frontend/hooks/useURLParam'
-import { Atom } from 'src/frontend/types/atom'
+import { useStore } from 'src/frontend/hooks/useStore'
+import { useURLParamSorted } from 'src/frontend/hooks/useURLParam'
+import { Atom } from 'src/types/atom'
 
 const rows = [...Array(10).fill('').keys()]
 const cols = [...Array(18).fill('').keys()]
 
 export const PeriodicTable = (): JSX.Element => {
-    const { atom, getAddress } = useURLParam()
+    const [{ container }] = useStore()
+    const { atom } = useURLParamSorted()
     const [showModal, setShowModal] = useState<boolean>(false)
 
     const table: Atom[][] = useMemo(() => {
@@ -34,7 +36,7 @@ export const PeriodicTable = (): JSX.Element => {
             <Link type="button" to="#" onClick={() => setShowModal(true)}>
                 {atom?.name}
             </Link>
-            {showModal && (
+            {showModal && container && (
                 <Modal
                     closeModal={() => setShowModal(false)}
                     className="periodic-table-modal"
@@ -51,11 +53,13 @@ export const PeriodicTable = (): JSX.Element => {
                                             >
                                                 {current && (
                                                     <Link
-                                                        to={getAddress({
-                                                            number: current.number,
-                                                            ion: 1,
-                                                            term: 0,
-                                                        })}
+                                                        to={container.getAddress(
+                                                            {
+                                                                number: current.number,
+                                                                ion: 1,
+                                                                term: 0,
+                                                            },
+                                                        )}
                                                         onClick={() =>
                                                             setShowModal(false)
                                                         }

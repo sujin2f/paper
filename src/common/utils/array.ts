@@ -63,3 +63,45 @@ export const trimEnd = <T>(items: T[]): T[] => {
 export const filterEmpty = <T>(items: T[]): T[] => {
     return items.filter((item) => !isEmpty(item))
 }
+
+export const map = <T, U>(
+    length: number,
+    callback: (item: T, index: number) => U,
+) => {
+    return Array(length).fill('').map(callback)
+}
+
+export const sum = (items: unknown[]): number => {
+    return items.reduce((a, b) => {
+        if (
+            !isEmpty(a) &&
+            typeof a === 'number' &&
+            !isNaN(a) &&
+            !isEmpty(b) &&
+            typeof b === 'number' &&
+            !isNaN(b)
+        ) {
+            return a + b
+        }
+        return a
+    }, 0) as number
+}
+
+export const average = (items: unknown[]): number => {
+    let count = 1
+    const sum = items.reduce((a, b) => {
+        if (
+            !isEmpty(a) &&
+            typeof a === 'number' &&
+            !isNaN(a) &&
+            !isEmpty(b) &&
+            typeof b === 'number' &&
+            !isNaN(b)
+        ) {
+            count++
+            return a + b
+        }
+        return a
+    }, 0) as number
+    return sum / count
+}

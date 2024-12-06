@@ -145,7 +145,7 @@ const Comparison = (): JSX.Element => (
 
         <p>
             그래서{' '}
-            <a href="/ether/2+1+1/graph" target="_blank" rel="noreferrer">
+            <a href="/ether/2+1+1/chart" target="_blank" rel="noreferrer">
                 만들었다
             </a>
             .
@@ -176,7 +176,7 @@ const Comparison = (): JSX.Element => (
         </Row>
 
         <h3>
-            <a href="/ether/1+1/graph" target="_blank" rel="noreferrer">
+            <a href="/ether/1+1/chart" target="_blank" rel="noreferrer">
                 수소
             </a>
         </h3>
@@ -264,6 +264,9 @@ const Comparison = (): JSX.Element => (
             <Latex
                 displayMode={true}
             >{`D(x) = \\dfrac{v_2 - v_1 - (R(x+1+k_{2}) - R(x+k_{1}))}{R(x+1+k_{2}) - R(x+k_{1})} `}</Latex>
+            <Latex
+                displayMode={true}
+            >{`D(x) = \\dfrac{v_2 - v_1}{ R(x+1+k_{2}) - R(x+k_{1}) } - 1`}</Latex>
             <p>뒤로 갈 수록 가중치를 주어 보기 편하게 만든 결과 D(x)</p>
         </div>
 
@@ -283,7 +286,7 @@ const Comparison = (): JSX.Element => (
         <p>조금 더 보기 편해졌으니 이 수식을 고정적으로 사용하기로 한다.</p>
 
         <h3>
-            <a href="/ether/2+1+1/graph" target="_blank" rel="noreferrer">
+            <a href="/ether/2+1+1/chart" target="_blank" rel="noreferrer">
                 헬륨
             </a>
         </h3>
@@ -318,7 +321,7 @@ const Comparison = (): JSX.Element => (
         </p>
 
         <h3>
-            <a href="/ether/3+1+1/graph" target="_blank" rel="noreferrer">
+            <a href="/ether/3+1+1/chart" target="_blank" rel="noreferrer">
                 리튬
             </a>
         </h3>
@@ -487,7 +490,7 @@ const Comparison = (): JSX.Element => (
         </p>
 
         <h3>
-            <a href="/ether/4+1+1/graph" target="_blank" rel="noreferrer">
+            <a href="/ether/4+1+1/chart" target="_blank" rel="noreferrer">
                 베릴륨
             </a>
         </h3>
@@ -562,7 +565,7 @@ const Comparison = (): JSX.Element => (
         </p>
 
         <h3>
-            <a href="/ether/11+1+1/graph" target="_blank" rel="noreferrer">
+            <a href="/ether/11+1+1/chart" target="_blank" rel="noreferrer">
                 소디움
             </a>{' '}
             (우리 땐 나트륨이라고)
@@ -572,7 +575,7 @@ const Comparison = (): JSX.Element => (
             마지막으로 소디움을 보겠다. 보론에서 네온 까지는 앞서 밝혔듯
             비전공자의 한계 때문에 값들을 정확히 분류해 내는 것이 매우 어렵다.
             다만{' '}
-            <a href="/ether/8+1+1/graph" target="_blank" rel="noreferrer">
+            <a href="/ether/8+1+1/chart" target="_blank" rel="noreferrer">
                 산소
             </a>
             의 대략적인 모습을 보면 값을 제대로 배치만 한다면 역시 패턴을 보여줄

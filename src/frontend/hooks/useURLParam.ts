@@ -1,51 +1,31 @@
-import { useLocation, useParams } from 'react-router-dom'
-import { DataType, GraphType, URLParam } from 'src/frontend/types/ui'
+import { useParams } from 'react-router-dom'
+import { URLParamByPosition, URLParamData } from 'src/types/data'
 import { getAtom } from 'src/utils/atom'
 
-export const useURLParam = () => {
-    const location = useLocation()
-    const { dataType, atom, graphType: graphTypeParam } = useParams<URLParam>()
+export const useURLParamSorted = () => {
+    const { type, atom, chartType } = useParams<URLParamData>()
     const [numberParam, ionParam, termParam] = atom ? atom.split('+') : []
 
-    const atomNumber = parseInt(numberParam || '1')
+    const number = parseInt(numberParam)
     const ion = parseInt(ionParam || '1')
     const term = parseInt(termParam || '0')
-    const graphType = graphTypeParam || 'transform'
-    const isGraph = location.pathname.indexOf('/graph') !== -1
-
-    const getAddress = (param: {
-        dataType?: DataType
-        number?: number
-        ion?: number
-        term?: number
-        isGraph?: boolean
-        graphType?: GraphType
-        mode?: string
-    }): string => {
-        const typeParam = param.dataType || dataType
-        const numberEntry = param.number || atomNumber
-        const ionEntry = param.ion !== undefined ? param.ion : ion
-        const termEntry = param.term !== undefined ? param.term : term
-        const atomParam = [numberEntry, ionEntry, termEntry]
-            .filter((v) => v)
-            .join('+')
-        const isGraphEntry =
-            param.isGraph !== undefined ? param.isGraph : isGraph
-        const graphTypeEntry =
-            param.graphType !== undefined ? param.graphType : graphType
-        const graphParam = isGraphEntry ? `/graph/${graphTypeEntry}` : ''
-
-        return `/${typeParam}/${atomParam}${graphParam}`
-    }
 
     return {
-        dataType,
-        atomNumber,
+        type,
+        number,
         ion,
         term,
-        atom: getAtom(atomNumber),
-        isGraph,
-        graphType,
-        getAddress,
+        atom: getAtom(number),
+        chartType: chartType || 'close',
+    }
+}
+
+export const useURLParamByPosition = () => {
+    const { ionReverse, position, chartType } = useParams<URLParamByPosition>()
+
+    return {
+        ionReverse: parseInt(ionReverse || '0'),
+        position: parseInt(position || '0'),
+        chartType: chartType || 'close',
     }
 }

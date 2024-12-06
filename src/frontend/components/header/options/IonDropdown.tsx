@@ -1,30 +1,33 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { map } from 'src/common/utils/array'
 import { romanize } from 'src/common/utils/number'
-import { useURLParam } from 'src/frontend/hooks/useURLParam'
+import { useStore } from 'src/frontend/hooks/useStore'
+import { useURLParamSorted } from 'src/frontend/hooks/useURLParam'
 
 export const IonDropdown = (): JSX.Element => {
-    const { atomNumber, getAddress, ion: current } = useURLParam()
+    const [{ container }] = useStore()
+    const { number, ion: current } = useURLParamSorted()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
 
+    const callbackOutside = () => setShowOptions(false)
+
     const ions = useMemo(() => {
-        return Array(atomNumber)
-            .fill('')
-            .map((_, i) => i + 1)
-    }, [atomNumber])
+        return map(number, (_, i) => i + 1)
+    }, [number])
 
     useEffect(() => {
-        document.addEventListener('click', () => {
-            setShowOptions(false)
-        })
+        document.addEventListener('click', callbackOutside)
 
         return () => {
-            document.removeEventListener('click', () => {
-                setShowOptions(false)
-            })
+            document.removeEventListener('click', callbackOutside)
         }
     }, [])
+
+    if (!container) {
+        return <Fragment />
+    }
 
     return (
         <li>
@@ -47,7 +50,7 @@ export const IonDropdown = (): JSX.Element => {
                             }
                         >
                             <Link
-                                to={getAddress({
+                                to={container.getAddress({
                                     ion,
                                     term: 0,
                                 })}

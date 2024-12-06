@@ -1,29 +1,21 @@
 import {
-    SET_DATA_CONTAINER,
+    SET_CONTAINER,
     SET_DIGIT,
-    SET_ORBITAL,
-    SET_ETHER,
-    SET_ENERGY,
-    SET_TRANSFORM,
-    SET_BETWEEN,
+    SET_DESMOS,
+    SET_VERSION,
 } from 'src/frontend/store/actions'
-import { Action, State } from 'src/frontend/types/store'
+import { Action, State } from 'src/frontend/store/store'
 
 export const initialState: State = {
     container: undefined,
     digit: 4,
-    visible: {
-        orbital: true,
-        ether: true,
-        energy: true,
-        transform: true,
-        between: true,
-    },
+    desmos: false,
+    version: 0,
 }
 
 export const reducer = (state: State = initialState, action: Action): State => {
     switch (action.type) {
-        case SET_DATA_CONTAINER: {
+        case SET_CONTAINER: {
             return {
                 ...state,
                 container: action.container!,
@@ -38,51 +30,19 @@ export const reducer = (state: State = initialState, action: Action): State => {
                 digit: action.digit!,
             }
         }
-        case SET_ORBITAL: {
+        case SET_DESMOS: {
             return {
                 ...state,
-                visible: {
-                    ...state.visible,
-                    orbital: action.orbital!,
-                },
+                desmos: action.desmos!,
             }
         }
-        case SET_ETHER: {
+        case SET_VERSION: {
             return {
                 ...state,
-                visible: {
-                    ...state.visible,
-                    ether: action.ether!,
-                },
+                version: state.version + 1,
             }
         }
-        case SET_ENERGY: {
-            return {
-                ...state,
-                visible: {
-                    ...state.visible,
-                    energy: action.energy!,
-                },
-            }
-        }
-        case SET_TRANSFORM: {
-            return {
-                ...state,
-                visible: {
-                    ...state.visible,
-                    transform: action.transform!,
-                },
-            }
-        }
-        case SET_BETWEEN: {
-            return {
-                ...state,
-                visible: {
-                    ...state.visible,
-                    between: action.between!,
-                },
-            }
-        }
+
         default: {
             return state
         }

@@ -449,7 +449,27 @@ const MultiElectronAtoms = (): JSX.Element => (
 
             <Latex
                 displayMode={true}
-            >{`\\to k_{s} = \\dfrac{1}{\\sqrt{1 - \\dfrac{20.6157751334 - (24.58556828 - 13.60676328)}{13.60676328}}} - 1 - 1`}</Latex>
+            >{`k = \\dfrac{1}{\\sqrt{1 - \\dfrac{w - (p - r)}{r}}} - v - 1`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`k = \\dfrac{1}{\\sqrt{\\dfrac{r}{r} - \\dfrac{w - p + r}{r}}} - v - 1`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`k = \\dfrac{1}{\\sqrt{\\dfrac{r - w + p - r}{r}}} - v - 1`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`k = \\dfrac{1}{\\sqrt{\\dfrac{p - w}{r}}} - v - 1`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`k = \\sqrt{\\dfrac{r}{p - w}} - v - 1`}</Latex>
+
+            <Latex
+                displayMode={true}
+            >{`\\to k_{s} = \\sqrt{\\dfrac{13.60676328}{24.58556828 - 20.6157751334}} - 1 - 1`}</Latex>
 
             <Latex displayMode={true}>{`\\to k_{s} = −0.148628918071`}</Latex>
             <p>

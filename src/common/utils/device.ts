@@ -48,3 +48,26 @@ export const scrollTo = (
     })
     return box.top + scrollTop - clientTop
 }
+
+/**
+ * Delay to execute
+ * usage: debounce(() => {...}, 300)
+ */
+export const debounce = (callback: () => void, wait: number) => {
+    let timeoutId: NodeJS.Timeout | null = null
+    if (timeoutId) {
+        clearTimeout(timeoutId)
+    }
+    timeoutId = setTimeout(() => {
+        callback()
+    }, wait)
+}
+
+export const copyText = (text?: string): void => {
+    console.log(1)
+    if (!text) {
+        return
+    }
+    console.log(text)
+    navigator.clipboard.writeText(text)
+}

@@ -1,10 +1,10 @@
 import https from 'https'
 import { parse } from 'csv-parse'
 import axios from 'axios'
-import { addOne } from 'src/utils/mongo/items'
-import { Atom } from 'src/frontend/types/atom'
-import { RawData } from 'src/types/data'
+import { addOne } from 'src/utils/mongo/raw-data'
+import { Atom } from 'src/types/atom'
 import { romanize } from 'src/common/utils/number'
+import { createRawData } from 'src/utils/atom'
 
 export const crawl = async (atom: Atom, ion: number) => {
     const ionRoman = romanize(ion)
@@ -18,18 +18,19 @@ export const crawl = async (atom: Atom, ion: number) => {
         })
         .then((response) => response.data)
         .catch((e) => {
+            console.error('1')
             console.error(e)
-            return ''
+            return
         })
 
     if (result) {
-        await csvParser(atom, ion, result)
+        await parseCsvDataHandler(atom, ion, result)
         return true
     }
     return false
 }
 
-const csvParser = async (atom: Atom, ion: number, csv: string) => {
+const parseCsvDataHandler = async (atom: Atom, ion: number, csv: string) => {
     const columns: Record<string, number> = {
         'Ei(eV)': 0,
         conf_i: 0,
@@ -40,20 +41,24 @@ const csvParser = async (atom: Atom, ion: number, csv: string) => {
         term_k: 0,
         J_k: 0,
     }
-    let index = 0
-    const parser = parse(csv.trim(), { raw: true })
+    let index = false
+    const trimmed = csv.trim().replaceAll('""', '')
+    const parser = parse(trimmed, {
+        raw: true,
+        relax_column_count: true,
+    })
 
     for await (const record of parser) {
-        if (index === 0) {
+        if (!index) {
             Object.keys(columns).forEach((key) => {
                 columns[key] = record.record.indexOf(key)
             })
         } else {
-            /* tslint:disable no-string-literal */
+            // i
             let rawData = createRawData({
                 number: atom.number,
                 ion,
-                rydberg: record.record[columns['Ei(eV)']],
+                energy: record.record[columns['Ei(eV)']],
                 conf: record.record[columns['conf_i']],
                 j: record.record[columns['J_i']],
                 term: record.record[columns['term_i']],
@@ -62,68 +67,21 @@ const csvParser = async (atom: Atom, ion: number, csv: string) => {
             if (rawData) {
                 await addOne(rawData)
             }
+
+            // k
             rawData = createRawData({
                 number: atom.number,
                 ion,
-                rydberg: record.record[columns['Ek(eV)']],
+                energy: record.record[columns['Ek(eV)']],
                 conf: record.record[columns['conf_k']],
                 j: record.record[columns['J_k']],
                 term: record.record[columns['term_k']],
             })
-            /* tslint:enable */
 
             if (rawData) {
                 await addOne(rawData)
             }
         }
-        index++
+        index = true
     }
-}
-
-const filterNumValue = (value: string): string => {
-    const regex = new RegExp(/[0-9.-]+/)
-    const exec = regex.exec(value)
-
-    if (!exec || !exec.length) {
-        return ''
-    }
-
-    return exec[0]
-}
-
-const filterValue = (value: string): string => {
-    const regex = new RegExp(/[0-9a-zA-Z./*,() <>[\]]+/)
-    const exec = regex.exec(value)
-
-    if (!exec || !exec.length) {
-        return ''
-    }
-
-    return exec[0]
-}
-
-const createRawData = (param: {
-    number: number
-    ion: number
-    rydberg: string
-    conf: string
-    term: string
-    j: string
-}): RawData | void => {
-    const rydberg = parseFloat(filterNumValue(param.rydberg))
-    const conf = filterValue(param.conf)
-    const term = filterValue(param.term)
-    const j = filterValue(param.j)
-
-    if (!conf || !term || !j || isNaN(rydberg)) {
-        return
-    }
-
-    return {
-        ...param,
-        conf,
-        rydberg,
-        term,
-        j,
-    } as RawData
 }

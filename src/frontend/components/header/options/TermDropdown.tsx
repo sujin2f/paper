@@ -1,30 +1,25 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { useURLParam } from 'src/frontend/hooks/useURLParam'
+import { useURLParamSorted } from 'src/frontend/hooks/useURLParam'
 import { useStore } from 'src/frontend/hooks/useStore'
+import { ContainerSorted } from 'src/model/ContainerSorted'
 
 export const TermDropdown = (): JSX.Element => {
-    const { term, getAddress } = useURLParam()
+    const [{ container: c }] = useStore()
+    const { term } = useURLParamSorted()
     const [showOptions, setShowOptions] = useState<boolean>(false)
     const dropdown = useRef<HTMLUListElement>(null)
-    const [{ container }] = useStore()
+    const container = c as ContainerSorted
+    const callbackOutside = () => setShowOptions(false)
 
     useEffect(() => {
-        document.addEventListener('click', () => {
-            setShowOptions(false)
-        })
+        document.addEventListener('click', callbackOutside)
 
         return () => {
-            document.removeEventListener('click', () => {
-                setShowOptions(false)
-            })
+            document.removeEventListener('click', callbackOutside)
         }
     }, [])
-
-    if (!container) {
-        return <Fragment></Fragment>
-    }
 
     return (
         <li>
@@ -41,7 +36,7 @@ export const TermDropdown = (): JSX.Element => {
                 <ul className="menu dropdown" ref={dropdown}>
                     <li>
                         <Link
-                            to={getAddress({
+                            to={container.getAddress({
                                 term: 0,
                             })}
                             type="button"
@@ -56,7 +51,7 @@ export const TermDropdown = (): JSX.Element => {
                         return (
                             <li key={`term-${index}`}>
                                 <Link
-                                    to={getAddress({
+                                    to={container.getAddress({
                                         term: index + 1,
                                     })}
                                     type="button"
@@ -66,9 +61,7 @@ export const TermDropdown = (): JSX.Element => {
                                             : 'view-option__unselected'
                                     }
                                 >
-                                    ✔ {termGroup.get(0).term[0]}
-                                    {termGroup.get(0).term[1]}
-                                    {termGroup.get(0).j}
+                                    ✔ {termGroup.toString()}
                                 </Link>
                             </li>
                         )

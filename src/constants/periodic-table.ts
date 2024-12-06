@@ -1,7 +1,7 @@
 // From https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON
 // Thank you so much!
 
-import { Atom } from 'src/frontend/types/atom'
+import { Atom } from 'src/types/atom'
 
 export const periodicTable: { elements: Atom[] } = {
     elements: [
@@ -17,7 +17,6 @@ export const periodicTable: { elements: Atom[] } = {
             shells: [1],
             electron_configuration: '1s1',
             ionization_energies: [1312],
-            ratios: [13.5984355],
         },
         {
             name: 'Helium',
@@ -31,7 +30,6 @@ export const periodicTable: { elements: Atom[] } = {
             shells: [2],
             electron_configuration: '1s2',
             ionization_energies: [2372.3, 5250.5],
-            ratios: [24.58732518],
         },
         {
             name: 'Lithium',
@@ -1736,4 +1734,10 @@ export const periodicTable: { elements: Atom[] } = {
             ionization_energies: [],
         },
     ],
+}
+// 13.5984355
+export const ratios = [13.598363]
+export const peak: Record<string, number[]> = {
+    H: [ratios[0]],
+    He: [24.58732518],
 }
